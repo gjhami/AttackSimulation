@@ -21,9 +21,8 @@ class Incident:
     #                   'Finance', 'Auditor', 'Former employee', 'Other', 'Competitor', 'Helpdesk', 'Unaffiliated',
     #                   'Nation-state', 'Organized crime', 'Unknown', 'Maintenance', 'Activist', 'Terrorist',
     #                   'Force majeure']
-    target_actors = ['Acquaintance', 'Call center', 'Customer', 'State-affiliated', 'End-user', 'Former employee',
-                     'Competitor', 'Helpdesk', 'Nation-state', 'Organized crime', 'Maintenance', 'Activist',
-                     'Terrorist', 'Force majeure']
+    target_actors = ['Customer', 'State-affiliated', 'End-user', 'Former employee', 'Competitor', 'Nation-state',
+                     'Organized crime', 'Activist']
 
     # All disclosure values: ['Yes', 'No', 'Potentially', 'Unknown']
 
@@ -64,8 +63,8 @@ class Incident:
 
     @classmethod
     def sort_actor_counts(cls):
-        cls.all_actor_success = cls.sort_descending(cls.all_actor_success, 'success-rate')
-        cls.sb_actor_prevalence = cls.sort_descending(cls.sb_actor_prevalence, 'prevalence-rate')
+        cls.all_actor_success = cls.sort_descending(cls.all_actor_success, 'count')
+        cls.sb_actor_prevalence = cls.sort_descending(cls.sb_actor_prevalence, 'count')
 
     # Returns dictionary with elements of dictionary of dictionaries d sorted by d[i][p]
     @staticmethod
