@@ -1,4 +1,5 @@
 from pathlib import Path
+import csv
 import json
 
 # Small business (sb) is any business with 1000 or fewer employees
@@ -27,20 +28,51 @@ class Incident:
     # All disclosure values: ['Yes', 'No', 'Potentially', 'Unknown']
 
     @classmethod
-    def print_stats(cls):
+    def save_stats(cls, outfile_name):
+        csv_rows = []
         cls.update_aggregate_statistics()
+
         actor_header = 'Actor'
         success_rate_header = 'Success Rate'
         n_header = 'n'
         prevalence_rate_header = 'Prevalence Rate'
-        print(f'{actor_header:20s} {success_rate_header:15s} {n_header:10s} {prevalence_rate_header:15s} {n_header:5s}')
-        print(f'{"-" * 70}')
+
+        csv_header = [actor_header, success_rate_header, n_header, prevalence_rate_header, n_header]
+        csv_rows.append(csv_header)
+
         for actor in cls.all_actor_success:
             if (actor in cls.target_actors) and (actor in cls.sb_actor_prevalence):
                 success_rate = f'{cls.all_actor_success[actor]["success-rate"]:0.3}'
                 success_n = f'{cls.all_actor_success[actor]["count"]}'
                 prevalence_rate = f'{cls.sb_actor_prevalence[actor]["prevalence-rate"]:0.3}'
-                prevalence_n =  f'{cls.sb_actor_prevalence[actor]["count"]}'
+                prevalence_n = f'{cls.sb_actor_prevalence[actor]["count"]}'
+
+                csv_row = [success_rate, success_n, prevalence_rate, prevalence_n]
+                csv_rows.append(csv_row)
+
+        outfile_path = Path(outfile_name)
+        with outfile_path.open('w') as outfile:
+            csv_writer = csv.writer(outfile)
+            csv_writer.writerows(csv_rows)
+
+    @classmethod
+    def print_stats(cls):
+        cls.update_aggregate_statistics()
+
+        actor_header = 'Actor'
+        success_rate_header = 'Success Rate'
+        n_header = 'n'
+        prevalence_rate_header = 'Prevalence Rate'
+
+        print(f'{actor_header:20s} {success_rate_header:15s} {n_header:10s} {prevalence_rate_header:15s} {n_header:5s}')
+        print(f'{"-" * 70}')
+
+        for actor in cls.all_actor_success:
+            if (actor in cls.target_actors) and (actor in cls.sb_actor_prevalence):
+                success_rate = f'{cls.all_actor_success[actor]["success-rate"]:0.3}'
+                success_n = f'{cls.all_actor_success[actor]["count"]}'
+                prevalence_rate = f'{cls.sb_actor_prevalence[actor]["prevalence-rate"]:0.3}'
+                prevalence_n = f'{cls.sb_actor_prevalence[actor]["count"]}'
 
                 print(f'{actor:20s} {success_rate:15s} {success_n:10s} {prevalence_rate:15s} {prevalence_n:5s}')
 
@@ -88,19 +120,22 @@ class Incident:
         for actor_variety in self.actor_varieties:
             if self.is_breach is True:
                 if actor_variety in Incident.all_actor_success:
-                    Incident.all_actor_success[actor_variety]['success'] = Incident.all_actor_success[actor_variety]['success'] + 1
+                    success_count = Incident.all_actor_success[actor_variety]['success']
+                    Incident.all_actor_success[actor_variety]['success'] = success_count + 1
                 else:
                     Incident.all_actor_success[actor_variety] = {'success': 1, 'fail': 0, 'maybe': 0}
 
             elif self.is_breach is False:
                 if actor_variety in Incident.all_actor_success:
-                    Incident.all_actor_success[actor_variety]['fail'] = Incident.all_actor_success[actor_variety]['fail'] + 1
+                    fail_count = Incident.all_actor_success[actor_variety]['fail']
+                    Incident.all_actor_success[actor_variety]['fail'] = fail_count + 1
                 else:
                     Incident.all_actor_success[actor_variety] = {'success': 0, 'fail': 1, 'maybe': 0}
 
             elif self.is_breach is None:
                 if actor_variety in Incident.all_actor_success:
-                    Incident.all_actor_success[actor_variety]['maybe'] = Incident.all_actor_success[actor_variety]['maybe'] + 1
+                    maybe_count = Incident.all_actor_success[actor_variety]['maybe']
+                    Incident.all_actor_success[actor_variety]['maybe'] = maybe_count + 1
                 else:
                     Incident.all_actor_success[actor_variety] = {'success': 0, 'fail': 0, 'maybe': 1}
 
@@ -110,7 +145,8 @@ class Incident:
 
             for actor_variety in self.actor_varieties:
                 if actor_variety in Incident.sb_actor_prevalence:
-                    Incident.sb_actor_prevalence[actor_variety]['count'] = Incident.sb_actor_prevalence[actor_variety]['count'] + 1
+                    actor_count = Incident.sb_actor_prevalence[actor_variety]['count']
+                    Incident.sb_actor_prevalence[actor_variety]['count'] = actor_count + 1
                 else:
                     Incident.sb_actor_prevalence[actor_variety] = {'count': 1}
 
@@ -151,29 +187,6 @@ class Incident:
         return actor_varieties
 
 
-def get_top_actors(actor_counts, num):
-    sorted_tuple_list = sorted(actor_counts.items(), key=lambda item: item[1])
-    sorted_tuple_list.reverse()
-    num = len(sorted_tuple_list) if len(sorted_tuple_list) < num else num
-    top_10 = []
-    for i in range(num):
-        top_10.append(sorted_tuple_list[i])
-    return dict(top_10)
-
-
-def get_actor_incident_details(incident, target_actor):
-    actor_varieties = []
-    actor_categories = incident['actor'].values()
-    for actor_category in actor_categories:
-        if 'variety' in actor_category:
-            actors = actor_category['variety']
-            for actor in actors:
-                actor_varieties.append(actor)
-
-    if target_actor in actor_varieties:
-        print(f'{incident["summary"]}\n')
-
-
 # Get validated .json files of each incident
 data_folder = Path('../VCDB/data/json/validated/')
 file_paths = list(data_folder.glob('*.json'))
@@ -184,5 +197,4 @@ for file_path in file_paths:
         incident = Incident(incident_json)
 
 Incident.print_stats()
-
-
+Incident.save_stats('output.csv')
