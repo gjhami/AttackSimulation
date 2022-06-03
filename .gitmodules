@@ -1,0 +1,3 @@
+[submodule "data-processing/VCDB"]
+	path = data-processing/VCDB
+	url = https://github.com/vz-risk/VCDB.git
