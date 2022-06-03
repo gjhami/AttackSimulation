@@ -1,12 +1,155 @@
 from pathlib import Path
 import json
 
-# Small business is any business with 1000 or fewer employees
+# Small business (sb) is any business with 1000 or fewer employees
 
-def descending_dict(d):
-    sorted_tuple_list = sorted(d.items(), key=lambda item: item[1])
-    sorted_tuple_list.reverse()
-    return dict(sorted_tuple_list)
+
+class Incident:
+    # Track breach vs. non-breach incidents for each actor in all incidents
+    all_actor_success = {}  # actor: {'success', 'fail', 'maybe', 'success-rate'}
+
+    # Track all incidents for each actor if the victim is a small business
+    sb_actor_prevalence = {}  # actor: {'count', 'prevalence-rate'}
+    sb_incident_count = 0
+
+    # target_employee_counts = ['1 to 10', '11 to 100', '101 to 1000', '1001 to 10000', '10001 to 25000',
+    #                           '25001 to 50000', '50001 to 100000', 'Over 100000', 'Small', 'Large', 'Unknown']
+    target_employee_counts = ['1 to 10', '11 to 100', '101 to 1000', 'Small']
+
+    # target_actors = ['Guard', 'Doctor or nurse', 'Acquaintance', 'Call center', 'Customer', 'Manager', 'Cashier',
+    #                   'State-affiliated', 'End-user', 'Executive', 'System admin', 'Developer', 'Human resources',
+    #                   'Finance', 'Auditor', 'Former employee', 'Other', 'Competitor', 'Helpdesk', 'Unaffiliated',
+    #                   'Nation-state', 'Organized crime', 'Unknown', 'Maintenance', 'Activist', 'Terrorist',
+    #                   'Force majeure']
+    target_actors = ['Acquaintance', 'Call center', 'Customer', 'State-affiliated', 'End-user', 'Former employee',
+                     'Competitor', 'Helpdesk', 'Nation-state', 'Organized crime', 'Maintenance', 'Activist',
+                     'Terrorist', 'Force majeure']
+
+    # All disclosure values: ['Yes', 'No', 'Potentially', 'Unknown']
+
+    @classmethod
+    def print_stats(cls):
+        cls.update_aggregate_statistics()
+        actor_header = 'Actor'
+        success_rate_header = 'Success Rate'
+        n_header = 'n'
+        prevalence_rate_header = 'Prevalence Rate'
+        print(f'{actor_header:20s} {success_rate_header:15s} {n_header:10s} {prevalence_rate_header:15s} {n_header:5s}')
+        print(f'{"-" * 70}')
+        for actor in cls.all_actor_success:
+            if (actor in cls.target_actors) and (actor in cls.sb_actor_prevalence):
+                success_rate = f'{cls.all_actor_success[actor]["success-rate"]:0.3}'
+                success_n = f'{cls.all_actor_success[actor]["count"]}'
+                prevalence_rate = f'{cls.sb_actor_prevalence[actor]["prevalence-rate"]:0.3}'
+                prevalence_n =  f'{cls.sb_actor_prevalence[actor]["count"]}'
+
+                print(f'{actor:20s} {success_rate:15s} {success_n:10s} {prevalence_rate:15s} {prevalence_n:5s}')
+
+    @classmethod
+    def update_aggregate_statistics(cls):
+        # Compute success rates based on all incidents
+        for actor in cls.all_actor_success:
+            success_count = cls.all_actor_success[actor]['success']
+            fail_count = cls.all_actor_success[actor]['fail']
+            maybe_count = cls.all_actor_success[actor]['maybe']
+            cls.all_actor_success[actor]['success-rate'] = success_count / (success_count + fail_count + maybe_count)
+            cls.all_actor_success[actor]['count'] = success_count + fail_count + maybe_count
+
+        # Compute actor prevalence for small businesses
+        for actor in cls.sb_actor_prevalence:
+            actor_count = cls.sb_actor_prevalence[actor]['count']
+            cls.sb_actor_prevalence[actor]['prevalence-rate'] = actor_count / cls.sb_incident_count
+
+        cls.sort_actor_counts()
+
+    @classmethod
+    def sort_actor_counts(cls):
+        cls.all_actor_success = cls.sort_descending(cls.all_actor_success, 'success-rate')
+        cls.sb_actor_prevalence = cls.sort_descending(cls.sb_actor_prevalence, 'prevalence-rate')
+
+    # Returns dictionary with elements of dictionary of dictionaries d sorted by d[i][p]
+    @staticmethod
+    def sort_descending(d, p):
+        sorted_tuple_list = sorted(d.items(), key=lambda item: item[1][p])
+        sorted_tuple_list.reverse()
+        return dict(sorted_tuple_list)
+
+    def __init__(self, ij):
+        self.incident_json = ij
+        self.employee_count = self.incident_json['victim']['employee_count']
+
+        self.is_sb = self.get_is_sb()
+        self.is_breach = self.get_is_breach()
+        self.actor_varieties = self.get_actor_varieties()
+
+        self.update_statistics()
+
+    def update_statistics(self):
+        # Update actor success for all breaches
+        for actor_variety in self.actor_varieties:
+            if self.is_breach is True:
+                if actor_variety in Incident.all_actor_success:
+                    Incident.all_actor_success[actor_variety]['success'] = Incident.all_actor_success[actor_variety]['success'] + 1
+                else:
+                    Incident.all_actor_success[actor_variety] = {'success': 1, 'fail': 0, 'maybe': 0}
+
+            elif self.is_breach is False:
+                if actor_variety in Incident.all_actor_success:
+                    Incident.all_actor_success[actor_variety]['fail'] = Incident.all_actor_success[actor_variety]['fail'] + 1
+                else:
+                    Incident.all_actor_success[actor_variety] = {'success': 0, 'fail': 1, 'maybe': 0}
+
+            elif self.is_breach is None:
+                if actor_variety in Incident.all_actor_success:
+                    Incident.all_actor_success[actor_variety]['maybe'] = Incident.all_actor_success[actor_variety]['maybe'] + 1
+                else:
+                    Incident.all_actor_success[actor_variety] = {'success': 0, 'fail': 0, 'maybe': 1}
+
+        # Update actor counts and total incidents for small business breaches
+        if self.is_sb is True:
+            Incident.sb_incident_count = Incident.sb_incident_count + 1
+
+            for actor_variety in self.actor_varieties:
+                if actor_variety in Incident.sb_actor_prevalence:
+                    Incident.sb_actor_prevalence[actor_variety]['count'] = Incident.sb_actor_prevalence[actor_variety]['count'] + 1
+                else:
+                    Incident.sb_actor_prevalence[actor_variety] = {'count': 1}
+
+    def get_is_sb(self):
+        is_sb = False
+        if self.employee_count in Incident.target_employee_counts:
+            is_sb = True
+
+        return is_sb
+
+    def get_is_breach(self):
+        attributes = self.incident_json['attribute'].values()
+        is_breach = False
+        is_uncertain = False
+        for attribute in attributes:
+            if 'data_disclosure' in attribute:
+                data_disclosure = attribute['data_disclosure']
+
+                if data_disclosure == 'Yes':
+                    is_breach = True
+                elif data_disclosure in ['Potentially', 'Unknown']:
+                    is_uncertain = True
+
+        # Return none if there is no definite breach, but it's not all 'No's
+        if (not is_breach) and is_uncertain:
+            is_breach = None
+
+        return is_breach
+
+    def get_actor_varieties(self):
+        actor_categories = self.incident_json['actor'].values()
+        actor_varieties = []
+        for actor_category in actor_categories:
+            if 'variety' in actor_category:
+                actors = actor_category['variety']
+                for actor in actors:
+                    actor_varieties.append(actor)
+        return actor_varieties
 
 
 def get_top_actors(actor_counts, num):
@@ -17,16 +160,6 @@ def get_top_actors(actor_counts, num):
     for i in range(num):
         top_10.append(sorted_tuple_list[i])
     return dict(top_10)
-
-
-def get_actor_varieties(actor_categories):
-    actor_varieties = []
-    for actor_category in actor_categories:
-        if 'variety' in actor_category:
-            actors = actor_category['variety']
-            for actor in actors:
-                actor_varieties.append(actor)
-    return actor_varieties
 
 
 def get_actor_incident_details(incident, target_actor):
@@ -42,170 +175,15 @@ def get_actor_incident_details(incident, target_actor):
         print(f'{incident["summary"]}\n')
 
 
-def get_is_breach(attributes):
-    is_breach = False
-    is_uncertain = False
-    for attribute in attributes:
-        if 'data_disclosure' in attribute:
-            data_disclosure = attribute['data_disclosure']
-
-            if data_disclosure == 'Yes':
-                is_breach = True
-            elif data_disclosure in ['Potentially', 'Unknown']:
-                is_uncertain = True
-
-    # Return none if there is no definite breach, but it's not all 'No's
-    if (not is_breach) and is_uncertain:
-        is_breach = None
-
-    return is_breach
-
-
-# sb is a boolean indicating if the incident pertains to a small business.
-def increment_actor_variety(is_breach, actor_varieties, sb):
-    if is_breach:
-        if sb is True:
-            for actor_variety in actor_varieties:
-                if actor_variety in sb_breach_actor_counts:
-                    sb_breach_actor_counts[actor_variety] = sb_breach_actor_counts[actor_variety] + 1
-                else:
-                    sb_breach_actor_counts[actor_variety] = 1
-
-                if actor_variety in sb_actor_counts:
-                    sb_actor_counts[actor_variety] = sb_actor_counts[actor_variety] + 1
-                else:
-                    sb_actor_counts[actor_variety] = 1
-        else:
-            for actor_variety in actor_varieties:
-                if actor_variety in all_breach_actor_counts:
-                    all_breach_actor_counts[actor_variety] = all_breach_actor_counts[actor_variety] + 1
-                else:
-                    all_breach_actor_counts[actor_variety] = 1
-
-                if actor_variety in all_actor_counts:
-                    all_actor_counts[actor_variety] = all_actor_counts[actor_variety] + 1
-                else:
-                    all_actor_counts[actor_variety] = 1
-
-    elif is_breach is not None:
-        if sb is True:
-            for actor_variety in actor_varieties:
-                if actor_variety in sb_non_breach_actor_counts:
-                    sb_non_breach_actor_counts[actor_variety] = sb_non_breach_actor_counts[actor_variety] + 1
-                else:
-                    sb_non_breach_actor_counts[actor_variety] = 1
-
-                if actor_variety in sb_actor_counts:
-                    sb_actor_counts[actor_variety] = sb_actor_counts[actor_variety] + 1
-                else:
-                    sb_actor_counts[actor_variety] = 1
-        else:
-            for actor_variety in actor_varieties:
-                if actor_variety in all_non_breach_actor_counts:
-                    all_non_breach_actor_counts[actor_variety] = all_non_breach_actor_counts[actor_variety] + 1
-                else:
-                    all_non_breach_actor_counts[actor_variety] = 1
-
-                if actor_variety in all_actor_counts:
-                    all_actor_counts[actor_variety] = all_actor_counts[actor_variety] + 1
-                else:
-                    all_actor_counts[actor_variety] = 1
-
-
-def print_sb_stats():
-    print(f'### Small Business Stats ###')
-    print(f'Total Incidents: {sb_incident_count}')
-    print(f'\tTotal Breaches: {sb_breach_count}')
-    print(f'\tTotal Non-Breaches: {sb_non_breach_count}')
-    print(f'\tTotal Maybe-Breaches: {sb_maybe_breach_count}\n')
-
-    print(f'Total: {get_top_actors(sb_actor_counts, 20)}')
-    print(f'Breaches: {get_top_actors(sb_breach_actor_counts, 20)}')
-    print(f'Non-Breaches: {get_top_actors(sb_non_breach_actor_counts, 20)}\n\n')
-
-
-def print_unfiltered_stats():
-    print(f'### Unfiltered Stats ###')
-    print(f'Total Incidents: {all_incident_count}')
-    print(f'\tTotal Breaches: {all_breach_count}')
-    print(f'\tTotal Non-Breaches: {all_non_breach_count}')
-    print(f'\tTotal Maybe-Breaches: {all_maybe_breach_count}\n')
-
-    print(f'Total: {get_top_actors(all_actor_counts, 20)}')
-    print(f'Breaches: {get_top_actors(all_breach_actor_counts, 20)}')
-    print(f'Non-Breaches: {get_top_actors(all_non_breach_actor_counts, 20)}\n\n')
-
-
-def print_all_stats():
-    print_unfiltered_stats()
-    print_sb_stats()
-
-
 # Get validated .json files of each incident
-data_folder = Path('data/json/validated/')
+data_folder = Path('../VCDB/data/json/validated/')
 file_paths = list(data_folder.glob('*.json'))
-
-# Filters
-# target_employee_counts = ['1 to 10', '11 to 100', '101 to 1000', '1001 to 10000', '10001 to 25000', '25001 to 50000',
-#                           '50001 to 100000', 'Over 100000',
-#                           'Small', 'Large', 'Unknown']
-target_employee_counts = ['1 to 10', '11 to 100', '101 to 1000', 'Small']
-
-# All disclosure values: ['Yes', 'No', 'Potentially', 'Unknown']
-
-
-# Track metrics for all incidents
-all_incident_count          = 0
-all_breach_count            = 0
-all_non_breach_count        = 0
-all_maybe_breach_count      = 0
-all_actor_counts            = {}
-all_breach_actor_counts     = {}
-all_non_breach_actor_counts = {}
-
-
-# Track actor metrics for small business incidents
-sb_incident_count           = 0
-sb_breach_count             = 0
-sb_non_breach_count         = 0
-sb_maybe_breach_count       = 0
-sb_actor_counts             = {}
-sb_breach_actor_counts      = {}
-sb_non_breach_actor_counts  = {}
-
 
 for file_path in file_paths:
     with file_path.open() as f:
-        incident = json.load(f)
+        incident_json = json.load(f)
+        incident = Incident(incident_json)
 
-        employee_count = incident['victim']['employee_count']
-        actor_varieties = get_actor_varieties(incident['actor'].values())
-        is_breach = get_is_breach(incident['attribute'].values())
-
-        if employee_count in target_employee_counts:
-            sb_incident_count = sb_incident_count + 1
-
-            if is_breach is None:
-                sb_breach_count = sb_breach_count + 1
-            elif is_breach is True:
-                sb_breach_count = sb_breach_count + 1
-            elif is_breach is False:
-                sb_non_breach_count = sb_non_breach_count + 1
-
-            increment_actor_variety(is_breach, actor_varieties, True)
-
-        else:
-            all_incident_count = all_incident_count + 1
-
-            if is_breach is None:
-                all_maybe_breach_count = all_maybe_breach_count + 1
-            elif is_breach is True:
-                all_breach_count = all_breach_count + 1
-            elif is_breach is False:
-                all_non_breach_count = all_non_breach_count + 1
-
-            increment_actor_variety(is_breach, actor_varieties, False)
-
-print_all_stats()
+Incident.print_stats()
 
 
