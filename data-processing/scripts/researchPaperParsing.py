@@ -27,6 +27,8 @@ class Incident:
 
     # All disclosure values: ['Yes', 'No', 'Potentially', 'Unknown']
 
+    # Saves actor names, overall success rates, overall sample size, small business prevalence, and small business
+    # sample size to a provided file as a csv
     @classmethod
     def save_stats(cls, outfile_name):
         csv_rows = []
@@ -55,6 +57,8 @@ class Incident:
             csv_writer = csv.writer(outfile)
             csv_writer.writerows(csv_rows)
 
+    # Prints actor names, overall success rates, overall sample size, small business prevalence, and small business
+    # sample size to stdout
     @classmethod
     def print_stats(cls):
         cls.update_aggregate_statistics()
@@ -76,6 +80,9 @@ class Incident:
 
                 print(f'{actor:20s} {success_rate:15s} {success_n:10s} {prevalence_rate:15s} {prevalence_n:5s}')
 
+    # Computes aggregate statistics about incidents using the class variables which track all instances of the Incident
+    # class. This includes success rate and prevalence rate, and should be called after all instances of Incident have
+    # been created or before outputting statistics.
     @classmethod
     def update_aggregate_statistics(cls):
         # Compute success rates based on all incidents
@@ -93,6 +100,7 @@ class Incident:
 
         cls.sort_actor_counts()
 
+    # Sorts the aggregate lists tracking actor success rate and prevalence in order of sample size
     @classmethod
     def sort_actor_counts(cls):
         cls.all_actor_success = cls.sort_descending(cls.all_actor_success, 'count')
@@ -115,6 +123,7 @@ class Incident:
 
         self.update_statistics()
 
+    # Updates aggregate list to reflect the contents of the current incident and actors involved
     def update_statistics(self):
         # Update actor success for all breaches
         for actor_variety in self.actor_varieties:
@@ -150,6 +159,7 @@ class Incident:
                 else:
                     Incident.sb_actor_prevalence[actor_variety] = {'count': 1}
 
+    # Returns True if the incident effected a small business and otherwise returns False
     def get_is_sb(self):
         is_sb = False
         if self.employee_count in Incident.target_employee_counts:
@@ -157,6 +167,9 @@ class Incident:
 
         return is_sb
 
+    # Returns True if the incident involved confirmed data disclosure
+    # False if the incident only involved only confirmed instances of data disclosure
+    # None if the incident involved any instances of 'Unknown' or 'Potentially' data disclosure
     def get_is_breach(self):
         attributes = self.incident_json['attribute'].values()
         is_breach = False
@@ -176,6 +189,7 @@ class Incident:
 
         return is_breach
 
+    # Returns a list of actor varieties involved in the incident. May contain the same variety multiple times.
     def get_actor_varieties(self):
         actor_categories = self.incident_json['actor'].values()
         actor_varieties = []
@@ -187,14 +201,22 @@ class Incident:
         return actor_varieties
 
 
-# Get validated .json files of each incident
-data_folder = Path('../VCDB/data/json/validated/')
-file_paths = list(data_folder.glob('*.json'))
+def main():
+    # Get validated .json files of each incident
+    data_folder = Path('../VCDB/data/json/validated/')
+    file_paths = list(data_folder.glob('*.json'))
 
-for file_path in file_paths:
-    with file_path.open() as f:
-        incident_json = json.load(f)
-        incident = Incident(incident_json)
+    # Create a new instance of Incident for each verified incident
+    # Incidents are tracked in aggregate using class variables
+    for file_path in file_paths:
+        with file_path.open() as f:
+            incident_json = json.load(f)
+            Incident(incident_json)
 
-Incident.print_stats()
-Incident.save_stats('output.csv')
+    # Print statistics to console and save them to a csv
+    Incident.print_stats()
+    Incident.save_stats('output.csv')
+
+
+if __name__ == "__main__":
+    main()
