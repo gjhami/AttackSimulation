@@ -123,6 +123,10 @@ class Incident:
 
         self.update_statistics()
 
+        # actor_to_investigate = 'Customer'
+        # if actor_to_investigate in self.actor_varieties:
+        #     print(f'{self.incident_json["summary"]}\n')
+
     # Updates aggregate list to reflect the contents of the current incident and actors involved
     def update_statistics(self):
         # Update actor success for all breaches
