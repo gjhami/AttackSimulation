@@ -1,6 +1,9 @@
 # cyberattack-simulation
 An AnyLogic simulation allowing users to visually estimate the risk of cyber attacks as well as the cost and efficacy of controls.
 
+## Warning
+This project is currently under heavy development and is subject to major changes. When the code becomes more stable the AnyLogic model will be available as a standalone application which does not require an AnyLogic license to use and can be downloaded in Relases.
+
 ## Usage and Audience
 This model is intended for small businesses without dedicated cybersecurity teams or experts who want to make more effective decsisions about how to allocate a limited cybersecurity budget. This model is not meant to be completely accurate for all businesses. It is only meant to provide a useful tool which is accurate enough to improve decision making.
 
