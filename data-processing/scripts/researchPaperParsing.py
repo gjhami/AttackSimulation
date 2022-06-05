@@ -7,7 +7,7 @@ import json
 
 class Incident:
     # Track breach vs. non-breach incidents for each actor in all incidents
-    all_actor_success = {}  # actor: {'success', 'fail', 'maybe', 'success-rate'}
+    all_actor_fail = {}  # actor: {'success', 'fail', 'maybe', 'fail-rate'}
 
     # Track all incidents for each actor if the victim is a small business
     sb_actor_prevalence = {}  # actor: {'count', 'prevalence-rate'}
@@ -27,7 +27,7 @@ class Incident:
 
     # All disclosure values: ['Yes', 'No', 'Potentially', 'Unknown']
 
-    # Saves actor names, overall success rates, overall sample size, small business prevalence, and small business
+    # Saves actor names, overall fail rates, overall sample size, small business prevalence, and small business
     # sample size to a provided file as a csv
     @classmethod
     def save_stats(cls, outfile_name):
@@ -35,21 +35,21 @@ class Incident:
         cls.update_aggregate_statistics()
 
         actor_header = 'Actor'
-        success_rate_header = 'Success Rate'
+        fail_rate_header = 'Fail Rate'
         n_header = 'n'
         prevalence_rate_header = 'Prevalence Rate'
 
-        csv_header = [actor_header, success_rate_header, n_header, prevalence_rate_header, n_header]
+        csv_header = [actor_header, fail_rate_header, n_header, prevalence_rate_header, n_header]
         csv_rows.append(csv_header)
 
-        for actor in cls.all_actor_success:
+        for actor in cls.all_actor_fail:
             if (actor in cls.target_actors) and (actor in cls.sb_actor_prevalence):
-                success_rate = f'{cls.all_actor_success[actor]["success-rate"]:0.3}'
-                success_n = f'{cls.all_actor_success[actor]["count"]}'
+                fail_rate = f'{cls.all_actor_fail[actor]["fail-rate"]:0.3}'
+                fail_n = f'{cls.all_actor_fail[actor]["count"]}'
                 prevalence_rate = f'{cls.sb_actor_prevalence[actor]["prevalence-rate"]:0.3}'
                 prevalence_n = f'{cls.sb_actor_prevalence[actor]["count"]}'
 
-                csv_row = [success_rate, success_n, prevalence_rate, prevalence_n]
+                csv_row = [fail_rate, fail_n, prevalence_rate, prevalence_n]
                 csv_rows.append(csv_row)
 
         outfile_path = Path(outfile_name)
@@ -57,41 +57,40 @@ class Incident:
             csv_writer = csv.writer(outfile)
             csv_writer.writerows(csv_rows)
 
-    # Prints actor names, overall success rates, overall sample size, small business prevalence, and small business
+    # Prints actor names, overall fail rates, overall sample size, small business prevalence, and small business
     # sample size to stdout
     @classmethod
     def print_stats(cls):
         cls.update_aggregate_statistics()
 
         actor_header = 'Actor'
-        success_rate_header = 'Success Rate'
+        fail_rate_header = 'Fail Rate'
         n_header = 'n'
         prevalence_rate_header = 'Prevalence Rate'
 
-        print(f'{actor_header:20s} {success_rate_header:15s} {n_header:10s} {prevalence_rate_header:15s} {n_header:5s}')
+        print(f'{actor_header:20s} {fail_rate_header:15s} {n_header:10s} {prevalence_rate_header:15s} {n_header:5s}')
         print(f'{"-" * 70}')
 
-        for actor in cls.all_actor_success:
+        for actor in cls.all_actor_fail:
             if (actor in cls.target_actors) and (actor in cls.sb_actor_prevalence):
-                success_rate = f'{cls.all_actor_success[actor]["success-rate"]:0.3}'
-                success_n = f'{cls.all_actor_success[actor]["count"]}'
+                fail_rate = f'{cls.all_actor_fail[actor]["fail-rate"]:0.3}'
+                fail_n = f'{cls.all_actor_fail[actor]["count"]}'
                 prevalence_rate = f'{cls.sb_actor_prevalence[actor]["prevalence-rate"]:0.3}'
                 prevalence_n = f'{cls.sb_actor_prevalence[actor]["count"]}'
 
-                print(f'{actor:20s} {success_rate:15s} {success_n:10s} {prevalence_rate:15s} {prevalence_n:5s}')
+                print(f'{actor:20s} {fail_rate:15s} {fail_n:10s} {prevalence_rate:15s} {prevalence_n:5s}')
 
     # Computes aggregate statistics about incidents using the class variables which track all instances of the Incident
-    # class. This includes success rate and prevalence rate, and should be called after all instances of Incident have
+    # class. This includes fail rate and prevalence rate, and should be called after all instances of Incident have
     # been created or before outputting statistics.
     @classmethod
     def update_aggregate_statistics(cls):
-        # Compute success rates based on all incidents
-        for actor in cls.all_actor_success:
-            success_count = cls.all_actor_success[actor]['success']
-            fail_count = cls.all_actor_success[actor]['fail']
-            maybe_count = cls.all_actor_success[actor]['maybe']
-            cls.all_actor_success[actor]['success-rate'] = success_count / (success_count + fail_count + maybe_count)
-            cls.all_actor_success[actor]['count'] = success_count + fail_count + maybe_count
+        # Compute fail rates based incidents with and without data breaches
+        for actor in cls.all_actor_fail:
+            success_count = cls.all_actor_fail[actor]['success']
+            fail_count = cls.all_actor_fail[actor]['fail']
+            cls.all_actor_fail[actor]['fail-rate'] = fail_count / (success_count + fail_count)
+            cls.all_actor_fail[actor]['count'] = success_count + fail_count
 
         # Compute actor prevalence for small businesses
         for actor in cls.sb_actor_prevalence:
@@ -100,10 +99,10 @@ class Incident:
 
         cls.sort_actor_counts()
 
-    # Sorts the aggregate lists tracking actor success rate and prevalence in order of sample size
+    # Sorts the aggregate lists tracking actor fail rate and prevalence in order of sample size
     @classmethod
     def sort_actor_counts(cls):
-        cls.all_actor_success = cls.sort_descending(cls.all_actor_success, 'count')
+        cls.all_actor_fail = cls.sort_descending(cls.all_actor_fail, 'count')
         cls.sb_actor_prevalence = cls.sort_descending(cls.sb_actor_prevalence, 'count')
 
     # Returns dictionary with elements of dictionary of dictionaries d sorted by d[i][p]
@@ -132,25 +131,25 @@ class Incident:
         # Update actor success for all breaches
         for actor_variety in self.actor_varieties:
             if self.is_breach is True:
-                if actor_variety in Incident.all_actor_success:
-                    success_count = Incident.all_actor_success[actor_variety]['success']
-                    Incident.all_actor_success[actor_variety]['success'] = success_count + 1
+                if actor_variety in Incident.all_actor_fail:
+                    success_count = Incident.all_actor_fail[actor_variety]['success']
+                    Incident.all_actor_fail[actor_variety]['success'] = success_count + 1
                 else:
-                    Incident.all_actor_success[actor_variety] = {'success': 1, 'fail': 0, 'maybe': 0}
+                    Incident.all_actor_fail[actor_variety] = {'success': 1, 'fail': 0, 'maybe': 0}
 
             elif self.is_breach is False:
-                if actor_variety in Incident.all_actor_success:
-                    fail_count = Incident.all_actor_success[actor_variety]['fail']
-                    Incident.all_actor_success[actor_variety]['fail'] = fail_count + 1
+                if actor_variety in Incident.all_actor_fail:
+                    fail_count = Incident.all_actor_fail[actor_variety]['fail']
+                    Incident.all_actor_fail[actor_variety]['fail'] = fail_count + 1
                 else:
-                    Incident.all_actor_success[actor_variety] = {'success': 0, 'fail': 1, 'maybe': 0}
+                    Incident.all_actor_fail[actor_variety] = {'success': 0, 'fail': 1, 'maybe': 0}
 
             elif self.is_breach is None:
-                if actor_variety in Incident.all_actor_success:
-                    maybe_count = Incident.all_actor_success[actor_variety]['maybe']
-                    Incident.all_actor_success[actor_variety]['maybe'] = maybe_count + 1
+                if actor_variety in Incident.all_actor_fail:
+                    maybe_count = Incident.all_actor_fail[actor_variety]['maybe']
+                    Incident.all_actor_fail[actor_variety]['maybe'] = maybe_count + 1
                 else:
-                    Incident.all_actor_success[actor_variety] = {'success': 0, 'fail': 0, 'maybe': 1}
+                    Incident.all_actor_fail[actor_variety] = {'success': 0, 'fail': 0, 'maybe': 1}
 
         # Update actor counts and total incidents for small business breaches
         if self.is_sb is True:
