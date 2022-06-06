@@ -1,2 +1,4 @@
 .idea/
 venv/
+model/database/db.log
+model/database/db.lck
