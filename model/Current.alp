@@ -171,22 +171,6 @@ FlagEdit.setText("4", true);]]></StartupCode>
 					</Properties>
 				</Variable>
 				<Variable Class="PlainVariable">
-					<Id>1651862262414</Id>
-					<Name><![CDATA[v_attackerSophistocation]]></Name>
-					<Description><![CDATA[Variance associated with attack sophistocation]]></Description>
-					<X>320</X><Y>-320</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
-						<Type><![CDATA[double]]></Type>        
-						<InitialValue Class="CodeValue">
-							<Code><![CDATA[1]]></Code>
-						</InitialValue>
-					</Properties>
-				</Variable>
-				<Variable Class="PlainVariable">
 					<Id>1653420433123</Id>
 					<Name><![CDATA[OCost]]></Name>
 					<X>320</X><Y>-110</Y>
@@ -295,6 +279,58 @@ FlagEdit.setText("4", true);]]></StartupCode>
 						<Type><![CDATA[double]]></Type>        
 					</Properties>
 				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1654451474568</Id>
+					<Name><![CDATA[v_effectiveAttacker]]></Name>
+					<Description><![CDATA[Attacker selected for the current attack]]></Description>
+					<X>320</X><Y>-320</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[A_Attacker]]></Type>        
+					</Properties>
+				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1654532780996</Id>
+					<Name><![CDATA[v_effectiveAttackerFailRatio]]></Name>
+					<X>320</X><Y>-300</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[double]]></Type>        
+						<InitialValue Class="CodeValue">
+							<Code><![CDATA[1]]></Code>
+						</InitialValue>
+					</Properties>
+				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1654542173696</Id>
+					<Name><![CDATA[v_runningFailRatioSum]]></Name>
+					<X>1060</X><Y>-140</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[double]]></Type>        
+					</Properties>
+				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1654542190182</Id>
+					<Name><![CDATA[v_avgFailRatio]]></Name>
+					<X>1060</X><Y>-120</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[double]]></Type>        
+					</Properties>
+				</Variable>
 				<Variable Class="CollectionVariable">
 					<Id>1654034130216</Id>
 					<Name><![CDATA[cv_compromisedNodes]]></Name>
@@ -314,7 +350,7 @@ FlagEdit.setText("4", true);]]></StartupCode>
 				<Variable Class="CollectionVariable">
 					<Id>1654352585361</Id>
 					<Name><![CDATA[cv_allAttackers]]></Name>
-					<X>320</X><Y>-300</Y>
+					<X>320</X><Y>-280</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -462,59 +498,68 @@ PositionText.setText(Positions.toString());
 					<ReturnModificator>VOID</ReturnModificator>
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1651861966649</Id>
-					<Name><![CDATA[f_updateAttackerSophistocation]]></Name>
+					<Name><![CDATA[f_updateAttackerFailRatio]]></Name>
 					<X>540</X><Y>-130</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
-					<Body><![CDATA[/* Calculate the overall sophistocation
-Based on the user supplied low, medium, and high sophistocation scored.
-A score of 5 has no effect on the variances in the model.
+					<Body><![CDATA[/*
+Iterate over attackers in a random order.
+If any attacker returns that it is the attacker for the current attack,
+	Then apply its fail ratio to each node when running this attack and
+	stop iterating through the attackers.
+	
+If no attackers return that they are the attacker.
+Then set the fail ratio to 1, which will be multiplied by the control efficacy
+therefore having no effect.
+
 */
-/*
-double sophistocationVariance = 0;
+v_effectiveAttacker = null;
+Boolean v_attackerSelected = false;
+int v_uncheckedAttackerCount = count(apv_Attackers, a -> a.v_checkedForAttack == false);
+A_Attacker v_randomAttacker;
 
 
 
-int[] sophistocationInputs = {SophLow, SophMed, SophHigh};
-int[] multiplier = {1, 2, 3};
-int totalPossible = 0;
-
-for(int i = 0; i < sophistocationInputs.length; i++) {
-	sophistocationVariance += (sophistocationInputs[i] * multiplier[i]);
-	totalPossible = 10 * multiplier[i];
+while ((v_uncheckedAttackerCount > 0) && (v_attackerSelected == false)) {
+	v_randomAttacker = randomWhere(apv_Attackers, a -> a.v_checkedForAttack == false);
+	if (v_randomAttacker != null) {
+		v_randomAttacker.v_checkedForAttack = true;
+		v_attackerSelected = v_randomAttacker.f_getIsAttacker();
+		
+		if (v_attackerSelected == true) {
+			v_effectiveAttacker = v_randomAttacker;
+			v_effectiveAttackerFailRatio = v_effectiveAttacker.f_getFailRatio();
+		}
+	}
+	
+	else {
+		v_attackerSelected = true;
+		v_effectiveAttackerFailRatio = 1;
+	}
 }
 
-// Average 3 sophistocation scores and convert to decimal between 0 and 1
-sophistocationVariance = sophistocationVariance / (totalPossible);
 
-// 0.5 should have no impact on the model
-// 1 should indicate high sophistocation and reduce control efficacy
-// 0 should indicate low sophistocation and increase control efficacy
-// Shift value left by 0.5 so that 0.5 is in the middel of the normal curve
-// Use a normal distribution with a max of 5 stddev in either direction
-double sophZScore = (sophistocationVariance - 0.5) * 10;
+// Reset which nodes have been checked for the next round of attacker selection
+for (A_Attacker attacker : filter(apv_Attackers, a -> a.v_checkedForAttack == true)) {
+	attacker.v_checkedForAttack = false;
+}
 
-// Should be 0-1, but it might be 0-100
-SophVar = getAreaUnderNormalCurve(-5, sophZScore);
-*/
-v_attackerSophistocation = 1;
-
-]]></Body>
+v_runningFailRatioSum = v_runningFailRatioSum + v_effectiveAttackerFailRatio;]]></Body>
 				</Function>
 				<Function AccessType="default" StaticFunction="false">
 					<ReturnModificator>VOID</ReturnModificator>
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1653412572346</Id>
 					<Name><![CDATA[RelayAttack]]></Name>
-					<X>540</X><Y>-350</Y>
+					<X>540</X><Y>-370</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
 					<Parameter>
-						<Name><![CDATA[Runs]]></Name>
+						<Name><![CDATA[p_runs]]></Name>
 						<Type><![CDATA[int]]></Type>
 					</Parameter>
 					<Body><![CDATA[/* 
@@ -527,30 +572,41 @@ calculated and displayed on 'Main'.
 */
 
 f_linkNodes();
-f_updateAttackerSophistocation();
-TotalRuns = TotalRuns + Runs;
-RunsRemaining = Runs;
+RunsRemaining = p_runs;
+NetworkNode firstNode = (NetworkNode)Positions.firstEntry().getValue();
 
 while (RunsRemaining > 0) {
 	RunsRemaining = RunsRemaining - 1;
+	TotalRuns = TotalRuns + 1;
+	f_updateAttackerFailRatio();
 	
 	for (Map.Entry<Integer, NetworkNode> entry : Positions.entrySet()) {
 		NetworkNode node = entry.getValue();
 		if (!node.SkipNode) {
-			node.calculateOverall(v_attackerSophistocation);
+			node.calculateOverall(v_effectiveAttackerFailRatio);
 		}
 	}
 	
+	
+	firstNode.f_processAttack();
+	
+	f_updateGraph();
+	t_totalAttacksRun.setText(TotalRuns);
 	totalCost.setText(OCalculation());
-	send("RelayAttack",((NetworkNode)Positions.firstEntry().getValue()));
-}]]></Body>
+	pb_attackProgress.setValue((((double)(RunsTarget - RunsRemaining)) / RunsTarget) * 100);
+}
+
+v_avgFailRatio = v_runningFailRatioSum / TotalRuns;
+t_avgFailRatio.setText(v_avgFailRatio);
+
+]]></Body>
 				</Function>
 				<Function AccessType="default" StaticFunction="false">
 					<ReturnModificator>VOID</ReturnModificator>
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1653426798615</Id>
 					<Name><![CDATA[GetCompromisedNodes]]></Name>
-					<X>540</X><Y>-370</Y>
+					<X>540</X><Y>-390</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -581,21 +637,27 @@ while (RunsRemaining > 0) {
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1653490984860</Id>
 					<Name><![CDATA[ResetNodes]]></Name>
-					<X>540</X><Y>-390</Y>
+					<X>540</X><Y>-410</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
-					<Body><![CDATA[send("Reset",((NetworkNode)Positions.firstEntry().getValue()));
+					<Body><![CDATA[NetworkNode firstNode = (NetworkNode)Positions.firstEntry().getValue();
+firstNode.Reset();
 cv_compromisedNodes.clear();
 CompromisedChart.removeAll();
-TotalRuns = 0;]]></Body>
+
+TotalRuns = 0;
+t_totalAttacksRun.setText(TotalRuns);
+
+v_runningFailRatioSum = 0;
+t_avgFailRatio.setText('?');]]></Body>
 				</Function>
 				<Function AccessType="default" StaticFunction="false">
 					<ReturnModificator>VOID</ReturnModificator>
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1653572803181</Id>
-					<Name><![CDATA[UpdateGraph]]></Name>
+					<Name><![CDATA[f_updateGraph]]></Name>
 					<X>540</X><Y>-430</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
@@ -604,14 +666,14 @@ TotalRuns = 0;]]></Body>
 					<Body><![CDATA[CompromisedChart.removeAll();
 double v_percentNodeCompromised;
 NetworkNode node;
-Double compromisedCount;
+double compromisedCount;
 String nodeName;
 
 for (Map.Entry<Integer, NetworkNode> entry : Positions.entrySet()) {
 	node = entry.getValue();
 	nodeName = node.getName();
-	compromisedCount = cv_compromisedNodes.get(nodeName);
-	v_percentNodeCompromised = 100 * (compromisedCount.doubleValue() / (double)TotalRuns);
+	compromisedCount = (double) node.v_numCompromises;
+	v_percentNodeCompromised = 100 * (compromisedCount / TotalRuns);
 	
 	// Visualize the node in red if it's compromised in most attacks
 	if (v_percentNodeCompromised > 50) {
@@ -628,20 +690,9 @@ for (Map.Entry<Integer, NetworkNode> entry : Positions.entrySet()) {
 				<Function AccessType="default" StaticFunction="false">
 					<ReturnModificator>VOID</ReturnModificator>
 					<ReturnType><![CDATA[double]]></ReturnType>
-					<Id>1654033745808</Id>
-					<Name><![CDATA[f_updateSelectedAttackers]]></Name>
-					<X>540</X><Y>-410</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-				</Function>
-				<Function AccessType="default" StaticFunction="false">
-					<ReturnModificator>VOID</ReturnModificator>
-					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1654358174980</Id>
 					<Name><![CDATA[f_populateAllAttackers]]></Name>
-					<X>540</X><Y>-330</Y>
+					<X>540</X><Y>-350</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -678,13 +729,6 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
-					<OnReceive><![CDATA[if(msg.equals("AttackFinished")) {
-	GetCompromisedNodes();
-	if (RunsRemaining == 0){
-		UpdateGraph();
-	}
-}
-]]></OnReceive>
 					<HandleReceiveInConnections>false</HandleReceiveInConnections>
 					<AgentLinkType>COLLECTION_OF_LINKS</AgentLinkType>
 					<AgentLinkBidirectional>true</AgentLinkBidirectional>
@@ -1883,13 +1927,13 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 							<Name><![CDATA[p_attackRatio]]></Name>
 						</Parameter>
 						<Parameter>
-							<Name><![CDATA[p_breachRatio]]></Name>
+							<Name><![CDATA[p_failRatio]]></Name>
 						</Parameter>
 						<Parameter>
 							<Name><![CDATA[p_id]]></Name>
 						</Parameter>
 						<Parameter>
-							<Name><![CDATA[p_breachN]]></Name>
+							<Name><![CDATA[p_failN]]></Name>
 						</Parameter>
 						<Parameter>
 							<Name><![CDATA[p_attackN]]></Name>
@@ -1965,24 +2009,24 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 							<Key>
 								<PackageName><![CDATA[mango_model3]]></PackageName>
 								<ClassName><![CDATA[A_Attacker]]></ClassName>
-								<ItemName><![CDATA[p_breachRatio]]></ItemName>
+								<ItemName><![CDATA[p_failRatio]]></ItemName>
 							</Key>
 							<Value>
 								<PackageName><![CDATA[mango_model3]]></PackageName>
 								<ClassName><![CDATA[attacker_types]]></ClassName>
-								<ItemName><![CDATA[breach_ratio]]></ItemName>
+								<ItemName><![CDATA[non_breach_ratio]]></ItemName>
 							</Value>
 						</Item>
 						<Item>
 							<Key>
 								<PackageName><![CDATA[mango_model3]]></PackageName>
 								<ClassName><![CDATA[A_Attacker]]></ClassName>
-								<ItemName><![CDATA[p_breachN]]></ItemName>
+								<ItemName><![CDATA[p_failN]]></ItemName>
 							</Key>
 							<Value>
 								<PackageName><![CDATA[mango_model3]]></PackageName>
 								<ClassName><![CDATA[attacker_types]]></ClassName>
-								<ItemName><![CDATA[breach_n]]></ItemName>
+								<ItemName><![CDATA[non_breach_n]]></ItemName>
 							</Value>
 						</Item>
 						<Item>
@@ -2270,7 +2314,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 				<Text>
 					<Id>1493000682086</Id>
 					<Name><![CDATA[text7]]></Name>
-					<X>40</X><Y>760</Y>
+					<X>40</X><Y>770</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2291,7 +2335,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 				<Text>
 					<Id>1493000707590</Id>
 					<Name><![CDATA[totalCost]]></Name>
-					<X>170</X><Y>760</Y>
+					<X>170</X><Y>770</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2313,7 +2357,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 				 	<EmbeddedIcon>false</EmbeddedIcon>				
 					<Id>1481759601788</Id>
 					<Name><![CDATA[RelayButton]]></Name>
-					<X>40</X><Y>640</Y>
+					<X>40</X><Y>680</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2323,11 +2367,13 @@ attacker.f_setSelected(p_isSelected);]]></Body>
                         <EmbeddedIcon>false</EmbeddedIcon>	
 						<TextColor/>
 						<Enabled>true</Enabled>
-						<ActionCode><![CDATA[RelayAttack(RunsTarget);]]></ActionCode>
+						<ActionCode><![CDATA[t_attackStatus.setText("Running...");
+RelayAttack(RunsTarget);
+t_attackStatus.setText("Complete!");]]></ActionCode>
 					</BasicProperties>
 					<ExtendedProperties>
 						<Font Name="Dialog" Size="11" Style="0"/>
-						<LabelText><![CDATA[RelayAttack]]></LabelText>
+						<LabelText><![CDATA[Run Attack]]></LabelText>
 					</ExtendedProperties>
 				</Control>
 				<Control Type="EditBox">
@@ -2627,53 +2673,11 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 					</Font>
 					<Alignment>LEFT</Alignment>
 				</Text>
-				<Text>
-					<Id>1651859961580</Id>
-					<Name><![CDATA[text12]]></Name>
-					<X>40</X><Y>730</Y>
-					<Label><X>0</X><Y>-10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-16777216</Color>
-					<Text><![CDATA[Total Attack Cost: $]]></Text>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>12</Size>
-						<Style>0</Style>
-					</Font>
-					<Alignment>LEFT</Alignment>
-				</Text>
-				<Text>
-					<Id>1651859978462</Id>
-					<Name><![CDATA[totalCost1]]></Name>
-					<X>170</X><Y>730</Y>
-					<Label><X>0</X><Y>-10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-16777216</Color>
-					<Text><![CDATA[0]]></Text>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>12</Size>
-						<Style>0</Style>
-					</Font>
-					<Alignment>LEFT</Alignment>
-				</Text>
 				<Control Type="Button">
 				 	<EmbeddedIcon>false</EmbeddedIcon>				
 					<Id>1653490935003</Id>
 					<Name><![CDATA[ResetButton]]></Name>
-					<X>160</X><Y>640</Y>
+					<X>160</X><Y>680</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2736,8 +2740,8 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 					</Labels>
 					<ShowLegend>true</ShowLegend>
 					<ScaleFromExpression><![CDATA[0]]></ScaleFromExpression>
-					<ScaleToExpression><![CDATA[1]]></ScaleToExpression>
-					<ScaleType>AUTO</ScaleType>
+					<ScaleToExpression><![CDATA[100]]></ScaleToExpression>
+					<ScaleType>FIXED</ScaleType>
 					<Bars>
 						<Direction>UP</Direction>
 						<RelativeWidth>0.8</RelativeWidth>
@@ -2807,7 +2811,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 					<ExtendedProperties>
 						<Font Name="Dialog" Size="11" Style="0"/>
 						<MinValue><![CDATA[1]]></MinValue>
-						<MaxValue><![CDATA[100000]]></MaxValue>
+						<MaxValue><![CDATA[1000000]]></MaxValue>
 						<LinkTo>true</LinkTo>
 						<Link>RunsTarget</Link>
 					</ExtendedProperties>
@@ -2980,7 +2984,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 					<LineMaterial>null</LineMaterial>
 					<LineStyle>SOLID</LineStyle>
 					<Width>180</Width>
-					<Height>170</Height>
+					<Height>190</Height>
 					<Rotation>0.0</Rotation>
 					<FillColor>-1</FillColor>
 					<FillMaterial>null</FillMaterial>
@@ -3101,7 +3105,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 				<Text>
 					<Id>1654362653468</Id>
 					<Name><![CDATA[t_resultsHeading]]></Name>
-					<X>20</X><Y>700</Y>
+					<X>20</X><Y>740</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -3318,6 +3322,221 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 					<Font>
 						<Name>SansSerif</Name>
 						<Size>14</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Text>
+					<Id>1654534047296</Id>
+					<Name><![CDATA[text9]]></Name>
+					<X>40</X><Y>800</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[Total Attacks Run: ]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>12</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Text>
+					<Id>1654534180550</Id>
+					<Name><![CDATA[t_totalAttacksRun]]></Name>
+					<X>170</X><Y>800</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[0]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>12</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<RoundedRectangle>
+					<Id>1654542150208</Id>
+					<Name><![CDATA[pi_SimVariables6]]></Name>
+					<X>1032</X><Y>-195</Y>
+					<Label><X>10</X><Y>10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<ZHeight>10</ZHeight>
+					<LineWidth>1</LineWidth>
+					<LineColor>-16777216</LineColor>
+					<LineMaterial>null</LineMaterial>
+					<LineStyle>SOLID</LineStyle>
+					<Width>180</Width>
+					<Height>170</Height>
+					<Rotation>0.0</Rotation>
+					<FillColor>-1</FillColor>
+					<FillMaterial>null</FillMaterial>
+					<ArcRadius>10</ArcRadius>
+				</RoundedRectangle>
+				<Text>
+					<Id>1654542150210</Id>
+					<Name><![CDATA[text34]]></Name>
+					<X>1080</X><Y>-180</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[Troubleshooting]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>14</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Text>
+					<Id>1654542256108</Id>
+					<Name><![CDATA[text10]]></Name>
+					<X>40</X><Y>830</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[Avg Fail Ratio:]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>12</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Text>
+					<Id>1654542271495</Id>
+					<Name><![CDATA[t_avgFailRatio]]></Name>
+					<X>170</X><Y>830</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[0]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>12</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Control Type="ProgressBar">
+				 	<EmbeddedIcon>false</EmbeddedIcon>				
+					<Id>1654547214147</Id>
+					<Name><![CDATA[pb_attackProgress]]></Name>
+					<X>180</X><Y>650</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<BasicProperties Width="180" Height="20">
+                        <EmbeddedIcon>false</EmbeddedIcon>	
+						<Enabled>true</Enabled>
+					</BasicProperties>
+					<ExtendedProperties>
+						<Orientation>HORIZONTAL</Orientation>
+						<ShowProgressString>true</ShowProgressString>
+						<ProgressStringCode><![CDATA[percent + " percent(s) completed"]]></ProgressStringCode>
+						<ValueCode><![CDATA[(((double)RunsRemaining) / RunsTarget) * 100]]></ValueCode>
+						<MinValue><![CDATA[0]]></MinValue>
+						<MaxValue><![CDATA[100]]></MaxValue>
+						<Determinate><![CDATA[true]]></Determinate>
+					</ExtendedProperties>
+				</Control>
+				<Text>
+					<Id>1654547256460</Id>
+					<Name><![CDATA[text35]]></Name>
+					<X>40</X><Y>650</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[Attack Progress]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>12</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Text>
+					<Id>1654548058016</Id>
+					<Name><![CDATA[text36]]></Name>
+					<X>40</X><Y>620</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[Attack Status]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>12</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Text>
+					<Id>1654548078931</Id>
+					<Name><![CDATA[t_attackStatus]]></Name>
+					<X>180</X><Y>620</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[Complete!]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>12</Size>
 						<Style>0</Style>
 					</Font>
 					<Alignment>LEFT</Alignment>
@@ -3635,6 +3854,21 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 						<Type><![CDATA[double]]></Type>        
 						<InitialValue Class="CodeValue">
 							<Code><![CDATA[1]]></Code>
+						</InitialValue>
+					</Properties>
+				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1654544864245</Id>
+					<Name><![CDATA[v_numCompromises]]></Name>
+					<X>530</X><Y>-300</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[int]]></Type>        
+						<InitialValue Class="CodeValue">
+							<Code><![CDATA[0]]></Code>
 						</InitialValue>
 					</Properties>
 				</Variable>
@@ -4185,29 +4419,126 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 					</Properties>                 
 				</Variable>
 			</Variables>
-			<StatechartElements>
-				<StatechartElement Class="State" ParentState="ROOT_NODE">
-					<Id>1481748240349</Id>
-					<Name><![CDATA[on_state]]></Name>
-					<X>320</X><Y>70</Y>
-					<Label><X>10</X><Y>10</Y></Label>
+			<ActionChartElements>
+				<ActionChartElement Class="ActionChart">
+					<Id>1654543424048</Id>
+					<Name><![CDATA[f_processAttack]]></Name>
+					<X>640</X><Y>30</Y>
+					<Label><X>-30</X><Y>-10</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
-					<Properties Width="520" Height="630">
+					<Properties AccessType="default" StaticFunction="false" Width="20" Height="20" Next="1654543399374" >
 						<FillColor/>
+					<ReturnModificator>VOID</ReturnModificator>
+					<ReturnType><![CDATA[double]]></ReturnType>
 					</Properties>
-				</StatechartElement>
-				<StatechartElement Class="State" ParentState="on_state" ParentStateId="1481748240349">
-					<Id>1481748240352</Id>
-					<Name><![CDATA[Waiting]]></Name>
-					<X>510</X><Y>180</Y>
-					<Label><X>20</X><Y>15</Y></Label>
+				</ActionChartElement>
+				<ActionChartElement Class="Return">
+					<Id>1654543424793</Id>
+					<Name><![CDATA[Finished]]></Name>
+					<X>640</X><Y>474</Y>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
-					<Properties Width="100" Height="30">
-						<EntryAction><![CDATA[AttackRelayed = false;
+					<Properties Width="120" Height="36" Previous="1654543622918" >
+						<FillColor/>
+					</Properties>	
+				</ActionChartElement>
+				<ActionChartElement Class="Decision">
+					<Id>1654543622918</Id>
+					<Name><![CDATA[decision]]></Name>
+					<X>640</X><Y>130</Y>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Comment><![CDATA[Node Skipped]]></Comment>
+					<Properties Width="80" Height="60" Appearance="0" Previous="1654543399374" Next="1654543424793" TrueAction="1654543695090" FalseAction="1654543771336" >
+						<FillColor/>
+						<Condition><![CDATA[SkipNode]]></Condition>
+					</Properties>
+				</ActionChartElement>
+				<ActionChartElement Class="Decision">
+					<Id>1654543771336</Id>
+					<Name><![CDATA[decision1]]></Name>
+					<X>570</X><Y>190</Y>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Comment><![CDATA[ Node Down]]></Comment>
+					<Properties Width="80" Height="50" Appearance="0" Previous="1654543622918" FalseAction="1654543896806" >
+						<FillColor/>
+						<Condition><![CDATA[NodeGoesDown]]></Condition>
+					</Properties>
+				</ActionChartElement>
+				<ActionChartElement Class="Decision">
+					<Id>1654543896806</Id>
+					<Name><![CDATA[decision2]]></Name>
+					<X>420</X><Y>245</Y>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Comment><![CDATA[Node Compromised]]></Comment>
+					<Properties Width="120" Height="78" Appearance="0" Previous="1654543771336" TrueAction="1654544387762" >
+						<FillColor/>
+						<Condition><![CDATA[randomFalse(OverallPr)]]></Condition>
+					</Properties>
+				</ActionChartElement>
+				<ActionChartElement Class="Code">
+					<Id>1654545567488</Id>
+					<Name><![CDATA[code2]]></Name>
+					<X>500</X><Y>364</Y>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Comment><![CDATA[Forward Attack]]></Comment>
+					<Properties Width="100" Height="30" Previous="1654544387762" >
+						<FillColor/>
+						<Code><![CDATA[if(NextNode != null) {
+	NextNode.f_processAttack();
+}]]></Code>
+					</Properties>	
+				</ActionChartElement>
+				<ActionChartElement Class="Code">
+					<Id>1654544387762</Id>
+					<Name><![CDATA[code3]]></Name>
+					<X>500</X><Y>314</Y>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Comment><![CDATA[Set Compromised]]></Comment>
+					<Properties Width="120" Height="30" Previous="1654543896806" Next="1654545567488" >
+						<FillColor/>
+						<Code><![CDATA[v_numCompromises = v_numCompromises + 1;]]></Code>
+					</Properties>	
+				</ActionChartElement>
+				<ActionChartElement Class="Code">
+					<Id>1654543695090</Id>
+					<Name><![CDATA[code1]]></Name>
+					<X>700</X><Y>190</Y>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Comment><![CDATA[Forward Attack]]></Comment>
+					<Properties Width="100" Height="30" Previous="1654543622918" >
+						<FillColor/>
+						<Code><![CDATA[if(NextNode != null) {
+	NextNode.f_processAttack();
+}]]></Code>
+					</Properties>	
+				</ActionChartElement>
+				<ActionChartElement Class="Code">
+					<Id>1654543399374</Id>
+					<Name><![CDATA[code]]></Name>
+					<Description><![CDATA[Get the node to a known state before running the attack on it.]]></Description>
+					<X>640</X><Y>80</Y>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Comment><![CDATA[Initialize Node]]></Comment>
+					<Properties Width="100" Height="30" Previous="1654543424048" Next="1654543622918" >
+						<FillColor/>
+						<Code><![CDATA[AttackRelayed = false;
 UI_nodeUpShading.setVisible(false);
 UI_nodeCompromisedShading.setVisible(false);
 UI_nodeOffShading.setVisible(false);
@@ -4226,350 +4557,11 @@ else if (NodeGetsCompromised) {
 */
 else {
     UI_nodeUpShading.setVisible(true);
-}]]></EntryAction>
-						<FillColor/>
-					</Properties>
-				</StatechartElement>
-				<StatechartElement Class="State" ParentState="on_state" ParentStateId="1481748240349">
-					<Id>1491420908549</Id>
-					<Name><![CDATA[SendAttack]]></Name>
-					<X>510</X><Y>420</Y>
-					<Label><X>15</X><Y>15</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Properties Width="100" Height="30">
-						<EntryAction><![CDATA[if(NextNode != null) {
-	send("RelayAttack", NextNode);
-	AttackRelayed = true;
-}]]></EntryAction>
-						<FillColor/>
-					</Properties>
-				</StatechartElement>
-				<StatechartElement Class="Branch" ParentState="on_state" ParentStateId="1481748240349">
-					<Id>1653511079658</Id>
-					<Name><![CDATA[Skip]]></Name>
-					<X>560</X><Y>280</Y>
-					<Label><X>10</X><Y>12</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<Properties>	
+}
+]]></Code>
 					</Properties>	
-				</StatechartElement>
-				<StatechartElement Class="Branch" ParentState="on_state" ParentStateId="1481748240349">
-					<Id>1653511969150</Id>
-					<Name><![CDATA[branch]]></Name>
-					<X>560</X><Y>340</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<Properties>	
-					</Properties>	
-				</StatechartElement>
-				<StatechartElement Class="State" ParentState="on_state" ParentStateId="1481748240349">
-					<Id>1653512652291</Id>
-					<Name><![CDATA[NodeFinished]]></Name>
-					<X>510</X><Y>530</Y>
-					<Label><X>10</X><Y>15</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Properties Width="100" Height="30">
-						<EntryAction><![CDATA[if (!(AttackRelayed)) {
-	send("AttackFinished", main);
-}]]></EntryAction>
-						<FillColor/>
-					</Properties>
-				</StatechartElement>
-				<StatechartElement Class="EntryPoint" ParentState="ROOT_NODE">
-					<Id>1481748240364</Id>
-					<Name><![CDATA[statechart]]></Name>
-					<X>480</X><Y>20</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Points>
-						<Point><X>0</X><Y>0</Y></Point>
-						<Point><X>0</X><Y>50</Y></Point>
-					</Points>
-					<Properties Target="1481748240349">
-					</Properties>	
-				</StatechartElement>
-				<StatechartElement Class="InitialStatePointer" ParentState="on_state" ParentStateId="1481748240349">
-					<Id>1481748240366</Id>
-					<Name><![CDATA[initialState]]></Name>
-					<X>560</X><Y>100</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Points>
-						<Point><X>0</X><Y>0</Y></Point>
-						<Point><X>0</X><Y>80</Y></Point>
-					</Points>
-					<Properties Target="1481748240352">
-					</Properties>	
-				</StatechartElement>
-				<StatechartElement Class="Transition" ParentState="on_state" ParentStateId="1481748240349">
-					<Id>1481748240372</Id>
-					<Name><![CDATA[Down]]></Name>
-					<X>548</X><Y>280</Y>
-					<Label><X>-68</X><Y>-10</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Points>
-						<Point><X>0</X><Y>0</Y></Point>
-						<Point><X>-128</X><Y>0</Y></Point>
-						<Point><X>-128</X><Y>270</Y></Point>
-						<Point><X>-38</X><Y>270</Y></Point>
-					</Points>
-					<IconOffset>20.0</IconOffset>
-					<Properties Source="1653511079658" Target="1653512652291" Trigger="condition">
-						<Timeout Class="CodeUnitValue">
-							<Code><![CDATA[1]]></Code>
-							<Unit Class="TimeUnits"><![CDATA[SECOND]]></Unit>
-						</Timeout>
-						<Condition><![CDATA[NodeGoesDown]]></Condition>
-						<Rate Class="CodeUnitValue">
-							<Code><![CDATA[1]]></Code>
-							<Unit Class="RateUnits"><![CDATA[PER_SECOND]]></Unit>
-						</Rate>
-						<MessageType><![CDATA[Object]]></MessageType>
-						<DefaultTransition>false</DefaultTransition>
-						<FilterType><![CDATA[unconditionally]]></FilterType>
-						<EqualsExpression><![CDATA["text"]]></EqualsExpression>
-						<SatisfiesExpression><![CDATA[true]]></SatisfiesExpression>
-					</Properties>	
-				</StatechartElement>
-				<StatechartElement Class="Transition" ParentState="on_state" ParentStateId="1481748240349">
-					<Id>1481759173002</Id>
-					<Name><![CDATA[RelayReceived]]></Name>
-					<X>560</X><Y>210</Y>
-					<Label><X>10</X><Y>20</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Points>
-						<Point><X>0</X><Y>0</Y></Point>
-						<Point><X>0</X><Y>60</Y></Point>
-					</Points>
-					<IconOffset>20.0</IconOffset>
-					<Properties Source="1481748240352" Target="1653511079658" Trigger="message">
-						<Action><![CDATA[Reset();]]></Action>
-						<Timeout Class="CodeUnitValue">
-							<Code><![CDATA[1]]></Code>
-							<Unit Class="TimeUnits"><![CDATA[MILLISECOND]]></Unit>
-						</Timeout>
-						<Condition><![CDATA[true]]></Condition>
-						<Rate Class="CodeUnitValue">
-							<Code><![CDATA[1]]></Code>
-							<Unit Class="RateUnits"><![CDATA[PER_MILLISECOND]]></Unit>
-						</Rate>
-						<MessageType><![CDATA[Object]]></MessageType>
-						<DefaultTransition>true</DefaultTransition>
-						<FilterType><![CDATA[equalsTo]]></FilterType>
-						<EqualsExpression><![CDATA["RelayAttack"]]></EqualsExpression>
-						<SatisfiesExpression><![CDATA[true]]></SatisfiesExpression>
-					</Properties>	
-				</StatechartElement>
-				<StatechartElement Class="Transition" ParentState="on_state" ParentStateId="1481748240349">
-					<Id>1491429091047</Id>
-					<Name><![CDATA[Skipped]]></Name>
-					<X>572</X><Y>280</Y>
-					<Label><X>8</X><Y>-10</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Points>
-						<Point><X>0</X><Y>0</Y></Point>
-						<Point><X>118</X><Y>0</Y></Point>
-						<Point><X>118</X><Y>150</Y></Point>
-						<Point><X>38</X><Y>150</Y></Point>
-					</Points>
-					<IconOffset>20.0</IconOffset>
-					<Properties Source="1653511079658" Target="1491420908549" Trigger="condition">
-						<Timeout Class="CodeUnitValue">
-							<Code><![CDATA[1]]></Code>
-							<Unit Class="TimeUnits"><![CDATA[SECOND]]></Unit>
-						</Timeout>
-						<Condition><![CDATA[SkipNode]]></Condition>
-						<Rate Class="CodeUnitValue">
-							<Code><![CDATA[1]]></Code>
-							<Unit Class="RateUnits"><![CDATA[PER_SECOND]]></Unit>
-						</Rate>
-						<MessageType><![CDATA[Object]]></MessageType>
-						<DefaultTransition>false</DefaultTransition>
-						<FilterType><![CDATA[unconditionally]]></FilterType>
-						<EqualsExpression><![CDATA["text"]]></EqualsExpression>
-						<SatisfiesExpression><![CDATA[true]]></SatisfiesExpression>
-					</Properties>	
-				</StatechartElement>
-				<StatechartElement Class="Transition" ParentState="on_state" ParentStateId="1481748240349">
-					<Id>1491431733097</Id>
-					<Name><![CDATA[NotSkipped]]></Name>
-					<X>560</X><Y>290</Y>
-					<Label><X>5</X><Y>20</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Points>
-						<Point><X>0</X><Y>0</Y></Point>
-						<Point><X>0</X><Y>40</Y></Point>
-					</Points>
-					<IconOffset>20.0</IconOffset>
-					<Properties Source="1653511079658" Target="1653511969150" Trigger="condition">
-						<Timeout Class="CodeUnitValue">
-							<Code><![CDATA[1]]></Code>
-							<Unit Class="TimeUnits"><![CDATA[MILLISECOND]]></Unit>
-						</Timeout>
-						<Condition><![CDATA[!SkipNode]]></Condition>
-						<Rate Class="CodeUnitValue">
-							<Code><![CDATA[1]]></Code>
-							<Unit Class="RateUnits"><![CDATA[PER_MILLISECOND]]></Unit>
-						</Rate>
-						<MessageType><![CDATA[Object]]></MessageType>
-						<DefaultTransition>true</DefaultTransition>
-						<FilterType><![CDATA[unconditionally]]></FilterType>
-						<EqualsExpression><![CDATA["text"]]></EqualsExpression>
-						<SatisfiesExpression><![CDATA[true]]></SatisfiesExpression>
-					</Properties>	
-				</StatechartElement>
-				<StatechartElement Class="Transition" ParentState="on_state" ParentStateId="1481748240349">
-					<Id>1653511973797</Id>
-					<Name><![CDATA[Compromised]]></Name>
-					<X>560</X><Y>350</Y>
-					<Label><X>5</X><Y>35</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Points>
-						<Point><X>0</X><Y>0</Y></Point>
-						<Point><X>0</X><Y>45</Y></Point>
-						<Point><X>0</X><Y>50</Y></Point>
-						<Point><X>0</X><Y>70</Y></Point>
-					</Points>
-					<IconOffset>20.0</IconOffset>
-					<Properties Source="1653511969150" Target="1491420908549" Trigger="timeout">
-						<Action><![CDATA[NodeGetsCompromised = true;]]></Action>
-						<Timeout Class="CodeUnitValue">
-							<Code><![CDATA[1]]></Code>
-							<Unit Class="TimeUnits"><![CDATA[MILLISECOND]]></Unit>
-						</Timeout>
-						<Condition><![CDATA[randomFalse(OverallPr + varUsed);]]></Condition>
-						<Rate Class="CodeUnitValue">
-							<Code><![CDATA[1]]></Code>
-							<Unit Class="RateUnits"><![CDATA[PER_MILLISECOND]]></Unit>
-						</Rate>
-						<MessageType><![CDATA[Object]]></MessageType>
-						<DefaultTransition>true</DefaultTransition>
-						<FilterType><![CDATA[unconditionally]]></FilterType>
-						<EqualsExpression><![CDATA["text"]]></EqualsExpression>
-						<SatisfiesExpression><![CDATA[true]]></SatisfiesExpression>
-					</Properties>	
-				</StatechartElement>
-				<StatechartElement Class="Transition" ParentState="on_state" ParentStateId="1481748240349">
-					<Id>1653512333209</Id>
-					<Name><![CDATA[NotCompromised]]></Name>
-					<X>548</X><Y>340</Y>
-					<Label><X>-108</X><Y>-10</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Points>
-						<Point><X>0</X><Y>0</Y></Point>
-						<Point><X>-128</X><Y>0</Y></Point>
-						<Point><X>-128</X><Y>210</Y></Point>
-						<Point><X>-38</X><Y>210</Y></Point>
-					</Points>
-					<IconOffset>50.0</IconOffset>
-					<Properties Source="1653511969150" Target="1653512652291" Trigger="timeout">
-						<Action><![CDATA[NodeGetsCompromised = false;]]></Action>
-						<Timeout Class="CodeUnitValue">
-							<Code><![CDATA[1]]></Code>
-							<Unit Class="TimeUnits"><![CDATA[MILLISECOND]]></Unit>
-						</Timeout>
-						<Condition><![CDATA[!(randomFalse(OverallPr))]]></Condition>
-						<Rate Class="CodeUnitValue">
-							<Code><![CDATA[1]]></Code>
-							<Unit Class="RateUnits"><![CDATA[PER_MILLISECOND]]></Unit>
-						</Rate>
-						<MessageType><![CDATA[Object]]></MessageType>
-						<DefaultTransition>false</DefaultTransition>
-						<FilterType><![CDATA[unconditionally]]></FilterType>
-						<EqualsExpression><![CDATA["text"]]></EqualsExpression>
-						<SatisfiesExpression><![CDATA[true]]></SatisfiesExpression>
-					</Properties>	
-				</StatechartElement>
-				<StatechartElement Class="Transition" ParentState="on_state" ParentStateId="1481748240349">
-					<Id>1653512935709</Id>
-					<Name><![CDATA[Relayed]]></Name>
-					<X>560</X><Y>450</Y>
-					<Label><X>5</X><Y>35</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Points>
-						<Point><X>0</X><Y>0</Y></Point>
-						<Point><X>0</X><Y>40</Y></Point>
-						<Point><X>0</X><Y>80</Y></Point>
-					</Points>
-					<IconOffset>20.0</IconOffset>
-					<Properties Source="1491420908549" Target="1653512652291" Trigger="condition">
-						<Timeout Class="CodeUnitValue">
-							<Code><![CDATA[1]]></Code>
-							<Unit Class="TimeUnits"><![CDATA[MILLISECOND]]></Unit>
-						</Timeout>
-						<Condition><![CDATA[true]]></Condition>
-						<Rate Class="CodeUnitValue">
-							<Code><![CDATA[1]]></Code>
-							<Unit Class="RateUnits"><![CDATA[PER_MILLISECOND]]></Unit>
-						</Rate>
-						<MessageType><![CDATA[Object]]></MessageType>
-						<DefaultTransition>true</DefaultTransition>
-						<FilterType><![CDATA[unconditionally]]></FilterType>
-						<EqualsExpression><![CDATA["text"]]></EqualsExpression>
-						<SatisfiesExpression><![CDATA[true]]></SatisfiesExpression>
-					</Properties>	
-				</StatechartElement>
-				<StatechartElement Class="Transition" ParentState="on_state" ParentStateId="1481748240349">
-					<Id>1653513136746</Id>
-					<Name><![CDATA[transition2]]></Name>
-					<X>560</X><Y>560</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<Points>
-						<Point><X>0</X><Y>0</Y></Point>
-						<Point><X>0</X><Y>50</Y></Point>
-						<Point><X>190</X><Y>50</Y></Point>
-						<Point><X>190</X><Y>-420</Y></Point>
-						<Point><X>0</X><Y>-420</Y></Point>
-						<Point><X>0</X><Y>-380</Y></Point>
-					</Points>
-					<IconOffset>20.0</IconOffset>
-					<Properties Source="1653512652291" Target="1481748240352" Trigger="condition">
-						<Timeout Class="CodeUnitValue">
-							<Code><![CDATA[1]]></Code>
-							<Unit Class="TimeUnits"><![CDATA[MILLISECOND]]></Unit>
-						</Timeout>
-						<Condition><![CDATA[true]]></Condition>
-						<Rate Class="CodeUnitValue">
-							<Code><![CDATA[1]]></Code>
-							<Unit Class="RateUnits"><![CDATA[PER_MILLISECOND]]></Unit>
-						</Rate>
-						<MessageType><![CDATA[Object]]></MessageType>
-						<DefaultTransition>true</DefaultTransition>
-						<FilterType><![CDATA[unconditionally]]></FilterType>
-						<EqualsExpression><![CDATA["text"]]></EqualsExpression>
-						<SatisfiesExpression><![CDATA[true]]></SatisfiesExpression>
-					</Properties>	
-				</StatechartElement>
-			</StatechartElements>
+				</ActionChartElement>
+			</ActionChartElements>
 			<Functions>
 				<Function AccessType="default" StaticFunction="false">
 					<ReturnModificator>VOID</ReturnModificator>
@@ -4582,7 +4574,7 @@ else {
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
 					<Parameter>
-						<Name><![CDATA[p_threatActorMultiplier]]></Name>
+						<Name><![CDATA[p_attackerFailRatio]]></Name>
 						<Type><![CDATA[double]]></Type>
 					</Parameter>
 					<Body><![CDATA[double v_probabilityAttackSucceeds = 1;
@@ -4603,22 +4595,24 @@ v_effectiveMailScanProbability  = f_getEffectiveControlProbability(MailScan, Mai
 v_probabilityAttackSucceeds     = v_probabilityAttackSucceeds * (1-v_effectiveMailScanProbability);
 
 
-// Multiply the efficacy of the control by the fail rate of the attacker
-v_probabilityAttackSucceeds     = v_probabilityAttackSucceeds * p_threatActorMultiplier;
-
-if (v_probabilityAttackSucceeds > 1) {
-    v_probabilityAttackSucceeds = 1;
-}
-else if (v_probabilityAttackSucceeds < 0) {
-    v_probabilityAttackSucceeds = 0;
-}
-
-if(Firewall == 0 && Gateway == 0 && MailScan == 0 && IDS == 0 && Antivirus == 0) {
-	OverallPr = 0;
-}
-
 // OverallPr is the probability of preventing an attack
-OverallPr = 1 - v_probabilityAttackSucceeds;
+// This is where the fail ratio of the attacker is incorporated
+OverallPr = (1 - v_probabilityAttackSucceeds) * p_attackerFailRatio;
+
+if (OverallPr > 1) {
+    OverallPr = 1;
+}
+else if (OverallPr < 0) {
+    OverallPr = 0;
+}
+
+/*
+This updates the probability of a successful attack to include the bounds
+checking and incorporation of attacker fail ratio applied to OverallPr.
+OverallPr is the probability the controls will stop the attack from compromising
+this node.
+*/
+v_probabilityAttackSucceeds = 1 - OverallPr;
 
 OverallCost = FirewallCost + GatewayCost + IDSCost + AntivirusCost + MailScanCost;
 ]]></Body>
@@ -4634,9 +4628,9 @@ OverallCost = FirewallCost + GatewayCost + IDSCost + AntivirusCost + MailScanCos
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
 					<Body><![CDATA[NodeGoesDown = false;
-NodeGetsCompromised = false;
+v_numCompromises = 0;
 if (NextNode != null) {
-	send("Reset", NextNode);
+	NextNode.Reset();
 }]]></Body>
 				</Function>
 				<Function AccessType="default" StaticFunction="false">
@@ -4704,18 +4698,10 @@ UI_nodeCompromisedShading.setVisible(true);]]></Body>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
-					<OnReceive><![CDATA[if (msg.equals("Reset")) {
-	Reset();
-}]]></OnReceive>
 					<HandleReceiveInConnections>false</HandleReceiveInConnections>
 					<AgentLinkType>COLLECTION_OF_LINKS</AgentLinkType>
 					<AgentLinkBidirectional>true</AgentLinkBidirectional>
 					<MessageType><![CDATA[Object]]></MessageType>
-					<StatechartReference>
-						<PackageName><![CDATA[mango_model3]]></PackageName>
-						<ClassName><![CDATA[NetworkNode]]></ClassName>
-						<ItemName><![CDATA[statechart]]></ItemName>
-					</StatechartReference>
 					<LineStyle>SOLID</LineStyle>
 					<LineWidth>1</LineWidth>
 					<LineColor>-16777216</LineColor>
@@ -5952,6 +5938,19 @@ UI_nodeCompromisedShading.setVisible(true);]]></Body>
 						</InitialValue>
 					</Properties>
 				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1654447530408</Id>
+					<Name><![CDATA[v_checkedForAttack]]></Name>
+					<Description><![CDATA[Describes if the f_getIsAttacker() function has been called for this attacker for a given attack. In Main, attackers are accessed in a random order until all have been accessed or one returns that it is the attacker. If an attacker which is the attacker for the current 'relayAttack' is found by f_getIsAttacker() returning true, then that attacker's breach ratio is used for the current attack. If an attacker is not found, then the default breach ratio is used.]]></Description>
+					<X>450</X><Y>-130</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[boolean]]></Type>        
+					</Properties>
+				</Variable>
 				<Variable Class="Parameter">
 					<Id>1654029793102</Id>
 					<Name><![CDATA[p_name]]></Name>
@@ -5998,7 +5997,7 @@ UI_nodeCompromisedShading.setVisible(true);]]></Body>
 				</Variable>
 				<Variable Class="Parameter">
 					<Id>1654029793104</Id>
-					<Name><![CDATA[p_breachRatio]]></Name>
+					<Name><![CDATA[p_failRatio]]></Name>
 					<Description><![CDATA[Decimal between 0 and 1 representing the portion of all verified incidents perpetrated by this threat actor which are successful data breaches.]]></Description>
 					<X>240</X><Y>-110</Y>
 					<Label><X>10</X><Y>0</Y></Label>
@@ -6042,7 +6041,7 @@ UI_nodeCompromisedShading.setVisible(true);]]></Body>
 				</Variable>
 				<Variable Class="Parameter">
 					<Id>1654358452030</Id>
-					<Name><![CDATA[p_breachN]]></Name>
+					<Name><![CDATA[p_failN]]></Name>
 					<X>240</X><Y>-90</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
@@ -6124,14 +6123,14 @@ return v_isAttacker;
 					<ReturnModificator>RETURNS_VALUE</ReturnModificator>
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1654352728179</Id>
-					<Name><![CDATA[f_getBrechRatio]]></Name>
+					<Name><![CDATA[f_getFailRatio]]></Name>
 					<Description><![CDATA[Returns the ratio of incidents with confirmed data disclosure involving small businesses to all incidents involving small businesses as a double between 0 and 1.]]></Description>
 					<X>650</X><Y>-110</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
-					<Body><![CDATA[return p_breachRatio;]]></Body>
+					<Body><![CDATA[return p_failRatio;]]></Body>
 				</Function>
 				<Function AccessType="default" StaticFunction="false">
 					<ReturnModificator>VOID</ReturnModificator>
