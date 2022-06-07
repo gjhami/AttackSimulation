@@ -1,16 +1,16 @@
 # cyberattack-simulation
 An AnyLogic simulation model allowing users to quantitatively estimate the risk of cyber attacks to their organization, as well as the cost and efficacy of security controls.
 
-## Warning
-This project is currently under heavy development and is subject to major changes. When the code becomes more stable the AnyLogic model will be available as a standalone application which does not require an AnyLogic license to use and may be downloaded under Releases.
+## Disclaimer
+This project is currently under heavy development and is subject to major changes. When the code becomes more stable the AnyLogic model will be available as a standalone application which does not require an AnyLogic license to use and may be downloaded under [Releases](https://github.com/gjhami/cyberattack-simulation/releases).
 
 ## Usage and Audience
-This model is intended for small businesses/organizations without dedicated cybersecurity teams or experts who want to make more effective risk decisions while allocating a limited cybersecurity budget. The model will not represent every organization with pinpoint accuracy; it is meant to provide a useful tool accurate enough to improve decision making.
+This model is intended for small businesses/organizations without dedicated cybersecurity teams, or experts who want to make more effective risk decisions while allocating a limited cybersecurity budget. The model will not represent every organization with pinpoint accuracy; it is meant to provide a useful tool accurate enough to improve decision making.
 
 ## Data Sources
-Data related to control costs and efficacy mostly comes directly from vendors.
+Data related to security control costs and efficacy mostly comes directly from vendors.
 Data related to attacker efficacy and frequency comes from the [VERIS Community Database](https://github.com/vz-risk/VCDB) maintained by Verizon. This database contains the incident reports used to create the annual Verizon Breach Investigations Report [(DBIR)](https://www.verizon.com/business/resources/reports/dbir/).
-Data related to attack costs is based on the [IBM Cost of a Data Breach Report](https://www.ibm.com/security/data-breach).
+Data related to monetary costs of breaches are based on the [IBM Cost of a Data Breach Report](https://www.ibm.com/security/data-breach).
 
 ## Limitations
 The model makes several assumptions and compromises in the name of data availability and ease of use. Some of these are as follows:
