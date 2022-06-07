@@ -44,10 +44,10 @@ class Incident:
         csv_header = [actor_header, fail_rate_header, n_header, prevalence_rate_header, n_header]
         csv_rows.append(csv_header)
 
-        for actor in cls.all_actor_fail:
+        for actor, actor_stats in cls.all_actor_fail.items():
             if (actor in cls.target_actors) and (actor in cls.sb_actor_prevalence):
-                fail_rate = f'{cls.all_actor_fail[actor]["fail-rate"]:0.3}'
-                fail_n = f'{cls.all_actor_fail[actor]["count"]}'
+                fail_rate = f'{actor_stats["fail-rate"]:0.3}'
+                fail_n = f'{actor_stats["count"]}'
                 prevalence_rate = f'{cls.sb_actor_prevalence[actor]["prevalence-rate"]:0.3}'
                 prevalence_n = f'{cls.sb_actor_prevalence[actor]["count"]}'
 
