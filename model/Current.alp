@@ -590,11 +590,13 @@ while (RunsRemaining > 0) {
 	
 	firstNode.f_processAttack();
 	
-	f_updateGraph();
 	t_totalAttacksRun.setText(TotalRuns);
 	totalCost.setText(OCalculation());
 	pb_attackProgress.setValue((((double)(RunsTarget - RunsRemaining)) / RunsTarget) * 100);
 }
+
+
+f_updateGraph();
 
 v_avgFailRatio = v_runningFailRatioSum / TotalRuns;
 t_avgFailRatio.setText(v_avgFailRatio);
@@ -646,6 +648,7 @@ t_avgFailRatio.setText(v_avgFailRatio);
 firstNode.Reset();
 cv_compromisedNodes.clear();
 CompromisedChart.removeAll();
+bc_compromisedCount.removeAll();
 
 TotalRuns = 0;
 t_totalAttacksRun.setText(TotalRuns);
@@ -663,29 +666,44 @@ t_avgFailRatio.setText('?');]]></Body>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
-					<Body><![CDATA[CompromisedChart.removeAll();
-double v_percentNodeCompromised;
-NetworkNode node;
-double compromisedCount;
+					<Body><![CDATA[NetworkNode node;
 String nodeName;
+double v_percentNodeCompromised;
+double v_compromisedCount;
+DataItem di_compromisedCount;
+DataItem di_compromisedPercent;
+
+// Clear Existing Chart Data
+CompromisedChart.removeAll();
+bc_compromisedCount.removeAll();
+
 
 for (Map.Entry<Integer, NetworkNode> entry : Positions.entrySet()) {
 	node = entry.getValue();
 	nodeName = node.getName();
-	compromisedCount = (double) node.v_numCompromises;
-	v_percentNodeCompromised = 100 * (compromisedCount / TotalRuns);
+	v_compromisedCount = (double) node.v_numCompromises;
+	v_percentNodeCompromised = 100 * (v_compromisedCount / TotalRuns);
 	
 	// Visualize the node in red if it's compromised in most attacks
 	if (v_percentNodeCompromised > 50) {
 		node.f_UISetCompromised();
 	}
    
-    DataItem di = new DataItem();
-	di.setValue(v_percentNodeCompromised);
-	
+    di_compromisedPercent = new DataItem();
+    di_compromisedCount = new DataItem();
+    
 	int ColorIndex = entry.getKey() % 9;
-	CompromisedChart.addDataItem(di, nodeName, GraphColors[ColorIndex]);
-}]]></Body>
+	
+	// Update percentage compromise chart
+	di_compromisedPercent.setValue(v_percentNodeCompromised);
+	CompromisedChart.addDataItem(di_compromisedPercent, nodeName, GraphColors[ColorIndex]);
+
+	// Update count compromised chart
+	di_compromisedCount.setValue(v_compromisedCount);
+	bc_compromisedCount.addDataItem(di_compromisedCount, nodeName, GraphColors[ColorIndex]);
+}
+
+]]></Body>
 				</Function>
 				<Function AccessType="default" StaticFunction="false">
 					<ReturnModificator>VOID</ReturnModificator>
@@ -2697,7 +2715,7 @@ t_attackStatus.setText("Complete!");]]></ActionCode>
     			<BarChart>
 					<Id>1653572824939</Id>
 					<Name><![CDATA[CompromisedChart]]></Name>
-					<X>540</X><Y>730</Y>
+					<X>420</X><Y>740</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2715,14 +2733,14 @@ t_attackStatus.setText("Complete!");]]></ActionCode>
 						<Unit Class="TimeUnits"><![CDATA[MILLISECOND]]></Unit>
 					</RecurrenceCode>
 					<EmbeddedIcon>false</EmbeddedIcon>
-					<Width>1140</Width>
+					<Width>660</Width>
 					<Height>460</Height>
 					<BackgroundColor/>
 					<BorderColor/>
 					<ChartArea>
 						<XOffset>50</XOffset>
 						<YOffset>30</YOffset>
-						<Width>1060</Width>
+						<Width>580</Width>
 						<Height>370</Height>
 						<BackgroundColor>-1</BackgroundColor>
 						<BorderColor>-16777216</BorderColor>
@@ -2840,7 +2858,7 @@ t_attackStatus.setText("Complete!");]]></ActionCode>
 				<Text>
 					<Id>1653670360550</Id>
 					<Name><![CDATA[text28]]></Name>
-					<X>520</X><Y>1050</Y>
+					<X>410</X><Y>1060</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2861,7 +2879,7 @@ t_attackStatus.setText("Complete!");]]></ActionCode>
 				<Text>
 					<Id>1653670413162</Id>
 					<Name><![CDATA[text29]]></Name>
-					<X>1060</X><Y>1180</Y>
+					<X>720</X><Y>1200</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -3425,7 +3443,7 @@ t_attackStatus.setText("Complete!");]]></ActionCode>
 					<Z>0</Z>
 					<Rotation>0.0</Rotation>
 					<Color>-16777216</Color>
-					<Text><![CDATA[Avg Fail Ratio:]]></Text>
+					<Text><![CDATA[Avg Attacker Multiplier:]]></Text>
 					<Font>
 						<Name>SansSerif</Name>
 						<Size>12</Size>
@@ -3541,6 +3559,101 @@ t_attackStatus.setText("Complete!");]]></ActionCode>
 					</Font>
 					<Alignment>LEFT</Alignment>
 				</Text>
+				<Text>
+					<Id>1654618008588</Id>
+					<Name><![CDATA[text37]]></Name>
+					<X>1160</X><Y>1040</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>270.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[Number of Compromises]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>16</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+    			<BarChart>
+					<Id>1654618008591</Id>
+					<Name><![CDATA[bc_compromisedCount]]></Name>
+					<X>1180</X><Y>740</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<AutoUpdate>true</AutoUpdate>
+					<OccurrenceAtTime>true</OccurrenceAtTime>
+					<OccurrenceDate>1653638400000</OccurrenceDate>
+					<OccurrenceTime Class="CodeUnitValue">
+						<Code><![CDATA[0]]></Code>
+						<Unit Class="TimeUnits"><![CDATA[MILLISECOND]]></Unit>
+					</OccurrenceTime>
+					<RecurrenceCode Class="CodeUnitValue">
+						<Code><![CDATA[1]]></Code>
+						<Unit Class="TimeUnits"><![CDATA[MILLISECOND]]></Unit>
+					</RecurrenceCode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Width>660</Width>
+					<Height>460</Height>
+					<BackgroundColor/>
+					<BorderColor/>
+					<ChartArea>
+						<XOffset>50</XOffset>
+						<YOffset>30</YOffset>
+						<Width>580</Width>
+						<Height>370</Height>
+						<BackgroundColor>-1</BackgroundColor>
+						<BorderColor>-16777216</BorderColor>
+						<GridColor>-12566464</GridColor>
+					</ChartArea>
+					<Legend>
+						<Place>SOUTH</Place>
+						<TextColor>-16777216</TextColor>
+						<Size>30</Size>
+					</Legend>
+					<Labels>
+						<HorLabelsPosition>DEFAULT</HorLabelsPosition>
+						<VerLabelsPosition>DEFAULT</VerLabelsPosition>
+						<TextColor>-12566464</TextColor>
+					</Labels>
+					<ShowLegend>true</ShowLegend>
+					<ScaleFromExpression><![CDATA[0]]></ScaleFromExpression>
+					<ScaleToExpression><![CDATA[100]]></ScaleToExpression>
+					<ScaleType>AUTO</ScaleType>
+					<Bars>
+						<Direction>UP</Direction>
+						<RelativeWidth>0.8</RelativeWidth>
+					</Bars>
+    			</BarChart>
+				<Text>
+					<Id>1654618008593</Id>
+					<Name><![CDATA[text38]]></Name>
+					<X>1480</X><Y>1200</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[Node Name]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>16</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
 			</Presentation>
 
 				</Level>
@@ -3630,13 +3743,13 @@ t_attackStatus.setText("Complete!");]]></ActionCode>
 				<Area>
 					<Id>1653854189145</Id>
 					<Name><![CDATA[OutputGraph]]></Name>
-					<X>440</X><Y>710</Y>
+					<X>400</X><Y>720</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>false</ShowLabel>
 					<Title><![CDATA[]]></Title>
-					<Width>1260</Width>
+					<Width>1480</Width>
 					<Height>520</Height>
 				</Area>
 				<Area>
