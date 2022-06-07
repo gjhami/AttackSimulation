@@ -16,10 +16,6 @@
 			<Id>1654353061727</Id>
 			<Name><![CDATA[ol_attackerIDs]]></Name>
 			<Option>
-				<Id>1654353061728</Id>
-				<Name><![CDATA[EndUser]]></Name>
-			</Option>
-			<Option>
 				<Id>1654353063107</Id>
 				<Name><![CDATA[OrganizedCrime]]></Name>
 			</Option>
@@ -34,10 +30,6 @@
 			<Option>
 				<Id>1654353428624</Id>
 				<Name><![CDATA[FormerEmployee]]></Name>
-			</Option>
-			<Option>
-				<Id>1654353432592</Id>
-				<Name><![CDATA[Customer]]></Name>
 			</Option>
 			<Option>
 				<Id>1654353435518</Id>
@@ -592,14 +584,10 @@ while (RunsRemaining > 0) {
 	
 	t_totalAttacksRun.setText(TotalRuns);
 	totalCost.setText(OCalculation());
-	pb_attackProgress.setValue((((double)(RunsTarget - RunsRemaining)) / RunsTarget) * 100);
 }
 
 
 f_updateGraph();
-
-v_avgFailRatio = v_runningFailRatioSum / TotalRuns;
-t_avgFailRatio.setText(v_avgFailRatio);
 
 ]]></Body>
 				</Function>
@@ -653,8 +641,7 @@ bc_compromisedCount.removeAll();
 TotalRuns = 0;
 t_totalAttacksRun.setText(TotalRuns);
 
-v_runningFailRatioSum = 0;
-t_avgFailRatio.setText('?');]]></Body>
+v_runningFailRatioSum = 0;]]></Body>
 				</Function>
 				<Function AccessType="default" StaticFunction="false">
 					<ReturnModificator>VOID</ReturnModificator>
@@ -750,7 +737,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 					<HandleReceiveInConnections>false</HandleReceiveInConnections>
 					<AgentLinkType>COLLECTION_OF_LINKS</AgentLinkType>
 					<AgentLinkBidirectional>true</AgentLinkBidirectional>
-					<MessageType><![CDATA[String]]></MessageType>
+					<MessageType><![CDATA[Integer]]></MessageType>
 					<LineStyle>SOLID</LineStyle>
 					<LineWidth>1</LineWidth>
 					<LineColor>-16777216</LineColor>
@@ -2332,7 +2319,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 				<Text>
 					<Id>1493000682086</Id>
 					<Name><![CDATA[text7]]></Name>
-					<X>40</X><Y>770</Y>
+					<X>40</X><Y>690</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2353,7 +2340,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 				<Text>
 					<Id>1493000707590</Id>
 					<Name><![CDATA[totalCost]]></Name>
-					<X>170</X><Y>770</Y>
+					<X>170</X><Y>690</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2375,7 +2362,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 				 	<EmbeddedIcon>false</EmbeddedIcon>				
 					<Id>1481759601788</Id>
 					<Name><![CDATA[RelayButton]]></Name>
-					<X>40</X><Y>680</Y>
+					<X>40</X><Y>610</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2385,9 +2372,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
                         <EmbeddedIcon>false</EmbeddedIcon>	
 						<TextColor/>
 						<Enabled>true</Enabled>
-						<ActionCode><![CDATA[t_attackStatus.setText("Running...");
-RelayAttack(RunsTarget);
-t_attackStatus.setText("Complete!");]]></ActionCode>
+						<ActionCode><![CDATA[RelayAttack(RunsTarget);]]></ActionCode>
 					</BasicProperties>
 					<ExtendedProperties>
 						<Font Name="Dialog" Size="11" Style="0"/>
@@ -2683,7 +2668,7 @@ t_attackStatus.setText("Complete!");]]></ActionCode>
 					<Z>0</Z>
 					<Rotation>0.0</Rotation>
 					<Color>-16777216</Color>
-					<Text><![CDATA[Relevant Attackers]]></Text>
+					<Text><![CDATA[Relevant Threat Actors]]></Text>
 					<Font>
 						<Name>SansSerif</Name>
 						<Size>16</Size>
@@ -2695,7 +2680,7 @@ t_attackStatus.setText("Complete!");]]></ActionCode>
 				 	<EmbeddedIcon>false</EmbeddedIcon>				
 					<Id>1653490935003</Id>
 					<Name><![CDATA[ResetButton]]></Name>
-					<X>160</X><Y>680</Y>
+					<X>160</X><Y>610</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2768,7 +2753,7 @@ t_attackStatus.setText("Complete!");]]></ActionCode>
 				<Text>
 					<Id>1653590341637</Id>
 					<Name><![CDATA[RunHeading]]></Name>
-					<X>20</X><Y>560</Y>
+					<X>20</X><Y>510</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2789,7 +2774,7 @@ t_attackStatus.setText("Complete!");]]></ActionCode>
 				<Text>
 					<Id>1653590418736</Id>
 					<Name><![CDATA[text27]]></Name>
-					<X>40</X><Y>590</Y>
+					<X>40</X><Y>540</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2811,7 +2796,7 @@ t_attackStatus.setText("Complete!");]]></ActionCode>
 				 	<EmbeddedIcon>false</EmbeddedIcon>				
 					<Id>1653590443004</Id>
 					<Name><![CDATA[editbox17]]></Name>
-					<X>180</X><Y>580</Y>
+					<X>180</X><Y>530</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -3075,33 +3060,9 @@ t_attackStatus.setText("Complete!");]]></ActionCode>
 				</Text>
 				<Control Type="CheckBox">
 				 	<EmbeddedIcon>false</EmbeddedIcon>				
-					<Id>1654361762591</Id>
-					<Name><![CDATA[cb_endUser]]></Name>
-					<X>40</X><Y>330</Y>
-					<Label><X>0</X><Y>-10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<BasicProperties Width="130" Height="30">
-                        <EmbeddedIcon>false</EmbeddedIcon>	
-						<TextColor/>
-						<Enabled>true</Enabled>
-						<ActionCode><![CDATA[f_updateAttackerSelection(self.getText(), self.isSelected());
-]]></ActionCode>
-					</BasicProperties>
-					<ExtendedProperties>
-						<Font Name="SansSerif" Size="12" Style="0"/>
-						<LabelText><![CDATA[End-User]]></LabelText>
-						<DefaultValueCode><![CDATA[false]]></DefaultValueCode>
-						<LinkTo>false</LinkTo>
-	 				</ExtendedProperties>
-				</Control>
-				<Control Type="CheckBox">
-				 	<EmbeddedIcon>false</EmbeddedIcon>				
 					<Id>1654362593621</Id>
 					<Name><![CDATA[cb_organizedCrime]]></Name>
-					<X>40</X><Y>360</Y>
+					<X>40</X><Y>340</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -3123,7 +3084,7 @@ t_attackStatus.setText("Complete!");]]></ActionCode>
 				<Text>
 					<Id>1654362653468</Id>
 					<Name><![CDATA[t_resultsHeading]]></Name>
-					<X>20</X><Y>740</Y>
+					<X>20</X><Y>660</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -3145,7 +3106,7 @@ t_attackStatus.setText("Complete!");]]></ActionCode>
 				 	<EmbeddedIcon>false</EmbeddedIcon>				
 					<Id>1654362721469</Id>
 					<Name><![CDATA[cb_activist]]></Name>
-					<X>40</X><Y>390</Y>
+					<X>40</X><Y>370</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -3168,7 +3129,7 @@ t_attackStatus.setText("Complete!");]]></ActionCode>
 				 	<EmbeddedIcon>false</EmbeddedIcon>				
 					<Id>1654362755496</Id>
 					<Name><![CDATA[cb_stateAffiliated]]></Name>
-					<X>40</X><Y>420</Y>
+					<X>40</X><Y>400</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -3191,7 +3152,7 @@ t_attackStatus.setText("Complete!");]]></ActionCode>
 				 	<EmbeddedIcon>false</EmbeddedIcon>				
 					<Id>1654362773679</Id>
 					<Name><![CDATA[cb_formerEmployee]]></Name>
-					<X>40</X><Y>450</Y>
+					<X>40</X><Y>430</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -3212,32 +3173,9 @@ t_attackStatus.setText("Complete!");]]></ActionCode>
 				</Control>
 				<Control Type="CheckBox">
 				 	<EmbeddedIcon>false</EmbeddedIcon>				
-					<Id>1654363288559</Id>
-					<Name><![CDATA[cb_customer]]></Name>
-					<X>40</X><Y>480</Y>
-					<Label><X>0</X><Y>-10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<BasicProperties Width="130" Height="30">
-                        <EmbeddedIcon>false</EmbeddedIcon>	
-						<TextColor/>
-						<Enabled>true</Enabled>
-						<ActionCode><![CDATA[f_updateAttackerSelection(self.getText(), self.isSelected());]]></ActionCode>
-					</BasicProperties>
-					<ExtendedProperties>
-						<Font Name="SansSerif" Size="12" Style="0"/>
-						<LabelText><![CDATA[Customer]]></LabelText>
-						<DefaultValueCode><![CDATA[false]]></DefaultValueCode>
-						<LinkTo>false</LinkTo>
-	 				</ExtendedProperties>
-				</Control>
-				<Control Type="CheckBox">
-				 	<EmbeddedIcon>false</EmbeddedIcon>				
 					<Id>1654363306403</Id>
 					<Name><![CDATA[cb_competitor]]></Name>
-					<X>40</X><Y>510</Y>
+					<X>40</X><Y>460</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -3347,7 +3285,7 @@ t_attackStatus.setText("Complete!");]]></ActionCode>
 				<Text>
 					<Id>1654534047296</Id>
 					<Name><![CDATA[text9]]></Name>
-					<X>40</X><Y>800</Y>
+					<X>40</X><Y>720</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -3368,7 +3306,7 @@ t_attackStatus.setText("Complete!");]]></ActionCode>
 				<Text>
 					<Id>1654534180550</Id>
 					<Name><![CDATA[t_totalAttacksRun]]></Name>
-					<X>170</X><Y>800</Y>
+					<X>170</X><Y>720</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -3430,53 +3368,11 @@ t_attackStatus.setText("Complete!");]]></ActionCode>
 					</Font>
 					<Alignment>LEFT</Alignment>
 				</Text>
-				<Text>
-					<Id>1654542256108</Id>
-					<Name><![CDATA[text10]]></Name>
-					<X>40</X><Y>830</Y>
-					<Label><X>0</X><Y>-10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-16777216</Color>
-					<Text><![CDATA[Avg Attacker Multiplier:]]></Text>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>12</Size>
-						<Style>0</Style>
-					</Font>
-					<Alignment>LEFT</Alignment>
-				</Text>
-				<Text>
-					<Id>1654542271495</Id>
-					<Name><![CDATA[t_avgFailRatio]]></Name>
-					<X>170</X><Y>830</Y>
-					<Label><X>0</X><Y>-10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-16777216</Color>
-					<Text><![CDATA[0]]></Text>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>12</Size>
-						<Style>0</Style>
-					</Font>
-					<Alignment>LEFT</Alignment>
-				</Text>
 				<Control Type="ProgressBar">
 				 	<EmbeddedIcon>false</EmbeddedIcon>				
 					<Id>1654547214147</Id>
 					<Name><![CDATA[pb_attackProgress]]></Name>
-					<X>180</X><Y>650</Y>
+					<X>180</X><Y>570</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -3490,16 +3386,16 @@ t_attackStatus.setText("Complete!");]]></ActionCode>
 						<Orientation>HORIZONTAL</Orientation>
 						<ShowProgressString>true</ShowProgressString>
 						<ProgressStringCode><![CDATA[percent + " percent(s) completed"]]></ProgressStringCode>
-						<ValueCode><![CDATA[(((double)RunsRemaining) / RunsTarget) * 100]]></ValueCode>
+						<ValueCode><![CDATA[(double)(RunsTarget - RunsRemaining)]]></ValueCode>
 						<MinValue><![CDATA[0]]></MinValue>
-						<MaxValue><![CDATA[100]]></MaxValue>
+						<MaxValue><![CDATA[(double)RunsTarget]]></MaxValue>
 						<Determinate><![CDATA[true]]></Determinate>
 					</ExtendedProperties>
 				</Control>
 				<Text>
 					<Id>1654547256460</Id>
 					<Name><![CDATA[text35]]></Name>
-					<X>40</X><Y>650</Y>
+					<X>40</X><Y>570</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -3510,48 +3406,6 @@ t_attackStatus.setText("Complete!");]]></ActionCode>
 					<Rotation>0.0</Rotation>
 					<Color>-16777216</Color>
 					<Text><![CDATA[Attack Progress]]></Text>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>12</Size>
-						<Style>0</Style>
-					</Font>
-					<Alignment>LEFT</Alignment>
-				</Text>
-				<Text>
-					<Id>1654548058016</Id>
-					<Name><![CDATA[text36]]></Name>
-					<X>40</X><Y>620</Y>
-					<Label><X>0</X><Y>-10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-16777216</Color>
-					<Text><![CDATA[Attack Status]]></Text>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>12</Size>
-						<Style>0</Style>
-					</Font>
-					<Alignment>LEFT</Alignment>
-				</Text>
-				<Text>
-					<Id>1654548078931</Id>
-					<Name><![CDATA[t_attackStatus]]></Name>
-					<X>180</X><Y>620</Y>
-					<Label><X>0</X><Y>-10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-16777216</Color>
-					<Text><![CDATA[Complete!]]></Text>
 					<Font>
 						<Name>SansSerif</Name>
 						<Size>12</Size>
@@ -3698,7 +3552,7 @@ t_attackStatus.setText("Complete!");]]></ActionCode>
 				<EmbeddedObjectPresentation>
 					<Id>1654360282357</Id>
 					<Name><![CDATA[apv_Attackers_presentation]]></Name>
-					<X>210</X><Y>380</Y>
+					<X>210</X><Y>360</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -6613,7 +6467,7 @@ getExperimentHost().setPresentable( getEngine().getRoot() );]]></ActionCode>
 			</Parameters>			
 			<PresentationProperties>
 				<EnableZoomAndPanning>true</EnableZoomAndPanning>
-				<ExecutionMode><![CDATA[realTimeScaled]]></ExecutionMode>
+				<ExecutionMode><![CDATA[virtualTime]]></ExecutionMode>
 				<Title><![CDATA[Mango Model : Simulation]]></Title>	
 				<EnableDeveloperPanel>true</EnableDeveloperPanel>
 				<ShowDeveloperPanelOnStart>false</ShowDeveloperPanelOnStart>
