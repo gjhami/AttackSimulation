@@ -1,12 +1,24 @@
+"""
+This module is used to parse the VCDB incident .json files for data which is then used as inputs
+for the likelihood a random attack is perpetrated by a given actor. Also,  the liklihood an attack
+perpetrated by a given actor on a small business is likely to succeed or fail when the vitim is a
+small to medium sized business. Success for an actor is a confirmed data breach, while failure is a
+confirmed lack of a data breach. A small to medium sized business is defined as a business with
+1000 or fewer employees. This convention stems from the definition of small business used in VCDB
+reporting.
+"""
 from pathlib import Path
 import csv
 import json
 
-# Small business (sb) is any business with 1000 or fewer employees. This convention comes from the
-# definition used in VCDB.
-
 
 class Incident:
+    """
+    This class is used to track incidents parsed from the .json file reports which make up the VCDB
+    data. Each .json file is converted to an instance of the Incident class. Class variables are
+    then used to track aggregate statistics across all incidents. Class methods are then used
+    to print these statistics in a text-based table or output them to a .csv file.
+    """
     # Track breach vs. non-breach incidents for each actor in all incidents
     all_actor_fail = {}  # actor: {'success', 'fail', 'maybe', 'fail-rate'}
     all_actor_count = 0
@@ -54,15 +66,16 @@ class Incident:
         csv_header = [actor_header, fail_rate_header, n_header, prevalence_rate_header, n_header]
         csv_rows.append(csv_header)
 
-        for actor, actor_stats in cls.all_actor_fail.items():
-            if (actor in cls.target_actors) and (actor in cls.sb_actor_prevalence):
-                fail_rate = f'{actor_stats["fail-rate"]:0.3}'
-                fail_n = f'{actor_stats["count"]}'
-                prevalence_rate = f'{cls.sb_actor_prevalence[actor]["prevalence-rate"]:0.3}'
-                prevalence_n = f'{cls.sb_actor_prevalence[actor]["count"]}'
+        actors_with_complete_data = list(cls.all_actor_fail.keys() & cls.sb_actor_prevalence.keys())
 
-                csv_row = [fail_rate, fail_n, prevalence_rate, prevalence_n]
-                csv_rows.append(csv_row)
+        for actor in actors_with_complete_data:
+            fail_rate = f'{cls.all_actor_fail.items[actor]["fail-rate"]:0.3}'
+            fail_n = f'{cls.all_actor_fail.items[actor]["count"]}'
+            prevalence_rate = f'{cls.sb_actor_prevalence[actor]["prevalence-rate"]:0.3}'
+            prevalence_n = f'{cls.sb_actor_prevalence[actor]["count"]}'
+
+            csv_row = [fail_rate, fail_n, prevalence_rate, prevalence_n]
+            csv_rows.append(csv_row)
 
         outfile_path = Path(outfile_name)
         with outfile_path.open('w', encoding="utf-8") as outfile:
@@ -96,8 +109,8 @@ class Incident:
 
         # Limit results to include only actors who appear in both the failure dictionary and the
         # prevalence dictionary
-        actors_with_complete_data = [actor for actor in (cls.all_actor_fail.keys() &
-                                                         cls.sb_actor_prevalence.keys())]
+        actors_with_complete_data = list(cls.all_actor_fail.keys() & cls.sb_actor_prevalence.keys())
+
         for actor in actors_with_complete_data:
             fail_rate = f'{cls.all_actor_fail[actor]["fail-rate"]:0.3}'
             fail_n = f'{cls.all_actor_fail[actor]["count"]}'
@@ -122,16 +135,16 @@ class Incident:
         """
 
         # Compute fail rates based incidents with and without data breaches
-        for actor in cls.all_actor_fail:
-            success_count = cls.all_actor_fail[actor]['success']
-            fail_count = cls.all_actor_fail[actor]['fail']
-            cls.all_actor_fail[actor]['fail-rate'] = fail_count / (success_count + fail_count)
-            cls.all_actor_fail[actor]['count'] = success_count + fail_count
+        for actor, actor_stats in cls.all_actor_fail.items():
+            success_count = actor_stats['success']
+            fail_count = actor_stats['fail']
+            actor_stats['fail-rate'] = fail_count / (success_count + fail_count)
+            actor_stats['count'] = success_count + fail_count
 
         # Compute actor prevalence for small businesses
-        for actor in cls.sb_actor_prevalence:
-            actor_count = cls.sb_actor_prevalence[actor]['count']
-            cls.sb_actor_prevalence[actor]['prevalence-rate'] = actor_count / cls.sb_incident_count
+        for actor, actor_stats in cls.sb_actor_prevalence.items():
+            actor_count = actor_stats['count']
+            actor_stats['prevalence-rate'] = actor_count / cls.sb_incident_count
 
         cls.sort_actor_counts()
 
@@ -246,8 +259,7 @@ class Incident:
 
         :return: True if the victim in the incident was a small business, otherwise False
         """
-
-        is_sb = True if self.employee_count in Incident.target_employee_counts else False
+        is_sb = bool(self.employee_count in Incident.target_employee_counts)
         return is_sb
 
     def get_is_breach(self):
@@ -288,6 +300,10 @@ class Incident:
 
 
 def main():
+    """
+    Main function called when the script is run
+    """
+
     # Get validated .json files of each incident
     data_folder = Path('../VCDB/data/json/validated/')
     file_paths = list(data_folder.glob('*.json'))
