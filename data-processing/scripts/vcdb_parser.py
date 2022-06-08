@@ -2,13 +2,15 @@ from pathlib import Path
 import csv
 import json
 
-# Small business (sb) is any business with 1000 or fewer employees
+# Small business (sb) is any business with 1000 or fewer employees. This convention comes from the
+# definition used in VCDB.
 
 
 class Incident:
     # Track breach vs. non-breach incidents for each actor in all incidents
     all_actor_fail = {}  # actor: {'success', 'fail', 'maybe', 'fail-rate'}
     all_actor_count = 0
+
     # Track all incidents for each actor if the victim is a small business
     sb_actor_prevalence = {}  # actor: {'count', 'prevalence-rate'}
     sb_incident_count = 0
@@ -28,7 +30,6 @@ class Incident:
                      'Nation-state', 'Organized crime', 'Activist']
 
     # All disclosure values: ['Yes', 'No', 'Potentially', 'Unknown']
-
 
     @classmethod
     def save_stats(cls, outfile_name):
@@ -68,8 +69,6 @@ class Incident:
             csv_writer = csv.writer(outfile)
             csv_writer.writerows(csv_rows)
 
-    # Prints actor names, overall fail rates, overall sample size, small business prevalence, and
-    # small business sample size to stdout
     @classmethod
     def print_stats(cls):
         """
@@ -136,7 +135,6 @@ class Incident:
 
         cls.sort_actor_counts()
 
-    # Sorts the aggregate lists tracking actor fail rate and prevalence in order of sample size
     @classmethod
     def sort_actor_counts(cls):
         """
@@ -150,7 +148,6 @@ class Incident:
         cls.all_actor_fail = cls.sort_descending(cls.all_actor_fail, 'count')
         cls.sb_actor_prevalence = cls.sort_descending(cls.sb_actor_prevalence, 'count')
 
-    # Returns dictionary with elements of dictionary of dictionaries d sorted by d[i][p]
     @staticmethod
     def sort_descending(dictionary, sort_parameter):
         """
@@ -182,7 +179,6 @@ class Incident:
         # if actor_to_investigate in self.actor_varieties:
         #     print(f'{self.incident_json["summary"]}\n')
 
-    # Updates aggregate list to reflect the contents of the current incident and actors involved
     def update_statistics(self):
         """
         update_statistics(self)
@@ -244,7 +240,6 @@ class Incident:
         else:
             dictionary[key] = value
 
-    # Returns True if the incident effected a small business and otherwise returns False
     def get_is_sb(self):
         """
         get_is_sb(self)
@@ -254,7 +249,6 @@ class Incident:
 
         is_sb = True if self.employee_count in Incident.target_employee_counts else False
         return is_sb
-
 
     def get_is_breach(self):
         """
@@ -281,7 +275,6 @@ class Incident:
 
         return is_breach
 
-    # Returns a
     def get_actor_varieties(self):
         """
         get_actor_varieties(self)
