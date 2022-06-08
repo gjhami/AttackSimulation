@@ -57,12 +57,7 @@ class Incident:
         csv_rows = []
         cls.update_aggregate_statistics()
 
-        actor_header = 'Actor'
-        fail_rate_header = 'Fail Rate'
-        n_header = 'n'
-        prevalence_rate_header = 'Prevalence Rate'
-
-        csv_header = [actor_header, fail_rate_header, n_header, prevalence_rate_header, n_header]
+        csv_header = ['Actor', 'Fail Rate', 'n', 'N', 'Prevalence Rate', 'n', 'N']
         csv_rows.append(csv_header)
 
         # Limit results to include only actors who appear in both the failure dictionary and the
@@ -72,11 +67,14 @@ class Incident:
 
         for actor in actors_with_complete_data:
             fail_rate = f'{cls.all_actor_fail[actor]["fail-rate"]:0.3}'
-            fail_n = f'{cls.all_actor_fail[actor]["count"]}'
+            fail_n = cls.all_actor_fail[actor]["count"]
+            fail_big_n = cls.all_actor_fail["total"]["count"]
             prevalence_rate = f'{cls.sb_actor_prevalence[actor]["prevalence-rate"]:0.3}'
-            prevalence_n = f'{cls.sb_actor_prevalence[actor]["count"]}'
+            prevalence_n = cls.sb_actor_prevalence[actor]["count"]
+            prevalence_big_n = cls.sb_actor_prevalence["total"]["count"]
 
-            csv_row = [fail_rate, fail_n, prevalence_rate, prevalence_n]
+            csv_row = [fail_rate, fail_n, fail_big_n, prevalence_rate, prevalence_n,
+                       prevalence_big_n]
             csv_rows.append(csv_row)
 
         outfile_path = Path(outfile_name)
