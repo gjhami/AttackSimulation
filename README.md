@@ -22,4 +22,4 @@ The model makes several assumptions and compromises in the name of data availabi
 - The model assumes individual records conform to the average pricing of the record type. I.e., any given customer record containing health information is worth the average amount for a health information record.
 
 ## Simulations
- Simulation modeling allows us to represent the data in a meaningful way, and to make reasonable estimations of outcomes. The model can quickly run hundreds or thousands of iterations using minimal resources, and visually displays attack success likelihoods. 
+ Simulation modeling allows us to represent the data in a meaningful way, and to make reasonable estimations of outcomes. The model can quickly run hundreds or thousands of iterations using minimal resources, and visually displays attack success likelihoods. User selection of threat actors they anticipate facing, as well as security controls to implement, accordingly impact attack success predictions.
