@@ -67,17 +67,16 @@ class Incident:
 
         for actor in actors_with_complete_data:
             fail_rate = f'{cls.all_actor_fail[actor]["fail-rate"]:0.3}'
-            fail_n = cls.all_actor_fail[actor]["count"]
-            fail_big_n = cls.all_actor_fail["total"]["count"]
             prevalence_rate = f'{cls.sb_actor_prevalence[actor]["prevalence-rate"]:0.3}'
-            prevalence_n = cls.sb_actor_prevalence[actor]["count"]
-            prevalence_big_n = cls.sb_actor_prevalence["total"]["count"]
 
-            csv_row = [fail_rate, fail_n, fail_big_n, prevalence_rate, prevalence_n,
-                       prevalence_big_n]
+            csv_row = [fail_rate, cls.all_actor_fail[actor]["count"],
+                       cls.all_actor_fail["total"]["count"], prevalence_rate,
+                       cls.sb_actor_prevalence[actor]["count"],
+                       cls.sb_actor_prevalence["total"]["count"]]
             csv_rows.append(csv_row)
 
         outfile_path = Path(outfile_name)
+
         with outfile_path.open('w', encoding="utf-8") as outfile:
             csv_writer = csv.writer(outfile)
             csv_writer.writerows(csv_rows)
