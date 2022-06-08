@@ -1,6 +1,6 @@
 """
 This module is used to parse the VCDB incident .json files for data which is then used as inputs
-for the likelihood a random attack is perpetrated by a given actor. Also,  the liklihood an attack
+for the likelihood a random attack is perpetrated by a given actor. Also,  the likelihood an attack
 perpetrated by a given actor on a small business is likely to succeed or fail when the vitim is a
 small to medium sized business. Success for an actor is a confirmed data breach, while failure is a
 confirmed lack of a data breach. A small to medium sized business is defined as a business with
@@ -38,8 +38,8 @@ class Incident:
     #                  'Former employee', 'Other', 'Competitor', 'Helpdesk', 'Unaffiliated',
     #                  'Nation-state', 'Organized crime', 'Unknown', 'Maintenance', 'Activist',
     #                  'Terrorist', 'Force majeure']
-    target_actors = ['State-affiliated', 'Former employee', 'Competitor',
-                     'Nation-state', 'Organized crime', 'Activist']
+    target_actors = {'State-affiliated', 'Former employee', 'Competitor', 'Nation-state',
+                     'Organized crime', 'Activist'}
 
     # All disclosure values: ['Yes', 'No', 'Potentially', 'Unknown']
 
@@ -48,8 +48,7 @@ class Incident:
         """
         save_stats(cls, outfile_name)
 
-        :param outfile_name: Name of the file to which to save Incident statistics as a CSV
-        :return: Does not return anything
+        :param str outfile_name: Name of the file to which to save Incident statistics as a CSV
 
         Saves actor names, overall fail rates, overall sample size, small business prevalence,
         and small business sample size to a provided file as a csv.
@@ -66,11 +65,14 @@ class Incident:
         csv_header = [actor_header, fail_rate_header, n_header, prevalence_rate_header, n_header]
         csv_rows.append(csv_header)
 
-        actors_with_complete_data = list(cls.all_actor_fail.keys() & cls.sb_actor_prevalence.keys())
+        # Limit results to include only actors who appear in both the failure dictionary and the
+        # prevalence dictionary and the set of target actors
+        actors_with_complete_data = list(cls.all_actor_fail.keys() & cls.sb_actor_prevalence.keys()
+                                         & cls.target_actors)
 
         for actor in actors_with_complete_data:
-            fail_rate = f'{cls.all_actor_fail.items[actor]["fail-rate"]:0.3}'
-            fail_n = f'{cls.all_actor_fail.items[actor]["count"]}'
+            fail_rate = f'{cls.all_actor_fail[actor]["fail-rate"]:0.3}'
+            fail_n = f'{cls.all_actor_fail[actor]["count"]}'
             prevalence_rate = f'{cls.sb_actor_prevalence[actor]["prevalence-rate"]:0.3}'
             prevalence_n = f'{cls.sb_actor_prevalence[actor]["count"]}'
 
@@ -86,8 +88,6 @@ class Incident:
     def print_stats(cls):
         """
         print_stats(cls)
-
-        :return: Does not return anything
 
         Updates aggregate statistics being tracked across all instances of Incident. Then, prints
         the aggregate statistics in a text-based table for actors which appear in both the
@@ -108,8 +108,9 @@ class Incident:
         print(f'{"-" * 90}')
 
         # Limit results to include only actors who appear in both the failure dictionary and the
-        # prevalence dictionary
-        actors_with_complete_data = list(cls.all_actor_fail.keys() & cls.sb_actor_prevalence.keys())
+        # prevalence dictionary and the set of target actors
+        actors_with_complete_data = list(cls.all_actor_fail.keys() & cls.sb_actor_prevalence.keys()
+                                         & cls.target_actors)
 
         for actor in actors_with_complete_data:
             fail_rate = f'{cls.all_actor_fail[actor]["fail-rate"]:0.3}'
@@ -126,8 +127,6 @@ class Incident:
     def update_aggregate_statistics(cls):
         """
         update_aggregate_statistics(cls)
-
-        :return: Does not return anything
 
         Computes aggregate statistics about instances of Incident using class variables. Statistics
         include fail rate and prevalence rate. This method should be called after all instances of
@@ -146,38 +145,6 @@ class Incident:
             actor_count = actor_stats['count']
             actor_stats['prevalence-rate'] = actor_count / cls.sb_incident_count
 
-        cls.sort_actor_counts()
-
-    @classmethod
-    def sort_actor_counts(cls):
-        """
-        sort_actor_counts(cls)
-
-        :return: Does not return anything
-
-        Sorts the aggregate lists tracking actor fail rate and prevalence in order of sample size.
-        Should be called before printing statistics for ordered table output.
-        """
-        cls.all_actor_fail = cls.sort_descending(cls.all_actor_fail, 'count')
-        cls.sb_actor_prevalence = cls.sort_descending(cls.sb_actor_prevalence, 'count')
-
-    @staticmethod
-    def sort_descending(dictionary, sort_parameter):
-        """
-        sort_descending(dictionary, sort_parameter)
-
-        :param dictionary: Dictionary to be sorted
-        :param sort_parameter: dictionary is sorted in descending order of
-        dictionary[1][sort_parameter]
-        :return: Does not return anything
-
-        Sorts the aggregate lists tracking actor fail rate and prevalence in order of sample size.
-        Should be called before printing statistics for ordered table output.
-        """
-        sorted_tuple_list = sorted(dictionary.items(), key=lambda item: item[1][sort_parameter])
-        sorted_tuple_list.reverse()
-        return dict(sorted_tuple_list)
-
     def __init__(self, input_json):
         self.incident_json = input_json
         self.employee_count = self.incident_json['victim']['employee_count']
@@ -195,8 +162,6 @@ class Incident:
     def update_statistics(self):
         """
         update_statistics(self)
-
-        :return: Does not return anything
 
         Updates class variables tracking the number of occurrences of actor successes, failures,
         and maybes. A success is an incident involving an actor which results in a data
@@ -239,11 +204,12 @@ class Incident:
         """
         add_or_increment(cls, key, value, sub_key, dictionary)
 
-        :param key: Key in dictionary where dictionary[key] is set to value if it does not exist
-        :param value: dictionary[key] is set to value if it does not exist
-        :param sub_key: If dictionary[key] exists, then dictionary[key][subkey] is incremented
-        :param dictionary: Dictionary to be modified
-        :return: Does not return anything
+        :param str key: Key in dictionary where dictionary[key] is set to value if it does not exist
+        :param dict value: dictionary[key] is set to value if it does not exist
+        :param str sub_key: If dictionary[key] exists, then dictionary[key][sub_key] is incremented
+        :param dict dictionary: Dictionary to be modified
+        :return: Returns the updated dictionary
+        :rtype: dict
 
         Increments dictionary[key][sub_key] if dictionary[key] exists. Otherwise, sets
         dictionary[key] to value.
@@ -252,12 +218,14 @@ class Incident:
             dictionary[key][sub_key] = dictionary[key][sub_key] + 1
         else:
             dictionary[key] = value
+        return dictionary
 
     def get_is_sb(self):
         """
         get_is_sb(self)
 
         :return: True if the victim in the incident was a small business, otherwise False
+        :rtype: bool
         """
         is_sb = bool(self.employee_count in Incident.target_employee_counts)
         return is_sb
@@ -265,8 +233,10 @@ class Incident:
     def get_is_breach(self):
         """
         get_is_breach(self)
+
         :return: Boolean True if the incident was a breach, False if the incident was not a breach,
         and None if the incident may have been a breach.
+        :rtype: bool
 
         Returns True if the incident involved confirmed data disclosure, False if the incident only
         involved only confirmed instances of data disclosure, or None if the incident involved any
@@ -293,9 +263,13 @@ class Incident:
 
         :return: List of actor varieties involved in the incident. May contain the same variety
         multiple times or be empty if no actor varieties were included in the incident report.
+        :rtype: list[str]
         """
-        actor_varieties = [category['variety'] for category in self.incident_json['actor'].values()
-                           if 'variety' in category]
+        actor_varieties = []
+        actor_variety_lists = [category['variety'] for category in
+                               self.incident_json['actor'].values() if 'variety' in category]
+        for actor_variety_list in actor_variety_lists:
+            actor_varieties.extend(actor_variety_list)
         return actor_varieties
 
 
