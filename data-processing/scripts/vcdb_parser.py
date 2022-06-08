@@ -20,12 +20,12 @@ class Incident:
     to print these statistics in a text-based table or output them to a .csv file.
     """
     # Track breach vs. non-breach incidents for each actor in all incidents
-    all_actor_fail = {}  # actor: {'success', 'fail', 'maybe', 'fail-rate'}
-    all_actor_count = 0
+    # actor: {'success', 'fail', 'maybe', 'fail-rate'}... 'total': count
+    all_actor_fail = {'total': 0}
 
     # Track all incidents for each actor if the victim is a small business
-    sb_actor_prevalence = {}  # actor: {'count', 'prevalence-rate'}
-    sb_incident_count = 0
+    # actor: {'count', 'prevalence-rate'}... 'total': count
+    sb_actor_prevalence = {'total': 0}
 
     # target_employee_counts = ['1 to 10', '11 to 100', '101 to 1000', '1001 to 10000',
     #                           '10001 to 25000', '25001 to 50000', '50001 to 100000',
@@ -115,10 +115,10 @@ class Incident:
         for actor in actors_with_complete_data:
             fail_rate = f'{cls.all_actor_fail[actor]["fail-rate"]:0.3}'
             fail_n = f'{cls.all_actor_fail[actor]["count"]}'
-            fail_big_n = f'{cls.all_actor_count}'
+            fail_big_n = f'{cls.all_actor_fail["total"]}'
             prevalence_rate = f'{cls.sb_actor_prevalence[actor]["prevalence-rate"]:0.3}'
             prevalence_n = f'{cls.sb_actor_prevalence[actor]["count"]}'
-            prevalence_big_n = f'{cls.sb_incident_count}'
+            prevalence_big_n = f'{cls.sb_actor_prevalence["total"]}'
 
             print(f'{actor:20s} {fail_rate:15s} {fail_n:10s} {fail_big_n:10s}', end='')
             print(f'{prevalence_rate:17s} {prevalence_n:5s} {prevalence_big_n}')
@@ -135,15 +135,17 @@ class Incident:
 
         # Compute fail rates based incidents with and without data breaches
         for actor, actor_stats in cls.all_actor_fail.items():
-            success_count = actor_stats['success']
-            fail_count = actor_stats['fail']
-            actor_stats['fail-rate'] = fail_count / (success_count + fail_count)
-            actor_stats['count'] = success_count + fail_count
+            if actor != 'total':
+                success_count = actor_stats['success']
+                fail_count = actor_stats['fail']
+                actor_stats['fail-rate'] = fail_count / (success_count + fail_count)
+                actor_stats['count'] = success_count + fail_count
 
         # Compute actor prevalence for small businesses
         for actor, actor_stats in cls.sb_actor_prevalence.items():
-            actor_count = actor_stats['count']
-            actor_stats['prevalence-rate'] = actor_count / cls.sb_incident_count
+            if actor != 'total':
+                actor_count = actor_stats['count']
+                actor_stats['prevalence-rate'] = actor_count / cls.sb_actor_prevalence["total"]
 
     def __init__(self, input_json):
         self.incident_json = input_json
@@ -174,13 +176,13 @@ class Incident:
         # Update actor success for all breaches
         for actor_variety in self.actor_varieties:
             if self.is_breach is True:
-                Incident.all_actor_count = Incident.all_actor_count + 1
+                Incident.sb_actor_prevalence["total"] += 1
                 default_value = {'success': 1, 'fail': 0, 'maybe': 0}
                 Incident.add_or_increment(actor_variety, default_value, 'success',
                                           Incident.all_actor_fail)
 
             elif self.is_breach is False:
-                Incident.all_actor_count = Incident.all_actor_count + 1
+                Incident.sb_actor_prevalence["total"] += 1
                 default_value = {'success': 0, 'fail': 1, 'maybe': 0}
                 Incident.add_or_increment(actor_variety, default_value, 'fail',
                                           Incident.all_actor_fail)
@@ -192,7 +194,7 @@ class Incident:
 
         # Update actor counts and total incidents for small business breaches
         if self.is_sb is True:
-            Incident.sb_incident_count = Incident.sb_incident_count + 1
+            Incident.sb_actor_prevalence["total"] += 1
 
             for actor_variety in self.actor_varieties:
                 default_value = {'count': 1}
