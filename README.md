@@ -11,7 +11,7 @@ This model is intended for small businesses/organizations without dedicated cybe
 
 ## Data Sources
 Data related to security control costs and efficacy come primarily from vendors.
-Data related to threat actor effectiveness and frequency come from the [VERIS Community Database](https://github.com/vz-risk/VCDB) maintained by Verizon. This corpus of incident reports is used to create the annual Verizon Breach Investigations Report [(DBIR)](https://www.verizon.com/business/resources/reports/dbir/).
+Data related to threat actor effectiveness and frequency come from the [VERIS Community Database](https://github.com/vz-risk/VCDB) maintained by the Verizon Security Research Team. This corpus of incident reports is used to create the annual Verizon Breach Investigations Report [(DBIR)](https://www.verizon.com/business/resources/reports/dbir/).
 Data related to monetary costs of breaches are based on the [IBM Cost of a Data Breach Report](https://www.ibm.com/security/data-breach).
 
 ## Limitations
