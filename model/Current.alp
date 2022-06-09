@@ -670,11 +670,6 @@ for (Map.Entry<Integer, NetworkNode> entry : Positions.entrySet()) {
 	nodeName = node.getName();
 	v_compromisedCount = (double) node.v_numCompromises;
 	v_percentNodeCompromised = 100 * (v_compromisedCount / TotalRuns);
-	
-	// Visualize the node in red if it's compromised in most attacks
-	if (v_percentNodeCompromised > 50) {
-		node.f_UISetCompromised();
-	}
    
     di_compromisedPercent = new DataItem();
     di_compromisedCount = new DataItem();
@@ -1979,7 +1974,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 					<InitializationDatabaseTableQuery>
 						<TableReference>
 							<PackageName><![CDATA[mango_model3]]></PackageName>
-							<ClassName><![CDATA[attacker_types]]></ClassName>
+							<ClassName><![CDATA[sheet1]]></ClassName>
 						</TableReference>
 					</InitializationDatabaseTableQuery>
 					<InitializationDatabaseType>ONE_AGENT_PER_DATABASE_RECORD</InitializationDatabaseType>
@@ -1994,7 +1989,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 							</Key>
 							<Value>
 								<PackageName><![CDATA[mango_model3]]></PackageName>
-								<ClassName><![CDATA[attacker_types]]></ClassName>
+								<ClassName><![CDATA[sheet1]]></ClassName>
 								<ItemName><![CDATA[attacker_id]]></ItemName>
 							</Value>
 						</Item>
@@ -2006,7 +2001,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 							</Key>
 							<Value>
 								<PackageName><![CDATA[mango_model3]]></PackageName>
-								<ClassName><![CDATA[attacker_types]]></ClassName>
+								<ClassName><![CDATA[sheet1]]></ClassName>
 								<ItemName><![CDATA[attacker_name]]></ItemName>
 							</Value>
 						</Item>
@@ -2018,7 +2013,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 							</Key>
 							<Value>
 								<PackageName><![CDATA[mango_model3]]></PackageName>
-								<ClassName><![CDATA[attacker_types]]></ClassName>
+								<ClassName><![CDATA[sheet1]]></ClassName>
 								<ItemName><![CDATA[non_breach_ratio]]></ItemName>
 							</Value>
 						</Item>
@@ -2030,7 +2025,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 							</Key>
 							<Value>
 								<PackageName><![CDATA[mango_model3]]></PackageName>
-								<ClassName><![CDATA[attacker_types]]></ClassName>
+								<ClassName><![CDATA[sheet1]]></ClassName>
 								<ItemName><![CDATA[non_breach_n]]></ItemName>
 							</Value>
 						</Item>
@@ -2042,7 +2037,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 							</Key>
 							<Value>
 								<PackageName><![CDATA[mango_model3]]></PackageName>
-								<ClassName><![CDATA[attacker_types]]></ClassName>
+								<ClassName><![CDATA[sheet1]]></ClassName>
 								<ItemName><![CDATA[attack_ratio]]></ItemName>
 							</Value>
 						</Item>
@@ -2054,7 +2049,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 							</Key>
 							<Value>
 								<PackageName><![CDATA[mango_model3]]></PackageName>
-								<ClassName><![CDATA[attacker_types]]></ClassName>
+								<ClassName><![CDATA[sheet1]]></ClassName>
 								<ItemName><![CDATA[attack_n]]></ItemName>
 							</Value>
 						</Item>	
@@ -3870,7 +3865,8 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 			<Variables>
 				<Variable Class="PlainVariable">
 					<Id>1653430915305</Id>
-					<Name><![CDATA[NodeGetsCompromised]]></Name>
+					<Name><![CDATA[v_nodeIsCompromised]]></Name>
+					<Description><![CDATA[Describes whether or not the node has been compromised. If the node is compromised, then it will appear as red.]]></Description>
 					<X>530</X><Y>-260</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
@@ -4525,6 +4521,9 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 						<Type><![CDATA[boolean]]></Type>
 						<UnitType><![CDATA[NONE]]></UnitType>
 						<SdArray>false</SdArray>
+						<DefaultValue Class="CodeValue">
+							<Code><![CDATA[false]]></Code>
+						</DefaultValue>
 						<ParameterEditor>
 							<Id>1491420967783</Id>
 							<EditorContolType>CHECK_BOX</EditorContolType>
@@ -4625,7 +4624,8 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 					<Comment><![CDATA[Set Compromised]]></Comment>
 					<Properties Width="120" Height="30" Previous="1654543896806" Next="1654545567488" >
 						<FillColor/>
-						<Code><![CDATA[v_numCompromises = v_numCompromises + 1;]]></Code>
+						<Code><![CDATA[v_numCompromises = v_numCompromises + 1;
+v_nodeIsCompromised = true;]]></Code>
 					</Properties>	
 				</ActionChartElement>
 				<ActionChartElement Class="Code">
@@ -4745,6 +4745,7 @@ OverallCost = FirewallCost + GatewayCost + IDSCost + AntivirusCost + MailScanCos
 					<ShowLabel>true</ShowLabel>
 					<Body><![CDATA[NodeGoesDown = false;
 v_numCompromises = 0;
+v_nodeIsCompromised = false;
 if (NextNode != null) {
 	NextNode.Reset();
 }]]></Body>
@@ -4789,20 +4790,6 @@ else if (v_effectiveProbability > 1) {
 }
 
 return v_effectiveProbability;]]></Body>
-				</Function>
-				<Function AccessType="default" StaticFunction="false">
-					<ReturnModificator>VOID</ReturnModificator>
-					<ReturnType><![CDATA[double]]></ReturnType>
-					<Id>1653927124636</Id>
-					<Name><![CDATA[f_UISetCompromised]]></Name>
-					<X>1010</X><Y>-160</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Body><![CDATA[UI_nodeUpShading.setVisible(false);
-UI_nodeOffShading.setVisible(false);
-UI_nodeCompromisedShading.setVisible(true);]]></Body>
 				</Function>
 			</Functions>
 			<AgentLinks>
@@ -4866,6 +4853,7 @@ UI_nodeCompromisedShading.setVisible(true);]]></Body>
 					<PresentationFlag>false</PresentationFlag>
 					<ShowLabel>false</ShowLabel>
 					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<VisibleCode><![CDATA[SkipNode]]></VisibleCode>
 					<EmbeddedIcon>false</EmbeddedIcon>
 					<Z>0</Z>
 					<ZHeight>10</ZHeight>
@@ -4888,6 +4876,7 @@ UI_nodeCompromisedShading.setVisible(true);]]></Body>
 					<PresentationFlag>false</PresentationFlag>
 					<ShowLabel>false</ShowLabel>
 					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<VisibleCode><![CDATA[v_nodeIsCompromised]]></VisibleCode>
 					<EmbeddedIcon>false</EmbeddedIcon>
 					<Z>0</Z>
 					<ZHeight>10</ZHeight>
@@ -4924,6 +4913,7 @@ UI_nodeCompromisedShading.setVisible(true);]]></Body>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>false</ShowLabel>
 					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<VisibleCode><![CDATA[!v_nodeIsCompromised && !SkipNode]]></VisibleCode>
 					<EmbeddedIcon>false</EmbeddedIcon>
 					<Z>0</Z>
 					<ZHeight>10</ZHeight>
@@ -6516,7 +6506,7 @@ return v_isAttacker;
 		<ShutdownCompact>false</ShutdownCompact>
 		<ImportSettings>
 			<ExternalConnection>
-				<Id>1654802875816</Id>
+				<Id>1654803541523</Id>
 				<Name><![CDATA[database]]></Name>
 				<X>0</X><Y>0</Y>
 				<Label><X>10</X><Y>0</Y></Label>
@@ -6539,10 +6529,10 @@ return v_isAttacker;
 			<TableImportSettings>
 				<TableReference>
 					<PackageName><![CDATA[mango_model3]]></PackageName>
-					<ClassName><![CDATA[attacker_types1]]></ClassName>
+					<ClassName><![CDATA[sheet1]]></ClassName>
 				</TableReference>
 				<ConnectionIndex>0</ConnectionIndex>
-				<ExternalTableName><![CDATA["attacker_types1"]]></ExternalTableName>
+				<ExternalTableName><![CDATA["Sheet1"]]></ExternalTableName>
 				<AutoImport>true</AutoImport>
 			</TableImportSettings>
 		</ImportSettings>
@@ -6665,10 +6655,6 @@ getExperimentHost().setPresentable( getEngine().getRoot() );]]></ActionCode>
 	<ModelResources>
 		<Resource>
 			<Path><![CDATA[thesis_simpleAttacker.png]]></Path>
-			<ReferencedFromUserCode>false</ReferencedFromUserCode>
-		</Resource>
-		<Resource>
-			<Path><![CDATA[C:/Users/admin/Models/cyberattack-simulation/model-inputs/threat_actor_inputs.xlsx]]></Path>
 			<ReferencedFromUserCode>false</ReferencedFromUserCode>
 		</Resource>
 		<Resource>
