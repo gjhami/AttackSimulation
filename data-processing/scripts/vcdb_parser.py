@@ -131,7 +131,6 @@ class Incident:
         """
 
         # Compute fail rates based incidents with and without data breaches
-        print(cls.all_actor_fail.items())
         for actor, actor_stats in cls.all_actor_fail.items():
             if actor != 'total':
                 success_count = actor_stats['success']
