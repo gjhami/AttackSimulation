@@ -15,7 +15,7 @@ Data related to threat actor effectiveness and frequency come from the [VERIS Co
 Data related to monetary costs of breaches are based on the [IBM Cost of a Data Breach Report](https://www.ibm.com/security/data-breach).
 
 ## Simulations
- Simulation modeling allows us to represent the data in a meaningful way, and to make reasonable estimations of outcomes. The model can quickly run hundreds or thousands of iterations using minimal resources, and visually displays attack success likelihoods. User selection of threat actors they anticipate facing, as well as security controls to implement, accordingly impact attack success predictions.
+ Simulation modeling allows us to represent the data in a meaningful way, and to make reasonable estimations of outcomes based on observed samples. The model can quickly run hundreds or thousands of iterations using minimal resources, and visually displays attack success likelihoods. User selection of threat actors they anticipate facing, as well as security controls to implement, accordingly impact attack success predictions.
 
 ## Limitations
 The model makes several assumptions and compromises in the name of data availability and ease of use. Some of these are as follows:
