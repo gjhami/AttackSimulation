@@ -147,7 +147,7 @@ FlagEdit.setText("4", true);]]></StartupCode>
 			<Variables>
 				<Variable Class="PlainVariable">
 					<Id>1617916116698</Id>
-					<Name><![CDATA[Positions]]></Name>
+					<Name><![CDATA[v_positions]]></Name>
 					<X>320</X><Y>-90</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
@@ -164,7 +164,7 @@ FlagEdit.setText("4", true);]]></StartupCode>
 				</Variable>
 				<Variable Class="PlainVariable">
 					<Id>1653420433123</Id>
-					<Name><![CDATA[OCost]]></Name>
+					<Name><![CDATA[v_totalCost]]></Name>
 					<X>320</X><Y>-110</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
@@ -175,35 +175,8 @@ FlagEdit.setText("4", true);]]></StartupCode>
 					</Properties>
 				</Variable>
 				<Variable Class="PlainVariable">
-					<Id>1653420545048</Id>
-					<Name><![CDATA[OVariance]]></Name>
-					<X>320</X><Y>-130</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
-						<Type><![CDATA[double]]></Type>        
-					</Properties>
-				</Variable>
-				<Variable Class="PlainVariable">
-					<Id>1653420569439</Id>
-					<Name><![CDATA[OProbability]]></Name>
-					<X>320</X><Y>-150</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
-						<Type><![CDATA[double]]></Type>        
-						<InitialValue Class="CodeValue">
-							<Code><![CDATA[0.1]]></Code>
-						</InitialValue>
-					</Properties>
-				</Variable>
-				<Variable Class="PlainVariable">
 					<Id>1653575152211</Id>
-					<Name><![CDATA[GraphColors]]></Name>
+					<Name><![CDATA[v_graphColors]]></Name>
 					<X>320</X><Y>-360</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
@@ -218,7 +191,7 @@ FlagEdit.setText("4", true);]]></StartupCode>
 				</Variable>
 				<Variable Class="PlainVariable">
 					<Id>1653589792118</Id>
-					<Name><![CDATA[RunsRemaining]]></Name>
+					<Name><![CDATA[v_remainingRuns]]></Name>
 					<X>320</X><Y>-380</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
@@ -233,7 +206,7 @@ FlagEdit.setText("4", true);]]></StartupCode>
 				</Variable>
 				<Variable Class="PlainVariable">
 					<Id>1653590490483</Id>
-					<Name><![CDATA[RunsTarget]]></Name>
+					<Name><![CDATA[v_targetRuns]]></Name>
 					<X>320</X><Y>-400</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
@@ -248,21 +221,8 @@ FlagEdit.setText("4", true);]]></StartupCode>
 				</Variable>
 				<Variable Class="PlainVariable">
 					<Id>1653669769941</Id>
-					<Name><![CDATA[TotalRuns]]></Name>
+					<Name><![CDATA[v_totalRuns]]></Name>
 					<X>320</X><Y>-420</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
-						<Type><![CDATA[double]]></Type>        
-					</Properties>
-				</Variable>
-				<Variable Class="PlainVariable">
-					<Id>1653925745570</Id>
-					<Name><![CDATA[v_probabilityAttackSucceeds]]></Name>
-					<Description><![CDATA[Probability all nodes in the attack path are successfully compromised]]></Description>
-					<X>320</X><Y>-340</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -281,7 +241,7 @@ FlagEdit.setText("4", true);]]></StartupCode>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
 					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
-						<Type><![CDATA[A_Attacker]]></Type>        
+						<Type><![CDATA[A_ThreatActor]]></Type>        
 					</Properties>
 				</Variable>
 				<Variable Class="PlainVariable">
@@ -325,7 +285,7 @@ FlagEdit.setText("4", true);]]></StartupCode>
 				</Variable>
 				<Variable Class="CollectionVariable">
 					<Id>1654034130216</Id>
-					<Name><![CDATA[cv_compromisedNodes]]></Name>
+					<Name><![CDATA[vc_compromisedNodes]]></Name>
 					<Description><![CDATA[Name of node and number of times compromised]]></Description>
 					<X>320</X><Y>-70</Y>
 					<Label><X>10</X><Y>0</Y></Label>
@@ -350,7 +310,7 @@ FlagEdit.setText("4", true);]]></StartupCode>
 					<Properties SaveInSnapshot="true" AccessType="public" StaticVariable="false">
 						<CollectionClass><![CDATA[TreeMap]]></CollectionClass>
 						<ElementClass><![CDATA[String]]></ElementClass>
-						<ValueElementClass><![CDATA[A_Attacker]]></ValueElementClass>
+						<ValueElementClass><![CDATA[A_ThreatActor]]></ValueElementClass>
 					</Properties>
 
 				</Variable>
@@ -366,7 +326,7 @@ FlagEdit.setText("4", true);]]></StartupCode>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
-					<Body><![CDATA[Set set = Positions.entrySet();
+					<Body><![CDATA[Set set = v_positions.entrySet();
 Iterator iterator = set.iterator();
 NetworkNode PreviousNode = null;
 NetworkNode CurrentNode = null;
@@ -377,10 +337,10 @@ while(iterator.hasNext()) {
 	CurrentNode = (NetworkNode)mentry.getValue();
 	
 	if (PreviousNode != null) {
-		PreviousNode.NextNode = CurrentNode;
+		PreviousNode.v_nextNode = CurrentNode;
 	}
 	if (!iterator.hasNext()) {
-		CurrentNode.NextNode = null;
+		CurrentNode.v_nextNode = null;
 	}
 }
 
@@ -390,34 +350,26 @@ while(iterator.hasNext()) {
 					<ReturnModificator>RETURNS_VALUE</ReturnModificator>
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1492627056190</Id>
-					<Name><![CDATA[OCalculation]]></Name>
+					<Name><![CDATA[f_updateTotalCost]]></Name>
 					<X>540</X><Y>-150</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
-					<Body><![CDATA[/*
-This block is used to calculate the overall probability
-of an attack going through and the overall cost of all controls.
-*/
+					<Body><![CDATA[v_totalCost = 0;
 
-OProbability = 1;
-OVariance = 0;
-OCost = 0;
-
-for (Map.Entry<Integer, NetworkNode> entry : Positions.entrySet()) {
+for (Map.Entry<Integer, NetworkNode> entry : v_positions.entrySet()) {
 	NetworkNode node = entry.getValue();
-	OCost = OCost + node.OverallCost;
-	v_probabilityAttackSucceeds = v_probabilityAttackSucceeds * node.v_probabilityAttackSucceeds;
+	v_totalCost = v_totalCost + node.v_overallCost;
 }
 
-return OCost;]]></Body>
+return v_totalCost;]]></Body>
 				</Function>
 				<Function AccessType="default" StaticFunction="false">
 					<ReturnModificator>VOID</ReturnModificator>
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1619668924016</Id>
-					<Name><![CDATA[SetPosition]]></Name>
+					<Name><![CDATA[f_setNodePosition]]></Name>
 					<X>540</X><Y>-110</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
@@ -444,7 +396,7 @@ if(!box.getText().equals("")){
 	}
 	
 	
-	if ((inputValue != null) && (Positions.containsKey(inputValue))) {
+	if ((inputValue != null) && (v_positions.containsKey(inputValue))) {
 		box.setText("");
 		inputValue = null;
 	}
@@ -453,10 +405,10 @@ if(!box.getText().equals("")){
 // If the  the node exists in Positions, then remove it
 NetworkNode currNode;
 Integer key;
-Integer[] removeKeys = new Integer[Positions.size()];
+Integer[] removeKeys = new Integer[v_positions.size()];
 int index = 0;
-if (Positions.containsValue(node)) {
-	for (Map.Entry<Integer, NetworkNode> entry : Positions.entrySet()) {
+if (v_positions.containsValue(node)) {
+	for (Map.Entry<Integer, NetworkNode> entry : v_positions.entrySet()) {
 		currNode = entry.getValue();
 		key = entry.getKey();
 		if (node.equals(currNode)) {
@@ -469,16 +421,16 @@ if (Positions.containsValue(node)) {
 	}
 	for (index = 0; index < removeKeys.length; index++) {
 		if (removeKeys[index] != null) {
-			Positions.remove(removeKeys[index]);
+			v_positions.remove(removeKeys[index]);
 		}
 	}
 }
 
 // If a position was supplied, re-add the node with the new position
 if (inputValue != null) {
-	Positions.put(inputValue, node);
+	v_positions.put(inputValue, node);
 }
-PositionText.setText(Positions.toString());
+PositionText.setText(v_positions.toString());
 
 
 
@@ -510,7 +462,7 @@ therefore having no effect.
 v_effectiveAttacker = null;
 Boolean v_attackerSelected = false;
 int v_uncheckedAttackerCount = count(apv_Attackers, a -> a.v_checkedForAttack == false);
-A_Attacker v_randomAttacker;
+A_ThreatActor v_randomAttacker;
 
 
 
@@ -534,7 +486,7 @@ while ((v_uncheckedAttackerCount > 0) && (v_attackerSelected == false)) {
 
 
 // Reset which nodes have been checked for the next round of attacker selection
-for (A_Attacker attacker : filter(apv_Attackers, a -> a.v_checkedForAttack == true)) {
+for (A_ThreatActor attacker : filter(apv_Attackers, a -> a.v_checkedForAttack == true)) {
 	attacker.v_checkedForAttack = false;
 }
 
@@ -544,7 +496,7 @@ v_runningFailRatioSum = v_runningFailRatioSum + v_effectiveAttackerFailRatio;]]>
 					<ReturnModificator>VOID</ReturnModificator>
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1653412572346</Id>
-					<Name><![CDATA[RelayAttack]]></Name>
+					<Name><![CDATA[f_runAttacks]]></Name>
 					<X>540</X><Y>-370</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
@@ -564,26 +516,19 @@ calculated and displayed on 'Main'.
 */
 
 f_linkNodes();
-RunsRemaining = p_runs;
-NetworkNode firstNode = (NetworkNode)Positions.firstEntry().getValue();
+v_remainingRuns = p_runs;
+NetworkNode firstNode = (NetworkNode)v_positions.firstEntry().getValue();
 
-while (RunsRemaining > 0) {
-	RunsRemaining = RunsRemaining - 1;
-	TotalRuns = TotalRuns + 1;
+while (v_remainingRuns > 0) {
+	v_remainingRuns = v_remainingRuns - 1;
+	v_totalRuns = v_totalRuns + 1;
 	f_updateAttackerFailRatio();
 	
-	for (Map.Entry<Integer, NetworkNode> entry : Positions.entrySet()) {
-		NetworkNode node = entry.getValue();
-		if (!node.SkipNode) {
-			node.calculateOverall(v_effectiveAttackerFailRatio);
-		}
-	}
-	
-	
+	firstNode.f_calculateOverall(v_effectiveAttackerFailRatio);
 	firstNode.f_processAttack();
 	
-	t_totalAttacksRun.setText(TotalRuns);
-	totalCost.setText(OCalculation());
+	t_totalAttacksRun.setText(v_totalRuns);
+	totalCost.setText(f_updateTotalCost());
 }
 
 
@@ -595,30 +540,30 @@ f_updateGraph();
 					<ReturnModificator>VOID</ReturnModificator>
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1653426798615</Id>
-					<Name><![CDATA[GetCompromisedNodes]]></Name>
+					<Name><![CDATA[f_getCompromisedNodes]]></Name>
 					<X>540</X><Y>-390</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
-					<Body><![CDATA[for (Map.Entry<Integer, NetworkNode> entry : Positions.entrySet()) {
+					<Body><![CDATA[for (Map.Entry<Integer, NetworkNode> entry : v_positions.entrySet()) {
 	NetworkNode node = entry.getValue();
 	Double compromisedCount;
 	String nodeName = node.getName();
 	
-	if (node.NodeGetsCompromised == true) {
+	if (node.v_nodeIsCompromised == true) {
 		compromisedCount = new Double(1);
 	}
 	else{
 		compromisedCount = new Double(0);
 	}
 
-    if (cv_compromisedNodes.containsKey(nodeName)) {
-        compromisedCount = compromisedCount + cv_compromisedNodes.get(nodeName);
-        cv_compromisedNodes.replace(nodeName, compromisedCount);
+    if (vc_compromisedNodes.containsKey(nodeName)) {
+        compromisedCount = compromisedCount + vc_compromisedNodes.get(nodeName);
+        vc_compromisedNodes.replace(nodeName, compromisedCount);
     }
     else{
-        cv_compromisedNodes.put(nodeName, compromisedCount);
+        vc_compromisedNodes.put(nodeName, compromisedCount);
     }
 }]]></Body>
 				</Function>
@@ -626,20 +571,20 @@ f_updateGraph();
 					<ReturnModificator>VOID</ReturnModificator>
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1653490984860</Id>
-					<Name><![CDATA[ResetNodes]]></Name>
+					<Name><![CDATA[f_resetNodes]]></Name>
 					<X>540</X><Y>-410</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
-					<Body><![CDATA[NetworkNode firstNode = (NetworkNode)Positions.firstEntry().getValue();
-firstNode.Reset();
-cv_compromisedNodes.clear();
+					<Body><![CDATA[NetworkNode firstNode = (NetworkNode)v_positions.firstEntry().getValue();
+firstNode.f_reset();
+vc_compromisedNodes.clear();
 CompromisedChart.removeAll();
 bc_compromisedCount.removeAll();
 
-TotalRuns = 0;
-t_totalAttacksRun.setText(TotalRuns);
+v_totalRuns = 0;
+t_totalAttacksRun.setText(v_totalRuns);
 
 v_runningFailRatioSum = 0;]]></Body>
 				</Function>
@@ -665,11 +610,11 @@ CompromisedChart.removeAll();
 bc_compromisedCount.removeAll();
 
 
-for (Map.Entry<Integer, NetworkNode> entry : Positions.entrySet()) {
+for (Map.Entry<Integer, NetworkNode> entry : v_positions.entrySet()) {
 	node = entry.getValue();
 	nodeName = node.getName();
 	v_compromisedCount = (double) node.v_numCompromises;
-	v_percentNodeCompromised = 100 * (v_compromisedCount / TotalRuns);
+	v_percentNodeCompromised = 100 * (v_compromisedCount / v_totalRuns);
    
     di_compromisedPercent = new DataItem();
     di_compromisedCount = new DataItem();
@@ -678,11 +623,11 @@ for (Map.Entry<Integer, NetworkNode> entry : Positions.entrySet()) {
 	
 	// Update percentage compromise chart
 	di_compromisedPercent.setValue(v_percentNodeCompromised);
-	CompromisedChart.addDataItem(di_compromisedPercent, nodeName, GraphColors[ColorIndex]);
+	CompromisedChart.addDataItem(di_compromisedPercent, nodeName, v_graphColors[ColorIndex]);
 
 	// Update count compromised chart
 	di_compromisedCount.setValue(v_compromisedCount);
-	bc_compromisedCount.addDataItem(di_compromisedCount, nodeName, GraphColors[ColorIndex]);
+	bc_compromisedCount.addDataItem(di_compromisedCount, nodeName, v_graphColors[ColorIndex]);
 }
 
 ]]></Body>
@@ -716,7 +661,7 @@ for (Map.Entry<Integer, NetworkNode> entry : Positions.entrySet()) {
 						<Name><![CDATA[p_isSelected]]></Name>
 						<Type><![CDATA[boolean]]></Type>
 					</Parameter>
-					<Body><![CDATA[A_Attacker attacker = findFirst(apv_Attackers, a -> a.p_id.equals(p_attackerID));
+					<Body><![CDATA[A_ThreatActor attacker = findFirst(apv_Attackers, a -> a.p_id.equals(p_attackerID));
 attacker.f_setSelected(p_isSelected);]]></Body>
 				</Function>
 			</Functions>
@@ -745,8 +690,8 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 			<EmbeddedObjects>
 				<EmbeddedObject>
 					<Id>1481752103639</Id>
-					<Name><![CDATA[WorkStation]]></Name>
-					<X>760</X><Y>40</Y>
+					<Name><![CDATA[va_workstation]]></Name>
+					<X>790</X><Y>-420</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -764,88 +709,6 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 						</GenericParameterSubstituteReference>
 					</GenericParameterSubstitute>
 					<Parameters>
-						<Parameter>
-							<Name><![CDATA[Firewall]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[Gateway]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[IDS]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[MailScan]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[Antivirus]]></Name>
-							<Value Class="CodeValue">
-								<Code><![CDATA[0.99
-]]></Code>
-							</Value>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[OverallPr]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[NodeGoesDown]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[NextNode]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[FirewallCost]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[GatewayCost]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[AntivirusCost]]></Name>
-							<Value Class="CodeValue">
-								<Code><![CDATA[69.99]]></Code>
-							</Value>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[IDSCost]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[MailScanCost]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[OverallCost]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[FirewallVar]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[GatewayVar]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[IDSVar]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[MailScanVar]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[AntivirusVar]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[OverallVar]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[varUsed]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[stateGen]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[stateOfVar]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[SkipNode]]></Name>
-							<Value Class="CodeValue">
-								<Code><![CDATA[true]]></Code>
-							</Value>
-						</Parameter>
 					</Parameters>
 					<ReplicationFlag>false</ReplicationFlag>
 					<Replication Class="CodeValue">
@@ -889,8 +752,8 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 				</EmbeddedObject>
 				<EmbeddedObject>
 					<Id>1481752293220</Id>
-					<Name><![CDATA[Router]]></Name>
-					<X>1040</X><Y>40</Y>
+					<Name><![CDATA[va_router]]></Name>
+					<X>790</X><Y>-400</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -908,82 +771,6 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 						</GenericParameterSubstituteReference>
 					</GenericParameterSubstitute>
 					<Parameters>
-						<Parameter>
-							<Name><![CDATA[Firewall]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[Gateway]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[IDS]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[MailScan]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[Antivirus]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[OverallPr]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[NodeGoesDown]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[NextNode]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[FirewallCost]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[GatewayCost]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[AntivirusCost]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[IDSCost]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[MailScanCost]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[OverallCost]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[FirewallVar]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[GatewayVar]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[IDSVar]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[MailScanVar]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[AntivirusVar]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[OverallVar]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[varUsed]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[stateGen]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[stateOfVar]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[SkipNode]]></Name>
-							<Value Class="CodeValue">
-								<Code><![CDATA[true
-]]></Code>
-							</Value>
-						</Parameter>
 					</Parameters>
 					<ReplicationFlag>false</ReplicationFlag>
 					<Replication Class="CodeValue">
@@ -1027,8 +814,8 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 				</EmbeddedObject>
 				<EmbeddedObject>
 					<Id>1481752486661</Id>
-					<Name><![CDATA[Flag]]></Name>
-					<X>1830</X><Y>280</Y>
+					<Name><![CDATA[va_flag]]></Name>
+					<X>790</X><Y>-300</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1046,85 +833,6 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 						</GenericParameterSubstituteReference>
 					</GenericParameterSubstitute>
 					<Parameters>
-						<Parameter>
-							<Name><![CDATA[Firewall]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[Gateway]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[IDS]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[MailScan]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[Antivirus]]></Name>
-							<Value Class="CodeValue">
-								<Code><![CDATA[0.99
-]]></Code>
-							</Value>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[OverallPr]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[NodeGoesDown]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[NextNode]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[FirewallCost]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[GatewayCost]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[AntivirusCost]]></Name>
-							<Value Class="CodeValue">
-								<Code><![CDATA[69.99]]></Code>
-							</Value>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[IDSCost]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[MailScanCost]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[OverallCost]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[FirewallVar]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[GatewayVar]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[IDSVar]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[MailScanVar]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[AntivirusVar]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[OverallVar]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[varUsed]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[stateGen]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[stateOfVar]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[SkipNode]]></Name>
-						</Parameter>
 					</Parameters>
 					<ReplicationFlag>false</ReplicationFlag>
 					<Replication Class="CodeValue">
@@ -1168,8 +876,8 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 				</EmbeddedObject>
 				<EmbeddedObject>
 					<Id>1482000662482</Id>
-					<Name><![CDATA[ExchangeServer]]></Name>
-					<X>480</X><Y>40</Y>
+					<Name><![CDATA[va_exchangeServer]]></Name>
+					<X>790</X><Y>-440</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1187,96 +895,6 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 						</GenericParameterSubstituteReference>
 					</GenericParameterSubstitute>
 					<Parameters>
-						<Parameter>
-							<Name><![CDATA[Firewall]]></Name>
-							<Value Class="CodeValue">
-								<Code><![CDATA[0.92
-]]></Code>
-							</Value>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[Gateway]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[IDS]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[MailScan]]></Name>
-							<Value Class="CodeValue">
-								<Code><![CDATA[0.997
-]]></Code>
-							</Value>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[Antivirus]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[OverallPr]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[NodeGoesDown]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[NextNode]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[FirewallCost]]></Name>
-							<Value Class="CodeValue">
-								<Code><![CDATA[3974.50
-]]></Code>
-							</Value>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[GatewayCost]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[AntivirusCost]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[IDSCost]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[MailScanCost]]></Name>
-							<Value Class="CodeValue">
-								<Code><![CDATA[2902.50]]></Code>
-							</Value>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[OverallCost]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[FirewallVar]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[GatewayVar]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[IDSVar]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[MailScanVar]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[AntivirusVar]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[OverallVar]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[varUsed]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[stateGen]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[stateOfVar]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[SkipNode]]></Name>
-							<Value Class="CodeValue">
-								<Code><![CDATA[true]]></Code>
-							</Value>
-						</Parameter>
 					</Parameters>
 					<ReplicationFlag>false</ReplicationFlag>
 					<Replication Class="CodeValue">
@@ -1320,8 +938,8 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 				</EmbeddedObject>
 				<EmbeddedObject>
 					<Id>1482004327261</Id>
-					<Name><![CDATA[InternalNetwork]]></Name>
-					<X>1540</X><Y>280</Y>
+					<Name><![CDATA[va_internalNetwork]]></Name>
+					<X>790</X><Y>-320</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1339,94 +957,6 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 						</GenericParameterSubstituteReference>
 					</GenericParameterSubstitute>
 					<Parameters>
-						<Parameter>
-							<Name><![CDATA[Firewall]]></Name>
-							<Value Class="CodeValue">
-								<Code><![CDATA[0.92
-
-]]></Code>
-							</Value>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[Gateway]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[IDS]]></Name>
-							<Value Class="CodeValue">
-								<Code><![CDATA[0.961
-]]></Code>
-							</Value>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[MailScan]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[Antivirus]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[OverallPr]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[NodeGoesDown]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[NextNode]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[FirewallCost]]></Name>
-							<Value Class="CodeValue">
-								<Code><![CDATA[3974.50
-]]></Code>
-							</Value>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[GatewayCost]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[AntivirusCost]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[IDSCost]]></Name>
-							<Value Class="CodeValue">
-								<Code><![CDATA[282]]></Code>
-							</Value>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[MailScanCost]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[OverallCost]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[FirewallVar]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[GatewayVar]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[IDSVar]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[MailScanVar]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[AntivirusVar]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[OverallVar]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[varUsed]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[stateGen]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[stateOfVar]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[SkipNode]]></Name>
-						</Parameter>
 					</Parameters>
 					<ReplicationFlag>false</ReplicationFlag>
 					<Replication Class="CodeValue">
@@ -1470,8 +1000,8 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 				</EmbeddedObject>
 				<EmbeddedObject>
 					<Id>1482004487042</Id>
-					<Name><![CDATA[DepartmentNetwork]]></Name>
-					<X>1260</X><Y>40</Y>
+					<Name><![CDATA[va_departmentNetwork]]></Name>
+					<X>790</X><Y>-380</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1489,88 +1019,6 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 						</GenericParameterSubstituteReference>
 					</GenericParameterSubstitute>
 					<Parameters>
-						<Parameter>
-							<Name><![CDATA[Firewall]]></Name>
-							<Value Class="CodeValue">
-								<Code><![CDATA[0.92
-]]></Code>
-							</Value>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[Gateway]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[IDS]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[MailScan]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[Antivirus]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[OverallPr]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[NodeGoesDown]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[NextNode]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[FirewallCost]]></Name>
-							<Value Class="CodeValue">
-								<Code><![CDATA[3974.50]]></Code>
-							</Value>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[GatewayCost]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[AntivirusCost]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[IDSCost]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[MailScanCost]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[OverallCost]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[FirewallVar]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[GatewayVar]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[IDSVar]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[MailScanVar]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[AntivirusVar]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[OverallVar]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[varUsed]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[stateGen]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[stateOfVar]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[SkipNode]]></Name>
-							<Value Class="CodeValue">
-								<Code><![CDATA[true]]></Code>
-							</Value>
-						</Parameter>
 					</Parameters>
 					<ReplicationFlag>false</ReplicationFlag>
 					<Replication Class="CodeValue">
@@ -1614,8 +1062,8 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 				</EmbeddedObject>
 				<EmbeddedObject>
 					<Id>1646227463062</Id>
-					<Name><![CDATA[WebApplication]]></Name>
-					<X>760</X><Y>380</Y>
+					<Name><![CDATA[va_webApplication]]></Name>
+					<X>790</X><Y>-340</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1633,85 +1081,6 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 						</GenericParameterSubstituteReference>
 					</GenericParameterSubstitute>
 					<Parameters>
-						<Parameter>
-							<Name><![CDATA[Firewall]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[Gateway]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[IDS]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[MailScan]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[Antivirus]]></Name>
-							<Value Class="CodeValue">
-								<Code><![CDATA[0.998
-]]></Code>
-							</Value>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[OverallPr]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[NodeGoesDown]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[NextNode]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[FirewallCost]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[GatewayCost]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[AntivirusCost]]></Name>
-							<Value Class="CodeValue">
-								<Code><![CDATA[69.99]]></Code>
-							</Value>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[IDSCost]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[MailScanCost]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[OverallCost]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[FirewallVar]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[GatewayVar]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[IDSVar]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[MailScanVar]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[AntivirusVar]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[OverallVar]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[varUsed]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[stateGen]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[stateOfVar]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[SkipNode]]></Name>
-						</Parameter>
 					</Parameters>
 					<ReplicationFlag>false</ReplicationFlag>
 					<Replication Class="CodeValue">
@@ -1755,8 +1124,8 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 				</EmbeddedObject>
 				<EmbeddedObject>
 					<Id>1646227463065</Id>
-					<Name><![CDATA[DMZNetwork]]></Name>
-					<X>500</X><Y>380</Y>
+					<Name><![CDATA[va_DMZNetwork]]></Name>
+					<X>790</X><Y>-360</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1774,90 +1143,6 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 						</GenericParameterSubstituteReference>
 					</GenericParameterSubstitute>
 					<Parameters>
-						<Parameter>
-							<Name><![CDATA[Firewall]]></Name>
-							<Value Class="CodeValue">
-								<Code><![CDATA[0.1147]]></Code>
-							</Value>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[Gateway]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[IDS]]></Name>
-							<Value Class="CodeValue">
-								<Code><![CDATA[0.4]]></Code>
-							</Value>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[MailScan]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[Antivirus]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[OverallPr]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[NodeGoesDown]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[NextNode]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[FirewallCost]]></Name>
-							<Value Class="CodeValue">
-								<Code><![CDATA[7949]]></Code>
-							</Value>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[GatewayCost]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[AntivirusCost]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[IDSCost]]></Name>
-							<Value Class="CodeValue">
-								<Code><![CDATA[282]]></Code>
-							</Value>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[MailScanCost]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[OverallCost]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[FirewallVar]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[GatewayVar]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[IDSVar]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[MailScanVar]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[AntivirusVar]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[OverallVar]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[varUsed]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[stateGen]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[stateOfVar]]></Name>
-						</Parameter>
-						<Parameter>
-							<Name><![CDATA[SkipNode]]></Name>
-						</Parameter>
 					</Parameters>
 					<ReplicationFlag>false</ReplicationFlag>
 					<Replication Class="CodeValue">
@@ -1910,12 +1195,12 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 					<PresentationId>1654360282357</PresentationId>
 					<ActiveObjectClass>
 						<PackageName><![CDATA[mango_model3]]></PackageName>
-						<ClassName><![CDATA[A_Attacker]]></ClassName>
+						<ClassName><![CDATA[A_ThreatActor]]></ClassName>
 					</ActiveObjectClass>
 					<GenericParameterSubstitute>
 						<GenericParameterSubstituteReference>
 							<PackageName><![CDATA[mango_model3]]></PackageName>
-							<ClassName><![CDATA[A_Attacker]]></ClassName>
+							<ClassName><![CDATA[A_ThreatActor]]></ClassName>
 							<ItemName><![CDATA[1654029793099]]></ItemName>
 						</GenericParameterSubstituteReference>
 					</GenericParameterSubstitute>
@@ -1984,7 +1269,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 						<Item>
 							<Key>
 								<PackageName><![CDATA[mango_model3]]></PackageName>
-								<ClassName><![CDATA[A_Attacker]]></ClassName>
+								<ClassName><![CDATA[A_ThreatActor]]></ClassName>
 								<ItemName><![CDATA[p_id]]></ItemName>
 							</Key>
 							<Value>
@@ -1996,7 +1281,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 						<Item>
 							<Key>
 								<PackageName><![CDATA[mango_model3]]></PackageName>
-								<ClassName><![CDATA[A_Attacker]]></ClassName>
+								<ClassName><![CDATA[A_ThreatActor]]></ClassName>
 								<ItemName><![CDATA[p_name]]></ItemName>
 							</Key>
 							<Value>
@@ -2008,7 +1293,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 						<Item>
 							<Key>
 								<PackageName><![CDATA[mango_model3]]></PackageName>
-								<ClassName><![CDATA[A_Attacker]]></ClassName>
+								<ClassName><![CDATA[A_ThreatActor]]></ClassName>
 								<ItemName><![CDATA[p_failRatio]]></ItemName>
 							</Key>
 							<Value>
@@ -2020,7 +1305,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 						<Item>
 							<Key>
 								<PackageName><![CDATA[mango_model3]]></PackageName>
-								<ClassName><![CDATA[A_Attacker]]></ClassName>
+								<ClassName><![CDATA[A_ThreatActor]]></ClassName>
 								<ItemName><![CDATA[p_failN]]></ItemName>
 							</Key>
 							<Value>
@@ -2032,7 +1317,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 						<Item>
 							<Key>
 								<PackageName><![CDATA[mango_model3]]></PackageName>
-								<ClassName><![CDATA[A_Attacker]]></ClassName>
+								<ClassName><![CDATA[A_ThreatActor]]></ClassName>
 								<ItemName><![CDATA[p_attackRatio]]></ItemName>
 							</Key>
 							<Value>
@@ -2044,7 +1329,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 						<Item>
 							<Key>
 								<PackageName><![CDATA[mango_model3]]></PackageName>
-								<ClassName><![CDATA[A_Attacker]]></ClassName>
+								<ClassName><![CDATA[A_ThreatActor]]></ClassName>
 								<ItemName><![CDATA[p_attackN]]></ItemName>
 							</Key>
 							<Value>
@@ -2071,9 +1356,32 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 					<LevelVisibility>ALWAYS_SHOW</LevelVisibility>
 
 			<Presentation>
+				<Rectangle>
+					<Id>1654959855799</Id>
+					<Name><![CDATA[rectangle]]></Name>
+					<X>-400</X><Y>0</Y>
+					<Label><X>10</X><Y>10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<Lock>true</Lock>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<ZHeight>10</ZHeight>
+					<LineWidth>1</LineWidth>
+					<LineColor/>
+					<LineMaterial>null</LineMaterial>
+					<LineStyle>SOLID</LineStyle>
+					<Width>2880</Width>
+					<Height>1480</Height>
+					<Rotation>0.0</Rotation>
+					<FillColor>-15461356</FillColor>
+					<FillMaterial>null</FillMaterial>
+				</Rectangle>
 				<EmbeddedObjectPresentation>
 					<Id>1481752104144</Id>
-					<Name><![CDATA[WorkStation_presentation]]></Name>
+					<Name><![CDATA[va_workstation_presentation]]></Name>
 					<X>660</X><Y>20</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>true</PublicFlag>
@@ -2092,7 +1400,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 				</EmbeddedObjectPresentation>
 				<EmbeddedObjectPresentation>
 					<Id>1481752295287</Id>
-					<Name><![CDATA[Router_presentation]]></Name>
+					<Name><![CDATA[va_router_presentation]]></Name>
 					<X>920</X><Y>20</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>true</PublicFlag>
@@ -2111,7 +1419,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 				</EmbeddedObjectPresentation>
 				<EmbeddedObjectPresentation>
 					<Id>1481752488241</Id>
-					<Name><![CDATA[Flag_presentation]]></Name>
+					<Name><![CDATA[va_flag_presentation]]></Name>
 					<X>1700</X><Y>260</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>true</PublicFlag>
@@ -2130,7 +1438,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 				</EmbeddedObjectPresentation>
 				<EmbeddedObjectPresentation>
 					<Id>1482002693383</Id>
-					<Name><![CDATA[ExchangeServer_presentation]]></Name>
+					<Name><![CDATA[va_exchangeServer_presentation]]></Name>
 					<X>400</X><Y>20</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>true</PublicFlag>
@@ -2149,7 +1457,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 				</EmbeddedObjectPresentation>
 				<EmbeddedObjectPresentation>
 					<Id>1482004328455</Id>
-					<Name><![CDATA[InternalNetwork_presentation]]></Name>
+					<Name><![CDATA[va_internalNetwork_presentation]]></Name>
 					<X>1440</X><Y>260</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>true</PublicFlag>
@@ -2168,7 +1476,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 				</EmbeddedObjectPresentation>
 				<EmbeddedObjectPresentation>
 					<Id>1482004488141</Id>
-					<Name><![CDATA[DepartmentNetwork_presentation]]></Name>
+					<Name><![CDATA[va_departmentNetwork_presentation]]></Name>
 					<X>1180</X><Y>20</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>true</PublicFlag>
@@ -2197,7 +1505,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 					<EmbeddedIcon>false</EmbeddedIcon>
 					<Z>0</Z>
 					<Rotation>0.0</Rotation>
-					<Color>-16777216</Color>
+					<Color>-4144960</Color>
 					<Text><![CDATA[Exchange Server]]></Text>
 					<Font>
 						<Name>SansSerif</Name>
@@ -2218,7 +1526,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 					<EmbeddedIcon>false</EmbeddedIcon>
 					<Z>0</Z>
 					<Rotation>0.0</Rotation>
-					<Color>-16777216</Color>
+					<Color>-4144960</Color>
 					<Text><![CDATA[Work Station]]></Text>
 					<Font>
 						<Name>SansSerif</Name>
@@ -2239,7 +1547,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 					<EmbeddedIcon>false</EmbeddedIcon>
 					<Z>0</Z>
 					<Rotation>0.0</Rotation>
-					<Color>-16777216</Color>
+					<Color>-4144960</Color>
 					<Text><![CDATA[Router]]></Text>
 					<Font>
 						<Name>SansSerif</Name>
@@ -2260,7 +1568,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 					<EmbeddedIcon>false</EmbeddedIcon>
 					<Z>0</Z>
 					<Rotation>0.0</Rotation>
-					<Color>-16777216</Color>
+					<Color>-4144960</Color>
 					<Text><![CDATA[Department Network]]></Text>
 					<Font>
 						<Name>SansSerif</Name>
@@ -2281,7 +1589,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 					<EmbeddedIcon>false</EmbeddedIcon>
 					<Z>0</Z>
 					<Rotation>0.0</Rotation>
-					<Color>-16777216</Color>
+					<Color>-4144960</Color>
 					<Text><![CDATA[Internal Network]]></Text>
 					<Font>
 						<Name>SansSerif</Name>
@@ -2302,7 +1610,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 					<EmbeddedIcon>false</EmbeddedIcon>
 					<Z>0</Z>
 					<Rotation>0.0</Rotation>
-					<Color>-16777216</Color>
+					<Color>-4144960</Color>
 					<Text><![CDATA[Flag]]></Text>
 					<Font>
 						<Name>SansSerif</Name>
@@ -2323,7 +1631,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 					<EmbeddedIcon>false</EmbeddedIcon>
 					<Z>0</Z>
 					<Rotation>0.0</Rotation>
-					<Color>-16777216</Color>
+					<Color>-4144960</Color>
 					<Text><![CDATA[Total Control Cost:  $]]></Text>
 					<Font>
 						<Name>SansSerif</Name>
@@ -2344,7 +1652,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 					<EmbeddedIcon>false</EmbeddedIcon>
 					<Z>0</Z>
 					<Rotation>0.0</Rotation>
-					<Color>-16777216</Color>
+					<Color>-4144960</Color>
 					<Text><![CDATA[0]]></Text>
 					<Font>
 						<Name>SansSerif</Name>
@@ -2367,7 +1675,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
                         <EmbeddedIcon>false</EmbeddedIcon>	
 						<TextColor/>
 						<Enabled>true</Enabled>
-						<ActionCode><![CDATA[RelayAttack(RunsTarget);]]></ActionCode>
+						<ActionCode><![CDATA[f_runAttacks(v_targetRuns);]]></ActionCode>
 					</BasicProperties>
 					<ExtendedProperties>
 						<Font Name="Dialog" Size="11" Style="0"/>
@@ -2389,7 +1697,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 						<FillColor/>
 						<TextColor/>
 						<Enabled>true</Enabled>
-						<ActionCode><![CDATA[SetPosition(ExchangeEdit, ExchangeServer);
+						<ActionCode><![CDATA[f_setNodePosition(ExchangeEdit, va_exchangeServer);
 ]]></ActionCode>
 					</BasicProperties>
 					<ExtendedProperties>
@@ -2417,7 +1725,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 						<FillColor/>
 						<TextColor/>
 						<Enabled>true</Enabled>
-						<ActionCode><![CDATA[SetPosition(WSEdit, WorkStation);
+						<ActionCode><![CDATA[f_setNodePosition(WSEdit, va_workstation);
 ]]></ActionCode>
 					</BasicProperties>
 					<ExtendedProperties>
@@ -2443,7 +1751,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 						<FillColor/>
 						<TextColor/>
 						<Enabled>true</Enabled>
-						<ActionCode><![CDATA[SetPosition(RouterEdit, Router);
+						<ActionCode><![CDATA[f_setNodePosition(RouterEdit, va_router);
 
 ]]></ActionCode>
 					</BasicProperties>
@@ -2470,7 +1778,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 						<FillColor/>
 						<TextColor/>
 						<Enabled>true</Enabled>
-						<ActionCode><![CDATA[SetPosition(DepNetEdit, DepartmentNetwork);
+						<ActionCode><![CDATA[f_setNodePosition(DepNetEdit, va_departmentNetwork);
 ]]></ActionCode>
 					</BasicProperties>
 					<ExtendedProperties>
@@ -2496,7 +1804,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 						<FillColor/>
 						<TextColor/>
 						<Enabled>true</Enabled>
-						<ActionCode><![CDATA[SetPosition(InternalNetEdit, InternalNetwork);
+						<ActionCode><![CDATA[f_setNodePosition(InternalNetEdit, va_internalNetwork);
 ]]></ActionCode>
 					</BasicProperties>
 					<ExtendedProperties>
@@ -2522,7 +1830,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 						<FillColor/>
 						<TextColor/>
 						<Enabled>true</Enabled>
-						<ActionCode><![CDATA[SetPosition(FlagEdit, Flag);
+						<ActionCode><![CDATA[f_setNodePosition(FlagEdit, va_flag);
 
 ]]></ActionCode>
 					</BasicProperties>
@@ -2546,7 +1854,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 					<EmbeddedIcon>false</EmbeddedIcon>
 					<Z>0</Z>
 					<Rotation>0.0</Rotation>
-					<Color>-16777216</Color>
+					<Color>-4144960</Color>
 					<Text><![CDATA[Web Application Server]]></Text>
 					<Font>
 						<Name>SansSerif</Name>
@@ -2570,7 +1878,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 						<FillColor/>
 						<TextColor/>
 						<Enabled>true</Enabled>
-						<ActionCode><![CDATA[SetPosition(WebAppEdit, WebApplication);
+						<ActionCode><![CDATA[f_setNodePosition(WebAppEdit, va_webApplication);
 ]]></ActionCode>
 					</BasicProperties>
 					<ExtendedProperties>
@@ -2594,7 +1902,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 					<EmbeddedIcon>false</EmbeddedIcon>
 					<Z>0</Z>
 					<Rotation>0.0</Rotation>
-					<Color>-16777216</Color>
+					<Color>-4144960</Color>
 					<Text><![CDATA[DMZ Network]]></Text>
 					<Font>
 						<Name>SansSerif</Name>
@@ -2618,7 +1926,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 						<FillColor/>
 						<TextColor/>
 						<Enabled>true</Enabled>
-						<ActionCode><![CDATA[SetPosition(DMZEdit, DMZNetwork);
+						<ActionCode><![CDATA[f_setNodePosition(DMZEdit, va_DMZNetwork);
 ]]></ActionCode>
 					</BasicProperties>
 					<ExtendedProperties>
@@ -2641,7 +1949,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 					<EmbeddedIcon>false</EmbeddedIcon>
 					<Z>0</Z>
 					<Rotation>0.0</Rotation>
-					<Color>-16777216</Color>
+					<Color>-4144960</Color>
 					<Text><![CDATA[Node Selection Ordering]]></Text>
 					<Font>
 						<Name>SansSerif</Name>
@@ -2662,7 +1970,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 					<EmbeddedIcon>false</EmbeddedIcon>
 					<Z>0</Z>
 					<Rotation>0.0</Rotation>
-					<Color>-16777216</Color>
+					<Color>-4144960</Color>
 					<Text><![CDATA[Relevant Threat Actors]]></Text>
 					<Font>
 						<Name>SansSerif</Name>
@@ -2685,7 +1993,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
                         <EmbeddedIcon>false</EmbeddedIcon>	
 						<TextColor/>
 						<Enabled>true</Enabled>
-						<ActionCode><![CDATA[ResetNodes();]]></ActionCode>
+						<ActionCode><![CDATA[f_resetNodes();]]></ActionCode>
 					</BasicProperties>
 					<ExtendedProperties>
 						<Font Name="Dialog" Size="11" Style="0"/>
@@ -2722,19 +2030,19 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 						<YOffset>30</YOffset>
 						<Width>580</Width>
 						<Height>370</Height>
-						<BackgroundColor>-1</BackgroundColor>
-						<BorderColor>-16777216</BorderColor>
-						<GridColor>-12566464</GridColor>
+						<BackgroundColor/>
+						<BorderColor>-1</BorderColor>
+						<GridColor>-1</GridColor>
 					</ChartArea>
 					<Legend>
 						<Place>SOUTH</Place>
-						<TextColor>-16777216</TextColor>
+						<TextColor>-1</TextColor>
 						<Size>30</Size>
 					</Legend>
 					<Labels>
 						<HorLabelsPosition>DEFAULT</HorLabelsPosition>
 						<VerLabelsPosition>DEFAULT</VerLabelsPosition>
-						<TextColor>-12566464</TextColor>
+						<TextColor>-1</TextColor>
 					</Labels>
 					<ShowLegend>true</ShowLegend>
 					<ScaleFromExpression><![CDATA[0]]></ScaleFromExpression>
@@ -2757,7 +2065,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 					<EmbeddedIcon>false</EmbeddedIcon>
 					<Z>0</Z>
 					<Rotation>0.0</Rotation>
-					<Color>-16777216</Color>
+					<Color>-4144960</Color>
 					<Text><![CDATA[Run Parameters]]></Text>
 					<Font>
 						<Name>SansSerif</Name>
@@ -2778,7 +2086,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 					<EmbeddedIcon>false</EmbeddedIcon>
 					<Z>0</Z>
 					<Rotation>0.0</Rotation>
-					<Color>-16777216</Color>
+					<Color>-4144960</Color>
 					<Text><![CDATA[Num Runs]]></Text>
 					<Font>
 						<Name>SansSerif</Name>
@@ -2811,7 +2119,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 						<MinValue><![CDATA[1]]></MinValue>
 						<MaxValue><![CDATA[1000000]]></MaxValue>
 						<LinkTo>true</LinkTo>
-						<Link>RunsTarget</Link>
+						<Link>v_targetRuns</Link>
 					</ExtendedProperties>
 				</Control>
 				<Text>
@@ -2847,7 +2155,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 					<EmbeddedIcon>false</EmbeddedIcon>
 					<Z>0</Z>
 					<Rotation>270.0</Rotation>
-					<Color>-16777216</Color>
+					<Color>-1</Color>
 					<Text><![CDATA[Probability of Compromise (%)]]></Text>
 					<Font>
 						<Name>SansSerif</Name>
@@ -2868,7 +2176,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 					<EmbeddedIcon>false</EmbeddedIcon>
 					<Z>0</Z>
 					<Rotation>0.0</Rotation>
-					<Color>-16777216</Color>
+					<Color>-1</Color>
 					<Text><![CDATA[Node Name]]></Text>
 					<Font>
 						<Name>SansSerif</Name>
@@ -3088,7 +2396,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 					<EmbeddedIcon>false</EmbeddedIcon>
 					<Z>0</Z>
 					<Rotation>0.0</Rotation>
-					<Color>-16777216</Color>
+					<Color>-4144960</Color>
 					<Text><![CDATA[Results]]></Text>
 					<Font>
 						<Name>SansSerif</Name>
@@ -3206,7 +2514,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 					<LineMaterial>null</LineMaterial>
 					<LineStyle>SOLID</LineStyle>
 					<Width>180</Width>
-					<Height>170</Height>
+					<Height>200</Height>
 					<Rotation>0.0</Rotation>
 					<FillColor>-1</FillColor>
 					<FillMaterial>null</FillMaterial>
@@ -3289,7 +2597,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 					<EmbeddedIcon>false</EmbeddedIcon>
 					<Z>0</Z>
 					<Rotation>0.0</Rotation>
-					<Color>-16777216</Color>
+					<Color>-4144960</Color>
 					<Text><![CDATA[Total Attacks Run: ]]></Text>
 					<Font>
 						<Name>SansSerif</Name>
@@ -3310,7 +2618,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 					<EmbeddedIcon>false</EmbeddedIcon>
 					<Z>0</Z>
 					<Rotation>0.0</Rotation>
-					<Color>-16777216</Color>
+					<Color>-4144960</Color>
 					<Text><![CDATA[0]]></Text>
 					<Font>
 						<Name>SansSerif</Name>
@@ -3381,9 +2689,9 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 						<Orientation>HORIZONTAL</Orientation>
 						<ShowProgressString>true</ShowProgressString>
 						<ProgressStringCode><![CDATA[percent + " percent(s) completed"]]></ProgressStringCode>
-						<ValueCode><![CDATA[(double)(RunsTarget - RunsRemaining)]]></ValueCode>
+						<ValueCode><![CDATA[(double)(v_targetRuns - v_remainingRuns)]]></ValueCode>
 						<MinValue><![CDATA[0]]></MinValue>
-						<MaxValue><![CDATA[(double)RunsTarget]]></MaxValue>
+						<MaxValue><![CDATA[(double)v_targetRuns]]></MaxValue>
 						<Determinate><![CDATA[true]]></Determinate>
 					</ExtendedProperties>
 				</Control>
@@ -3399,7 +2707,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 					<EmbeddedIcon>false</EmbeddedIcon>
 					<Z>0</Z>
 					<Rotation>0.0</Rotation>
-					<Color>-16777216</Color>
+					<Color>-4144960</Color>
 					<Text><![CDATA[Attack Progress]]></Text>
 					<Font>
 						<Name>SansSerif</Name>
@@ -3420,7 +2728,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 					<EmbeddedIcon>false</EmbeddedIcon>
 					<Z>0</Z>
 					<Rotation>270.0</Rotation>
-					<Color>-16777216</Color>
+					<Color>-1</Color>
 					<Text><![CDATA[Number of Compromises]]></Text>
 					<Font>
 						<Name>SansSerif</Name>
@@ -3459,19 +2767,19 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 						<YOffset>30</YOffset>
 						<Width>580</Width>
 						<Height>370</Height>
-						<BackgroundColor>-1</BackgroundColor>
-						<BorderColor>-16777216</BorderColor>
-						<GridColor>-12566464</GridColor>
+						<BackgroundColor/>
+						<BorderColor>-1</BorderColor>
+						<GridColor>-1</GridColor>
 					</ChartArea>
 					<Legend>
 						<Place>SOUTH</Place>
-						<TextColor>-16777216</TextColor>
+						<TextColor>-1</TextColor>
 						<Size>30</Size>
 					</Legend>
 					<Labels>
 						<HorLabelsPosition>DEFAULT</HorLabelsPosition>
 						<VerLabelsPosition>DEFAULT</VerLabelsPosition>
-						<TextColor>-12566464</TextColor>
+						<TextColor>-1</TextColor>
 					</Labels>
 					<ShowLegend>true</ShowLegend>
 					<ScaleFromExpression><![CDATA[0]]></ScaleFromExpression>
@@ -3494,7 +2802,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 					<EmbeddedIcon>false</EmbeddedIcon>
 					<Z>0</Z>
 					<Rotation>0.0</Rotation>
-					<Color>-16777216</Color>
+					<Color>-1</Color>
 					<Text><![CDATA[Node Name]]></Text>
 					<Font>
 						<Name>SansSerif</Name>
@@ -3538,7 +2846,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 					<EmbeddedIcon>false</EmbeddedIcon>
 					<Z>0</Z>
 					<Rotation>0.0</Rotation>
-					<Color>-16777216</Color>
+					<Color>-4144960</Color>
 					<Text><![CDATA[Organized Crime]]></Text>
 					<Font>
 						<Name>SansSerif</Name>
@@ -3559,7 +2867,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 					<EmbeddedIcon>false</EmbeddedIcon>
 					<Z>0</Z>
 					<Rotation>0.0</Rotation>
-					<Color>-16777216</Color>
+					<Color>-4144960</Color>
 					<Text><![CDATA[Activist]]></Text>
 					<Font>
 						<Name>SansSerif</Name>
@@ -3580,7 +2888,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 					<EmbeddedIcon>false</EmbeddedIcon>
 					<Z>0</Z>
 					<Rotation>0.0</Rotation>
-					<Color>-16777216</Color>
+					<Color>-4144960</Color>
 					<Text><![CDATA[State Affiliated]]></Text>
 					<Font>
 						<Name>SansSerif</Name>
@@ -3601,7 +2909,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 					<EmbeddedIcon>false</EmbeddedIcon>
 					<Z>0</Z>
 					<Rotation>0.0</Rotation>
-					<Color>-16777216</Color>
+					<Color>-4144960</Color>
 					<Text><![CDATA[Former Employee]]></Text>
 					<Font>
 						<Name>SansSerif</Name>
@@ -3622,7 +2930,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 					<EmbeddedIcon>false</EmbeddedIcon>
 					<Z>0</Z>
 					<Rotation>0.0</Rotation>
-					<Color>-16777216</Color>
+					<Color>-4144960</Color>
 					<Text><![CDATA[Competitor]]></Text>
 					<Font>
 						<Name>SansSerif</Name>
@@ -3643,7 +2951,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 					<EmbeddedIcon>false</EmbeddedIcon>
 					<Z>0</Z>
 					<Rotation>0.0</Rotation>
-					<Color>-16777216</Color>
+					<Color>-4144960</Color>
 					<Text><![CDATA[Unidentified]]></Text>
 					<Font>
 						<Name>SansSerif</Name>
@@ -3652,12 +2960,180 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 					</Font>
 					<Alignment>LEFT</Alignment>
 				</Text>
+				<Text>
+					<Id>1654960656044</Id>
+					<Name><![CDATA[text19]]></Name>
+					<X>460</X><Y>30</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-4144960</Color>
+					<Text><![CDATA[Exchange Server]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>16</Size>
+						<Style>1</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Text>
+					<Id>1654960704535</Id>
+					<Name><![CDATA[t_workstationTitle]]></Name>
+					<X>750</X><Y>30</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-4144960</Color>
+					<Text><![CDATA[Workstation]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>16</Size>
+						<Style>1</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Text>
+					<Id>1654960757241</Id>
+					<Name><![CDATA[t_workstationTitle1]]></Name>
+					<X>1030</X><Y>30</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-4144960</Color>
+					<Text><![CDATA[Router]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>16</Size>
+						<Style>1</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Text>
+					<Id>1654960775875</Id>
+					<Name><![CDATA[t_workstationTitle2]]></Name>
+					<X>1240</X><Y>30</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-4144960</Color>
+					<Text><![CDATA[Department Network]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>16</Size>
+						<Style>1</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Text>
+					<Id>1654960802746</Id>
+					<Name><![CDATA[text20]]></Name>
+					<X>480</X><Y>380</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-4144960</Color>
+					<Text><![CDATA[DMZ Network]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>16</Size>
+						<Style>1</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Text>
+					<Id>1654960831194</Id>
+					<Name><![CDATA[text21]]></Name>
+					<X>740</X><Y>380</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-4144960</Color>
+					<Text><![CDATA[Web Application]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>16</Size>
+						<Style>1</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Text>
+					<Id>1654960858154</Id>
+					<Name><![CDATA[t_workstationTitle3]]></Name>
+					<X>1520</X><Y>280</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-4144960</Color>
+					<Text><![CDATA[Internal Network]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>16</Size>
+						<Style>1</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Text>
+					<Id>1654960874825</Id>
+					<Name><![CDATA[t_workstationTitle4]]></Name>
+					<X>1820</X><Y>280</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-4144960</Color>
+					<Text><![CDATA[Flag]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>16</Size>
+						<Style>1</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
 			</Presentation>
 
 				</Level>
 				<EmbeddedObjectPresentation>
 					<Id>1617468790956</Id>
-					<Name><![CDATA[WebApplication_presentation]]></Name>
+					<Name><![CDATA[va_webApplication_presentation]]></Name>
 					<X>660</X><Y>360</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>true</PublicFlag>
@@ -3676,7 +3152,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 				</EmbeddedObjectPresentation>
 				<EmbeddedObjectPresentation>
 					<Id>1617469959010</Id>
-					<Name><![CDATA[DMZNetwork_presentation]]></Name>
+					<Name><![CDATA[va_DMZNetwork_presentation]]></Name>
 					<X>400</X><Y>360</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>true</PublicFlag>
@@ -3867,22 +3343,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 					<Id>1653430915305</Id>
 					<Name><![CDATA[v_nodeIsCompromised]]></Name>
 					<Description><![CDATA[Describes whether or not the node has been compromised. If the node is compromised, then it will appear as red.]]></Description>
-					<X>530</X><Y>-260</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
-						<Type><![CDATA[boolean]]></Type>        
-						<InitialValue Class="CodeValue">
-							<Code><![CDATA[false]]></Code>
-						</InitialValue>
-					</Properties>
-				</Variable>
-				<Variable Class="PlainVariable">
-					<Id>1653589468219</Id>
-					<Name><![CDATA[AttackRelayed]]></Name>
-					<X>530</X><Y>-240</Y>
+					<X>530</X><Y>-320</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -3957,7 +3418,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 				<Variable Class="PlainVariable">
 					<Id>1653925691816</Id>
 					<Name><![CDATA[v_probabilityAttackSucceeds]]></Name>
-					<X>530</X><Y>-280</Y>
+					<X>530</X><Y>-340</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -3972,7 +3433,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 				<Variable Class="PlainVariable">
 					<Id>1654544864245</Id>
 					<Name><![CDATA[v_numCompromises]]></Name>
-					<X>530</X><Y>-300</Y>
+					<X>530</X><Y>-360</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -3984,696 +3445,346 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 						</InitialValue>
 					</Properties>
 				</Variable>
-				<Variable Class="Parameter">
-					<Id>1481762227458</Id>
-					<Name><![CDATA[Firewall]]></Name>
+				<Variable Class="PlainVariable">
+					<Id>1654964607571</Id>
+					<Name><![CDATA[v_overallPr]]></Name>
+					<X>540</X><Y>-160</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[double]]></Type>        
+					</Properties>
+				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1654964665991</Id>
+					<Name><![CDATA[v_overallVar]]></Name>
+					<Description><![CDATA[Used to store the combined variance of all the software used.]]></Description>
+					<X>540</X><Y>-140</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[double]]></Type>        
+					</Properties>
+				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1654964741178</Id>
+					<Name><![CDATA[v_overallCost]]></Name>
+					<X>540</X><Y>-120</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[double]]></Type>        
+					</Properties>
+				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1654965007513</Id>
+					<Name><![CDATA[v_nodeGoesDown]]></Name>
+					<X>530</X><Y>-300</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[boolean]]></Type>        
+						<InitialValue Class="CodeValue">
+							<Code><![CDATA[false]]></Code>
+						</InitialValue>
+					</Properties>
+				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1654965045130</Id>
+					<Name><![CDATA[v_nextNode]]></Name>
+					<X>530</X><Y>-280</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[NetworkNode]]></Type>        
+					</Properties>
+				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1654965382851</Id>
+					<Name><![CDATA[v_firewallCost]]></Name>
+					<X>270</X><Y>-160</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[double]]></Type>        
+					</Properties>
+				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1654965389950</Id>
+					<Name><![CDATA[v_gatewayCost]]></Name>
+					<X>270</X><Y>-140</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[double]]></Type>        
+					</Properties>
+				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1654965396259</Id>
+					<Name><![CDATA[v_antivirusCost]]></Name>
+					<X>270</X><Y>-120</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[double]]></Type>        
+					</Properties>
+				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1654965399212</Id>
+					<Name><![CDATA[v_IDSCost]]></Name>
+					<X>270</X><Y>-100</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[double]]></Type>        
+					</Properties>
+				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1654965401911</Id>
+					<Name><![CDATA[v_mailScanCost]]></Name>
+					<X>270</X><Y>-80</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[double]]></Type>        
+					</Properties>
+				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1654965468469</Id>
+					<Name><![CDATA[v_firewallPr]]></Name>
 					<X>80</X><Y>-350</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
-					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
-						<Type><![CDATA[double]]></Type>
-						<UnitType><![CDATA[NONE]]></UnitType>
-						<SdArray>false</SdArray>
-						<ParameterEditor>
-							<Id>1481762227456</Id>
-							<EditorContolType>TEXT_BOX</EditorContolType>
-							<MinSliderValue><![CDATA[0]]></MinSliderValue>
-							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
-							<DelimeterType>NO_DELIMETER</DelimeterType>
-						</ParameterEditor>
-					</Properties>                 
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[double]]></Type>        
+					</Properties>
 				</Variable>
-				<Variable Class="Parameter">
-					<Id>1481762249887</Id>
-					<Name><![CDATA[Gateway]]></Name>
+				<Variable Class="PlainVariable">
+					<Id>1654965469976</Id>
+					<Name><![CDATA[v_gatewayPr]]></Name>
 					<X>80</X><Y>-330</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
-					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
-						<Type><![CDATA[double]]></Type>
-						<UnitType><![CDATA[NONE]]></UnitType>
-						<SdArray>false</SdArray>
-						<ParameterEditor>
-							<Id>1481762249885</Id>
-							<EditorContolType>TEXT_BOX</EditorContolType>
-							<MinSliderValue><![CDATA[0]]></MinSliderValue>
-							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
-							<DelimeterType>NO_DELIMETER</DelimeterType>
-						</ParameterEditor>
-					</Properties>                 
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[double]]></Type>        
+					</Properties>
 				</Variable>
-				<Variable Class="Parameter">
-					<Id>1481762242521</Id>
-					<Name><![CDATA[IDS]]></Name>
-					<X>80</X><Y>-290</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
-						<Type><![CDATA[double]]></Type>
-						<UnitType><![CDATA[NONE]]></UnitType>
-						<SdArray>false</SdArray>
-						<ParameterEditor>
-							<Id>1481762242519</Id>
-							<EditorContolType>TEXT_BOX</EditorContolType>
-							<MinSliderValue><![CDATA[0]]></MinSliderValue>
-							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
-							<DelimeterType>NO_DELIMETER</DelimeterType>
-						</ParameterEditor>
-					</Properties>                 
-				</Variable>
-				<Variable Class="Parameter">
-					<Id>1481762260068</Id>
-					<Name><![CDATA[MailScan]]></Name>
-					<X>80</X><Y>-270</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
-						<Type><![CDATA[double]]></Type>
-						<UnitType><![CDATA[NONE]]></UnitType>
-						<SdArray>false</SdArray>
-						<ParameterEditor>
-							<Id>1481762260066</Id>
-							<EditorContolType>TEXT_BOX</EditorContolType>
-							<MinSliderValue><![CDATA[0]]></MinSliderValue>
-							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
-							<DelimeterType>NO_DELIMETER</DelimeterType>
-						</ParameterEditor>
-					</Properties>                 
-				</Variable>
-				<Variable Class="Parameter">
-					<Id>1481762269293</Id>
-					<Name><![CDATA[Antivirus]]></Name>
+				<Variable Class="PlainVariable">
+					<Id>1654965472230</Id>
+					<Name><![CDATA[v_antivirusPr]]></Name>
 					<X>80</X><Y>-310</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
-					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
-						<Type><![CDATA[double]]></Type>
-						<UnitType><![CDATA[NONE]]></UnitType>
-						<SdArray>false</SdArray>
-						<ParameterEditor>
-							<Id>1481762269291</Id>
-							<Label><![CDATA[Antivirus]]></Label>
-							<EditorContolType>TEXT_BOX</EditorContolType>
-							<MinSliderValue><![CDATA[0]]></MinSliderValue>
-							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
-							<DelimeterType>NO_DELIMETER</DelimeterType>
-						</ParameterEditor>
-					</Properties>                 
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[double]]></Type>        
+					</Properties>
 				</Variable>
-				<Variable Class="Parameter">
-					<Id>1481763231386</Id>
-					<Name><![CDATA[OverallPr]]></Name>
-					<X>770</X><Y>-210</Y>
+				<Variable Class="PlainVariable">
+					<Id>1654965474710</Id>
+					<Name><![CDATA[v_IDSPr]]></Name>
+					<X>80</X><Y>-290</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
-					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
-						<Type><![CDATA[double]]></Type>
-						<UnitType><![CDATA[NONE]]></UnitType>
-						<SdArray>false</SdArray>
-						<MethodArgument>
-							<Name><![CDATA[]]></Name>
-							<Type><![CDATA[]]></Type>
-						</MethodArgument>
-						<ParameterEditor>
-							<Id>1481763231384</Id>
-							<Label><![CDATA[OverallPr]]></Label>
-							<EditorContolType>TEXT_BOX</EditorContolType>
-							<MinSliderValue><![CDATA[0]]></MinSliderValue>
-							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
-							<DelimeterType>NO_DELIMETER</DelimeterType>
-						</ParameterEditor>
-					</Properties>                 
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[double]]></Type>        
+					</Properties>
 				</Variable>
-				<Variable Class="Parameter">
-					<Id>1481833701249</Id>
-					<Name><![CDATA[NodeGoesDown]]></Name>
-					<X>530</X><Y>-180</Y>
+				<Variable Class="PlainVariable">
+					<Id>1654965477317</Id>
+					<Name><![CDATA[v_mailScanPr]]></Name>
+					<X>80</X><Y>-270</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
-					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
-						<Type><![CDATA[boolean]]></Type>
-						<UnitType><![CDATA[NONE]]></UnitType>
-						<SdArray>false</SdArray>
-						<DefaultValue Class="CodeValue">
-							<Code><![CDATA[false]]></Code>
-						</DefaultValue>
-						<ParameterEditor>
-							<Id>1481833701247</Id>
-							<EditorContolType>CHECK_BOX</EditorContolType>
-							<MinSliderValue><![CDATA[0]]></MinSliderValue>
-							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
-							<DelimeterType>NO_DELIMETER</DelimeterType>
-						</ParameterEditor>
-					</Properties>                 
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[double]]></Type>        
+					</Properties>
 				</Variable>
-				<Variable Class="Parameter">
-					<Id>1481837559894</Id>
-					<Name><![CDATA[NextNode]]></Name>
-					<X>530</X><Y>-140</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
-						<Type><![CDATA[NetworkNode]]></Type>
-						<UnitType><![CDATA[NONE]]></UnitType>
-						<SdArray>false</SdArray>
-						<ParameterEditor>
-							<Id>1481837559892</Id>
-							<EditorContolType>TEXT_BOX</EditorContolType>
-							<MinSliderValue><![CDATA[0]]></MinSliderValue>
-							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
-							<DelimeterType>NO_DELIMETER</DelimeterType>
-						</ParameterEditor>
-					</Properties>                 
-				</Variable>
-				<Variable Class="Parameter">
-					<Id>1482001186702</Id>
-					<Name><![CDATA[FirewallCost]]></Name>
-					<X>270</X><Y>-150</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
-						<Type><![CDATA[double]]></Type>
-						<UnitType><![CDATA[NONE]]></UnitType>
-						<SdArray>false</SdArray>
-						<ParameterEditor>
-							<Id>1482001186700</Id>
-							<EditorContolType>TEXT_BOX</EditorContolType>
-							<MinSliderValue><![CDATA[0]]></MinSliderValue>
-							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
-							<DelimeterType>NO_DELIMETER</DelimeterType>
-						</ParameterEditor>
-					</Properties>                 
-				</Variable>
-				<Variable Class="Parameter">
-					<Id>1482001189781</Id>
-					<Name><![CDATA[GatewayCost]]></Name>
-					<X>270</X><Y>-130</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
-						<Type><![CDATA[double]]></Type>
-						<UnitType><![CDATA[NONE]]></UnitType>
-						<SdArray>false</SdArray>
-						<ParameterEditor>
-							<Id>1482001189779</Id>
-							<EditorContolType>TEXT_BOX</EditorContolType>
-							<MinSliderValue><![CDATA[0]]></MinSliderValue>
-							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
-							<DelimeterType>NO_DELIMETER</DelimeterType>
-						</ParameterEditor>
-					</Properties>                 
-				</Variable>
-				<Variable Class="Parameter">
-					<Id>1482001193202</Id>
-					<Name><![CDATA[AntivirusCost]]></Name>
-					<X>270</X><Y>-110</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
-						<Type><![CDATA[double]]></Type>
-						<UnitType><![CDATA[NONE]]></UnitType>
-						<SdArray>false</SdArray>
-						<ParameterEditor>
-							<Id>1482001193200</Id>
-							<EditorContolType>TEXT_BOX</EditorContolType>
-							<MinSliderValue><![CDATA[0]]></MinSliderValue>
-							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
-							<DelimeterType>NO_DELIMETER</DelimeterType>
-						</ParameterEditor>
-					</Properties>                 
-				</Variable>
-				<Variable Class="Parameter">
-					<Id>1482001196061</Id>
-					<Name><![CDATA[IDSCost]]></Name>
-					<X>270</X><Y>-90</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
-						<Type><![CDATA[double]]></Type>
-						<UnitType><![CDATA[NONE]]></UnitType>
-						<SdArray>false</SdArray>
-						<ParameterEditor>
-							<Id>1482001196059</Id>
-							<EditorContolType>TEXT_BOX</EditorContolType>
-							<MinSliderValue><![CDATA[0]]></MinSliderValue>
-							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
-							<DelimeterType>NO_DELIMETER</DelimeterType>
-						</ParameterEditor>
-					</Properties>                 
-				</Variable>
-				<Variable Class="Parameter">
-					<Id>1482001199004</Id>
-					<Name><![CDATA[MailScanCost]]></Name>
-					<X>270</X><Y>-70</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
-						<Type><![CDATA[double]]></Type>
-						<UnitType><![CDATA[NONE]]></UnitType>
-						<SdArray>false</SdArray>
-						<ParameterEditor>
-							<Id>1482001199002</Id>
-							<EditorContolType>TEXT_BOX</EditorContolType>
-							<MinSliderValue><![CDATA[0]]></MinSliderValue>
-							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
-							<DelimeterType>NO_DELIMETER</DelimeterType>
-						</ParameterEditor>
-					</Properties>                 
-				</Variable>
-				<Variable Class="Parameter">
-					<Id>1482001202410</Id>
-					<Name><![CDATA[OverallCost]]></Name>
-					<X>770</X><Y>-170</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
-						<Type><![CDATA[double]]></Type>
-						<UnitType><![CDATA[NONE]]></UnitType>
-						<SdArray>false</SdArray>
-						<ParameterEditor>
-							<Id>1482001202408</Id>
-							<EditorContolType>TEXT_BOX</EditorContolType>
-							<MinSliderValue><![CDATA[0]]></MinSliderValue>
-							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
-							<DelimeterType>NO_DELIMETER</DelimeterType>
-						</ParameterEditor>
-					</Properties>                 
-				</Variable>
-				<Variable Class="Parameter">
-					<Id>1491282949382</Id>
-					<Name><![CDATA[FirewallVar]]></Name>
-					<Description><![CDATA[Used to store the probabiltiy variance for Firewall software.]]></Description>
+				<Variable Class="PlainVariable">
+					<Id>1654965530057</Id>
+					<Name><![CDATA[v_firewallVar]]></Name>
 					<X>180</X><Y>-350</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
-					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
-						<Type><![CDATA[double]]></Type>
-						<UnitType><![CDATA[NONE]]></UnitType>
-						<SdArray>false</SdArray>
-						<ParameterEditor>
-							<Id>1491282949380</Id>
-							<Label><![CDATA[FirewallVar]]></Label>
-							<EditorContolType>TEXT_BOX</EditorContolType>
-							<MinSliderValue><![CDATA[0]]></MinSliderValue>
-							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
-							<DelimeterType>NO_DELIMETER</DelimeterType>
-						</ParameterEditor>
-					</Properties>                 
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[double]]></Type>        
+					</Properties>
 				</Variable>
-				<Variable Class="Parameter">
-					<Id>1491282949394</Id>
-					<Name><![CDATA[GatewayVar]]></Name>
-					<Description><![CDATA[Used to store the probabiltiy variance for Gateway software.]]></Description>
+				<Variable Class="PlainVariable">
+					<Id>1654965532522</Id>
+					<Name><![CDATA[v_gatewayVar]]></Name>
 					<X>180</X><Y>-330</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
-					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
-						<Type><![CDATA[double]]></Type>
-						<UnitType><![CDATA[NONE]]></UnitType>
-						<SdArray>false</SdArray>
-						<ParameterEditor>
-							<Id>1491282949392</Id>
-							<Label><![CDATA[GatewayVar]]></Label>
-							<EditorContolType>TEXT_BOX</EditorContolType>
-							<MinSliderValue><![CDATA[0]]></MinSliderValue>
-							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
-							<DelimeterType>NO_DELIMETER</DelimeterType>
-						</ParameterEditor>
-					</Properties>                 
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[double]]></Type>        
+					</Properties>
 				</Variable>
-				<Variable Class="Parameter">
-					<Id>1491282949397</Id>
-					<Name><![CDATA[IDSVar]]></Name>
-					<Description><![CDATA[Used to store the probabiltiy variance for IDS software.]]></Description>
-					<X>180</X><Y>-290</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
-						<Type><![CDATA[double]]></Type>
-						<UnitType><![CDATA[NONE]]></UnitType>
-						<SdArray>false</SdArray>
-						<ParameterEditor>
-							<Id>1491282949395</Id>
-							<Label><![CDATA[IDSVar]]></Label>
-							<EditorContolType>TEXT_BOX</EditorContolType>
-							<MinSliderValue><![CDATA[0]]></MinSliderValue>
-							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
-							<DelimeterType>NO_DELIMETER</DelimeterType>
-						</ParameterEditor>
-					</Properties>                 
-				</Variable>
-				<Variable Class="Parameter">
-					<Id>1491282949400</Id>
-					<Name><![CDATA[MailScanVar]]></Name>
-					<Description><![CDATA[Used to store the probabiltiy variance for MailScan software.]]></Description>
-					<X>180</X><Y>-270</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
-						<Type><![CDATA[double]]></Type>
-						<UnitType><![CDATA[NONE]]></UnitType>
-						<SdArray>false</SdArray>
-						<ParameterEditor>
-							<Id>1491282949398</Id>
-							<Label><![CDATA[MailScanVar]]></Label>
-							<EditorContolType>TEXT_BOX</EditorContolType>
-							<MinSliderValue><![CDATA[0]]></MinSliderValue>
-							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
-							<DelimeterType>NO_DELIMETER</DelimeterType>
-						</ParameterEditor>
-					</Properties>                 
-				</Variable>
-				<Variable Class="Parameter">
-					<Id>1491282949403</Id>
-					<Name><![CDATA[AntivirusVar]]></Name>
-					<Description><![CDATA[Used to store the probabiltiy variance for Antivirus software.]]></Description>
+				<Variable Class="PlainVariable">
+					<Id>1654965534498</Id>
+					<Name><![CDATA[v_antivirusVar]]></Name>
 					<X>180</X><Y>-310</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
-					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
-						<Type><![CDATA[double]]></Type>
-						<UnitType><![CDATA[NONE]]></UnitType>
-						<SdArray>false</SdArray>
-						<ParameterEditor>
-							<Id>1491282949401</Id>
-							<Label><![CDATA[AntivirusVar]]></Label>
-							<EditorContolType>TEXT_BOX</EditorContolType>
-							<MinSliderValue><![CDATA[0]]></MinSliderValue>
-							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
-							<DelimeterType>NO_DELIMETER</DelimeterType>
-						</ParameterEditor>
-					</Properties>                 
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[double]]></Type>        
+					</Properties>
 				</Variable>
-				<Variable Class="Parameter">
-					<Id>1491282949406</Id>
-					<Name><![CDATA[OverallVar]]></Name>
-					<Description><![CDATA[Used to store the combined variance of all the software used.]]></Description>
-					<X>770</X><Y>-190</Y>
+				<Variable Class="PlainVariable">
+					<Id>1654965536838</Id>
+					<Name><![CDATA[v_IDSVar]]></Name>
+					<X>180</X><Y>-290</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
-					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
-						<Type><![CDATA[double]]></Type>
-						<UnitType><![CDATA[NONE]]></UnitType>
-						<SdArray>false</SdArray>
-						<MethodArgument>
-							<Name><![CDATA[]]></Name>
-							<Type><![CDATA[]]></Type>
-						</MethodArgument>
-						<ParameterEditor>
-							<Id>1491282949404</Id>
-							<Label><![CDATA[OverallVar]]></Label>
-							<EditorContolType>TEXT_BOX</EditorContolType>
-							<MinSliderValue><![CDATA[0]]></MinSliderValue>
-							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
-							<DelimeterType>NO_DELIMETER</DelimeterType>
-						</ParameterEditor>
-					</Properties>                 
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[double]]></Type>        
+					</Properties>
 				</Variable>
-				<Variable Class="Parameter">
-					<Id>1491359354463</Id>
-					<Name><![CDATA[varUsed]]></Name>
-					<X>530</X><Y>-80</Y>
+				<Variable Class="PlainVariable">
+					<Id>1654965539190</Id>
+					<Name><![CDATA[v_mailScanVar]]></Name>
+					<X>180</X><Y>-270</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
-					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
-						<Type><![CDATA[double]]></Type>
-						<UnitType><![CDATA[NONE]]></UnitType>
-						<SdArray>false</SdArray>
-						<MethodArgument>
-							<Name><![CDATA[]]></Name>
-							<Type><![CDATA[]]></Type>
-						</MethodArgument>
-						<ParameterEditor>
-							<Id>1491359354461</Id>
-							<Label><![CDATA[varUsed]]></Label>
-							<EditorContolType>TEXT_BOX</EditorContolType>
-							<MinSliderValue><![CDATA[0]]></MinSliderValue>
-							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
-							<DelimeterType>NO_DELIMETER</DelimeterType>
-						</ParameterEditor>
-					</Properties>                 
-				</Variable>
-				<Variable Class="Parameter">
-					<Id>1491403319547</Id>
-					<Name><![CDATA[stateGen]]></Name>
-					<Description><![CDATA[Used as a counter for the number of software used. The reason it is called the number of variance (numOfVar) is due to the probability variance of a software program being 0.]]></Description>
-					<X>530</X><Y>-160</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
-						<Type><![CDATA[Random]]></Type>
-						<UnitType><![CDATA[NONE]]></UnitType>
-						<SdArray>false</SdArray>
-						<MethodArgument>
-							<Name><![CDATA[]]></Name>
-							<Type><![CDATA[]]></Type>
-						</MethodArgument>
-						<ParameterEditor>
-							<Id>1491403319545</Id>
-							<Label><![CDATA[stateGen]]></Label>
-							<EditorContolType>TEXT_BOX</EditorContolType>
-							<MinSliderValue><![CDATA[0]]></MinSliderValue>
-							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
-							<DelimeterType>NO_DELIMETER</DelimeterType>
-						</ParameterEditor>
-					</Properties>                 
-				</Variable>
-				<Variable Class="Parameter">
-					<Id>1491403342175</Id>
-					<Name><![CDATA[stateOfVar]]></Name>
-					<Description><![CDATA[Used as a counter for the number of software used. The reason it is called the number of variance (numOfVar) is due to the probability variance of a software program being 0.]]></Description>
-					<X>530</X><Y>-120</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
-						<Type><![CDATA[double]]></Type>
-						<UnitType><![CDATA[NONE]]></UnitType>
-						<SdArray>false</SdArray>
-						<MethodArgument>
-							<Name><![CDATA[]]></Name>
-							<Type><![CDATA[]]></Type>
-						</MethodArgument>
-						<ParameterEditor>
-							<Id>1491403342173</Id>
-							<Label><![CDATA[stateOfVar]]></Label>
-							<EditorContolType>TEXT_BOX</EditorContolType>
-							<MinSliderValue><![CDATA[0]]></MinSliderValue>
-							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
-							<DelimeterType>NO_DELIMETER</DelimeterType>
-						</ParameterEditor>
-					</Properties>                 
-				</Variable>
-				<Variable Class="Parameter">
-					<Id>1491420967785</Id>
-					<Name><![CDATA[SkipNode]]></Name>
-					<X>530</X><Y>-100</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
-						<Type><![CDATA[boolean]]></Type>
-						<UnitType><![CDATA[NONE]]></UnitType>
-						<SdArray>false</SdArray>
-						<DefaultValue Class="CodeValue">
-							<Code><![CDATA[false]]></Code>
-						</DefaultValue>
-						<ParameterEditor>
-							<Id>1491420967783</Id>
-							<EditorContolType>CHECK_BOX</EditorContolType>
-							<MinSliderValue><![CDATA[0]]></MinSliderValue>
-							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
-							<DelimeterType>NO_DELIMETER</DelimeterType>
-						</ParameterEditor>
-					</Properties>                 
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[double]]></Type>        
+					</Properties>
 				</Variable>
 			</Variables>
 			<ActionChartElements>
 				<ActionChartElement Class="ActionChart">
-					<Id>1654543424048</Id>
+					<Id>1654961544711</Id>
 					<Name><![CDATA[f_processAttack]]></Name>
-					<X>640</X><Y>30</Y>
+					<X>390</X><Y>40</Y>
 					<Label><X>-30</X><Y>-10</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
-					<Properties AccessType="default" StaticFunction="false" Width="20" Height="20" Next="1654543399374" >
+					<Properties AccessType="default" StaticFunction="false" Width="20" Height="20" Next="1654961544714" >
 						<FillColor/>
 					<ReturnModificator>VOID</ReturnModificator>
 					<ReturnType><![CDATA[double]]></ReturnType>
 					</Properties>
 				</ActionChartElement>
-				<ActionChartElement Class="Return">
-					<Id>1654543424793</Id>
-					<Name><![CDATA[Finished]]></Name>
-					<X>640</X><Y>474</Y>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Properties Width="120" Height="36" Previous="1654543622918" >
-						<FillColor/>
-					</Properties>	
-				</ActionChartElement>
 				<ActionChartElement Class="Decision">
-					<Id>1654543622918</Id>
-					<Name><![CDATA[decision]]></Name>
-					<X>640</X><Y>130</Y>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Comment><![CDATA[Node Skipped]]></Comment>
-					<Properties Width="80" Height="60" Appearance="0" Previous="1654543399374" Next="1654543424793" TrueAction="1654543695090" FalseAction="1654543771336" >
-						<FillColor/>
-						<Condition><![CDATA[SkipNode]]></Condition>
-					</Properties>
-				</ActionChartElement>
-				<ActionChartElement Class="Decision">
-					<Id>1654543771336</Id>
-					<Name><![CDATA[decision1]]></Name>
-					<X>570</X><Y>190</Y>
+					<Id>1654961705241</Id>
+					<Name><![CDATA[decision3]]></Name>
+					<X>390</X><Y>140</Y>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
 					<Comment><![CDATA[ Node Down]]></Comment>
-					<Properties Width="80" Height="50" Appearance="0" Previous="1654543622918" FalseAction="1654543896806" >
+					<Properties Width="80" Height="50" Appearance="2" Previous="1654961544714" Next="1654961544733" FalseAction="1654961705250" >
 						<FillColor/>
-						<Condition><![CDATA[NodeGoesDown]]></Condition>
+						<Condition><![CDATA[v_nodeGoesDown]]></Condition>
 					</Properties>
 				</ActionChartElement>
 				<ActionChartElement Class="Decision">
-					<Id>1654543896806</Id>
-					<Name><![CDATA[decision2]]></Name>
-					<X>420</X><Y>245</Y>
+					<Id>1654961705250</Id>
+					<Name><![CDATA[decision4]]></Name>
+					<X>390</X><Y>220</Y>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
 					<Comment><![CDATA[Node Compromised]]></Comment>
-					<Properties Width="120" Height="78" Appearance="0" Previous="1654543771336" TrueAction="1654544387762" >
+					<Properties Width="120" Height="78" Appearance="6" Previous="1654961705241" TrueAction="1654961705253" >
 						<FillColor/>
-						<Condition><![CDATA[randomFalse(OverallPr)]]></Condition>
+						<Condition><![CDATA[randomFalse(v_overallPr)]]></Condition>
 					</Properties>
 				</ActionChartElement>
 				<ActionChartElement Class="Code">
-					<Id>1654545567488</Id>
-					<Name><![CDATA[code2]]></Name>
-					<X>500</X><Y>364</Y>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Comment><![CDATA[Forward Attack]]></Comment>
-					<Properties Width="100" Height="30" Previous="1654544387762" >
-						<FillColor/>
-						<Code><![CDATA[if(NextNode != null) {
-	NextNode.f_processAttack();
-}]]></Code>
-					</Properties>	
-				</ActionChartElement>
-				<ActionChartElement Class="Code">
-					<Id>1654544387762</Id>
-					<Name><![CDATA[code3]]></Name>
-					<X>500</X><Y>314</Y>
+					<Id>1654961705253</Id>
+					<Name><![CDATA[code4]]></Name>
+					<X>390</X><Y>328</Y>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
 					<Comment><![CDATA[Set Compromised]]></Comment>
-					<Properties Width="120" Height="30" Previous="1654543896806" Next="1654545567488" >
+					<Properties Width="120" Height="30" Previous="1654961705250" Next="1654961705256" >
 						<FillColor/>
 						<Code><![CDATA[v_numCompromises = v_numCompromises + 1;
 v_nodeIsCompromised = true;]]></Code>
 					</Properties>	
 				</ActionChartElement>
 				<ActionChartElement Class="Code">
-					<Id>1654543695090</Id>
-					<Name><![CDATA[code1]]></Name>
-					<X>700</X><Y>190</Y>
+					<Id>1654961705256</Id>
+					<Name><![CDATA[code5]]></Name>
+					<X>390</X><Y>378</Y>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
 					<Comment><![CDATA[Forward Attack]]></Comment>
-					<Properties Width="100" Height="30" Previous="1654543622918" >
+					<Properties Width="100" Height="30" Previous="1654961705253" >
 						<FillColor/>
-						<Code><![CDATA[if(NextNode != null) {
-	NextNode.f_processAttack();
+						<Code><![CDATA[if(v_nextNode != null) {
+	v_nextNode.f_processAttack();
 }]]></Code>
 					</Properties>	
 				</ActionChartElement>
+				<ActionChartElement Class="Return">
+					<Id>1654961544733</Id>
+					<Name><![CDATA[Finished1]]></Name>
+					<X>390</X><Y>468</Y>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties Width="120" Height="36" Previous="1654961705241" >
+						<FillColor/>
+					</Properties>	
+				</ActionChartElement>
 				<ActionChartElement Class="Code">
-					<Id>1654543399374</Id>
-					<Name><![CDATA[code]]></Name>
+					<Id>1654961544714</Id>
+					<Name><![CDATA[code1]]></Name>
 					<Description><![CDATA[Get the node to a known state before running the attack on it.]]></Description>
-					<X>640</X><Y>80</Y>
+					<X>390</X><Y>90</Y>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
 					<Comment><![CDATA[Initialize Node]]></Comment>
-					<Properties Width="100" Height="30" Previous="1654543424048" Next="1654543622918" >
+					<Properties Width="100" Height="30" Previous="1654961544711" Next="1654961705241" >
 						<FillColor/>
-						<Code><![CDATA[AttackRelayed = false;
-UI_nodeUpShading.setVisible(false);
+						<Code><![CDATA[UI_nodeUpShading.setVisible(false);
 UI_nodeCompromisedShading.setVisible(false);
 UI_nodeOffShading.setVisible(false);
-
-if (SkipNode) {
-    UI_nodeOffShading.setVisible(true);
-}
-/*
-The choice has been made to show nodes as compromsied only when
-they are compromised in >50% of all attacks run in the simulation.
-*/
-/*
-else if (NodeGetsCompromised) {
-    UI_nodeCompromisedShading.setVisible(true);
-}
-*/
-else {
-    UI_nodeUpShading.setVisible(true);
-}
 ]]></Code>
 					</Properties>	
 				</ActionChartElement>
@@ -4683,7 +3794,7 @@ else {
 					<ReturnModificator>VOID</ReturnModificator>
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1481832035044</Id>
-					<Name><![CDATA[calculateOverall]]></Name>
+					<Name><![CDATA[f_calculateOverall]]></Name>
 					<X>1010</X><Y>-220</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
@@ -4695,31 +3806,31 @@ else {
 					</Parameter>
 					<Body><![CDATA[double v_probabilityAttackSucceeds = 1;
 
-v_effectiveFirewallProbability  = f_getEffectiveControlProbability(Firewall, FirewallVar);
+v_effectiveFirewallProbability  = f_getEffectiveControlProbability(v_firewallPr, v_firewallVar);
 v_probabilityAttackSucceeds     = v_probabilityAttackSucceeds * (1-v_effectiveFirewallProbability);
 
-v_effectiveGatewayProbability   = f_getEffectiveControlProbability(Gateway, GatewayVar);
+v_effectiveGatewayProbability   = f_getEffectiveControlProbability(v_gatewayPr, v_gatewayVar);
 v_probabilityAttackSucceeds     = v_probabilityAttackSucceeds * (1-v_effectiveGatewayProbability);
 
-v_effectiveAntivirusProbability = f_getEffectiveControlProbability(Antivirus, AntivirusVar);
+v_effectiveAntivirusProbability = f_getEffectiveControlProbability(v_antivirusPr, v_antivirusVar);
 v_probabilityAttackSucceeds     = v_probabilityAttackSucceeds * (1-v_effectiveAntivirusProbability);
 
-v_effectiveIDSProbability       = f_getEffectiveControlProbability(IDS, IDSVar);
+v_effectiveIDSProbability       = f_getEffectiveControlProbability(v_IDSPr, v_IDSVar);
 v_probabilityAttackSucceeds     = v_probabilityAttackSucceeds * (1-v_effectiveIDSProbability);
 
-v_effectiveMailScanProbability  = f_getEffectiveControlProbability(MailScan, MailScanVar);
+v_effectiveMailScanProbability  = f_getEffectiveControlProbability(v_mailScanPr, v_mailScanVar);
 v_probabilityAttackSucceeds     = v_probabilityAttackSucceeds * (1-v_effectiveMailScanProbability);
 
 
 // OverallPr is the probability of preventing an attack
 // This is where the fail ratio of the attacker is incorporated
-OverallPr = (1 - v_probabilityAttackSucceeds) * p_attackerFailRatio;
+v_overallPr = (1 - v_probabilityAttackSucceeds) * p_attackerFailRatio;
 
-if (OverallPr > 1) {
-    OverallPr = 1;
+if (v_overallPr > 1) {
+    v_overallPr = 1;
 }
-else if (OverallPr < 0) {
-    OverallPr = 0;
+else if (v_overallPr < 0) {
+    v_overallPr = 0;
 }
 
 /*
@@ -4728,26 +3839,29 @@ checking and incorporation of attacker fail ratio applied to OverallPr.
 OverallPr is the probability the controls will stop the attack from compromising
 this node.
 */
-v_probabilityAttackSucceeds = 1 - OverallPr;
+v_probabilityAttackSucceeds = 1 - v_overallPr;
 
-OverallCost = FirewallCost + GatewayCost + IDSCost + AntivirusCost + MailScanCost;
-]]></Body>
+v_overallCost = v_firewallCost + v_gatewayCost + v_IDSCost + v_antivirusCost + v_mailScanCost;
+
+if(v_nextNode != null) {
+	v_nextNode.f_calculateOverall(p_attackerFailRatio);
+}]]></Body>
 				</Function>
 				<Function AccessType="default" StaticFunction="false">
 					<ReturnModificator>VOID</ReturnModificator>
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1653569988512</Id>
-					<Name><![CDATA[Reset]]></Name>
+					<Name><![CDATA[f_reset]]></Name>
 					<X>1010</X><Y>-200</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
-					<Body><![CDATA[NodeGoesDown = false;
+					<Body><![CDATA[v_nodeGoesDown = false;
 v_numCompromises = 0;
 v_nodeIsCompromised = false;
-if (NextNode != null) {
-	NextNode.Reset();
+if (v_nextNode != null) {
+	v_nextNode.f_reset();
 }]]></Body>
 				</Function>
 				<Function AccessType="default" StaticFunction="false">
@@ -4853,7 +3967,6 @@ return v_effectiveProbability;]]></Body>
 					<PresentationFlag>false</PresentationFlag>
 					<ShowLabel>false</ShowLabel>
 					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<VisibleCode><![CDATA[SkipNode]]></VisibleCode>
 					<EmbeddedIcon>false</EmbeddedIcon>
 					<Z>0</Z>
 					<ZHeight>10</ZHeight>
@@ -4913,7 +4026,7 @@ return v_effectiveProbability;]]></Body>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>false</ShowLabel>
 					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<VisibleCode><![CDATA[!v_nodeIsCompromised && !SkipNode]]></VisibleCode>
+					<VisibleCode><![CDATA[!v_nodeIsCompromised]]></VisibleCode>
 					<EmbeddedIcon>false</EmbeddedIcon>
 					<Z>0</Z>
 					<ZHeight>10</ZHeight>
@@ -4948,7 +4061,7 @@ return v_effectiveProbability;]]></Body>
 						<MinValue><![CDATA[0]]></MinValue>
 						<MaxValue><![CDATA[1]]></MaxValue>
 						<LinkTo>true</LinkTo>
-						<Link>Firewall</Link>
+						<Link>v_firewallPr</Link>
 					</ExtendedProperties>
 				</Control>
 				<Control Type="EditBox">
@@ -4972,7 +4085,7 @@ return v_effectiveProbability;]]></Body>
 						<MinValue><![CDATA[0]]></MinValue>
 						<MaxValue><![CDATA[1]]></MaxValue>
 						<LinkTo>true</LinkTo>
-						<Link>IDS</Link>
+						<Link>v_IDSPr</Link>
 					</ExtendedProperties>
 				</Control>
 				<Control Type="EditBox">
@@ -4996,7 +4109,7 @@ return v_effectiveProbability;]]></Body>
 						<MinValue><![CDATA[0]]></MinValue>
 						<MaxValue><![CDATA[1]]></MaxValue>
 						<LinkTo>true</LinkTo>
-						<Link>Gateway</Link>
+						<Link>v_gatewayPr</Link>
 					</ExtendedProperties>
 				</Control>
 				<Control Type="EditBox">
@@ -5020,7 +4133,7 @@ return v_effectiveProbability;]]></Body>
 						<MinValue><![CDATA[0]]></MinValue>
 						<MaxValue><![CDATA[1]]></MaxValue>
 						<LinkTo>true</LinkTo>
-						<Link>MailScan</Link>
+						<Link>v_mailScanPr</Link>
 					</ExtendedProperties>
 				</Control>
 				<Control Type="EditBox">
@@ -5044,14 +4157,14 @@ return v_effectiveProbability;]]></Body>
 						<MinValue><![CDATA[0]]></MinValue>
 						<MaxValue><![CDATA[1]]></MaxValue>
 						<LinkTo>true</LinkTo>
-						<Link>Antivirus</Link>
+						<Link>v_antivirusPr</Link>
 					</ExtendedProperties>
 				</Control>
 				<Control Type="CheckBox">
 				 	<EmbeddedIcon>false</EmbeddedIcon>				
 					<Id>1481833814330</Id>
 					<Name><![CDATA[checkbox]]></Name>
-					<X>-180</X><Y>-80</Y>
+					<X>-160</X><Y>-80</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -5066,7 +4179,7 @@ return v_effectiveProbability;]]></Body>
 						<Font Name="Dialog" Size="11" Style="0"/>
 						<LabelText><![CDATA[NodeGoesDown]]></LabelText>
 						<LinkTo>true</LinkTo>
-						<Link>NodeGoesDown</Link>
+						<Link>v_nodeGoesDown</Link>
 	 				</ExtendedProperties>
 				</Control>
 				<Control Type="EditBox">
@@ -5088,7 +4201,7 @@ return v_effectiveProbability;]]></Body>
 					<ExtendedProperties>
 						<Font Name="Dialog" Size="11" Style="0"/>
 						<LinkTo>true</LinkTo>
-						<Link>FirewallCost</Link>
+						<Link>v_firewallCost</Link>
 					</ExtendedProperties>
 				</Control>
 				<Control Type="EditBox">
@@ -5110,7 +4223,7 @@ return v_effectiveProbability;]]></Body>
 					<ExtendedProperties>
 						<Font Name="Dialog" Size="11" Style="0"/>
 						<LinkTo>true</LinkTo>
-						<Link>GatewayCost</Link>
+						<Link>v_gatewayCost</Link>
 					</ExtendedProperties>
 				</Control>
 				<Control Type="EditBox">
@@ -5133,7 +4246,7 @@ return v_effectiveProbability;]]></Body>
 					<ExtendedProperties>
 						<Font Name="Dialog" Size="11" Style="0"/>
 						<LinkTo>true</LinkTo>
-						<Link>AntivirusCost</Link>
+						<Link>v_antivirusCost</Link>
 					</ExtendedProperties>
 				</Control>
 				<Control Type="EditBox">
@@ -5155,7 +4268,7 @@ return v_effectiveProbability;]]></Body>
 					<ExtendedProperties>
 						<Font Name="Dialog" Size="11" Style="0"/>
 						<LinkTo>true</LinkTo>
-						<Link>IDSCost</Link>
+						<Link>v_IDSCost</Link>
 					</ExtendedProperties>
 				</Control>
 				<Control Type="EditBox">
@@ -5178,30 +4291,8 @@ return v_effectiveProbability;]]></Body>
 					<ExtendedProperties>
 						<Font Name="Dialog" Size="11" Style="0"/>
 						<LinkTo>true</LinkTo>
-						<Link>MailScanCost</Link>
+						<Link>v_mailScanCost</Link>
 					</ExtendedProperties>
-				</Control>
-				<Control Type="CheckBox">
-				 	<EmbeddedIcon>false</EmbeddedIcon>				
-					<Id>1491422920126</Id>
-					<Name><![CDATA[checkbox1]]></Name>
-					<X>-60</X><Y>-80</Y>
-					<Label><X>0</X><Y>-10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<BasicProperties Width="50" Height="34">
-                        <EmbeddedIcon>false</EmbeddedIcon>	
-						<TextColor/>
-						<Enabled>true</Enabled>
-					</BasicProperties>
-					<ExtendedProperties>
-						<Font Name="Dialog" Size="11" Style="0"/>
-						<LabelText><![CDATA[Off]]></LabelText>
-						<LinkTo>true</LinkTo>
-						<Link>SkipNode</Link>
-	 				</ExtendedProperties>
 				</Control>
 				<Control Type="EditBox">
 				 	<EmbeddedIcon>false</EmbeddedIcon>				
@@ -5224,7 +4315,7 @@ return v_effectiveProbability;]]></Body>
 						<MinValue><![CDATA[0]]></MinValue>
 						<MaxValue><![CDATA[1]]></MaxValue>
 						<LinkTo>true</LinkTo>
-						<Link>FirewallVar</Link>
+						<Link>v_firewallVar</Link>
 					</ExtendedProperties>
 				</Control>
 				<Control Type="EditBox">
@@ -5248,7 +4339,7 @@ return v_effectiveProbability;]]></Body>
 						<MinValue><![CDATA[0]]></MinValue>
 						<MaxValue><![CDATA[1]]></MaxValue>
 						<LinkTo>true</LinkTo>
-						<Link>IDSVar</Link>
+						<Link>v_IDSVar</Link>
 					</ExtendedProperties>
 				</Control>
 				<Control Type="EditBox">
@@ -5272,7 +4363,7 @@ return v_effectiveProbability;]]></Body>
 						<MinValue><![CDATA[0]]></MinValue>
 						<MaxValue><![CDATA[1]]></MaxValue>
 						<LinkTo>true</LinkTo>
-						<Link>GatewayVar</Link>
+						<Link>v_gatewayVar</Link>
 					</ExtendedProperties>
 				</Control>
 				<Control Type="EditBox">
@@ -5296,7 +4387,7 @@ return v_effectiveProbability;]]></Body>
 						<MinValue><![CDATA[0]]></MinValue>
 						<MaxValue><![CDATA[1]]></MaxValue>
 						<LinkTo>true</LinkTo>
-						<Link>MailScanVar</Link>
+						<Link>v_mailScanVar</Link>
 					</ExtendedProperties>
 				</Control>
 				<Control Type="EditBox">
@@ -5320,7 +4411,7 @@ return v_effectiveProbability;]]></Body>
 						<MinValue><![CDATA[0]]></MinValue>
 						<MaxValue><![CDATA[1]]></MaxValue>
 						<LinkTo>true</LinkTo>
-						<Link>AntivirusVar</Link>
+						<Link>v_antivirusVar</Link>
 					</ExtendedProperties>
 				</Control>
 			</Presentation>
@@ -5795,7 +4886,7 @@ return v_effectiveProbability;]]></Body>
 				<RoundedRectangle>
 					<Id>1653920066889</Id>
 					<Name><![CDATA[roundRectangle2]]></Name>
-					<X>500</X><Y>-350</Y>
+					<X>500</X><Y>-410</Y>
 					<Label><X>10</X><Y>10</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -5809,7 +4900,7 @@ return v_effectiveProbability;]]></Body>
 					<LineMaterial>null</LineMaterial>
 					<LineStyle>SOLID</LineStyle>
 					<Width>200</Width>
-					<Height>300</Height>
+					<Height>170</Height>
 					<Rotation>0.0</Rotation>
 					<FillColor>-1</FillColor>
 					<FillMaterial>null</FillMaterial>
@@ -5818,7 +4909,7 @@ return v_effectiveProbability;]]></Body>
 				<Text>
 					<Id>1653920262194</Id>
 					<Name><![CDATA[text28]]></Name>
-					<X>550</X><Y>-340</Y>
+					<X>550</X><Y>-400</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -5883,7 +4974,7 @@ return v_effectiveProbability;]]></Body>
 				<RoundedRectangle>
 					<Id>1653920596762</Id>
 					<Name><![CDATA[roundRectangle4]]></Name>
-					<X>730</X><Y>-270</Y>
+					<X>500</X><Y>-210</Y>
 					<Label><X>10</X><Y>10</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -5906,7 +4997,7 @@ return v_effectiveProbability;]]></Body>
 				<Text>
 					<Id>1653920596764</Id>
 					<Name><![CDATA[text30]]></Name>
-					<X>780</X><Y>-260</Y>
+					<X>550</X><Y>-200</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -5933,7 +5024,7 @@ return v_effectiveProbability;]]></Body>
 		<!--   =========   Active Object Class   ========  -->
 		<ActiveObjectClass>
 			<Id>1654029793101</Id>
-			<Name><![CDATA[A_Attacker]]></Name>
+			<Name><![CDATA[A_ThreatActor]]></Name>
 			<ClientAreaTopLeft><X>0</X><Y>0</Y></ClientAreaTopLeft>
 			<Generic>false</Generic>
 			<GenericParameter>
