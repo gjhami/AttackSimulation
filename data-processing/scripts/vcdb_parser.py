@@ -135,7 +135,7 @@ class Incident:
             if actor != 'total':
                 success_count = actor_stats['success']
                 fail_count = actor_stats['fail']
-                actor_stats['fail-rate'] = fail_count /  (success_count + fail_count)
+                actor_stats['fail-rate'] = fail_count / (success_count + fail_count)
                 actor_stats['count'] = success_count + fail_count
 
         # Compute actor prevalence for small businesses
