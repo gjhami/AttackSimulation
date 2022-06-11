@@ -426,9 +426,19 @@ if (v_positions.containsValue(node)) {
 	}
 }
 
-// If a position was supplied, re-add the node with the new position
+/*
+If a position was supplied
+	re-add the node with the new position
+	visualize the node as part of the attack path
+Else
+	visualize the node as off
+*/
 if (inputValue != null) {
 	v_positions.put(inputValue, node);
+	node.v_inAttackPath = true;
+}
+else {
+	node.v_inAttackPath = false;
 }
 PositionText.setText(v_positions.toString());
 
@@ -3689,6 +3699,21 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 						<Type><![CDATA[double]]></Type>        
 					</Properties>
 				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1654966312583</Id>
+					<Name><![CDATA[v_inAttackPath]]></Name>
+					<X>530</X><Y>-260</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[boolean]]></Type>        
+						<InitialValue Class="CodeValue">
+							<Code><![CDATA[false]]></Code>
+						</InitialValue>
+					</Properties>
+				</Variable>
 			</Variables>
 			<ActionChartElements>
 				<ActionChartElement Class="ActionChart">
@@ -3784,8 +3809,7 @@ v_nodeIsCompromised = true;]]></Code>
 						<FillColor/>
 						<Code><![CDATA[UI_nodeUpShading.setVisible(false);
 UI_nodeCompromisedShading.setVisible(false);
-UI_nodeOffShading.setVisible(false);
-]]></Code>
+UI_nodeOffShading.setVisible(false);]]></Code>
 					</Properties>	
 				</ActionChartElement>
 			</ActionChartElements>
@@ -3795,7 +3819,7 @@ UI_nodeOffShading.setVisible(false);
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1481832035044</Id>
 					<Name><![CDATA[f_calculateOverall]]></Name>
-					<X>1010</X><Y>-220</Y>
+					<X>770</X><Y>-220</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -3852,7 +3876,7 @@ if(v_nextNode != null) {
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1653569988512</Id>
 					<Name><![CDATA[f_reset]]></Name>
-					<X>1010</X><Y>-200</Y>
+					<X>770</X><Y>-200</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -3869,7 +3893,7 @@ if (v_nextNode != null) {
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1653922051174</Id>
 					<Name><![CDATA[f_getEffectiveControlProbability]]></Name>
-					<X>1010</X><Y>-180</Y>
+					<X>770</X><Y>-180</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -3967,6 +3991,7 @@ return v_effectiveProbability;]]></Body>
 					<PresentationFlag>false</PresentationFlag>
 					<ShowLabel>false</ShowLabel>
 					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<VisibleCode><![CDATA[!v_inAttackPath]]></VisibleCode>
 					<EmbeddedIcon>false</EmbeddedIcon>
 					<Z>0</Z>
 					<ZHeight>10</ZHeight>
@@ -3989,7 +4014,7 @@ return v_effectiveProbability;]]></Body>
 					<PresentationFlag>false</PresentationFlag>
 					<ShowLabel>false</ShowLabel>
 					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<VisibleCode><![CDATA[v_nodeIsCompromised]]></VisibleCode>
+					<VisibleCode><![CDATA[v_nodeIsCompromised && v_inAttackPath]]></VisibleCode>
 					<EmbeddedIcon>false</EmbeddedIcon>
 					<Z>0</Z>
 					<ZHeight>10</ZHeight>
@@ -4026,7 +4051,7 @@ return v_effectiveProbability;]]></Body>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>false</ShowLabel>
 					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<VisibleCode><![CDATA[!v_nodeIsCompromised]]></VisibleCode>
+					<VisibleCode><![CDATA[!v_nodeIsCompromised && v_inAttackPath]]></VisibleCode>
 					<EmbeddedIcon>false</EmbeddedIcon>
 					<Z>0</Z>
 					<ZHeight>10</ZHeight>
@@ -4930,7 +4955,7 @@ return v_effectiveProbability;]]></Body>
 				<RoundedRectangle>
 					<Id>1653920429234</Id>
 					<Name><![CDATA[roundRectangle3]]></Name>
-					<X>980</X><Y>-270</Y>
+					<X>740</X><Y>-270</Y>
 					<Label><X>10</X><Y>10</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -4953,7 +4978,7 @@ return v_effectiveProbability;]]></Body>
 				<Text>
 					<Id>1653920412493</Id>
 					<Name><![CDATA[text29]]></Name>
-					<X>1050</X><Y>-260</Y>
+					<X>810</X><Y>-260</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
