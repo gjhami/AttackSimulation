@@ -69,7 +69,7 @@ class Incident:
             fail_rate = f'{cls.all_actor_fail[actor]["fail-rate"]:0.3}'
             prevalence_rate = f'{cls.sb_actor_prevalence[actor]["prevalence-rate"]:0.3}'
 
-            csv_row = [fail_rate, cls.all_actor_fail[actor]["count"],
+            csv_row = [actor, fail_rate, cls.all_actor_fail[actor]["count"],
                        cls.all_actor_fail["total"]["count"], prevalence_rate,
                        cls.sb_actor_prevalence[actor]["count"],
                        cls.sb_actor_prevalence["total"]["count"]]
