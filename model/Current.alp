@@ -36,6 +36,18 @@
 				<Name><![CDATA[Competitor]]></Name>
 			</Option>
 		</OptionList>
+		<OptionList>
+			<Id>1654978540733</Id>
+			<Name><![CDATA[ol_appearenceModes]]></Name>
+			<Option>
+				<Id>1654978540734</Id>
+				<Name><![CDATA[Light]]></Name>
+			</Option>
+			<Option>
+				<Id>1654978540735</Id>
+				<Name><![CDATA[Dark]]></Name>
+			</Option>
+		</OptionList>
 	</OptionLists>
 	<ActiveObjectClasses>
 		<!--   =========   Active Object Class   ========  -->
@@ -629,15 +641,16 @@ for (Map.Entry<Integer, NetworkNode> entry : v_positions.entrySet()) {
     di_compromisedPercent = new DataItem();
     di_compromisedCount = new DataItem();
     
-	int ColorIndex = entry.getKey() % 9;
+    // Used to assign different, random colors
+	//int ColorIndex = entry.getKey() % 9;
 	
 	// Update percentage compromise chart
 	di_compromisedPercent.setValue(v_percentNodeCompromised);
-	CompromisedChart.addDataItem(di_compromisedPercent, nodeName, v_graphColors[ColorIndex]);
+	CompromisedChart.addDataItem(di_compromisedPercent, nodeName, new Color(159, 168, 218));
 
 	// Update count compromised chart
 	di_compromisedCount.setValue(v_compromisedCount);
-	bc_compromisedCount.addDataItem(di_compromisedCount, nodeName, v_graphColors[ColorIndex]);
+	bc_compromisedCount.addDataItem(di_compromisedCount, nodeName, new Color(159, 168, 218));
 }
 
 ]]></Body>
@@ -673,6 +686,21 @@ for (Map.Entry<Integer, NetworkNode> entry : v_positions.entrySet()) {
 					</Parameter>
 					<Body><![CDATA[A_ThreatActor attacker = findFirst(apv_Attackers, a -> a.p_id.equals(p_attackerID));
 attacker.f_setSelected(p_isSelected);]]></Body>
+				</Function>
+				<Function AccessType="default" StaticFunction="false">
+					<ReturnModificator>VOID</ReturnModificator>
+					<ReturnType><![CDATA[double]]></ReturnType>
+					<Id>1654978560732</Id>
+					<Name><![CDATA[f_setAppearance]]></Name>
+					<X>540</X><Y>-330</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Parameter>
+						<Name><![CDATA[mode]]></Name>
+						<Type><![CDATA[ol_appearenceModes]]></Type>
+					</Parameter>
 				</Function>
 			</Functions>
 			<AgentLinks>
@@ -1368,7 +1396,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 			<Presentation>
 				<Rectangle>
 					<Id>1654959855799</Id>
-					<Name><![CDATA[rectangle]]></Name>
+					<Name><![CDATA[r_backdrop]]></Name>
 					<X>-400</X><Y>0</Y>
 					<Label><X>10</X><Y>10</Y></Label>
 					<PublicFlag>true</PublicFlag>
@@ -1386,13 +1414,13 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 					<Width>2880</Width>
 					<Height>1480</Height>
 					<Rotation>0.0</Rotation>
-					<FillColor>-15461356</FillColor>
+					<FillColor>-14606047</FillColor>
 					<FillMaterial>null</FillMaterial>
 				</Rectangle>
 				<EmbeddedObjectPresentation>
 					<Id>1481752104144</Id>
 					<Name><![CDATA[va_workstation_presentation]]></Name>
-					<X>660</X><Y>20</Y>
+					<X>700</X><Y>20</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1411,7 +1439,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 				<EmbeddedObjectPresentation>
 					<Id>1481752295287</Id>
 					<Name><![CDATA[va_router_presentation]]></Name>
-					<X>920</X><Y>20</Y>
+					<X>1000</X><Y>20</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1430,7 +1458,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 				<EmbeddedObjectPresentation>
 					<Id>1481752488241</Id>
 					<Name><![CDATA[va_flag_presentation]]></Name>
-					<X>1700</X><Y>260</Y>
+					<X>1900</X><Y>260</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1468,7 +1496,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 				<EmbeddedObjectPresentation>
 					<Id>1482004328455</Id>
 					<Name><![CDATA[va_internalNetwork_presentation]]></Name>
-					<X>1440</X><Y>260</Y>
+					<X>1600</X><Y>260</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1487,7 +1515,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 				<EmbeddedObjectPresentation>
 					<Id>1482004488141</Id>
 					<Name><![CDATA[va_departmentNetwork_presentation]]></Name>
-					<X>1180</X><Y>20</Y>
+					<X>1300</X><Y>20</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1515,7 +1543,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 					<EmbeddedIcon>false</EmbeddedIcon>
 					<Z>0</Z>
 					<Rotation>0.0</Rotation>
-					<Color>-4144960</Color>
+					<Color>-328966</Color>
 					<Text><![CDATA[Exchange Server]]></Text>
 					<Font>
 						<Name>SansSerif</Name>
@@ -1536,7 +1564,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 					<EmbeddedIcon>false</EmbeddedIcon>
 					<Z>0</Z>
 					<Rotation>0.0</Rotation>
-					<Color>-4144960</Color>
+					<Color>-328966</Color>
 					<Text><![CDATA[Work Station]]></Text>
 					<Font>
 						<Name>SansSerif</Name>
@@ -1557,7 +1585,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 					<EmbeddedIcon>false</EmbeddedIcon>
 					<Z>0</Z>
 					<Rotation>0.0</Rotation>
-					<Color>-4144960</Color>
+					<Color>-328966</Color>
 					<Text><![CDATA[Router]]></Text>
 					<Font>
 						<Name>SansSerif</Name>
@@ -1578,7 +1606,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 					<EmbeddedIcon>false</EmbeddedIcon>
 					<Z>0</Z>
 					<Rotation>0.0</Rotation>
-					<Color>-4144960</Color>
+					<Color>-328966</Color>
 					<Text><![CDATA[Department Network]]></Text>
 					<Font>
 						<Name>SansSerif</Name>
@@ -1599,7 +1627,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 					<EmbeddedIcon>false</EmbeddedIcon>
 					<Z>0</Z>
 					<Rotation>0.0</Rotation>
-					<Color>-4144960</Color>
+					<Color>-328966</Color>
 					<Text><![CDATA[Internal Network]]></Text>
 					<Font>
 						<Name>SansSerif</Name>
@@ -1620,7 +1648,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 					<EmbeddedIcon>false</EmbeddedIcon>
 					<Z>0</Z>
 					<Rotation>0.0</Rotation>
-					<Color>-4144960</Color>
+					<Color>-328966</Color>
 					<Text><![CDATA[Flag]]></Text>
 					<Font>
 						<Name>SansSerif</Name>
@@ -1632,7 +1660,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 				<Text>
 					<Id>1493000682086</Id>
 					<Name><![CDATA[text7]]></Name>
-					<X>40</X><Y>700</Y>
+					<X>40</X><Y>660</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1641,7 +1669,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 					<EmbeddedIcon>false</EmbeddedIcon>
 					<Z>0</Z>
 					<Rotation>0.0</Rotation>
-					<Color>-4144960</Color>
+					<Color>-328966</Color>
 					<Text><![CDATA[Total Control Cost:  $]]></Text>
 					<Font>
 						<Name>SansSerif</Name>
@@ -1653,7 +1681,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 				<Text>
 					<Id>1493000707590</Id>
 					<Name><![CDATA[totalCost]]></Name>
-					<X>170</X><Y>700</Y>
+					<X>170</X><Y>660</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1662,7 +1690,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 					<EmbeddedIcon>false</EmbeddedIcon>
 					<Z>0</Z>
 					<Rotation>0.0</Rotation>
-					<Color>-4144960</Color>
+					<Color>-328966</Color>
 					<Text><![CDATA[0]]></Text>
 					<Font>
 						<Name>SansSerif</Name>
@@ -1675,7 +1703,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 				 	<EmbeddedIcon>false</EmbeddedIcon>				
 					<Id>1481759601788</Id>
 					<Name><![CDATA[RelayButton]]></Name>
-					<X>40</X><Y>620</Y>
+					<X>40</X><Y>580</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1704,8 +1732,8 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
 					<BasicProperties Width="20" Height="20">
                         <EmbeddedIcon>false</EmbeddedIcon>	
-						<FillColor/>
-						<TextColor/>
+						<FillColor>-328966</FillColor>
+						<TextColor>-16777216</TextColor>
 						<Enabled>true</Enabled>
 						<ActionCode><![CDATA[f_setNodePosition(ExchangeEdit, va_exchangeServer);
 ]]></ActionCode>
@@ -1732,8 +1760,8 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
 					<BasicProperties Width="20" Height="20">
                         <EmbeddedIcon>false</EmbeddedIcon>	
-						<FillColor/>
-						<TextColor/>
+						<FillColor>-328966</FillColor>
+						<TextColor>-16777216</TextColor>
 						<Enabled>true</Enabled>
 						<ActionCode><![CDATA[f_setNodePosition(WSEdit, va_workstation);
 ]]></ActionCode>
@@ -1758,8 +1786,8 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
 					<BasicProperties Width="20" Height="20">
                         <EmbeddedIcon>false</EmbeddedIcon>	
-						<FillColor/>
-						<TextColor/>
+						<FillColor>-328966</FillColor>
+						<TextColor>-16777216</TextColor>
 						<Enabled>true</Enabled>
 						<ActionCode><![CDATA[f_setNodePosition(RouterEdit, va_router);
 
@@ -1785,8 +1813,8 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
 					<BasicProperties Width="20" Height="20">
                         <EmbeddedIcon>false</EmbeddedIcon>	
-						<FillColor/>
-						<TextColor/>
+						<FillColor>-328966</FillColor>
+						<TextColor>-16777216</TextColor>
 						<Enabled>true</Enabled>
 						<ActionCode><![CDATA[f_setNodePosition(DepNetEdit, va_departmentNetwork);
 ]]></ActionCode>
@@ -1811,8 +1839,8 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
 					<BasicProperties Width="20" Height="20">
                         <EmbeddedIcon>false</EmbeddedIcon>	
-						<FillColor/>
-						<TextColor/>
+						<FillColor>-328966</FillColor>
+						<TextColor>-16777216</TextColor>
 						<Enabled>true</Enabled>
 						<ActionCode><![CDATA[f_setNodePosition(InternalNetEdit, va_internalNetwork);
 ]]></ActionCode>
@@ -1837,8 +1865,8 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
 					<BasicProperties Width="20" Height="20">
                         <EmbeddedIcon>false</EmbeddedIcon>	
-						<FillColor/>
-						<TextColor/>
+						<FillColor>-328966</FillColor>
+						<TextColor>-16777216</TextColor>
 						<Enabled>true</Enabled>
 						<ActionCode><![CDATA[f_setNodePosition(FlagEdit, va_flag);
 
@@ -1864,7 +1892,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 					<EmbeddedIcon>false</EmbeddedIcon>
 					<Z>0</Z>
 					<Rotation>0.0</Rotation>
-					<Color>-4144960</Color>
+					<Color>-328966</Color>
 					<Text><![CDATA[Web Application Server]]></Text>
 					<Font>
 						<Name>SansSerif</Name>
@@ -1885,8 +1913,8 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
 					<BasicProperties Width="20" Height="20">
                         <EmbeddedIcon>false</EmbeddedIcon>	
-						<FillColor/>
-						<TextColor/>
+						<FillColor>-328966</FillColor>
+						<TextColor>-16777216</TextColor>
 						<Enabled>true</Enabled>
 						<ActionCode><![CDATA[f_setNodePosition(WebAppEdit, va_webApplication);
 ]]></ActionCode>
@@ -1912,7 +1940,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 					<EmbeddedIcon>false</EmbeddedIcon>
 					<Z>0</Z>
 					<Rotation>0.0</Rotation>
-					<Color>-4144960</Color>
+					<Color>-328966</Color>
 					<Text><![CDATA[DMZ Network]]></Text>
 					<Font>
 						<Name>SansSerif</Name>
@@ -1933,8 +1961,8 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
 					<BasicProperties Width="20" Height="20">
                         <EmbeddedIcon>false</EmbeddedIcon>	
-						<FillColor/>
-						<TextColor/>
+						<FillColor>-328966</FillColor>
+						<TextColor>-16777216</TextColor>
 						<Enabled>true</Enabled>
 						<ActionCode><![CDATA[f_setNodePosition(DMZEdit, va_DMZNetwork);
 ]]></ActionCode>
@@ -1959,7 +1987,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 					<EmbeddedIcon>false</EmbeddedIcon>
 					<Z>0</Z>
 					<Rotation>0.0</Rotation>
-					<Color>-4144960</Color>
+					<Color>-328966</Color>
 					<Text><![CDATA[Node Selection Ordering]]></Text>
 					<Font>
 						<Name>SansSerif</Name>
@@ -1980,7 +2008,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 					<EmbeddedIcon>false</EmbeddedIcon>
 					<Z>0</Z>
 					<Rotation>0.0</Rotation>
-					<Color>-4144960</Color>
+					<Color>-328966</Color>
 					<Text><![CDATA[Relevant Threat Actors]]></Text>
 					<Font>
 						<Name>SansSerif</Name>
@@ -1993,7 +2021,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 				 	<EmbeddedIcon>false</EmbeddedIcon>				
 					<Id>1653490935003</Id>
 					<Name><![CDATA[ResetButton]]></Name>
-					<X>160</X><Y>620</Y>
+					<X>160</X><Y>580</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2031,28 +2059,28 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 						<Unit Class="TimeUnits"><![CDATA[MILLISECOND]]></Unit>
 					</RecurrenceCode>
 					<EmbeddedIcon>false</EmbeddedIcon>
-					<Width>660</Width>
+					<Width>720</Width>
 					<Height>460</Height>
 					<BackgroundColor/>
 					<BorderColor/>
 					<ChartArea>
 						<XOffset>50</XOffset>
 						<YOffset>30</YOffset>
-						<Width>580</Width>
+						<Width>640</Width>
 						<Height>370</Height>
 						<BackgroundColor/>
-						<BorderColor>-1</BorderColor>
-						<GridColor>-1</GridColor>
+						<BorderColor>-328966</BorderColor>
+						<GridColor>-328966</GridColor>
 					</ChartArea>
 					<Legend>
 						<Place>SOUTH</Place>
-						<TextColor>-1</TextColor>
+						<TextColor>-328966</TextColor>
 						<Size>30</Size>
 					</Legend>
 					<Labels>
 						<HorLabelsPosition>DEFAULT</HorLabelsPosition>
 						<VerLabelsPosition>DEFAULT</VerLabelsPosition>
-						<TextColor>-1</TextColor>
+						<TextColor>-328966</TextColor>
 					</Labels>
 					<ShowLegend>true</ShowLegend>
 					<ScaleFromExpression><![CDATA[0]]></ScaleFromExpression>
@@ -2075,7 +2103,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 					<EmbeddedIcon>false</EmbeddedIcon>
 					<Z>0</Z>
 					<Rotation>0.0</Rotation>
-					<Color>-4144960</Color>
+					<Color>-328966</Color>
 					<Text><![CDATA[Run Parameters]]></Text>
 					<Font>
 						<Name>SansSerif</Name>
@@ -2096,7 +2124,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 					<EmbeddedIcon>false</EmbeddedIcon>
 					<Z>0</Z>
 					<Rotation>0.0</Rotation>
-					<Color>-4144960</Color>
+					<Color>-328966</Color>
 					<Text><![CDATA[Num Runs]]></Text>
 					<Font>
 						<Name>SansSerif</Name>
@@ -2109,7 +2137,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 				 	<EmbeddedIcon>false</EmbeddedIcon>				
 					<Id>1653590443004</Id>
 					<Name><![CDATA[editbox17]]></Name>
-					<X>180</X><Y>540</Y>
+					<X>180</X><Y>545</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2117,8 +2145,8 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
 					<BasicProperties Width="100" Height="20">
                         <EmbeddedIcon>false</EmbeddedIcon>	
-						<FillColor/>
-						<TextColor/>
+						<FillColor>-328966</FillColor>
+						<TextColor>-16777216</TextColor>
 						<Enabled>true</Enabled>
 						<ActionCode><![CDATA[
 
@@ -2138,7 +2166,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 					<X>20</X><Y>1200</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
+					<PresentationFlag>false</PresentationFlag>
 					<ShowLabel>false</ShowLabel>
 					<DrawMode>SHAPE_DRAW_2D</DrawMode>
 					<EmbeddedIcon>false</EmbeddedIcon>
@@ -2165,7 +2193,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 					<EmbeddedIcon>false</EmbeddedIcon>
 					<Z>0</Z>
 					<Rotation>270.0</Rotation>
-					<Color>-1</Color>
+					<Color>-328966</Color>
 					<Text><![CDATA[Probability of Compromise (%)]]></Text>
 					<Font>
 						<Name>SansSerif</Name>
@@ -2177,7 +2205,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 				<Text>
 					<Id>1653670413162</Id>
 					<Name><![CDATA[text29]]></Name>
-					<X>720</X><Y>1200</Y>
+					<X>740</X><Y>1200</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2186,7 +2214,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 					<EmbeddedIcon>false</EmbeddedIcon>
 					<Z>0</Z>
 					<Rotation>0.0</Rotation>
-					<Color>-1</Color>
+					<Color>-328966</Color>
 					<Text><![CDATA[Node Name]]></Text>
 					<Font>
 						<Name>SansSerif</Name>
@@ -2383,7 +2411,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
 					<BasicProperties Width="20" Height="20">
                         <EmbeddedIcon>false</EmbeddedIcon>	
-						<TextColor/>
+						<TextColor>-16777216</TextColor>
 						<Enabled>true</Enabled>
 						<ActionCode><![CDATA[f_updateAttackerSelection(OrganizedCrime, self.isSelected());]]></ActionCode>
 					</BasicProperties>
@@ -2397,7 +2425,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 				<Text>
 					<Id>1654362653468</Id>
 					<Name><![CDATA[t_resultsHeading]]></Name>
-					<X>20</X><Y>670</Y>
+					<X>20</X><Y>630</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2406,7 +2434,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 					<EmbeddedIcon>false</EmbeddedIcon>
 					<Z>0</Z>
 					<Rotation>0.0</Rotation>
-					<Color>-4144960</Color>
+					<Color>-328966</Color>
 					<Text><![CDATA[Results]]></Text>
 					<Font>
 						<Name>SansSerif</Name>
@@ -2427,7 +2455,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
 					<BasicProperties Width="20" Height="21">
                         <EmbeddedIcon>false</EmbeddedIcon>	
-						<TextColor/>
+						<TextColor>-16777216</TextColor>
 						<Enabled>true</Enabled>
 						<ActionCode><![CDATA[f_updateAttackerSelection(Activist, self.isSelected());]]></ActionCode>
 					</BasicProperties>
@@ -2450,7 +2478,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
 					<BasicProperties Width="20" Height="20">
                         <EmbeddedIcon>false</EmbeddedIcon>	
-						<TextColor/>
+						<TextColor>-16777216</TextColor>
 						<Enabled>true</Enabled>
 						<ActionCode><![CDATA[f_updateAttackerSelection(StateAffiliated, self.isSelected());]]></ActionCode>
 					</BasicProperties>
@@ -2473,7 +2501,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
 					<BasicProperties Width="20" Height="20">
                         <EmbeddedIcon>false</EmbeddedIcon>	
-						<TextColor/>
+						<TextColor>-16777216</TextColor>
 						<Enabled>true</Enabled>
 						<ActionCode><![CDATA[f_updateAttackerSelection(FormerEmployee, self.isSelected());]]></ActionCode>
 					</BasicProperties>
@@ -2496,7 +2524,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
 					<BasicProperties Width="20" Height="20">
                         <EmbeddedIcon>false</EmbeddedIcon>	
-						<TextColor/>
+						<TextColor>-16777216</TextColor>
 						<Enabled>true</Enabled>
 						<ActionCode><![CDATA[f_updateAttackerSelection(Competitor, self.isSelected());]]></ActionCode>
 					</BasicProperties>
@@ -2598,7 +2626,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 				<Text>
 					<Id>1654534047296</Id>
 					<Name><![CDATA[text9]]></Name>
-					<X>40</X><Y>730</Y>
+					<X>40</X><Y>690</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2607,7 +2635,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 					<EmbeddedIcon>false</EmbeddedIcon>
 					<Z>0</Z>
 					<Rotation>0.0</Rotation>
-					<Color>-4144960</Color>
+					<Color>-328966</Color>
 					<Text><![CDATA[Total Attacks Run: ]]></Text>
 					<Font>
 						<Name>SansSerif</Name>
@@ -2619,7 +2647,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 				<Text>
 					<Id>1654534180550</Id>
 					<Name><![CDATA[t_totalAttacksRun]]></Name>
-					<X>170</X><Y>730</Y>
+					<X>170</X><Y>690</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2628,7 +2656,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 					<EmbeddedIcon>false</EmbeddedIcon>
 					<Z>0</Z>
 					<Rotation>0.0</Rotation>
-					<Color>-4144960</Color>
+					<Color>-328966</Color>
 					<Text><![CDATA[0]]></Text>
 					<Font>
 						<Name>SansSerif</Name>
@@ -2681,51 +2709,6 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 					</Font>
 					<Alignment>LEFT</Alignment>
 				</Text>
-				<Control Type="ProgressBar">
-				 	<EmbeddedIcon>false</EmbeddedIcon>				
-					<Id>1654547214147</Id>
-					<Name><![CDATA[pb_attackProgress]]></Name>
-					<X>180</X><Y>580</Y>
-					<Label><X>0</X><Y>-10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<BasicProperties Width="180" Height="20">
-                        <EmbeddedIcon>false</EmbeddedIcon>	
-						<Enabled>true</Enabled>
-					</BasicProperties>
-					<ExtendedProperties>
-						<Orientation>HORIZONTAL</Orientation>
-						<ShowProgressString>true</ShowProgressString>
-						<ProgressStringCode><![CDATA[percent + " percent(s) completed"]]></ProgressStringCode>
-						<ValueCode><![CDATA[(double)(v_targetRuns - v_remainingRuns)]]></ValueCode>
-						<MinValue><![CDATA[0]]></MinValue>
-						<MaxValue><![CDATA[(double)v_targetRuns]]></MaxValue>
-						<Determinate><![CDATA[true]]></Determinate>
-					</ExtendedProperties>
-				</Control>
-				<Text>
-					<Id>1654547256460</Id>
-					<Name><![CDATA[text35]]></Name>
-					<X>40</X><Y>580</Y>
-					<Label><X>0</X><Y>-10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-4144960</Color>
-					<Text><![CDATA[Attack Progress]]></Text>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>12</Size>
-						<Style>0</Style>
-					</Font>
-					<Alignment>LEFT</Alignment>
-				</Text>
 				<Text>
 					<Id>1654618008588</Id>
 					<Name><![CDATA[text37]]></Name>
@@ -2738,7 +2721,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 					<EmbeddedIcon>false</EmbeddedIcon>
 					<Z>0</Z>
 					<Rotation>270.0</Rotation>
-					<Color>-1</Color>
+					<Color>-328966</Color>
 					<Text><![CDATA[Number of Compromises]]></Text>
 					<Font>
 						<Name>SansSerif</Name>
@@ -2768,18 +2751,18 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 						<Unit Class="TimeUnits"><![CDATA[MILLISECOND]]></Unit>
 					</RecurrenceCode>
 					<EmbeddedIcon>false</EmbeddedIcon>
-					<Width>660</Width>
+					<Width>720</Width>
 					<Height>460</Height>
 					<BackgroundColor/>
 					<BorderColor/>
 					<ChartArea>
 						<XOffset>50</XOffset>
 						<YOffset>30</YOffset>
-						<Width>580</Width>
+						<Width>640</Width>
 						<Height>370</Height>
 						<BackgroundColor/>
-						<BorderColor>-1</BorderColor>
-						<GridColor>-1</GridColor>
+						<BorderColor>-328966</BorderColor>
+						<GridColor>-328966</GridColor>
 					</ChartArea>
 					<Legend>
 						<Place>SOUTH</Place>
@@ -2789,7 +2772,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 					<Labels>
 						<HorLabelsPosition>DEFAULT</HorLabelsPosition>
 						<VerLabelsPosition>DEFAULT</VerLabelsPosition>
-						<TextColor>-1</TextColor>
+						<TextColor>-328966</TextColor>
 					</Labels>
 					<ShowLegend>true</ShowLegend>
 					<ScaleFromExpression><![CDATA[0]]></ScaleFromExpression>
@@ -2803,7 +2786,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 				<Text>
 					<Id>1654618008593</Id>
 					<Name><![CDATA[text38]]></Name>
-					<X>1480</X><Y>1200</Y>
+					<X>1540</X><Y>1200</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2812,7 +2795,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 					<EmbeddedIcon>false</EmbeddedIcon>
 					<Z>0</Z>
 					<Rotation>0.0</Rotation>
-					<Color>-1</Color>
+					<Color>-328966</Color>
 					<Text><![CDATA[Node Name]]></Text>
 					<Font>
 						<Name>SansSerif</Name>
@@ -2834,7 +2817,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
 					<BasicProperties Width="20" Height="20">
                         <EmbeddedIcon>false</EmbeddedIcon>	
-						<TextColor/>
+						<TextColor>-16777216</TextColor>
 						<Enabled>false</Enabled>
 					</BasicProperties>
 					<ExtendedProperties>
@@ -2856,7 +2839,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 					<EmbeddedIcon>false</EmbeddedIcon>
 					<Z>0</Z>
 					<Rotation>0.0</Rotation>
-					<Color>-4144960</Color>
+					<Color>-328966</Color>
 					<Text><![CDATA[Organized Crime]]></Text>
 					<Font>
 						<Name>SansSerif</Name>
@@ -2877,7 +2860,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 					<EmbeddedIcon>false</EmbeddedIcon>
 					<Z>0</Z>
 					<Rotation>0.0</Rotation>
-					<Color>-4144960</Color>
+					<Color>-328966</Color>
 					<Text><![CDATA[Activist]]></Text>
 					<Font>
 						<Name>SansSerif</Name>
@@ -2898,7 +2881,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 					<EmbeddedIcon>false</EmbeddedIcon>
 					<Z>0</Z>
 					<Rotation>0.0</Rotation>
-					<Color>-4144960</Color>
+					<Color>-328966</Color>
 					<Text><![CDATA[State Affiliated]]></Text>
 					<Font>
 						<Name>SansSerif</Name>
@@ -2919,7 +2902,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 					<EmbeddedIcon>false</EmbeddedIcon>
 					<Z>0</Z>
 					<Rotation>0.0</Rotation>
-					<Color>-4144960</Color>
+					<Color>-328966</Color>
 					<Text><![CDATA[Former Employee]]></Text>
 					<Font>
 						<Name>SansSerif</Name>
@@ -2940,7 +2923,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 					<EmbeddedIcon>false</EmbeddedIcon>
 					<Z>0</Z>
 					<Rotation>0.0</Rotation>
-					<Color>-4144960</Color>
+					<Color>-328966</Color>
 					<Text><![CDATA[Competitor]]></Text>
 					<Font>
 						<Name>SansSerif</Name>
@@ -2961,7 +2944,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 					<EmbeddedIcon>false</EmbeddedIcon>
 					<Z>0</Z>
 					<Rotation>0.0</Rotation>
-					<Color>-4144960</Color>
+					<Color>-328966</Color>
 					<Text><![CDATA[Unidentified]]></Text>
 					<Font>
 						<Name>SansSerif</Name>
@@ -2973,7 +2956,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 				<Text>
 					<Id>1654960656044</Id>
 					<Name><![CDATA[text19]]></Name>
-					<X>460</X><Y>30</Y>
+					<X>480</X><Y>40</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2994,7 +2977,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 				<Text>
 					<Id>1654960704535</Id>
 					<Name><![CDATA[t_workstationTitle]]></Name>
-					<X>750</X><Y>30</Y>
+					<X>800</X><Y>40</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -3015,7 +2998,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 				<Text>
 					<Id>1654960757241</Id>
 					<Name><![CDATA[t_workstationTitle1]]></Name>
-					<X>1030</X><Y>30</Y>
+					<X>1140</X><Y>40</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -3036,7 +3019,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 				<Text>
 					<Id>1654960775875</Id>
 					<Name><![CDATA[t_workstationTitle2]]></Name>
-					<X>1240</X><Y>30</Y>
+					<X>1380</X><Y>40</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -3078,7 +3061,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 				<Text>
 					<Id>1654960831194</Id>
 					<Name><![CDATA[text21]]></Name>
-					<X>740</X><Y>380</Y>
+					<X>780</X><Y>380</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -3099,7 +3082,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 				<Text>
 					<Id>1654960858154</Id>
 					<Name><![CDATA[t_workstationTitle3]]></Name>
-					<X>1520</X><Y>280</Y>
+					<X>1680</X><Y>280</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -3120,7 +3103,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 				<Text>
 					<Id>1654960874825</Id>
 					<Name><![CDATA[t_workstationTitle4]]></Name>
-					<X>1820</X><Y>280</Y>
+					<X>2020</X><Y>280</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -3144,7 +3127,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 				<EmbeddedObjectPresentation>
 					<Id>1617468790956</Id>
 					<Name><![CDATA[va_webApplication_presentation]]></Name>
-					<X>660</X><Y>360</Y>
+					<X>700</X><Y>360</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -3233,8 +3216,8 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>false</ShowLabel>
 					<Title><![CDATA[]]></Title>
-					<Width>1480</Width>
-					<Height>520</Height>
+					<Width>1520</Width>
+					<Height>540</Height>
 				</Area>
 				<Area>
 					<Id>1653854226830</Id>
@@ -3719,7 +3702,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 				<ActionChartElement Class="ActionChart">
 					<Id>1654961544711</Id>
 					<Name><![CDATA[f_processAttack]]></Name>
-					<X>390</X><Y>40</Y>
+					<X>470</X><Y>40</Y>
 					<Label><X>-30</X><Y>-10</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -3733,7 +3716,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 				<ActionChartElement Class="Decision">
 					<Id>1654961705241</Id>
 					<Name><![CDATA[decision3]]></Name>
-					<X>390</X><Y>140</Y>
+					<X>470</X><Y>140</Y>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
@@ -3746,7 +3729,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 				<ActionChartElement Class="Decision">
 					<Id>1654961705250</Id>
 					<Name><![CDATA[decision4]]></Name>
-					<X>390</X><Y>220</Y>
+					<X>470</X><Y>220</Y>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
@@ -3759,7 +3742,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 				<ActionChartElement Class="Code">
 					<Id>1654961705253</Id>
 					<Name><![CDATA[code4]]></Name>
-					<X>390</X><Y>328</Y>
+					<X>470</X><Y>328</Y>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
@@ -3773,7 +3756,7 @@ v_nodeIsCompromised = true;]]></Code>
 				<ActionChartElement Class="Code">
 					<Id>1654961705256</Id>
 					<Name><![CDATA[code5]]></Name>
-					<X>390</X><Y>378</Y>
+					<X>470</X><Y>378</Y>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
@@ -3788,7 +3771,7 @@ v_nodeIsCompromised = true;]]></Code>
 				<ActionChartElement Class="Return">
 					<Id>1654961544733</Id>
 					<Name><![CDATA[Finished1]]></Name>
-					<X>390</X><Y>468</Y>
+					<X>470</X><Y>468</Y>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
@@ -3800,7 +3783,7 @@ v_nodeIsCompromised = true;]]></Code>
 					<Id>1654961544714</Id>
 					<Name><![CDATA[code1]]></Name>
 					<Description><![CDATA[Get the node to a known state before running the attack on it.]]></Description>
-					<X>390</X><Y>90</Y>
+					<X>470</X><Y>90</Y>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
@@ -3983,6 +3966,28 @@ return v_effectiveProbability;]]></Body>
 
 			<Presentation>
 				<Rectangle>
+					<Id>1654983207320</Id>
+					<Name><![CDATA[UI_nodeBackground]]></Name>
+					<X>10</X><Y>50</Y>
+					<Label><X>10</X><Y>10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>false</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<ZHeight>10</ZHeight>
+					<LineWidth>3</LineWidth>
+					<LineColor/>
+					<LineMaterial>null</LineMaterial>
+					<LineStyle>SOLID</LineStyle>
+					<Width>280</Width>
+					<Height>290</Height>
+					<Rotation>0.0</Rotation>
+					<FillColor>-12434878</FillColor>
+					<FillMaterial>null</FillMaterial>
+				</Rectangle>
+				<Rectangle>
 					<Id>1491421124304</Id>
 					<Name><![CDATA[UI_nodeOffShading]]></Name>
 					<X>10</X><Y>50</Y>
@@ -3996,13 +4001,13 @@ return v_effectiveProbability;]]></Body>
 					<Z>0</Z>
 					<ZHeight>10</ZHeight>
 					<LineWidth>3</LineWidth>
-					<LineColor>-8355712</LineColor>
+					<LineColor>-6381922</LineColor>
 					<LineMaterial>null</LineMaterial>
 					<LineStyle>SOLID</LineStyle>
-					<Width>240</Width>
+					<Width>280</Width>
 					<Height>290</Height>
 					<Rotation>0.0</Rotation>
-					<FillColor>-1644806</FillColor>
+					<FillColor/>
 					<FillMaterial>null</FillMaterial>
 				</Rectangle>
 				<Rectangle>
@@ -4019,13 +4024,13 @@ return v_effectiveProbability;]]></Body>
 					<Z>0</Z>
 					<ZHeight>10</ZHeight>
 					<LineWidth>3</LineWidth>
-					<LineColor>-65536</LineColor>
+					<LineColor>-769226</LineColor>
 					<LineMaterial>null</LineMaterial>
 					<LineStyle>SOLID</LineStyle>
-					<Width>240</Width>
+					<Width>280</Width>
 					<Height>290</Height>
 					<Rotation>0.0</Rotation>
-					<FillColor>-1644806</FillColor>
+					<FillColor/>
 					<FillMaterial>null</FillMaterial>
 				</Rectangle>
 				<Group>
@@ -4056,20 +4061,20 @@ return v_effectiveProbability;]]></Body>
 					<Z>0</Z>
 					<ZHeight>10</ZHeight>
 					<LineWidth>3</LineWidth>
-					<LineColor>-16776961</LineColor>
+					<LineColor>-12627531</LineColor>
 					<LineMaterial>null</LineMaterial>
 					<LineStyle>SOLID</LineStyle>
-					<Width>240</Width>
+					<Width>280</Width>
 					<Height>290</Height>
 					<Rotation>0.0</Rotation>
-					<FillColor>-1644806</FillColor>
+					<FillColor/>
 					<FillMaterial>null</FillMaterial>
 				</Rectangle>
 				<Control Type="EditBox">
 				 	<EmbeddedIcon>false</EmbeddedIcon>				
 					<Id>1481762334572</Id>
 					<Name><![CDATA[FirewallPr]]></Name>
-					<X>-210</X><Y>-160</Y>
+					<X>-160</X><Y>-160</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -4093,7 +4098,7 @@ return v_effectiveProbability;]]></Body>
 				 	<EmbeddedIcon>false</EmbeddedIcon>				
 					<Id>1481762379210</Id>
 					<Name><![CDATA[IDSPr]]></Name>
-					<X>-210</X><Y>-210</Y>
+					<X>-160</X><Y>-210</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -4117,7 +4122,7 @@ return v_effectiveProbability;]]></Body>
 				 	<EmbeddedIcon>false</EmbeddedIcon>				
 					<Id>1481762540457</Id>
 					<Name><![CDATA[GatewayPr]]></Name>
-					<X>-210</X><Y>-310</Y>
+					<X>-160</X><Y>-310</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -4141,7 +4146,7 @@ return v_effectiveProbability;]]></Body>
 				 	<EmbeddedIcon>false</EmbeddedIcon>				
 					<Id>1481762570681</Id>
 					<Name><![CDATA[MailScanPr]]></Name>
-					<X>-210</X><Y>-110</Y>
+					<X>-160</X><Y>-110</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -4165,7 +4170,7 @@ return v_effectiveProbability;]]></Body>
 				 	<EmbeddedIcon>false</EmbeddedIcon>				
 					<Id>1481762602072</Id>
 					<Name><![CDATA[AntivirusPr]]></Name>
-					<X>-210</X><Y>-260</Y>
+					<X>-160</X><Y>-260</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -4189,7 +4194,7 @@ return v_effectiveProbability;]]></Body>
 				 	<EmbeddedIcon>false</EmbeddedIcon>				
 					<Id>1481833814330</Id>
 					<Name><![CDATA[checkbox]]></Name>
-					<X>-160</X><Y>-80</Y>
+					<X>-120</X><Y>-80</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -4197,7 +4202,7 @@ return v_effectiveProbability;]]></Body>
 					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
 					<BasicProperties Width="115" Height="34">
                         <EmbeddedIcon>false</EmbeddedIcon>	
-						<TextColor/>
+						<TextColor>-328966</TextColor>
 						<Enabled>true</Enabled>
 					</BasicProperties>
 					<ExtendedProperties>
@@ -4211,7 +4216,7 @@ return v_effectiveProbability;]]></Body>
 				 	<EmbeddedIcon>false</EmbeddedIcon>				
 					<Id>1482001275023</Id>
 					<Name><![CDATA[FirewallCo]]></Name>
-					<X>-50</X><Y>-160</Y>
+					<X>-20</X><Y>-160</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -4233,7 +4238,7 @@ return v_effectiveProbability;]]></Body>
 				 	<EmbeddedIcon>false</EmbeddedIcon>				
 					<Id>1482001315580</Id>
 					<Name><![CDATA[GatewayCo]]></Name>
-					<X>-50</X><Y>-310</Y>
+					<X>-20</X><Y>-310</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -4255,7 +4260,7 @@ return v_effectiveProbability;]]></Body>
 				 	<EmbeddedIcon>false</EmbeddedIcon>				
 					<Id>1482001346334</Id>
 					<Name><![CDATA[AntivirusCo]]></Name>
-					<X>-50</X><Y>-260</Y>
+					<X>-20</X><Y>-260</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -4278,7 +4283,7 @@ return v_effectiveProbability;]]></Body>
 				 	<EmbeddedIcon>false</EmbeddedIcon>				
 					<Id>1482001378153</Id>
 					<Name><![CDATA[IDSCo]]></Name>
-					<X>-50</X><Y>-210</Y>
+					<X>-20</X><Y>-210</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -4300,7 +4305,7 @@ return v_effectiveProbability;]]></Body>
 				 	<EmbeddedIcon>false</EmbeddedIcon>				
 					<Id>1482001403913</Id>
 					<Name><![CDATA[MailScanCo]]></Name>
-					<X>-50</X><Y>-110</Y>
+					<X>-20</X><Y>-110</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -4323,7 +4328,7 @@ return v_effectiveProbability;]]></Body>
 				 	<EmbeddedIcon>false</EmbeddedIcon>				
 					<Id>1491280729726</Id>
 					<Name><![CDATA[FirewallPr1]]></Name>
-					<X>-130</X><Y>-160</Y>
+					<X>-90</X><Y>-160</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -4347,7 +4352,7 @@ return v_effectiveProbability;]]></Body>
 				 	<EmbeddedIcon>false</EmbeddedIcon>				
 					<Id>1491280729736</Id>
 					<Name><![CDATA[IDSPr1]]></Name>
-					<X>-130</X><Y>-210</Y>
+					<X>-90</X><Y>-210</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -4371,7 +4376,7 @@ return v_effectiveProbability;]]></Body>
 				 	<EmbeddedIcon>false</EmbeddedIcon>				
 					<Id>1491280729740</Id>
 					<Name><![CDATA[GatewayPr1]]></Name>
-					<X>-130</X><Y>-310</Y>
+					<X>-90</X><Y>-310</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -4395,7 +4400,7 @@ return v_effectiveProbability;]]></Body>
 				 	<EmbeddedIcon>false</EmbeddedIcon>				
 					<Id>1491280729744</Id>
 					<Name><![CDATA[MailScanPr1]]></Name>
-					<X>-130</X><Y>-110</Y>
+					<X>-90</X><Y>-110</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -4419,7 +4424,7 @@ return v_effectiveProbability;]]></Body>
 				 	<EmbeddedIcon>false</EmbeddedIcon>				
 					<Id>1491280729747</Id>
 					<Name><![CDATA[AntivirusPr1]]></Name>
-					<X>-130</X><Y>-260</Y>
+					<X>-90</X><Y>-260</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -4445,7 +4450,7 @@ return v_effectiveProbability;]]></Body>
 				<Text>
 					<Id>1482004731656</Id>
 					<Name><![CDATA[Test]]></Name>
-					<X>20</X><Y>60</Y>
+					<X>75</X><Y>60</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -4454,7 +4459,7 @@ return v_effectiveProbability;]]></Body>
 					<EmbeddedIcon>false</EmbeddedIcon>
 					<Z>0</Z>
 					<Rotation>0.0</Rotation>
-					<Color>-65536</Color>
+					<Color>-328966</Color>
 					<Text><![CDATA[Probability]]></Text>
 					<Font>
 						<Name>SansSerif</Name>
@@ -4466,7 +4471,7 @@ return v_effectiveProbability;]]></Body>
 				<Text>
 					<Id>1482093076428</Id>
 					<Name><![CDATA[text]]></Name>
-					<X>180</X><Y>60</Y>
+					<X>230</X><Y>60</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -4475,7 +4480,7 @@ return v_effectiveProbability;]]></Body>
 					<EmbeddedIcon>false</EmbeddedIcon>
 					<Z>0</Z>
 					<Rotation>0.0</Rotation>
-					<Color>-65536</Color>
+					<Color>-328966</Color>
 					<Text><![CDATA[Cost]]></Text>
 					<Font>
 						<Name>SansSerif</Name>
@@ -4487,7 +4492,7 @@ return v_effectiveProbability;]]></Body>
 				<Text>
 					<Id>1482093085545</Id>
 					<Name><![CDATA[text1]]></Name>
-					<X>20</X><Y>70</Y>
+					<X>20</X><Y>90</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -4496,50 +4501,8 @@ return v_effectiveProbability;]]></Body>
 					<EmbeddedIcon>false</EmbeddedIcon>
 					<Z>0</Z>
 					<Rotation>0.0</Rotation>
-					<Color>-16776961</Color>
+					<Color>-328966</Color>
 					<Text><![CDATA[Gateway]]></Text>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>10</Size>
-						<Style>0</Style>
-					</Font>
-					<Alignment>LEFT</Alignment>
-				</Text>
-				<Text>
-					<Id>1482093106910</Id>
-					<Name><![CDATA[text2]]></Name>
-					<X>180</X><Y>70</Y>
-					<Label><X>0</X><Y>-10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-16776961</Color>
-					<Text><![CDATA[Gateway]]></Text>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>10</Size>
-						<Style>0</Style>
-					</Font>
-					<Alignment>LEFT</Alignment>
-				</Text>
-				<Text>
-					<Id>1482093110745</Id>
-					<Name><![CDATA[text3]]></Name>
-					<X>180</X><Y>170</Y>
-					<Label><X>0</X><Y>-10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-16776961</Color>
-					<Text><![CDATA[IDS or IPS]]></Text>
 					<Font>
 						<Name>SansSerif</Name>
 						<Size>10</Size>
@@ -4550,7 +4513,7 @@ return v_effectiveProbability;]]></Body>
 				<Text>
 					<Id>1482093125036</Id>
 					<Name><![CDATA[text4]]></Name>
-					<X>20</X><Y>170</Y>
+					<X>20</X><Y>190</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -4559,29 +4522,8 @@ return v_effectiveProbability;]]></Body>
 					<EmbeddedIcon>false</EmbeddedIcon>
 					<Z>0</Z>
 					<Rotation>0.0</Rotation>
-					<Color>-16776961</Color>
+					<Color>-328966</Color>
 					<Text><![CDATA[IDS or IPS]]></Text>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>10</Size>
-						<Style>0</Style>
-					</Font>
-					<Alignment>LEFT</Alignment>
-				</Text>
-				<Text>
-					<Id>1482093127593</Id>
-					<Name><![CDATA[text5]]></Name>
-					<X>180</X><Y>220</Y>
-					<Label><X>0</X><Y>-10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-16776961</Color>
-					<Text><![CDATA[Firewall]]></Text>
 					<Font>
 						<Name>SansSerif</Name>
 						<Size>10</Size>
@@ -4592,7 +4534,7 @@ return v_effectiveProbability;]]></Body>
 				<Text>
 					<Id>1482093141034</Id>
 					<Name><![CDATA[text6]]></Name>
-					<X>20</X><Y>220</Y>
+					<X>20</X><Y>240</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -4601,7 +4543,7 @@ return v_effectiveProbability;]]></Body>
 					<EmbeddedIcon>false</EmbeddedIcon>
 					<Z>0</Z>
 					<Rotation>0.0</Rotation>
-					<Color>-16776961</Color>
+					<Color>-328966</Color>
 					<Text><![CDATA[Firewall]]></Text>
 					<Font>
 						<Name>SansSerif</Name>
@@ -4613,7 +4555,7 @@ return v_effectiveProbability;]]></Body>
 				<Text>
 					<Id>1482093143316</Id>
 					<Name><![CDATA[text7]]></Name>
-					<X>20</X><Y>270</Y>
+					<X>20</X><Y>290</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -4622,50 +4564,8 @@ return v_effectiveProbability;]]></Body>
 					<EmbeddedIcon>false</EmbeddedIcon>
 					<Z>0</Z>
 					<Rotation>0.0</Rotation>
-					<Color>-16776961</Color>
+					<Color>-328966</Color>
 					<Text><![CDATA[MailScan]]></Text>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>10</Size>
-						<Style>0</Style>
-					</Font>
-					<Alignment>LEFT</Alignment>
-				</Text>
-				<Text>
-					<Id>1482093154544</Id>
-					<Name><![CDATA[text8]]></Name>
-					<X>180</X><Y>270</Y>
-					<Label><X>0</X><Y>-10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-16776961</Color>
-					<Text><![CDATA[MailScan]]></Text>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>10</Size>
-						<Style>0</Style>
-					</Font>
-					<Alignment>LEFT</Alignment>
-				</Text>
-				<Text>
-					<Id>1482093156263</Id>
-					<Name><![CDATA[text9]]></Name>
-					<X>180</X><Y>120</Y>
-					<Label><X>0</X><Y>-10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-16776961</Color>
-					<Text><![CDATA[Antivirus]]></Text>
 					<Font>
 						<Name>SansSerif</Name>
 						<Size>10</Size>
@@ -4676,7 +4576,7 @@ return v_effectiveProbability;]]></Body>
 				<Text>
 					<Id>1482093179821</Id>
 					<Name><![CDATA[text10]]></Name>
-					<X>20</X><Y>120</Y>
+					<X>20</X><Y>140</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -4685,7 +4585,7 @@ return v_effectiveProbability;]]></Body>
 					<EmbeddedIcon>false</EmbeddedIcon>
 					<Z>0</Z>
 					<Rotation>0.0</Rotation>
-					<Color>-16776961</Color>
+					<Color>-328966</Color>
 					<Text><![CDATA[Antivirus]]></Text>
 					<Font>
 						<Name>SansSerif</Name>
@@ -4697,7 +4597,7 @@ return v_effectiveProbability;]]></Body>
 				<Text>
 					<Id>1491280759510</Id>
 					<Name><![CDATA[Test1]]></Name>
-					<X>100</X><Y>60</Y>
+					<X>150</X><Y>60</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -4706,113 +4606,8 @@ return v_effectiveProbability;]]></Body>
 					<EmbeddedIcon>false</EmbeddedIcon>
 					<Z>0</Z>
 					<Rotation>0.0</Rotation>
-					<Color>-65536</Color>
+					<Color>-328966</Color>
 					<Text><![CDATA[Variance]]></Text>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>10</Size>
-						<Style>0</Style>
-					</Font>
-					<Alignment>LEFT</Alignment>
-				</Text>
-				<Text>
-					<Id>1491280788201</Id>
-					<Name><![CDATA[text11]]></Name>
-					<X>100</X><Y>70</Y>
-					<Label><X>0</X><Y>-10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-16776961</Color>
-					<Text><![CDATA[Gateway]]></Text>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>10</Size>
-						<Style>0</Style>
-					</Font>
-					<Alignment>LEFT</Alignment>
-				</Text>
-				<Text>
-					<Id>1491280788203</Id>
-					<Name><![CDATA[text12]]></Name>
-					<X>100</X><Y>170</Y>
-					<Label><X>0</X><Y>-10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-16776961</Color>
-					<Text><![CDATA[IDS or IPS]]></Text>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>10</Size>
-						<Style>0</Style>
-					</Font>
-					<Alignment>LEFT</Alignment>
-				</Text>
-				<Text>
-					<Id>1491280788205</Id>
-					<Name><![CDATA[text13]]></Name>
-					<X>100</X><Y>220</Y>
-					<Label><X>0</X><Y>-10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-16776961</Color>
-					<Text><![CDATA[Firewall]]></Text>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>10</Size>
-						<Style>0</Style>
-					</Font>
-					<Alignment>LEFT</Alignment>
-				</Text>
-				<Text>
-					<Id>1491280788207</Id>
-					<Name><![CDATA[text14]]></Name>
-					<X>100</X><Y>270</Y>
-					<Label><X>0</X><Y>-10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-16776961</Color>
-					<Text><![CDATA[MailScan]]></Text>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>10</Size>
-						<Style>0</Style>
-					</Font>
-					<Alignment>LEFT</Alignment>
-				</Text>
-				<Text>
-					<Id>1491280788209</Id>
-					<Name><![CDATA[text15]]></Name>
-					<X>100</X><Y>120</Y>
-					<Label><X>0</X><Y>-10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-16776961</Color>
-					<Text><![CDATA[Antivirus]]></Text>
 					<Font>
 						<Name>SansSerif</Name>
 						<Size>10</Size>
