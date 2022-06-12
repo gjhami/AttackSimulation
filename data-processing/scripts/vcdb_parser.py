@@ -174,13 +174,13 @@ class Incident:
         # Update actor success for all breaches
         for actor_variety in self.actor_varieties:
             if self.is_breach is True:
-                Incident.sb_actor_prevalence["total"]["count"] += 1
+                Incident.all_actor_fail["total"]["count"] += 1
                 default_value = {'success': 1, 'fail': 0, 'maybe': 0}
                 Incident.add_or_increment(actor_variety, default_value, 'success',
                                           Incident.all_actor_fail)
 
             elif self.is_breach is False:
-                Incident.sb_actor_prevalence["total"]["count"] += 1
+                Incident.all_actor_fail["total"]["count"] += 1
                 default_value = {'success': 0, 'fail': 1, 'maybe': 0}
                 Incident.add_or_increment(actor_variety, default_value, 'fail',
                                           Incident.all_actor_fail)

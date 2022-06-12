@@ -1,7 +1,7 @@
 Actor,Fail Rate,n,N,Prevalence Rate,n,N
-Competitor,0.125,16,0,0.00069,7,10144
-Former employee,0.0469,64,0,0.00384,39,10144
-Activist,0.53,447,0,0.00868,88,10144
-Nation-state,0.233,43,0,0.000591,6,10144
-Organized crime,0.182,570,0,0.037,375,10144
-State-affiliated,0.0794,214,0,0.00128,13,10144
+State-affiliated,0.0794,214,7283,0.00454,13,2861
+Competitor,0.125,16,7283,0.00245,7,2861
+Organized crime,0.182,570,7283,0.131,375,2861
+Activist,0.53,447,7283,0.0308,88,2861
+Nation-state,0.233,43,7283,0.0021,6,2861
+Former employee,0.0469,64,7283,0.0136,39,2861
