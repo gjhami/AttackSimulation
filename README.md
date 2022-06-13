@@ -1,8 +1,8 @@
-# cyberattack-simulation
-An AnyLogic simulation model allowing users to quantitatively estimate the risk of cyber attacks to their organization, as well as the cost and efficacy of security controls.
+# AttackSimulation
+An AnyLogic simulation model allowing users to quantitatively estimate the risk of cyber attacks to their organization, as well as the efficacy and total cost of security controls.
 
 ## Disclaimer
-This project is currently under heavy development and is subject to major changes. When the code becomes more stable the AnyLogic model will be available as a standalone application which does not require an AnyLogic license to use and may be downloaded under [Releases](https://github.com/gjhami/cyberattack-simulation/releases).
+This project is currently under heavy development and is subject to major changes. When the code becomes more stable the AnyLogic model will be available as a standalone application which does not require an AnyLogic license to use and may be downloaded under [Releases](https://github.com/gjhami/AttackSimulation/releases).
 
 ## Usage and Audience
 This model is intended for small businesses/organizations without dedicated cybersecurity teams, or anyone trying to make more informed risk decisions while allocating a limited cybersecurity budget. The model will not represent every organization with pinpoint accuracy; it is meant to provide a useful tool accurate enough to improve decision making.
