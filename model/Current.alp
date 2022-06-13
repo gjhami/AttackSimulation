@@ -60,7 +60,32 @@
 			<StartupCode><![CDATA[DMZEdit.setText("1", true);
 WebAppEdit.setText("2", true);
 InternalNetEdit.setText("3", true);
-FlagEdit.setText("4", true);]]></StartupCode>
+FlagEdit.setText("4", true);
+
+/* Set Default Cost and Probabilities */
+va_exchangeServer.eb_antivirusPr.setText(0.94);
+va_exchangeServer.eb_antivirusCost.setText(3.54);
+va_exchangeServer.eb_mailScanPr.setText(0.948);
+va_exchangeServer.eb_mailScanCost.setText(29.92);
+va_exchangeServer.v_antivirusPr 		= 0.94;
+va_exchangeServer.v_antivirusCost 		= 3.54;
+va_exchangeServer.v_mailScanPr			= 0.948;
+va_exchangeServer.v_mailScanCost		= 29.92;
+
+va_departmentNetwork.eb_antivirusPr.setText(0.94);
+va_departmentNetwork.eb_antivirusCost.setText(3.07);
+va_departmentNetwork.v_antivirusPr		= 0.94;
+va_departmentNetwork.v_antivirusCost 	= 3.07;
+
+va_internalNetwork.eb_antivirusPr.setText(0.94);
+va_internalNetwork.eb_antivirusCost.setText(3.54);
+va_internalNetwork.v_antivirusPr		= 0.94;
+va_internalNetwork.v_antivirusCost		= 3.54;
+
+va_flag.eb_antivirusPr.setText(0.94);
+va_flag.eb_antivirusCost.setText(3.54);
+va_flag.v_antivirusPr					= 0.94;
+va_flag.v_antivirusCost					= 3.54;]]></StartupCode>
 			<Generic>false</Generic>
 			<GenericParameter>
 				<Id>1481747912646</Id>
@@ -4073,7 +4098,7 @@ return v_effectiveProbability;]]></Body>
 				<Control Type="EditBox">
 				 	<EmbeddedIcon>false</EmbeddedIcon>				
 					<Id>1481762334572</Id>
-					<Name><![CDATA[FirewallPr]]></Name>
+					<Name><![CDATA[eb_firewallPr]]></Name>
 					<X>-160</X><Y>-160</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
@@ -4097,7 +4122,7 @@ return v_effectiveProbability;]]></Body>
 				<Control Type="EditBox">
 				 	<EmbeddedIcon>false</EmbeddedIcon>				
 					<Id>1481762379210</Id>
-					<Name><![CDATA[IDSPr]]></Name>
+					<Name><![CDATA[eb_IDSPr]]></Name>
 					<X>-160</X><Y>-210</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
@@ -4121,7 +4146,7 @@ return v_effectiveProbability;]]></Body>
 				<Control Type="EditBox">
 				 	<EmbeddedIcon>false</EmbeddedIcon>				
 					<Id>1481762540457</Id>
-					<Name><![CDATA[GatewayPr]]></Name>
+					<Name><![CDATA[eb_gatewayPr]]></Name>
 					<X>-160</X><Y>-310</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
@@ -4145,7 +4170,7 @@ return v_effectiveProbability;]]></Body>
 				<Control Type="EditBox">
 				 	<EmbeddedIcon>false</EmbeddedIcon>				
 					<Id>1481762570681</Id>
-					<Name><![CDATA[MailScanPr]]></Name>
+					<Name><![CDATA[eb_mailScanPr]]></Name>
 					<X>-160</X><Y>-110</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
@@ -4169,7 +4194,7 @@ return v_effectiveProbability;]]></Body>
 				<Control Type="EditBox">
 				 	<EmbeddedIcon>false</EmbeddedIcon>				
 					<Id>1481762602072</Id>
-					<Name><![CDATA[AntivirusPr]]></Name>
+					<Name><![CDATA[eb_antivirusPr]]></Name>
 					<X>-160</X><Y>-260</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
@@ -4215,7 +4240,7 @@ return v_effectiveProbability;]]></Body>
 				<Control Type="EditBox">
 				 	<EmbeddedIcon>false</EmbeddedIcon>				
 					<Id>1482001275023</Id>
-					<Name><![CDATA[FirewallCo]]></Name>
+					<Name><![CDATA[eb_firewallCost]]></Name>
 					<X>-20</X><Y>-160</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
@@ -4237,7 +4262,7 @@ return v_effectiveProbability;]]></Body>
 				<Control Type="EditBox">
 				 	<EmbeddedIcon>false</EmbeddedIcon>				
 					<Id>1482001315580</Id>
-					<Name><![CDATA[GatewayCo]]></Name>
+					<Name><![CDATA[eb_gatewayCost]]></Name>
 					<X>-20</X><Y>-310</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
@@ -4259,7 +4284,7 @@ return v_effectiveProbability;]]></Body>
 				<Control Type="EditBox">
 				 	<EmbeddedIcon>false</EmbeddedIcon>				
 					<Id>1482001346334</Id>
-					<Name><![CDATA[AntivirusCo]]></Name>
+					<Name><![CDATA[eb_antivirusCost]]></Name>
 					<X>-20</X><Y>-260</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
@@ -4282,7 +4307,7 @@ return v_effectiveProbability;]]></Body>
 				<Control Type="EditBox">
 				 	<EmbeddedIcon>false</EmbeddedIcon>				
 					<Id>1482001378153</Id>
-					<Name><![CDATA[IDSCo]]></Name>
+					<Name><![CDATA[eb_IDSCost]]></Name>
 					<X>-20</X><Y>-210</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
@@ -4304,7 +4329,7 @@ return v_effectiveProbability;]]></Body>
 				<Control Type="EditBox">
 				 	<EmbeddedIcon>false</EmbeddedIcon>				
 					<Id>1482001403913</Id>
-					<Name><![CDATA[MailScanCo]]></Name>
+					<Name><![CDATA[eb_mailScanCost]]></Name>
 					<X>-20</X><Y>-110</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
@@ -4327,7 +4352,7 @@ return v_effectiveProbability;]]></Body>
 				<Control Type="EditBox">
 				 	<EmbeddedIcon>false</EmbeddedIcon>				
 					<Id>1491280729726</Id>
-					<Name><![CDATA[FirewallPr1]]></Name>
+					<Name><![CDATA[eb_firewallVar]]></Name>
 					<X>-90</X><Y>-160</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
@@ -4351,7 +4376,7 @@ return v_effectiveProbability;]]></Body>
 				<Control Type="EditBox">
 				 	<EmbeddedIcon>false</EmbeddedIcon>				
 					<Id>1491280729736</Id>
-					<Name><![CDATA[IDSPr1]]></Name>
+					<Name><![CDATA[eb_IDSVar]]></Name>
 					<X>-90</X><Y>-210</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
@@ -4375,7 +4400,7 @@ return v_effectiveProbability;]]></Body>
 				<Control Type="EditBox">
 				 	<EmbeddedIcon>false</EmbeddedIcon>				
 					<Id>1491280729740</Id>
-					<Name><![CDATA[GatewayPr1]]></Name>
+					<Name><![CDATA[eb_gatewayVar]]></Name>
 					<X>-90</X><Y>-310</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
@@ -4399,7 +4424,7 @@ return v_effectiveProbability;]]></Body>
 				<Control Type="EditBox">
 				 	<EmbeddedIcon>false</EmbeddedIcon>				
 					<Id>1491280729744</Id>
-					<Name><![CDATA[MailScanPr1]]></Name>
+					<Name><![CDATA[eb_mailScanVar]]></Name>
 					<X>-90</X><Y>-110</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
@@ -4423,7 +4448,7 @@ return v_effectiveProbability;]]></Body>
 				<Control Type="EditBox">
 				 	<EmbeddedIcon>false</EmbeddedIcon>				
 					<Id>1491280729747</Id>
-					<Name><![CDATA[AntivirusPr1]]></Name>
+					<Name><![CDATA[eb_antivirusVar]]></Name>
 					<X>-90</X><Y>-260</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
