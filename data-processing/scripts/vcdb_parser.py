@@ -32,12 +32,12 @@ class Incident:
     #                           'Over 100000', 'Small', 'Large', 'Unknown']
     target_employee_counts = ['1 to 10', '11 to 100', '101 to 1000', 'Small']
 
-    # target_actors = ['Guard', 'Doctor or nurse', 'Acquaintance', 'Call center', 'Customer',
+    # target_actors = {'Guard', 'Doctor or nurse', 'Acquaintance', 'Call center', 'Customer',
     #                  'Manager', 'Cashier', 'State-affiliated', 'End-user', 'Executive',
     #                  'System admin', 'Developer', 'Human resources', 'Finance', 'Auditor',
     #                  'Former employee', 'Other', 'Competitor', 'Helpdesk', 'Unaffiliated',
     #                  'Nation-state', 'Organized crime', 'Unknown', 'Maintenance', 'Activist',
-    #                  'Terrorist', 'Force majeure']
+    #                  'Terrorist', 'Force majeure'}
     target_actors = {'State-affiliated', 'Former employee', 'Competitor', 'Nation-state',
                      'Organized crime', 'Activist'}
 
