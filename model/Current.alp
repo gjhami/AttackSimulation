@@ -2046,13 +2046,13 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 				 	<EmbeddedIcon>false</EmbeddedIcon>				
 					<Id>1653490935003</Id>
 					<Name><![CDATA[ResetButton]]></Name>
-					<X>160</X><Y>580</Y>
+					<X>170</X><Y>580</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>false</ShowLabel>
 					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<BasicProperties Width="120" Height="30">
+					<BasicProperties Width="100" Height="30">
                         <EmbeddedIcon>false</EmbeddedIcon>	
 						<TextColor/>
 						<Enabled>true</Enabled>
@@ -2907,7 +2907,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 					<Z>0</Z>
 					<Rotation>0.0</Rotation>
 					<Color>-328966</Color>
-					<Text><![CDATA[State Affiliated]]></Text>
+					<Text><![CDATA[State-Affiliated]]></Text>
 					<Font>
 						<Name>SansSerif</Name>
 						<Size>12</Size>
