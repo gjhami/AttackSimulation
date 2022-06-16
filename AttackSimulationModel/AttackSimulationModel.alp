@@ -5507,9 +5507,6 @@ return v_isAttacker;
 			<Name><![CDATA[Simulation]]></Name>
 			<ClientAreaTopLeft><X>0</X><Y>0</Y></ClientAreaTopLeft>
 			<CommandLineArguments><![CDATA[]]></CommandLineArguments>
-			<InitialSetupCode><![CDATA[if ( getState() == IDLE )
-	run();
-getExperimentHost().setPresentable( getEngine().getRoot() );]]></InitialSetupCode>
 			<MaximumMemory>256</MaximumMemory>
 			<RandomNumberGenerationType>fixedSeed</RandomNumberGenerationType>
 			<CustomGeneratorCode>new Random()</CustomGeneratorCode>
@@ -5519,38 +5516,63 @@ getExperimentHost().setPresentable( getEngine().getRoot() );]]></InitialSetupCod
 			<LoadRootFromSnapshot>false</LoadRootFromSnapshot>
 
 			<Presentation>
-				<Text>
-					<Id>1481747912662</Id>
-					<Name><![CDATA[text]]></Name>
-					<X>40</X><Y>30</Y>
-					<Label><X>10</X><Y>0</Y></Label>
+				<Rectangle>
+					<Id>1655389461510</Id>
+					<Name><![CDATA[r_backdrop]]></Name>
+					<X>-480</X><Y>-80</Y>
+					<Label><X>10</X><Y>10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>false</ShowLabel>
+					<Lock>true</Lock>
 					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
 					<EmbeddedIcon>false</EmbeddedIcon>
 					<Z>0</Z>
+					<ZHeight>10</ZHeight>
+					<LineWidth>1</LineWidth>
+					<LineColor/>
+					<LineMaterial>null</LineMaterial>
+					<LineStyle>SOLID</LineStyle>
+					<Width>2880</Width>
+					<Height>1480</Height>
 					<Rotation>0.0</Rotation>
-					<Color>-12490271</Color>
-					<Text><![CDATA[Mango Model]]></Text>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>24</Size>
-						<Style>0</Style>
-					</Font>
-					<Alignment>LEFT</Alignment>
-				</Text>
+					<FillColor>-14606047</FillColor>
+					<FillMaterial>null</FillMaterial>
+				</Rectangle>
+				<Rectangle>
+					<Id>1655389678312</Id>
+					<Name><![CDATA[UI_nodeBackground]]></Name>
+					<X>0</X><Y>0</Y>
+					<Label><X>10</X><Y>10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<Lock>true</Lock>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<ZHeight>10</ZHeight>
+					<LineWidth>3</LineWidth>
+					<LineColor/>
+					<LineMaterial>null</LineMaterial>
+					<LineStyle>SOLID</LineStyle>
+					<Width>2000</Width>
+					<Height>1240</Height>
+					<Rotation>0.0</Rotation>
+					<FillColor>-12434878</FillColor>
+					<FillMaterial>null</FillMaterial>
+				</Rectangle>
 				<Control Type="Button">
 				 	<EmbeddedIcon>false</EmbeddedIcon>				
 					<Id>1481747912663</Id>
 					<Name><![CDATA[button]]></Name>
-					<X>40</X><Y>80</Y>
+					<X>890</X><Y>740</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>false</ShowLabel>
 					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<BasicProperties Width="100" Height="30">
+					<BasicProperties Width="260" Height="80">
                         <EmbeddedIcon>false</EmbeddedIcon>	
 						<TextColor/>
 						<Enabled>true</Enabled>
@@ -5559,13 +5581,120 @@ getExperimentHost().setPresentable( getEngine().getRoot() );]]></InitialSetupCod
 getExperimentHost().setPresentable( getEngine().getRoot() );]]></ActionCode>
 					</BasicProperties>
 					<ExtendedProperties>
-						<Font Name="Dialog" Size="11" Style="0"/>
+						<Font Name="Dialog" Size="24" Style="0"/>
 						<LabelText><![CDATA[Run]]></LabelText>
 						<LabelCode><![CDATA[getState() == IDLE ?
-	"Run" :
+	"Begin Simulation" :
 	"Top level agent"]]></LabelCode>
 					</ExtendedProperties>
 				</Control>
+				<Text>
+					<Id>1655389713658</Id>
+					<Name><![CDATA[text1]]></Name>
+					<X>830</X><Y>380</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-6313766</Color>
+					<Text><![CDATA[AttackSimulation]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>48</Size>
+						<Style>2</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Text>
+					<Id>1655389911477</Id>
+					<Name><![CDATA[text4]]></Name>
+					<X>580</X><Y>460</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-328966</Color>
+					<Text><![CDATA[An AnyLogic simulation model allowing users to quantitatively estimate the risk of
+cyber attacks to their organization, as well as the efficacy and total cost of security
+controls.]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>24</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Text>
+					<Id>1655390112355</Id>
+					<Name><![CDATA[text5]]></Name>
+					<X>580</X><Y>580</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-328966</Color>
+					<Text><![CDATA[Contributors]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>36</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Text>
+					<Id>1655390435667</Id>
+					<Name><![CDATA[text6]]></Name>
+					<X>580</X><Y>630</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-328966</Color>
+					<Text><![CDATA[George Hamilton: hamil132@purdue.edu]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>24</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Text>
+					<Id>1655390457072</Id>
+					<Name><![CDATA[text7]]></Name>
+					<X>580</X><Y>660</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-328966</Color>
+					<Text><![CDATA[Alex Master: amaster@purdue.edu]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>24</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
 			</Presentation>
 
 			<Parameters>			
