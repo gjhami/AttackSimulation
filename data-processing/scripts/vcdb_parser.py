@@ -41,8 +41,6 @@ class Incident:
     target_actors = {'State-affiliated', 'Former employee', 'Competitor', 'Nation-state',
                      'Organized crime', 'Activist'}
 
-    all_years = []
-
     # All disclosure values: ['Yes', 'No', 'Potentially', 'Unknown']
 
     @classmethod
