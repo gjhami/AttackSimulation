@@ -7,9 +7,9 @@
 <AnyLogicWorkspace WorkspaceVersion="1.9" AnyLogicVersion="8.7.12.202205250339" AlpVersion="8.7.5">
 <Model>
 	<Id>1481747912642</Id>
-	<Name><![CDATA[Current]]></Name>
+	<Name><![CDATA[AttackSimulationModel]]></Name>
 	<EngineVersion>6</EngineVersion>
-	<JavaPackageName><![CDATA[mango_model3]]></JavaPackageName>
+	<JavaPackageName><![CDATA[attack_simulation]]></JavaPackageName>
 	<ModelTimeUnit><![CDATA[Millisecond]]></ModelTimeUnit>
 	<OptionLists>
 		<OptionList>
@@ -761,12 +761,12 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 					<ShowLabel>true</ShowLabel>
 					<PresentationId>1481752104144</PresentationId>
 					<ActiveObjectClass>
-						<PackageName><![CDATA[mango_model3]]></PackageName>
+						<PackageName><![CDATA[attack_simulation]]></PackageName>
 						<ClassName><![CDATA[NetworkNode]]></ClassName>
 					</ActiveObjectClass>
 					<GenericParameterSubstitute>
 						<GenericParameterSubstituteReference>
-							<PackageName><![CDATA[mango_model3]]></PackageName>
+							<PackageName><![CDATA[attack_simulation]]></PackageName>
 							<ClassName><![CDATA[NetworkNode]]></ClassName>
 							<ItemName><![CDATA[1481748191648]]></ItemName>
 						</GenericParameterSubstituteReference>
@@ -823,12 +823,12 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 					<ShowLabel>true</ShowLabel>
 					<PresentationId>1481752295287</PresentationId>
 					<ActiveObjectClass>
-						<PackageName><![CDATA[mango_model3]]></PackageName>
+						<PackageName><![CDATA[attack_simulation]]></PackageName>
 						<ClassName><![CDATA[NetworkNode]]></ClassName>
 					</ActiveObjectClass>
 					<GenericParameterSubstitute>
 						<GenericParameterSubstituteReference>
-							<PackageName><![CDATA[mango_model3]]></PackageName>
+							<PackageName><![CDATA[attack_simulation]]></PackageName>
 							<ClassName><![CDATA[NetworkNode]]></ClassName>
 							<ItemName><![CDATA[1481748191648]]></ItemName>
 						</GenericParameterSubstituteReference>
@@ -885,12 +885,12 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 					<ShowLabel>true</ShowLabel>
 					<PresentationId>1481752488241</PresentationId>
 					<ActiveObjectClass>
-						<PackageName><![CDATA[mango_model3]]></PackageName>
+						<PackageName><![CDATA[attack_simulation]]></PackageName>
 						<ClassName><![CDATA[NetworkNode]]></ClassName>
 					</ActiveObjectClass>
 					<GenericParameterSubstitute>
 						<GenericParameterSubstituteReference>
-							<PackageName><![CDATA[mango_model3]]></PackageName>
+							<PackageName><![CDATA[attack_simulation]]></PackageName>
 							<ClassName><![CDATA[NetworkNode]]></ClassName>
 							<ItemName><![CDATA[1481748191648]]></ItemName>
 						</GenericParameterSubstituteReference>
@@ -947,12 +947,12 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 					<ShowLabel>true</ShowLabel>
 					<PresentationId>1482002693383</PresentationId>
 					<ActiveObjectClass>
-						<PackageName><![CDATA[mango_model3]]></PackageName>
+						<PackageName><![CDATA[attack_simulation]]></PackageName>
 						<ClassName><![CDATA[NetworkNode]]></ClassName>
 					</ActiveObjectClass>
 					<GenericParameterSubstitute>
 						<GenericParameterSubstituteReference>
-							<PackageName><![CDATA[mango_model3]]></PackageName>
+							<PackageName><![CDATA[attack_simulation]]></PackageName>
 							<ClassName><![CDATA[NetworkNode]]></ClassName>
 							<ItemName><![CDATA[1481748191648]]></ItemName>
 						</GenericParameterSubstituteReference>
@@ -1009,12 +1009,12 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 					<ShowLabel>true</ShowLabel>
 					<PresentationId>1482004328455</PresentationId>
 					<ActiveObjectClass>
-						<PackageName><![CDATA[mango_model3]]></PackageName>
+						<PackageName><![CDATA[attack_simulation]]></PackageName>
 						<ClassName><![CDATA[NetworkNode]]></ClassName>
 					</ActiveObjectClass>
 					<GenericParameterSubstitute>
 						<GenericParameterSubstituteReference>
-							<PackageName><![CDATA[mango_model3]]></PackageName>
+							<PackageName><![CDATA[attack_simulation]]></PackageName>
 							<ClassName><![CDATA[NetworkNode]]></ClassName>
 							<ItemName><![CDATA[1481748191648]]></ItemName>
 						</GenericParameterSubstituteReference>
@@ -1071,12 +1071,12 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 					<ShowLabel>true</ShowLabel>
 					<PresentationId>1482004488141</PresentationId>
 					<ActiveObjectClass>
-						<PackageName><![CDATA[mango_model3]]></PackageName>
+						<PackageName><![CDATA[attack_simulation]]></PackageName>
 						<ClassName><![CDATA[NetworkNode]]></ClassName>
 					</ActiveObjectClass>
 					<GenericParameterSubstitute>
 						<GenericParameterSubstituteReference>
-							<PackageName><![CDATA[mango_model3]]></PackageName>
+							<PackageName><![CDATA[attack_simulation]]></PackageName>
 							<ClassName><![CDATA[NetworkNode]]></ClassName>
 							<ItemName><![CDATA[1481748191648]]></ItemName>
 						</GenericParameterSubstituteReference>
@@ -1133,12 +1133,12 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 					<ShowLabel>true</ShowLabel>
 					<PresentationId>1617468790956</PresentationId>
 					<ActiveObjectClass>
-						<PackageName><![CDATA[mango_model3]]></PackageName>
+						<PackageName><![CDATA[attack_simulation]]></PackageName>
 						<ClassName><![CDATA[NetworkNode]]></ClassName>
 					</ActiveObjectClass>
 					<GenericParameterSubstitute>
 						<GenericParameterSubstituteReference>
-							<PackageName><![CDATA[mango_model3]]></PackageName>
+							<PackageName><![CDATA[attack_simulation]]></PackageName>
 							<ClassName><![CDATA[NetworkNode]]></ClassName>
 							<ItemName><![CDATA[1481748191648]]></ItemName>
 						</GenericParameterSubstituteReference>
@@ -1195,12 +1195,12 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 					<ShowLabel>true</ShowLabel>
 					<PresentationId>1617469959010</PresentationId>
 					<ActiveObjectClass>
-						<PackageName><![CDATA[mango_model3]]></PackageName>
+						<PackageName><![CDATA[attack_simulation]]></PackageName>
 						<ClassName><![CDATA[NetworkNode]]></ClassName>
 					</ActiveObjectClass>
 					<GenericParameterSubstitute>
 						<GenericParameterSubstituteReference>
-							<PackageName><![CDATA[mango_model3]]></PackageName>
+							<PackageName><![CDATA[attack_simulation]]></PackageName>
 							<ClassName><![CDATA[NetworkNode]]></ClassName>
 							<ItemName><![CDATA[1481748191648]]></ItemName>
 						</GenericParameterSubstituteReference>
@@ -1257,12 +1257,12 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 					<ShowLabel>true</ShowLabel>
 					<PresentationId>1654360282357</PresentationId>
 					<ActiveObjectClass>
-						<PackageName><![CDATA[mango_model3]]></PackageName>
+						<PackageName><![CDATA[attack_simulation]]></PackageName>
 						<ClassName><![CDATA[A_ThreatActor]]></ClassName>
 					</ActiveObjectClass>
 					<GenericParameterSubstitute>
 						<GenericParameterSubstituteReference>
-							<PackageName><![CDATA[mango_model3]]></PackageName>
+							<PackageName><![CDATA[attack_simulation]]></PackageName>
 							<ClassName><![CDATA[A_ThreatActor]]></ClassName>
 							<ItemName><![CDATA[1654029793099]]></ItemName>
 						</GenericParameterSubstituteReference>
@@ -1321,7 +1321,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 					<InitializationType>LOAD_FROM_DATABASE</InitializationType>
 					<InitializationDatabaseTableQuery>
 						<TableReference>
-							<PackageName><![CDATA[mango_model3]]></PackageName>
+							<PackageName><![CDATA[attack_simulation]]></PackageName>
 							<ClassName><![CDATA[sheet1]]></ClassName>
 						</TableReference>
 					</InitializationDatabaseTableQuery>
@@ -1331,72 +1331,72 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 					<ParameterToDatabaseColumnMapping>
 						<Item>
 							<Key>
-								<PackageName><![CDATA[mango_model3]]></PackageName>
+								<PackageName><![CDATA[attack_simulation]]></PackageName>
 								<ClassName><![CDATA[A_ThreatActor]]></ClassName>
 								<ItemName><![CDATA[p_id]]></ItemName>
 							</Key>
 							<Value>
-								<PackageName><![CDATA[mango_model3]]></PackageName>
+								<PackageName><![CDATA[attack_simulation]]></PackageName>
 								<ClassName><![CDATA[sheet1]]></ClassName>
 								<ItemName><![CDATA[attacker_id]]></ItemName>
 							</Value>
 						</Item>
 						<Item>
 							<Key>
-								<PackageName><![CDATA[mango_model3]]></PackageName>
+								<PackageName><![CDATA[attack_simulation]]></PackageName>
 								<ClassName><![CDATA[A_ThreatActor]]></ClassName>
 								<ItemName><![CDATA[p_name]]></ItemName>
 							</Key>
 							<Value>
-								<PackageName><![CDATA[mango_model3]]></PackageName>
+								<PackageName><![CDATA[attack_simulation]]></PackageName>
 								<ClassName><![CDATA[sheet1]]></ClassName>
 								<ItemName><![CDATA[attacker_name]]></ItemName>
 							</Value>
 						</Item>
 						<Item>
 							<Key>
-								<PackageName><![CDATA[mango_model3]]></PackageName>
+								<PackageName><![CDATA[attack_simulation]]></PackageName>
 								<ClassName><![CDATA[A_ThreatActor]]></ClassName>
 								<ItemName><![CDATA[p_failRatio]]></ItemName>
 							</Key>
 							<Value>
-								<PackageName><![CDATA[mango_model3]]></PackageName>
+								<PackageName><![CDATA[attack_simulation]]></PackageName>
 								<ClassName><![CDATA[sheet1]]></ClassName>
 								<ItemName><![CDATA[non_breach_ratio]]></ItemName>
 							</Value>
 						</Item>
 						<Item>
 							<Key>
-								<PackageName><![CDATA[mango_model3]]></PackageName>
+								<PackageName><![CDATA[attack_simulation]]></PackageName>
 								<ClassName><![CDATA[A_ThreatActor]]></ClassName>
 								<ItemName><![CDATA[p_failN]]></ItemName>
 							</Key>
 							<Value>
-								<PackageName><![CDATA[mango_model3]]></PackageName>
+								<PackageName><![CDATA[attack_simulation]]></PackageName>
 								<ClassName><![CDATA[sheet1]]></ClassName>
 								<ItemName><![CDATA[non_breach_n]]></ItemName>
 							</Value>
 						</Item>
 						<Item>
 							<Key>
-								<PackageName><![CDATA[mango_model3]]></PackageName>
+								<PackageName><![CDATA[attack_simulation]]></PackageName>
 								<ClassName><![CDATA[A_ThreatActor]]></ClassName>
 								<ItemName><![CDATA[p_attackRatio]]></ItemName>
 							</Key>
 							<Value>
-								<PackageName><![CDATA[mango_model3]]></PackageName>
+								<PackageName><![CDATA[attack_simulation]]></PackageName>
 								<ClassName><![CDATA[sheet1]]></ClassName>
 								<ItemName><![CDATA[attack_ratio]]></ItemName>
 							</Value>
 						</Item>
 						<Item>
 							<Key>
-								<PackageName><![CDATA[mango_model3]]></PackageName>
+								<PackageName><![CDATA[attack_simulation]]></PackageName>
 								<ClassName><![CDATA[A_ThreatActor]]></ClassName>
 								<ItemName><![CDATA[p_attackN]]></ItemName>
 							</Key>
 							<Value>
-								<PackageName><![CDATA[mango_model3]]></PackageName>
+								<PackageName><![CDATA[attack_simulation]]></PackageName>
 								<ClassName><![CDATA[sheet1]]></ClassName>
 								<ItemName><![CDATA[attack_n]]></ItemName>
 							</Value>
@@ -3970,7 +3970,7 @@ return v_effectiveProbability;]]></Body>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
 					<ActiveObjectClass>
-						<PackageName><![CDATA[mango_model3]]></PackageName>
+						<PackageName><![CDATA[attack_simulation]]></PackageName>
 						<ClassName><![CDATA[Main]]></ClassName>
 					</ActiveObjectClass>
 				</ContainerLink>
@@ -5223,7 +5223,7 @@ return v_isAttacker;
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
 					<ActiveObjectClass>
-						<PackageName><![CDATA[mango_model3]]></PackageName>
+						<PackageName><![CDATA[attack_simulation]]></PackageName>
 						<ClassName><![CDATA[Main]]></ClassName>
 					</ActiveObjectClass>
 				</ContainerLink>
@@ -5347,7 +5347,7 @@ return v_isAttacker;
 					<Rotation>0.0</Rotation>
 					<ImageFiles>
 						<ImageResourceReference>
-							<PackageName><![CDATA[mango_model3]]></PackageName>
+							<PackageName><![CDATA[attack_simulation]]></PackageName>
 							<ClassName><![CDATA[thesis_simpleAttacker.png]]></ClassName>
 						</ImageResourceReference>
 					</ImageFiles>
@@ -5454,7 +5454,7 @@ return v_isAttacker;
 				<ConnectOnStartup>true</ConnectOnStartup>
 				<DatabaseName><![CDATA[]]></DatabaseName>
 				<ResourceReference>
-					<PackageName><![CDATA[mango_model3]]></PackageName>
+					<PackageName><![CDATA[attack_simulation]]></PackageName>
 					<ClassName><![CDATA[threat_actor_inputs.xlsx]]></ClassName>
 				</ResourceReference>
 				<Host><![CDATA[localhost]]></Host>
@@ -5464,7 +5464,7 @@ return v_isAttacker;
 			</ExternalConnection>
 			<TableImportSettings>
 				<TableReference>
-					<PackageName><![CDATA[mango_model3]]></PackageName>
+					<PackageName><![CDATA[attack_simulation]]></PackageName>
 					<ClassName><![CDATA[sheet1]]></ClassName>
 				</TableReference>
 				<ConnectionIndex>0</ConnectionIndex>

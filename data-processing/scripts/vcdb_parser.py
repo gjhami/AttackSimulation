@@ -41,6 +41,8 @@ class Incident:
     target_actors = {'State-affiliated', 'Former employee', 'Competitor', 'Nation-state',
                      'Organized crime', 'Activist'}
 
+    all_years = []
+
     # All disclosure values: ['Yes', 'No', 'Potentially', 'Unknown']
 
     @classmethod
@@ -154,6 +156,14 @@ class Incident:
         self.actor_varieties = self.get_actor_varieties()
 
         self.update_statistics()
+
+        if 'timeline' in self.incident_json:
+            timeline_entry = 'incident'
+            #for timeline_entry in self.incident_json['timeline']:
+            if timeline_entry in self.incident_json['timeline']:
+                if 'year' in self.incident_json['timeline'][timeline_entry]:
+                    if self.incident_json['timeline'][timeline_entry]['year'] not in Incident.all_years:
+                        Incident.all_years.append(self.incident_json['timeline'][timeline_entry]['year'])
 
         # actor_to_investigate = 'Competitor'
         # if actor_to_investigate in self.actor_varieties:
@@ -292,6 +302,7 @@ def main():
     # Print statistics to console and save them to a csv
     Incident.print_stats()
     Incident.save_stats('output.csv')
+    print(Incident.all_years)
 
 
 if __name__ == "__main__":
