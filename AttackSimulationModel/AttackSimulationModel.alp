@@ -73,10 +73,14 @@
 			<ClientAreaTopLeft><X>0</X><Y>0</Y></ClientAreaTopLeft>
 			<Import><![CDATA[import java.util.*;
 ]]></Import>
-			<StartupCode><![CDATA[DMZEdit.setText("1", true);
+			<StartupCode><![CDATA[// Set default attack path
+DMZEdit.setText("1", true);
 WebAppEdit.setText("2", true);
 InternalNetEdit.setText("3", true);
 FlagEdit.setText("4", true);
+
+// Calculate default breach cost
+f_updateBreachCost();
 
 /* Set Default Cost and Probabilities */
 va_exchangeServer.eb_antivirusPr.setText(0.94);
@@ -268,7 +272,7 @@ va_flag.v_antivirusCost					= 3.54;]]></StartupCode>
 					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
 						<Type><![CDATA[int]]></Type>        
 						<InitialValue Class="CodeValue">
-							<Code><![CDATA[1000]]></Code>
+							<Code><![CDATA[10]]></Code>
 						</InitialValue>
 					</Properties>
 				</Variable>
@@ -437,7 +441,7 @@ va_flag.v_antivirusCost					= 3.54;]]></StartupCode>
 					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
 						<Type><![CDATA[int]]></Type>        
 						<InitialValue Class="CodeValue">
-							<Code><![CDATA[0]]></Code>
+							<Code><![CDATA[250]]></Code>
 						</InitialValue>
 					</Properties>
 				</Variable>
@@ -970,7 +974,7 @@ for (Map.Entry<Integer, NetworkNode> entry : v_positions.entrySet()) {
 // Update totals for number of breaches, number of attacks stopped, ROI
 // Compromises of the last node in the attack path are treated as data breaches
 int numDataBreaches = ((NetworkNode) v_positions.lastEntry().getValue()).v_numCompromises;
-double totalLoss = numDataBreaches * v_breachCost
+double totalLoss = numDataBreaches * v_breachCost;
 double numAttacksStopped = v_totalRuns - numDataBreaches;
 double totalReturn = numAttacksStopped * v_breachCost;
 
@@ -3570,6 +3574,7 @@ t_breachCost.setText(v_breachCost);]]></Body>
 				 	<EmbeddedIcon>false</EmbeddedIcon>				
 					<Id>1655475464664</Id>
 					<Name><![CDATA[combobox]]></Name>
+					<Description><![CDATA[Combo box allowing users to select the technique they wish to use to estimate the cost of a data breach. This is used to determine which set of additional controls are visible, allowing them to further tailor the estimate for each technique. Additionally, changes to the selection in this box update the total cost of a breach output and set the v_estimationTechnique variable which determines which user inputs to use for calculating the cost of a breach based on teh selected technique.]]></Description>
 					<X>180</X><Y>560</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
@@ -3760,6 +3765,7 @@ f_updateBreachCost();]]></ActionCode>
 				 	<EmbeddedIcon>false</EmbeddedIcon>				
 					<Id>1655475961079</Id>
 					<Name><![CDATA[eb_anonCustomerDataCount]]></Name>
+					<Description><![CDATA[Edit box allowing the user to input the number of anonymized customer data records stored at the final node in the attack path. This is later used to update the cost per  breach output as well as in calculations for the total loss, total return, and ROI outputs]]></Description>
 					<X>0</X><Y>35</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
@@ -3785,6 +3791,7 @@ f_updateBreachCost();]]></ActionCode>
 				 	<EmbeddedIcon>false</EmbeddedIcon>				
 					<Id>1655475969229</Id>
 					<Name><![CDATA[eb_otherSensitiveDataCount]]></Name>
+					<Description><![CDATA[Edit box allowing the user to input the number of sensitive data records stored at the final node in the attack path. This is later used to update the cost per  breach output as well as in calculations for the total loss, total return, and ROI outputs]]></Description>
 					<X>0</X><Y>5</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
@@ -3809,6 +3816,7 @@ f_updateBreachCost();]]></ActionCode>
 				 	<EmbeddedIcon>false</EmbeddedIcon>				
 					<Id>1655476415360</Id>
 					<Name><![CDATA[eb_employeePIICount]]></Name>
+					<Description><![CDATA[Edit box allowing the user to input the number of employee PII records stored at the final node in the attack path. This is later used to update the cost per  breach output as well as in calculations for the total loss, total return, and ROI outputs]]></Description>
 					<X>0</X><Y>-25</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
@@ -3833,6 +3841,7 @@ f_updateBreachCost();]]></ActionCode>
 				 	<EmbeddedIcon>false</EmbeddedIcon>				
 					<Id>1655476419334</Id>
 					<Name><![CDATA[eb_customerPIICount]]></Name>
+					<Description><![CDATA[Edit box allowing the user to input the number of customer PII records stored at the final node in the attack path. This is later used to update the cost per  breach output as well as in calculations for the total loss, total return, and ROI outputs]]></Description>
 					<X>0</X><Y>-55</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
@@ -3921,6 +3930,7 @@ f_updateBreachCost();]]></ActionCode>
 				 	<EmbeddedIcon>false</EmbeddedIcon>				
 					<Id>1655476600845</Id>
 					<Name><![CDATA[eb_otherSensitiveDataCost]]></Name>
+					<Description><![CDATA[Edit box containing the fixed value for the cost per record of other sensitive data lost in a data breach. This amount comes from the IBM cost of a breach report. This is later used to update the cost per  breach output as well as in calculations for the total loss, total return, and ROI outputs]]></Description>
 					<X>110</X><Y>5</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
@@ -3945,6 +3955,7 @@ f_updateBreachCost();]]></ActionCode>
 				 	<EmbeddedIcon>false</EmbeddedIcon>				
 					<Id>1655476600849</Id>
 					<Name><![CDATA[eb_employeePIICost]]></Name>
+					<Description><![CDATA[Edit box containing the fixed value for the cost per record of employee PII lost in a data breach. This amount comes from the IBM cost of a breach report. This is later used to update the cost per  breach output as well as in calculations for the total loss, total return, and ROI outputs]]></Description>
 					<X>110</X><Y>-25</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
@@ -3969,6 +3980,7 @@ f_updateBreachCost();]]></ActionCode>
 				 	<EmbeddedIcon>false</EmbeddedIcon>				
 					<Id>1655476600853</Id>
 					<Name><![CDATA[eb_customerPIICost]]></Name>
+					<Description><![CDATA[Edit box containing the fixed value for the cost per record of customer PII lost in a data breach. This amount comes from the IBM cost of a breach report. This is later used to update the cost per  breach output as well as in calculations for the total loss, total return, and ROI outputs]]></Description>
 					<X>110</X><Y>-55</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
@@ -3993,6 +4005,7 @@ f_updateBreachCost();]]></ActionCode>
 				 	<EmbeddedIcon>false</EmbeddedIcon>				
 					<Id>1655476600858</Id>
 					<Name><![CDATA[eb_anonCustomerDataCost]]></Name>
+					<Description><![CDATA[Edit box containing the fixed value for the cost per record of anonymized customer data lost in a data breach. This amount comes from the IBM cost of a breach report. This is later used to update the cost per  breach output as well as in calculations for the total loss, total return, and ROI outputs]]></Description>
 					<X>110</X><Y>35</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
@@ -4017,6 +4030,7 @@ f_updateBreachCost();]]></ActionCode>
 				 	<EmbeddedIcon>false</EmbeddedIcon>				
 					<Id>1655476634011</Id>
 					<Name><![CDATA[eb_customRecordCost]]></Name>
+					<Description><![CDATA[Users may enter a cost per record lost in a data breach for some customized type of record they may be storing. This is later used to update the cost per  breach output as well as in calculations for the total loss, total return, and ROI outputs. The default cost is the average globabl cost per record across all record types accoring to the IBM cost of a breach report.]]></Description>
 					<X>110</X><Y>65</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
@@ -4042,6 +4056,7 @@ f_updateBreachCost();]]></ActionCode>
 				 	<EmbeddedIcon>false</EmbeddedIcon>				
 					<Id>1655476634015</Id>
 					<Name><![CDATA[eb_customRecordCount]]></Name>
+					<Description><![CDATA[Edit box allowing the user to input the number of custom records stored at the final node in the attack path. Users may edit the cost per record of a data breach for this record type. This is later used to update the cost per  breach output as well as in calculations for the total loss, total return, and ROI outputs]]></Description>
 					<X>0</X><Y>65</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
@@ -4106,6 +4121,7 @@ for a small business (USD): ]]></Text>
 				 	<EmbeddedIcon>false</EmbeddedIcon>				
 					<Id>1655479130377</Id>
 					<Name><![CDATA[eb_avgSmallBusinessCost]]></Name>
+					<Description><![CDATA[Edit box containing fixed value for the cost of a data breach for small businesses based on the IBM cost of a breach report. This is later used to update the cost per  breach output as well as in calculations for the total loss, total return, and ROI outputs]]></Description>
 					<X>40</X><Y>-20</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
@@ -4168,6 +4184,7 @@ for a small business (USD): ]]></Text>
 				 	<EmbeddedIcon>false</EmbeddedIcon>				
 					<Id>1655479370109</Id>
 					<Name><![CDATA[eb_manualCost]]></Name>
+					<Description><![CDATA[Edit box allowing users to manually enter their own estimate for the cost of a data brach. This is later used to update the cost per  breach output as well as in calculations for the total loss, total return, and ROI outputs]]></Description>
 					<X>40</X><Y>-10</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
