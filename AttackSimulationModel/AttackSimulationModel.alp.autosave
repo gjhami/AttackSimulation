@@ -970,7 +970,7 @@ for (Map.Entry<Integer, NetworkNode> entry : v_positions.entrySet()) {
 // Update totals for number of breaches, number of attacks stopped, ROI
 // Compromises of the last node in the attack path are treated as data breaches
 int numDataBreaches = ((NetworkNode) v_positions.lastEntry().getValue()).v_numCompromises;
-double totalLoss = numDataBreaches * v_breachCost
+double totalLoss = numDataBreaches * v_breachCost;
 double numAttacksStopped = v_totalRuns - numDataBreaches;
 double totalReturn = numAttacksStopped * v_breachCost;
 
