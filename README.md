@@ -1,4 +1,4 @@
-[![Github All Releases](https://img.shields.io/github/downloads/gjhami/AttackSimulation/total.svg)]()
+![Download Counter]([http://url/to/img.png](https://img.shields.io/github/downloads/gjhami/AttackSimulation/total.svg))
 # AttackSimulation
 An AnyLogic simulation model allowing users to quantitatively estimate the risk of cyber attacks to their organization, as well as the efficacy and total cost of security controls.
 
