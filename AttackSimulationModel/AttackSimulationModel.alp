@@ -272,7 +272,7 @@ va_flag.v_antivirusCost					= 127.20;]]></StartupCode>
 				<Variable Class="PlainVariable">
 					<Id>1653575152211</Id>
 					<Name><![CDATA[v_graphColors]]></Name>
-					<X>320</X><Y>-360</Y>
+					<X>320</X><Y>-320</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -287,7 +287,7 @@ va_flag.v_antivirusCost					= 127.20;]]></StartupCode>
 				<Variable Class="PlainVariable">
 					<Id>1653589792118</Id>
 					<Name><![CDATA[v_remainingRuns]]></Name>
-					<X>320</X><Y>-380</Y>
+					<X>320</X><Y>-360</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -330,7 +330,7 @@ va_flag.v_antivirusCost					= 127.20;]]></StartupCode>
 					<Id>1654451474568</Id>
 					<Name><![CDATA[v_effectiveAttacker]]></Name>
 					<Description><![CDATA[Attacker selected for the current attack]]></Description>
-					<X>320</X><Y>-320</Y>
+					<X>320</X><Y>-300</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -342,7 +342,7 @@ va_flag.v_antivirusCost					= 127.20;]]></StartupCode>
 				<Variable Class="PlainVariable">
 					<Id>1654532780996</Id>
 					<Name><![CDATA[v_effectiveAttackerFailRatio]]></Name>
-					<X>320</X><Y>-300</Y>
+					<X>320</X><Y>-280</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -585,6 +585,36 @@ va_flag.v_antivirusCost					= 127.20;]]></StartupCode>
 						<Type><![CDATA[int]]></Type>        
 					</Properties>
 				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1655920511157</Id>
+					<Name><![CDATA[v_numYears]]></Name>
+					<X>320</X><Y>-380</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[int]]></Type>        
+						<InitialValue Class="CodeValue">
+							<Code><![CDATA[100]]></Code>
+						</InitialValue>
+					</Properties>
+				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1655920714005</Id>
+					<Name><![CDATA[v_remainingYears]]></Name>
+					<X>320</X><Y>-340</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[int]]></Type>        
+						<InitialValue Class="CodeValue">
+							<Code><![CDATA[0]]></Code>
+						</InitialValue>
+					</Properties>
+				</Variable>
 				<Variable Class="Parameter">
 					<Id>1655404070757</Id>
 					<Name><![CDATA[p_dub]]></Name>
@@ -670,7 +700,7 @@ va_flag.v_antivirusCost					= 127.20;]]></StartupCode>
 				<Variable Class="CollectionVariable">
 					<Id>1654352585361</Id>
 					<Name><![CDATA[cv_allAttackers]]></Name>
-					<X>320</X><Y>-280</Y>
+					<X>320</X><Y>-260</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -884,6 +914,10 @@ v_runningFailRatioSum = v_runningFailRatioSum + v_effectiveAttackerFailRatio;]]>
 						<Name><![CDATA[p_runs]]></Name>
 						<Type><![CDATA[int]]></Type>
 					</Parameter>
+					<Parameter>
+						<Name><![CDATA[p_years]]></Name>
+						<Type><![CDATA[int]]></Type>
+					</Parameter>
 					<Body><![CDATA[/* 
 The following code takes place when the 'RelayAttack' button 
 is clicked.  The first function gets executed and the 
@@ -895,21 +929,25 @@ calculated and displayed on 'Main'.
 
 f_linkNodes();
 v_remainingRuns = p_runs;
+v_remainingYears = p_years;
 NetworkNode firstNode = (NetworkNode)v_positions.firstEntry().getValue();
 
 while (v_remainingRuns > 0) {
 	v_remainingRuns = v_remainingRuns - 1;
+	v_remainingYears = p_years;
 	v_totalRuns = v_totalRuns + 1;
-	f_updateAttackerFailRatio();
 	
-	firstNode.f_calculateOverall(v_effectiveAttackerFailRatio);
-	firstNode.f_processAttack();
-	
-	t_totalAttacksRun.setText(v_totalRuns);
-	totalCost.setText(f_updateTotalCost());
+	while (v_remainingYears > 0) {
+		v_remainingYears = v_remainingYears - 1;
+		
+		f_updateAttackerFailRatio();
+		firstNode.f_calculateOverall(v_effectiveAttackerFailRatio);
+		firstNode.f_processAttack();
+	}
 }
 
-
+t_totalAttacksRun.setText(v_totalRuns);
+totalCost.setText(f_updateTotalCost());
 f_updateGraph();
 
 ]]></Body>
@@ -991,7 +1029,7 @@ bc_compromisedCount.removeAll();
 for (Map.Entry<Integer, NetworkNode> entry : v_positions.entrySet()) {
 	node = entry.getValue();
 	nodeName = node.getName();
-	v_compromisedCount = (double) node.v_numCompromises;
+	v_compromisedCount = (int) Math.round((double) node.v_numCompromises / (double) v_numYears);
 	v_percentNodeCompromised = 100 * (v_compromisedCount / v_totalRuns);
    
     di_compromisedPercent = new DataItem();
@@ -1011,7 +1049,7 @@ for (Map.Entry<Integer, NetworkNode> entry : v_positions.entrySet()) {
 
 // Update totals for number of breaches, number of attacks stopped, ROI
 // Compromises of the last node in the attack path are treated as data breaches
-int numDataBreaches = ((NetworkNode) v_positions.lastEntry().getValue()).v_numCompromises;
+int numDataBreaches = (int) Math.round((double) (((NetworkNode) v_positions.lastEntry().getValue()).v_numCompromises) / (double) v_numYears);
 double totalLoss = numDataBreaches * v_breachCost;
 double numAttacksStopped = v_totalRuns - numDataBreaches;
 double totalReturn = numAttacksStopped * v_breachCost;
@@ -2061,7 +2099,7 @@ t_breachCost.setText(v_breachCost);]]></Body>
 				<Text>
 					<Id>1493000682086</Id>
 					<Name><![CDATA[text7]]></Name>
-					<X>40</X><Y>920</Y>
+					<X>40</X><Y>950</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2082,7 +2120,7 @@ t_breachCost.setText(v_breachCost);]]></Body>
 				<Text>
 					<Id>1493000707590</Id>
 					<Name><![CDATA[totalCost]]></Name>
-					<X>190</X><Y>920</Y>
+					<X>190</X><Y>950</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2104,7 +2142,7 @@ t_breachCost.setText(v_breachCost);]]></Body>
 				 	<EmbeddedIcon>false</EmbeddedIcon>				
 					<Id>1481759601788</Id>
 					<Name><![CDATA[RelayButton]]></Name>
-					<X>40</X><Y>840</Y>
+					<X>40</X><Y>870</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2114,11 +2152,11 @@ t_breachCost.setText(v_breachCost);]]></Body>
                         <EmbeddedIcon>false</EmbeddedIcon>	
 						<TextColor/>
 						<Enabled>true</Enabled>
-						<ActionCode><![CDATA[f_runAttacks(v_targetRuns);]]></ActionCode>
+						<ActionCode><![CDATA[f_runAttacks(v_targetRuns, v_numYears);]]></ActionCode>
 					</BasicProperties>
 					<ExtendedProperties>
 						<Font Name="Dialog" Size="11" Style="0"/>
-						<LabelText><![CDATA[Run Attack]]></LabelText>
+						<LabelText><![CDATA[Simulate Year]]></LabelText>
 					</ExtendedProperties>
 				</Control>
 				<Control Type="EditBox">
@@ -2422,7 +2460,7 @@ t_breachCost.setText(v_breachCost);]]></Body>
 				 	<EmbeddedIcon>false</EmbeddedIcon>				
 					<Id>1653490935003</Id>
 					<Name><![CDATA[ResetButton]]></Name>
-					<X>170</X><Y>840</Y>
+					<X>170</X><Y>870</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2526,7 +2564,7 @@ t_breachCost.setText(v_breachCost);]]></Body>
 					<Z>0</Z>
 					<Rotation>0.0</Rotation>
 					<Color>-328966</Color>
-					<Text><![CDATA[Num Runs]]></Text>
+					<Text><![CDATA[Attacks Per Year]]></Text>
 					<Font>
 						<Name>SansSerif</Name>
 						<Size>12</Size>
@@ -2564,7 +2602,7 @@ t_breachCost.setText(v_breachCost);]]></Body>
 				<Text>
 					<Id>1653665569178</Id>
 					<Name><![CDATA[PositionText]]></Name>
-					<X>80</X><Y>1140</Y>
+					<X>20</X><Y>1250</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>false</PresentationFlag>
@@ -2826,7 +2864,7 @@ t_breachCost.setText(v_breachCost);]]></Body>
 				<Text>
 					<Id>1654362653468</Id>
 					<Name><![CDATA[t_resultsHeading]]></Name>
-					<X>20</X><Y>890</Y>
+					<X>20</X><Y>920</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -3027,7 +3065,7 @@ t_breachCost.setText(v_breachCost);]]></Body>
 				<Text>
 					<Id>1654534047296</Id>
 					<Name><![CDATA[text9]]></Name>
-					<X>40</X><Y>1050</Y>
+					<X>40</X><Y>1080</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -3048,7 +3086,7 @@ t_breachCost.setText(v_breachCost);]]></Body>
 				<Text>
 					<Id>1654534180550</Id>
 					<Name><![CDATA[t_totalAttacksRun]]></Name>
-					<X>190</X><Y>1050</Y>
+					<X>190</X><Y>1080</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -4293,7 +4331,7 @@ for a small business (USD): ]]></Text>
 				<Text>
 					<Id>1655480791150</Id>
 					<Name><![CDATA[text45]]></Name>
-					<X>40</X><Y>940</Y>
+					<X>40</X><Y>970</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -4314,7 +4352,7 @@ for a small business (USD): ]]></Text>
 				<Text>
 					<Id>1655480810018</Id>
 					<Name><![CDATA[t_breachCost]]></Name>
-					<X>190</X><Y>940</Y>
+					<X>190</X><Y>970</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -4335,7 +4373,7 @@ for a small business (USD): ]]></Text>
 				<Text>
 					<Id>1655483890678</Id>
 					<Name><![CDATA[text46]]></Name>
-					<X>40</X><Y>1090</Y>
+					<X>40</X><Y>1120</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -4356,7 +4394,7 @@ for a small business (USD): ]]></Text>
 				<Text>
 					<Id>1655483912297</Id>
 					<Name><![CDATA[t_totalDataBreaches]]></Name>
-					<X>190</X><Y>1090</Y>
+					<X>190</X><Y>1120</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -4377,7 +4415,7 @@ for a small business (USD): ]]></Text>
 				<Text>
 					<Id>1655483959610</Id>
 					<Name><![CDATA[text47]]></Name>
-					<X>40</X><Y>1070</Y>
+					<X>40</X><Y>1100</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -4398,7 +4436,7 @@ for a small business (USD): ]]></Text>
 				<Text>
 					<Id>1655483959615</Id>
 					<Name><![CDATA[t_totalAttacksStopped]]></Name>
-					<X>190</X><Y>1070</Y>
+					<X>190</X><Y>1100</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -4419,7 +4457,7 @@ for a small business (USD): ]]></Text>
 				<Text>
 					<Id>1655483976581</Id>
 					<Name><![CDATA[text48]]></Name>
-					<X>40</X><Y>1015</Y>
+					<X>40</X><Y>1045</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -4440,7 +4478,7 @@ for a small business (USD): ]]></Text>
 				<Text>
 					<Id>1655483996718</Id>
 					<Name><![CDATA[t_ROI]]></Name>
-					<X>190</X><Y>1015</Y>
+					<X>190</X><Y>1045</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -4461,7 +4499,7 @@ for a small business (USD): ]]></Text>
 				<Text>
 					<Id>1655489911468</Id>
 					<Name><![CDATA[text49]]></Name>
-					<X>40</X><Y>995</Y>
+					<X>40</X><Y>1025</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -4482,7 +4520,7 @@ for a small business (USD): ]]></Text>
 				<Text>
 					<Id>1655489940108</Id>
 					<Name><![CDATA[t_totalReturn]]></Name>
-					<X>190</X><Y>995</Y>
+					<X>190</X><Y>1025</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -4503,7 +4541,7 @@ for a small business (USD): ]]></Text>
 				<Text>
 					<Id>1655490229303</Id>
 					<Name><![CDATA[text50]]></Name>
-					<X>40</X><Y>975</Y>
+					<X>40</X><Y>1005</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -4524,7 +4562,7 @@ for a small business (USD): ]]></Text>
 				<Text>
 					<Id>1655490274492</Id>
 					<Name><![CDATA[t_totalLoss]]></Name>
-					<X>190</X><Y>975</Y>
+					<X>190</X><Y>1005</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -4542,6 +4580,54 @@ for a small business (USD): ]]></Text>
 					</Font>
 					<Alignment>LEFT</Alignment>
 				</Text>
+				<Text>
+					<Id>1655920372086</Id>
+					<Name><![CDATA[text51]]></Name>
+					<X>40</X><Y>840</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-328966</Color>
+					<Text><![CDATA[Average over X years]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>12</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Control Type="EditBox">
+				 	<EmbeddedIcon>false</EmbeddedIcon>				
+					<Id>1655920372094</Id>
+					<Name><![CDATA[editbox18]]></Name>
+					<X>180</X><Y>835</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<BasicProperties Width="100" Height="20">
+                        <EmbeddedIcon>false</EmbeddedIcon>	
+						<FillColor>-328966</FillColor>
+						<TextColor>-16777216</TextColor>
+						<Enabled>true</Enabled>
+						<ActionCode><![CDATA[
+
+]]></ActionCode>
+					</BasicProperties>
+					<ExtendedProperties>
+						<Font Name="Dialog" Size="11" Style="0"/>
+						<MinValue><![CDATA[1]]></MinValue>
+						<MaxValue><![CDATA[1000000]]></MaxValue>
+						<LinkTo>true</LinkTo>
+						<Link>v_numYears</Link>
+					</ExtendedProperties>
+				</Control>
 			</Presentation>
 
 				</Level>
@@ -4626,7 +4712,7 @@ for a small business (USD): ]]></Text>
 					<ShowLabel>false</ShowLabel>
 					<Title><![CDATA[]]></Title>
 					<Width>390</Width>
-					<Height>1120</Height>
+					<Height>1150</Height>
 				</Area>
 				<Area>
 					<Id>1653854189145</Id>
