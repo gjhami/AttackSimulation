@@ -64,6 +64,30 @@
 				<Name><![CDATA[manual]]></Name>
 			</Option>
 		</OptionList>
+		<OptionList>
+			<Id>1655950272149</Id>
+			<Name><![CDATA[ol_controlIDs]]></Name>
+			<Option>
+				<Id>1655950272150</Id>
+				<Name><![CDATA[antivirus]]></Name>
+			</Option>
+			<Option>
+				<Id>1655950272151</Id>
+				<Name><![CDATA[IPS]]></Name>
+			</Option>
+			<Option>
+				<Id>1655950272152</Id>
+				<Name><![CDATA[firewall]]></Name>
+			</Option>
+			<Option>
+				<Id>1655950272153</Id>
+				<Name><![CDATA[spamFilter]]></Name>
+			</Option>
+			<Option>
+				<Id>1655950272154</Id>
+				<Name><![CDATA[secTraining]]></Name>
+			</Option>
+		</OptionList>
 	</OptionLists>
 	<ActiveObjectClasses>
 		<!--   =========   Active Object Class   ========  -->
@@ -615,6 +639,21 @@ va_flag.v_antivirusCost					= 127.20;]]></StartupCode>
 						</InitialValue>
 					</Properties>
 				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1655931971854</Id>
+					<Name><![CDATA[v_budget]]></Name>
+					<X>320</X><Y>-235</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[double]]></Type>        
+						<InitialValue Class="CodeValue">
+							<Code><![CDATA[20000]]></Code>
+						</InitialValue>
+					</Properties>
+				</Variable>
 				<Variable Class="Parameter">
 					<Id>1655404070757</Id>
 					<Name><![CDATA[p_dub]]></Name>
@@ -680,22 +719,6 @@ va_flag.v_antivirusCost					= 127.20;]]></StartupCode>
 							<DelimeterType>NO_DELIMETER</DelimeterType>
 						</ParameterEditor>
 					</Properties>                 
-				</Variable>
-				<Variable Class="CollectionVariable">
-					<Id>1654034130216</Id>
-					<Name><![CDATA[vc_compromisedNodes]]></Name>
-					<Description><![CDATA[Name of node and number of times compromised]]></Description>
-					<X>320</X><Y>-70</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Properties SaveInSnapshot="true" AccessType="public" StaticVariable="false">
-						<CollectionClass><![CDATA[TreeMap]]></CollectionClass>
-						<ElementClass><![CDATA[String]]></ElementClass>
-						<ValueElementClass><![CDATA[Double]]></ValueElementClass>
-					</Properties>
-
 				</Variable>
 				<Variable Class="CollectionVariable">
 					<Id>1654352585361</Id>
@@ -955,37 +978,6 @@ f_updateGraph();
 				<Function AccessType="default" StaticFunction="false">
 					<ReturnModificator>VOID</ReturnModificator>
 					<ReturnType><![CDATA[double]]></ReturnType>
-					<Id>1653426798615</Id>
-					<Name><![CDATA[f_getCompromisedNodes]]></Name>
-					<X>540</X><Y>-390</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Body><![CDATA[for (Map.Entry<Integer, NetworkNode> entry : v_positions.entrySet()) {
-	NetworkNode node = entry.getValue();
-	Double compromisedCount;
-	String nodeName = node.getName();
-	
-	if (node.v_nodeIsCompromised == true) {
-		compromisedCount = new Double(1);
-	}
-	else{
-		compromisedCount = new Double(0);
-	}
-
-    if (vc_compromisedNodes.containsKey(nodeName)) {
-        compromisedCount = compromisedCount + vc_compromisedNodes.get(nodeName);
-        vc_compromisedNodes.replace(nodeName, compromisedCount);
-    }
-    else{
-        vc_compromisedNodes.put(nodeName, compromisedCount);
-    }
-}]]></Body>
-				</Function>
-				<Function AccessType="default" StaticFunction="false">
-					<ReturnModificator>VOID</ReturnModificator>
-					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1653490984860</Id>
 					<Name><![CDATA[f_resetNodes]]></Name>
 					<X>540</X><Y>-410</Y>
@@ -995,7 +987,6 @@ f_updateGraph();
 					<ShowLabel>true</ShowLabel>
 					<Body><![CDATA[NetworkNode firstNode = (NetworkNode)v_positions.firstEntry().getValue();
 firstNode.f_reset();
-vc_compromisedNodes.clear();
 CompromisedChart.removeAll();
 bc_compromisedCount.removeAll();
 
@@ -1708,11 +1699,28 @@ t_breachCost.setText(v_breachCost);]]></Body>
 					<CollectionType>ARRAY_LIST_BASED</CollectionType>
 					<InEnvironment>true</InEnvironment>	
 					<InitialLocationType>AT_ANIMATION_POSITION</InitialLocationType>
-					<XCode Class="CodeValue">
-						<Code><![CDATA[0]]></Code>
+					<XCode Class="DatabaseQueryCodeValue">
+						<Type>SELECT_UNIQUE_VALUE</Type>
+						<TableReference>
+							<PackageName><![CDATA[attack_simulation]]></PackageName>
+							<ClassName><![CDATA[sheet1]]></ClassName>
+						</TableReference>
+						<Condition>
+							<ColumnReference>
+								<PackageName><![CDATA[attack_simulation]]></PackageName>
+								<ClassName><![CDATA[sheet1]]></ClassName>
+								<ItemName><![CDATA[attacker_id]]></ItemName>
+							</ColumnReference>
+							<Operator>EQUALS</Operator>
+						</Condition>
+						<ColumnReference>
+							<PackageName><![CDATA[attack_simulation]]></PackageName>
+							<ClassName><![CDATA[sheet1]]></ClassName>
+							<ItemName><![CDATA[non_breach_n]]></ItemName>
+						</ColumnReference>
 					</XCode>
 					<YCode Class="CodeValue">
-						<Code><![CDATA[0]]></Code>
+						<Code><![CDATA[400]]></Code>
 					</YCode>
 					<ZCode Class="CodeValue">
 						<Code><![CDATA[0]]></Code>
@@ -1736,7 +1744,7 @@ t_breachCost.setText(v_breachCost);]]></Body>
 					<InitializationDatabaseTableQuery>
 						<TableReference>
 							<PackageName><![CDATA[attack_simulation]]></PackageName>
-							<ClassName><![CDATA[sheet1]]></ClassName>
+							<ClassName><![CDATA[threat_actor_inputs]]></ClassName>
 						</TableReference>
 					</InitializationDatabaseTableQuery>
 					<InitializationDatabaseType>ONE_AGENT_PER_DATABASE_RECORD</InitializationDatabaseType>
@@ -1751,7 +1759,7 @@ t_breachCost.setText(v_breachCost);]]></Body>
 							</Key>
 							<Value>
 								<PackageName><![CDATA[attack_simulation]]></PackageName>
-								<ClassName><![CDATA[sheet1]]></ClassName>
+								<ClassName><![CDATA[threat_actor_inputs]]></ClassName>
 								<ItemName><![CDATA[attacker_id]]></ItemName>
 							</Value>
 						</Item>
@@ -1763,7 +1771,7 @@ t_breachCost.setText(v_breachCost);]]></Body>
 							</Key>
 							<Value>
 								<PackageName><![CDATA[attack_simulation]]></PackageName>
-								<ClassName><![CDATA[sheet1]]></ClassName>
+								<ClassName><![CDATA[threat_actor_inputs]]></ClassName>
 								<ItemName><![CDATA[attacker_name]]></ItemName>
 							</Value>
 						</Item>
@@ -1775,7 +1783,7 @@ t_breachCost.setText(v_breachCost);]]></Body>
 							</Key>
 							<Value>
 								<PackageName><![CDATA[attack_simulation]]></PackageName>
-								<ClassName><![CDATA[sheet1]]></ClassName>
+								<ClassName><![CDATA[threat_actor_inputs]]></ClassName>
 								<ItemName><![CDATA[non_breach_ratio]]></ItemName>
 							</Value>
 						</Item>
@@ -1787,7 +1795,7 @@ t_breachCost.setText(v_breachCost);]]></Body>
 							</Key>
 							<Value>
 								<PackageName><![CDATA[attack_simulation]]></PackageName>
-								<ClassName><![CDATA[sheet1]]></ClassName>
+								<ClassName><![CDATA[threat_actor_inputs]]></ClassName>
 								<ItemName><![CDATA[non_breach_n]]></ItemName>
 							</Value>
 						</Item>
@@ -1799,7 +1807,7 @@ t_breachCost.setText(v_breachCost);]]></Body>
 							</Key>
 							<Value>
 								<PackageName><![CDATA[attack_simulation]]></PackageName>
-								<ClassName><![CDATA[sheet1]]></ClassName>
+								<ClassName><![CDATA[threat_actor_inputs]]></ClassName>
 								<ItemName><![CDATA[attack_ratio]]></ItemName>
 							</Value>
 						</Item>
@@ -1811,7 +1819,7 @@ t_breachCost.setText(v_breachCost);]]></Body>
 							</Key>
 							<Value>
 								<PackageName><![CDATA[attack_simulation]]></PackageName>
-								<ClassName><![CDATA[sheet1]]></ClassName>
+								<ClassName><![CDATA[threat_actor_inputs]]></ClassName>
 								<ItemName><![CDATA[attack_n]]></ItemName>
 							</Value>
 						</Item>	
@@ -2099,7 +2107,7 @@ t_breachCost.setText(v_breachCost);]]></Body>
 				<Text>
 					<Id>1493000682086</Id>
 					<Name><![CDATA[text7]]></Name>
-					<X>40</X><Y>950</Y>
+					<X>40</X><Y>1020</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2120,7 +2128,7 @@ t_breachCost.setText(v_breachCost);]]></Body>
 				<Text>
 					<Id>1493000707590</Id>
 					<Name><![CDATA[totalCost]]></Name>
-					<X>190</X><Y>950</Y>
+					<X>190</X><Y>1020</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2142,7 +2150,7 @@ t_breachCost.setText(v_breachCost);]]></Body>
 				 	<EmbeddedIcon>false</EmbeddedIcon>				
 					<Id>1481759601788</Id>
 					<Name><![CDATA[RelayButton]]></Name>
-					<X>40</X><Y>870</Y>
+					<X>40</X><Y>940</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2460,7 +2468,7 @@ t_breachCost.setText(v_breachCost);]]></Body>
 				 	<EmbeddedIcon>false</EmbeddedIcon>				
 					<Id>1653490935003</Id>
 					<Name><![CDATA[ResetButton]]></Name>
-					<X>170</X><Y>870</Y>
+					<X>170</X><Y>940</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2533,7 +2541,7 @@ t_breachCost.setText(v_breachCost);]]></Body>
 				<Text>
 					<Id>1653590341637</Id>
 					<Name><![CDATA[RunHeading]]></Name>
-					<X>20</X><Y>780</Y>
+					<X>20</X><Y>850</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2554,7 +2562,7 @@ t_breachCost.setText(v_breachCost);]]></Body>
 				<Text>
 					<Id>1653590418736</Id>
 					<Name><![CDATA[text27]]></Name>
-					<X>40</X><Y>810</Y>
+					<X>40</X><Y>880</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2576,7 +2584,7 @@ t_breachCost.setText(v_breachCost);]]></Body>
 				 	<EmbeddedIcon>false</EmbeddedIcon>				
 					<Id>1653590443004</Id>
 					<Name><![CDATA[editbox17]]></Name>
-					<X>180</X><Y>805</Y>
+					<X>180</X><Y>875</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2679,7 +2687,7 @@ t_breachCost.setText(v_breachCost);]]></Body>
 					<LineMaterial>null</LineMaterial>
 					<LineStyle>SOLID</LineStyle>
 					<Width>190</Width>
-					<Height>230</Height>
+					<Height>250</Height>
 					<Rotation>0.0</Rotation>
 					<FillColor>-1</FillColor>
 					<FillMaterial>null</FillMaterial>
@@ -2864,7 +2872,7 @@ t_breachCost.setText(v_breachCost);]]></Body>
 				<Text>
 					<Id>1654362653468</Id>
 					<Name><![CDATA[t_resultsHeading]]></Name>
-					<X>20</X><Y>920</Y>
+					<X>20</X><Y>990</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -3065,7 +3073,7 @@ t_breachCost.setText(v_breachCost);]]></Body>
 				<Text>
 					<Id>1654534047296</Id>
 					<Name><![CDATA[text9]]></Name>
-					<X>40</X><Y>1080</Y>
+					<X>40</X><Y>1150</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -3086,7 +3094,7 @@ t_breachCost.setText(v_breachCost);]]></Body>
 				<Text>
 					<Id>1654534180550</Id>
 					<Name><![CDATA[t_totalAttacksRun]]></Name>
-					<X>190</X><Y>1080</Y>
+					<X>190</X><Y>1150</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -3479,7 +3487,7 @@ t_breachCost.setText(v_breachCost);]]></Body>
 				<Text>
 					<Id>1654960802746</Id>
 					<Name><![CDATA[text20]]></Name>
-					<X>480</X><Y>420</Y>
+					<X>480</X><Y>410</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -3500,7 +3508,7 @@ t_breachCost.setText(v_breachCost);]]></Body>
 				<Text>
 					<Id>1654960831194</Id>
 					<Name><![CDATA[text21]]></Name>
-					<X>780</X><Y>420</Y>
+					<X>780</X><Y>410</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -4331,7 +4339,7 @@ for a small business (USD): ]]></Text>
 				<Text>
 					<Id>1655480791150</Id>
 					<Name><![CDATA[text45]]></Name>
-					<X>40</X><Y>970</Y>
+					<X>40</X><Y>1040</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -4352,7 +4360,7 @@ for a small business (USD): ]]></Text>
 				<Text>
 					<Id>1655480810018</Id>
 					<Name><![CDATA[t_breachCost]]></Name>
-					<X>190</X><Y>970</Y>
+					<X>190</X><Y>1040</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -4373,7 +4381,7 @@ for a small business (USD): ]]></Text>
 				<Text>
 					<Id>1655483890678</Id>
 					<Name><![CDATA[text46]]></Name>
-					<X>40</X><Y>1120</Y>
+					<X>40</X><Y>1190</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -4394,7 +4402,7 @@ for a small business (USD): ]]></Text>
 				<Text>
 					<Id>1655483912297</Id>
 					<Name><![CDATA[t_totalDataBreaches]]></Name>
-					<X>190</X><Y>1120</Y>
+					<X>190</X><Y>1190</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -4415,7 +4423,7 @@ for a small business (USD): ]]></Text>
 				<Text>
 					<Id>1655483959610</Id>
 					<Name><![CDATA[text47]]></Name>
-					<X>40</X><Y>1100</Y>
+					<X>40</X><Y>1170</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -4436,7 +4444,7 @@ for a small business (USD): ]]></Text>
 				<Text>
 					<Id>1655483959615</Id>
 					<Name><![CDATA[t_totalAttacksStopped]]></Name>
-					<X>190</X><Y>1100</Y>
+					<X>190</X><Y>1170</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -4457,7 +4465,7 @@ for a small business (USD): ]]></Text>
 				<Text>
 					<Id>1655483976581</Id>
 					<Name><![CDATA[text48]]></Name>
-					<X>40</X><Y>1045</Y>
+					<X>40</X><Y>1115</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -4478,7 +4486,7 @@ for a small business (USD): ]]></Text>
 				<Text>
 					<Id>1655483996718</Id>
 					<Name><![CDATA[t_ROI]]></Name>
-					<X>190</X><Y>1045</Y>
+					<X>190</X><Y>1115</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -4499,7 +4507,7 @@ for a small business (USD): ]]></Text>
 				<Text>
 					<Id>1655489911468</Id>
 					<Name><![CDATA[text49]]></Name>
-					<X>40</X><Y>1025</Y>
+					<X>40</X><Y>1095</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -4520,7 +4528,7 @@ for a small business (USD): ]]></Text>
 				<Text>
 					<Id>1655489940108</Id>
 					<Name><![CDATA[t_totalReturn]]></Name>
-					<X>190</X><Y>1025</Y>
+					<X>190</X><Y>1095</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -4541,7 +4549,7 @@ for a small business (USD): ]]></Text>
 				<Text>
 					<Id>1655490229303</Id>
 					<Name><![CDATA[text50]]></Name>
-					<X>40</X><Y>1005</Y>
+					<X>40</X><Y>1075</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -4562,7 +4570,7 @@ for a small business (USD): ]]></Text>
 				<Text>
 					<Id>1655490274492</Id>
 					<Name><![CDATA[t_totalLoss]]></Name>
-					<X>190</X><Y>1005</Y>
+					<X>190</X><Y>1075</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -4583,7 +4591,7 @@ for a small business (USD): ]]></Text>
 				<Text>
 					<Id>1655920372086</Id>
 					<Name><![CDATA[text51]]></Name>
-					<X>40</X><Y>840</Y>
+					<X>40</X><Y>910</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -4605,7 +4613,7 @@ for a small business (USD): ]]></Text>
 				 	<EmbeddedIcon>false</EmbeddedIcon>				
 					<Id>1655920372094</Id>
 					<Name><![CDATA[editbox18]]></Name>
-					<X>180</X><Y>835</Y>
+					<X>180</X><Y>905</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -4626,6 +4634,75 @@ for a small business (USD): ]]></Text>
 						<MaxValue><![CDATA[1000000]]></MaxValue>
 						<LinkTo>true</LinkTo>
 						<Link>v_numYears</Link>
+					</ExtendedProperties>
+				</Control>
+				<Text>
+					<Id>1655931846126</Id>
+					<Name><![CDATA[BreachCostHeading1]]></Name>
+					<X>20</X><Y>780</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-328966</Color>
+					<Text><![CDATA[Annual Budget]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>16</Size>
+						<Style>1</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Text>
+					<Id>1655931885285</Id>
+					<Name><![CDATA[text52]]></Name>
+					<X>40</X><Y>810</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-328966</Color>
+					<Text><![CDATA[Amount: $]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>12</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Control Type="EditBox">
+				 	<EmbeddedIcon>false</EmbeddedIcon>				
+					<Id>1655931910921</Id>
+					<Name><![CDATA[editbox19]]></Name>
+					<X>180</X><Y>805</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<BasicProperties Width="100" Height="20">
+                        <EmbeddedIcon>false</EmbeddedIcon>	
+						<FillColor>-328966</FillColor>
+						<TextColor>-16777216</TextColor>
+						<Enabled>true</Enabled>
+						<ActionCode><![CDATA[
+
+]]></ActionCode>
+					</BasicProperties>
+					<ExtendedProperties>
+						<Font Name="Dialog" Size="11" Style="0"/>
+						<MinValue><![CDATA[1]]></MinValue>
+						<MaxValue><![CDATA[1000000]]></MaxValue>
+						<LinkTo>true</LinkTo>
+						<Link>v_budget</Link>
 					</ExtendedProperties>
 				</Control>
 			</Presentation>
@@ -4712,7 +4789,7 @@ for a small business (USD): ]]></Text>
 					<ShowLabel>false</ShowLabel>
 					<Title><![CDATA[]]></Title>
 					<Width>390</Width>
-					<Height>1150</Height>
+					<Height>1230</Height>
 				</Area>
 				<Area>
 					<Id>1653854189145</Id>
@@ -4843,7 +4920,7 @@ for a small business (USD): ]]></Text>
 					<Id>1653430915305</Id>
 					<Name><![CDATA[v_nodeIsCompromised]]></Name>
 					<Description><![CDATA[Describes whether or not the node has been compromised. If the node is compromised, then it will appear as red.]]></Description>
-					<X>530</X><Y>-320</Y>
+					<X>770</X><Y>-370</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -4868,21 +4945,9 @@ for a small business (USD): ]]></Text>
 					</Properties>
 				</Variable>
 				<Variable Class="PlainVariable">
-					<Id>1653923971167</Id>
-					<Name><![CDATA[v_effectiveGatewayProbability]]></Name>
-					<X>290</X><Y>-330</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
-						<Type><![CDATA[double]]></Type>        
-					</Properties>
-				</Variable>
-				<Variable Class="PlainVariable">
 					<Id>1653924001758</Id>
 					<Name><![CDATA[v_effectiveAntivirusProbability]]></Name>
-					<X>290</X><Y>-310</Y>
+					<X>290</X><Y>-330</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -4894,7 +4959,7 @@ for a small business (USD): ]]></Text>
 				<Variable Class="PlainVariable">
 					<Id>1653924022589</Id>
 					<Name><![CDATA[v_effectiveIPSProbability]]></Name>
-					<X>290</X><Y>-290</Y>
+					<X>290</X><Y>-310</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -4906,7 +4971,7 @@ for a small business (USD): ]]></Text>
 				<Variable Class="PlainVariable">
 					<Id>1653924037578</Id>
 					<Name><![CDATA[v_effectiveMailScanProbability]]></Name>
-					<X>290</X><Y>-270</Y>
+					<X>290</X><Y>-290</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -4918,7 +4983,7 @@ for a small business (USD): ]]></Text>
 				<Variable Class="PlainVariable">
 					<Id>1653925691816</Id>
 					<Name><![CDATA[v_probabilityAttackSucceeds]]></Name>
-					<X>530</X><Y>-340</Y>
+					<X>770</X><Y>-390</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -4933,7 +4998,7 @@ for a small business (USD): ]]></Text>
 				<Variable Class="PlainVariable">
 					<Id>1654544864245</Id>
 					<Name><![CDATA[v_numCompromises]]></Name>
-					<X>530</X><Y>-360</Y>
+					<X>770</X><Y>-410</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -4985,7 +5050,7 @@ for a small business (USD): ]]></Text>
 				<Variable Class="PlainVariable">
 					<Id>1654965007513</Id>
 					<Name><![CDATA[v_nodeGoesDown]]></Name>
-					<X>530</X><Y>-300</Y>
+					<X>770</X><Y>-350</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -5000,7 +5065,7 @@ for a small business (USD): ]]></Text>
 				<Variable Class="PlainVariable">
 					<Id>1654965045130</Id>
 					<Name><![CDATA[v_nextNode]]></Name>
-					<X>530</X><Y>-280</Y>
+					<X>770</X><Y>-330</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -5013,18 +5078,6 @@ for a small business (USD): ]]></Text>
 					<Id>1654965382851</Id>
 					<Name><![CDATA[v_firewallCost]]></Name>
 					<X>270</X><Y>-160</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
-						<Type><![CDATA[double]]></Type>        
-					</Properties>
-				</Variable>
-				<Variable Class="PlainVariable">
-					<Id>1654965389950</Id>
-					<Name><![CDATA[v_gatewayCost]]></Name>
-					<X>270</X><Y>-140</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -5082,21 +5135,9 @@ for a small business (USD): ]]></Text>
 					</Properties>
 				</Variable>
 				<Variable Class="PlainVariable">
-					<Id>1654965469976</Id>
-					<Name><![CDATA[v_gatewayPr]]></Name>
-					<X>60</X><Y>-330</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
-						<Type><![CDATA[double]]></Type>        
-					</Properties>
-				</Variable>
-				<Variable Class="PlainVariable">
 					<Id>1654965472230</Id>
 					<Name><![CDATA[v_antivirusPr]]></Name>
-					<X>60</X><Y>-310</Y>
+					<X>60</X><Y>-330</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -5108,7 +5149,7 @@ for a small business (USD): ]]></Text>
 				<Variable Class="PlainVariable">
 					<Id>1654965474710</Id>
 					<Name><![CDATA[v_IPSPr]]></Name>
-					<X>60</X><Y>-290</Y>
+					<X>60</X><Y>-310</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -5120,7 +5161,7 @@ for a small business (USD): ]]></Text>
 				<Variable Class="PlainVariable">
 					<Id>1654965477317</Id>
 					<Name><![CDATA[v_mailScanPr]]></Name>
-					<X>60</X><Y>-270</Y>
+					<X>60</X><Y>-290</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -5142,21 +5183,9 @@ for a small business (USD): ]]></Text>
 					</Properties>
 				</Variable>
 				<Variable Class="PlainVariable">
-					<Id>1654965532522</Id>
-					<Name><![CDATA[v_gatewayVar]]></Name>
-					<X>170</X><Y>-330</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
-						<Type><![CDATA[double]]></Type>        
-					</Properties>
-				</Variable>
-				<Variable Class="PlainVariable">
 					<Id>1654965534498</Id>
 					<Name><![CDATA[v_antivirusVar]]></Name>
-					<X>170</X><Y>-310</Y>
+					<X>170</X><Y>-330</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -5168,7 +5197,7 @@ for a small business (USD): ]]></Text>
 				<Variable Class="PlainVariable">
 					<Id>1654965536838</Id>
 					<Name><![CDATA[v_IPSVar]]></Name>
-					<X>170</X><Y>-290</Y>
+					<X>170</X><Y>-310</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -5180,7 +5209,7 @@ for a small business (USD): ]]></Text>
 				<Variable Class="PlainVariable">
 					<Id>1654965539190</Id>
 					<Name><![CDATA[v_mailScanVar]]></Name>
-					<X>170</X><Y>-270</Y>
+					<X>170</X><Y>-290</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -5192,7 +5221,7 @@ for a small business (USD): ]]></Text>
 				<Variable Class="PlainVariable">
 					<Id>1654966312583</Id>
 					<Name><![CDATA[v_inAttackPath]]></Name>
-					<X>530</X><Y>-260</Y>
+					<X>770</X><Y>-310</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -5222,7 +5251,7 @@ for a small business (USD): ]]></Text>
 				<Variable Class="PlainVariable">
 					<Id>1655917381898</Id>
 					<Name><![CDATA[v_secTrainingPr]]></Name>
-					<X>60</X><Y>-250</Y>
+					<X>60</X><Y>-270</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -5234,7 +5263,7 @@ for a small business (USD): ]]></Text>
 				<Variable Class="PlainVariable">
 					<Id>1655917415605</Id>
 					<Name><![CDATA[v_secTrainingVar]]></Name>
-					<X>170</X><Y>-250</Y>
+					<X>170</X><Y>-270</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -5246,7 +5275,7 @@ for a small business (USD): ]]></Text>
 				<Variable Class="PlainVariable">
 					<Id>1655917472968</Id>
 					<Name><![CDATA[v_effectiveSecTrainingProbability]]></Name>
-					<X>290</X><Y>-250</Y>
+					<X>290</X><Y>-270</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -5265,6 +5294,81 @@ for a small business (USD): ]]></Text>
 					<ShowLabel>true</ShowLabel>
 					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
 						<Type><![CDATA[double]]></Type>        
+					</Properties>
+				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1655927931778</Id>
+					<Name><![CDATA[v_firewallEnabled]]></Name>
+					<X>520</X><Y>-355</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[boolean]]></Type>        
+						<InitialValue Class="CodeValue">
+							<Code><![CDATA[true]]></Code>
+						</InitialValue>
+					</Properties>
+				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1655928044388</Id>
+					<Name><![CDATA[v_antivirusEnabled]]></Name>
+					<X>520</X><Y>-335</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[boolean]]></Type>        
+						<InitialValue Class="CodeValue">
+							<Code><![CDATA[true]]></Code>
+						</InitialValue>
+					</Properties>
+				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1655928047458</Id>
+					<Name><![CDATA[v_IPSEnabled]]></Name>
+					<X>520</X><Y>-315</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[boolean]]></Type>        
+						<InitialValue Class="CodeValue">
+							<Code><![CDATA[true]]></Code>
+						</InitialValue>
+					</Properties>
+				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1655928049880</Id>
+					<Name><![CDATA[v_secTrainingEnabled]]></Name>
+					<X>520</X><Y>-275</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[boolean]]></Type>        
+						<InitialValue Class="CodeValue">
+							<Code><![CDATA[true]]></Code>
+						</InitialValue>
+					</Properties>
+				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1655928051140</Id>
+					<Name><![CDATA[v_mailScanEnabled]]></Name>
+					<X>520</X><Y>-295</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[boolean]]></Type>        
+						<InitialValue Class="CodeValue">
+							<Code><![CDATA[true]]></Code>
+						</InitialValue>
 					</Properties>
 				</Variable>
 			</Variables>
@@ -5383,22 +5487,19 @@ UI_nodeOffShading.setVisible(false);]]></Code>
 					</Parameter>
 					<Body><![CDATA[double v_probabilityAttackSucceeds = 1;
 
-v_effectiveFirewallProbability  = f_getEffectiveControlProbability(v_firewallPr, v_firewallVar);
+v_effectiveFirewallProbability  = f_getEffectiveControlProbability(v_firewallPr, v_firewallVar, v_firewallEnabled);
 v_probabilityAttackSucceeds     = v_probabilityAttackSucceeds * (1-v_effectiveFirewallProbability);
 
-v_effectiveGatewayProbability   = f_getEffectiveControlProbability(v_gatewayPr, v_gatewayVar);
-v_probabilityAttackSucceeds     = v_probabilityAttackSucceeds * (1-v_effectiveGatewayProbability);
-
-v_effectiveAntivirusProbability = f_getEffectiveControlProbability(v_antivirusPr, v_antivirusVar);
+v_effectiveAntivirusProbability = f_getEffectiveControlProbability(v_antivirusPr, v_antivirusVar, v_antivirusEnabled);
 v_probabilityAttackSucceeds     = v_probabilityAttackSucceeds * (1-v_effectiveAntivirusProbability);
 
-v_effectiveIPSProbability       = f_getEffectiveControlProbability(v_IPSPr, v_IPSVar);
+v_effectiveIPSProbability       = f_getEffectiveControlProbability(v_IPSPr, v_IPSVar, v_IPSEnabled);
 v_probabilityAttackSucceeds     = v_probabilityAttackSucceeds * (1-v_effectiveIPSProbability);
 
-v_effectiveMailScanProbability  = f_getEffectiveControlProbability(v_mailScanPr, v_mailScanVar);
+v_effectiveMailScanProbability  = f_getEffectiveControlProbability(v_mailScanPr, v_mailScanVar, v_mailScanEnabled);
 v_probabilityAttackSucceeds     = v_probabilityAttackSucceeds * (1-v_effectiveMailScanProbability);
 
-v_effectiveSecTrainingProbability  = f_getEffectiveControlProbability(v_secTrainingPr, v_secTrainingVar);
+v_effectiveSecTrainingProbability  = f_getEffectiveControlProbability(v_secTrainingPr, v_secTrainingVar, v_secTrainingEnabled);
 v_probabilityAttackSucceeds        = v_probabilityAttackSucceeds * (1-v_effectiveSecTrainingProbability);
 
 
@@ -5422,7 +5523,16 @@ this node.
 */
 v_probabilityAttackSucceeds = 1 - v_overallPr;
 
-v_overallCost = v_nodeCount * (v_firewallCost + v_gatewayCost + v_IPSCost + v_antivirusCost + v_mailScanCost);
+
+//v_overallCost is the sum of the cost of all enabled controls, times the number of this node type in the network
+v_overallCost = 0;
+if (v_firewallEnabled == true) { v_overallCost = v_overallCost + v_firewallCost; }
+if (v_IPSEnabled == true) { v_overallCost = v_overallCost + v_IPSCost; }
+if (v_antivirusEnabled == true) { v_overallCost = v_overallCost + v_antivirusCost; }
+if (v_mailScanEnabled == true) { v_overallCost = v_overallCost + v_mailScanCost; }
+if (v_secTrainingEnabled == true) { v_overallCost = v_overallCost + v_secTrainingCost; }
+
+v_overallCost = v_overallCost * v_nodeCount;
 
 if(v_nextNode != null) {
 	v_nextNode.f_calculateOverall(p_attackerFailRatio);
@@ -5463,25 +5573,38 @@ if (v_nextNode != null) {
 						<Name><![CDATA[p_defaultVariance]]></Name>
 						<Type><![CDATA[double]]></Type>
 					</Parameter>
-					<Body><![CDATA[// Generate random variance between the positive and negative value of the variance
-double v_usedVariance;
-if (p_defaultVariance == 0) {
-	v_usedVariance = 0;
+					<Parameter>
+						<Name><![CDATA[p_enabled]]></Name>
+						<Type><![CDATA[boolean]]></Type>
+					</Parameter>
+					<Body><![CDATA[double v_effectiveProbability;
+
+// If the control is not enabled, then its probability of stopping
+// the attack is 0.
+if (!p_enabled) {
+	v_effectiveProbability = 0;
 }
 else {
-	double v_minVariance = -1 * p_defaultVariance;
-	double v_maxVariance = 1 * p_defaultVariance;
-	v_usedVariance = uniform(v_minVariance, v_maxVariance);
-}
-
-double v_effectiveProbability = (p_defaultProbability + v_usedVariance);
-
-// Constrain bounds to 0 <= v_effectiveProbability <= 1
-if (v_effectiveProbability < 0) {
-    v_effectiveProbability = 0;
-}
-else if (v_effectiveProbability > 1) {
-    v_effectiveProbability = 1;
+	// Generate random variance between the positive and negative value of the variance
+	double v_usedVariance;
+	if (p_defaultVariance == 0) {
+		v_usedVariance = 0;
+	}
+	else {
+		double v_minVariance = -1 * p_defaultVariance;
+		double v_maxVariance = 1 * p_defaultVariance;
+		v_usedVariance = uniform(v_minVariance, v_maxVariance);
+	}
+	
+	v_effectiveProbability = (p_defaultProbability + v_usedVariance);
+	
+	// Constrain bounds to 0 <= v_effectiveProbability <= 1
+	if (v_effectiveProbability < 0) {
+	    v_effectiveProbability = 0;
+	}
+	else if (v_effectiveProbability > 1) {
+	    v_effectiveProbability = 1;
+	}
 }
 
 return v_effectiveProbability;]]></Body>
@@ -5557,7 +5680,7 @@ return v_effectiveProbability;]]></Body>
 					<LineMaterial>null</LineMaterial>
 					<LineStyle>SOLID</LineStyle>
 					<Width>280</Width>
-					<Height>360</Height>
+					<Height>325</Height>
 					<Rotation>0.0</Rotation>
 					<FillColor>-12434878</FillColor>
 					<FillMaterial>null</FillMaterial>
@@ -5581,7 +5704,7 @@ return v_effectiveProbability;]]></Body>
 					<LineMaterial>null</LineMaterial>
 					<LineStyle>SOLID</LineStyle>
 					<Width>280</Width>
-					<Height>360</Height>
+					<Height>325</Height>
 					<Rotation>0.0</Rotation>
 					<FillColor/>
 					<FillMaterial>null</FillMaterial>
@@ -5605,7 +5728,7 @@ return v_effectiveProbability;]]></Body>
 					<LineMaterial>null</LineMaterial>
 					<LineStyle>SOLID</LineStyle>
 					<Width>280</Width>
-					<Height>360</Height>
+					<Height>325</Height>
 					<Rotation>0.0</Rotation>
 					<FillColor/>
 					<FillMaterial>null</FillMaterial>
@@ -5643,7 +5766,7 @@ return v_effectiveProbability;]]></Body>
 					<LineMaterial>null</LineMaterial>
 					<LineStyle>SOLID</LineStyle>
 					<Width>280</Width>
-					<Height>360</Height>
+					<Height>325</Height>
 					<Rotation>0.0</Rotation>
 					<FillColor/>
 					<FillMaterial>null</FillMaterial>
@@ -5652,13 +5775,13 @@ return v_effectiveProbability;]]></Body>
 				 	<EmbeddedIcon>false</EmbeddedIcon>				
 					<Id>1481762334572</Id>
 					<Name><![CDATA[eb_firewallPr]]></Name>
-					<X>-160</X><Y>-165</Y>
+					<X>-165</X><Y>-210</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>false</ShowLabel>
 					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<BasicProperties Width="57" Height="34">
+					<BasicProperties Width="50" Height="34">
                         <EmbeddedIcon>false</EmbeddedIcon>	
 						<FillColor/>
 						<TextColor/>
@@ -5676,13 +5799,13 @@ return v_effectiveProbability;]]></Body>
 				 	<EmbeddedIcon>false</EmbeddedIcon>				
 					<Id>1481762379210</Id>
 					<Name><![CDATA[eb_IPSPr]]></Name>
-					<X>-160</X><Y>-215</Y>
+					<X>-165</X><Y>-260</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>false</ShowLabel>
 					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<BasicProperties Width="57" Height="34">
+					<BasicProperties Width="50" Height="34">
                         <EmbeddedIcon>false</EmbeddedIcon>	
 						<FillColor/>
 						<TextColor/>
@@ -5698,39 +5821,15 @@ return v_effectiveProbability;]]></Body>
 				</Control>
 				<Control Type="EditBox">
 				 	<EmbeddedIcon>false</EmbeddedIcon>				
-					<Id>1481762540457</Id>
-					<Name><![CDATA[eb_gatewayPr]]></Name>
-					<X>-160</X><Y>-315</Y>
-					<Label><X>0</X><Y>-10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<BasicProperties Width="57" Height="34">
-                        <EmbeddedIcon>false</EmbeddedIcon>	
-						<FillColor/>
-						<TextColor/>
-						<Enabled>true</Enabled>
-					</BasicProperties>
-					<ExtendedProperties>
-						<Font Name="Dialog" Size="11" Style="0"/>
-						<MinValue><![CDATA[0]]></MinValue>
-						<MaxValue><![CDATA[1]]></MaxValue>
-						<LinkTo>true</LinkTo>
-						<Link>v_gatewayPr</Link>
-					</ExtendedProperties>
-				</Control>
-				<Control Type="EditBox">
-				 	<EmbeddedIcon>false</EmbeddedIcon>				
 					<Id>1481762570681</Id>
 					<Name><![CDATA[eb_mailScanPr]]></Name>
-					<X>-160</X><Y>-115</Y>
+					<X>-165</X><Y>-160</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>false</ShowLabel>
 					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<BasicProperties Width="57" Height="34">
+					<BasicProperties Width="50" Height="34">
                         <EmbeddedIcon>false</EmbeddedIcon>	
 						<FillColor/>
 						<TextColor/>
@@ -5748,13 +5847,13 @@ return v_effectiveProbability;]]></Body>
 				 	<EmbeddedIcon>false</EmbeddedIcon>				
 					<Id>1481762602072</Id>
 					<Name><![CDATA[eb_antivirusPr]]></Name>
-					<X>-160</X><Y>-265</Y>
+					<X>-165</X><Y>-310</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>false</ShowLabel>
 					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<BasicProperties Width="57" Height="34">
+					<BasicProperties Width="50" Height="34">
                         <EmbeddedIcon>false</EmbeddedIcon>	
 						<FillColor/>
 						<TextColor/>
@@ -5772,7 +5871,7 @@ return v_effectiveProbability;]]></Body>
 				 	<EmbeddedIcon>false</EmbeddedIcon>				
 					<Id>1481833814330</Id>
 					<Name><![CDATA[checkbox]]></Name>
-					<X>-200</X><Y>-25</Y>
+					<X>-205</X><Y>-65</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -5794,13 +5893,13 @@ return v_effectiveProbability;]]></Body>
 				 	<EmbeddedIcon>false</EmbeddedIcon>				
 					<Id>1482001275023</Id>
 					<Name><![CDATA[eb_firewallCost]]></Name>
-					<X>-20</X><Y>-165</Y>
+					<X>-45</X><Y>-210</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>false</ShowLabel>
 					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<BasicProperties Width="57" Height="34">
+					<BasicProperties Width="58" Height="34">
                         <EmbeddedIcon>false</EmbeddedIcon>	
 						<FillColor/>
 						<TextColor/>
@@ -5814,41 +5913,18 @@ return v_effectiveProbability;]]></Body>
 				</Control>
 				<Control Type="EditBox">
 				 	<EmbeddedIcon>false</EmbeddedIcon>				
-					<Id>1482001315580</Id>
-					<Name><![CDATA[eb_gatewayCost]]></Name>
-					<X>-20</X><Y>-315</Y>
-					<Label><X>0</X><Y>-10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<BasicProperties Width="57" Height="34">
-                        <EmbeddedIcon>false</EmbeddedIcon>	
-						<FillColor/>
-						<TextColor/>
-						<Enabled>true</Enabled>
-					</BasicProperties>
-					<ExtendedProperties>
-						<Font Name="Dialog" Size="11" Style="0"/>
-						<LinkTo>true</LinkTo>
-						<Link>v_gatewayCost</Link>
-					</ExtendedProperties>
-				</Control>
-				<Control Type="EditBox">
-				 	<EmbeddedIcon>false</EmbeddedIcon>				
 					<Id>1482001346334</Id>
 					<Name><![CDATA[eb_antivirusCost]]></Name>
-					<X>-20</X><Y>-265</Y>
+					<X>-45</X><Y>-310</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>false</ShowLabel>
 					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<BasicProperties Width="57" Height="34">
+					<BasicProperties Width="58" Height="34">
                         <EmbeddedIcon>false</EmbeddedIcon>	
 						<FillColor/>
 						<TextColor/>
-						<VisibleCode><![CDATA[true]]></VisibleCode>
 						<Enabled>true</Enabled>
 					</BasicProperties>
 					<ExtendedProperties>
@@ -5861,13 +5937,13 @@ return v_effectiveProbability;]]></Body>
 				 	<EmbeddedIcon>false</EmbeddedIcon>				
 					<Id>1482001378153</Id>
 					<Name><![CDATA[eb_IPSCost]]></Name>
-					<X>-20</X><Y>-215</Y>
+					<X>-45</X><Y>-260</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>false</ShowLabel>
 					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<BasicProperties Width="57" Height="34">
+					<BasicProperties Width="58" Height="34">
                         <EmbeddedIcon>false</EmbeddedIcon>	
 						<FillColor/>
 						<TextColor/>
@@ -5883,13 +5959,13 @@ return v_effectiveProbability;]]></Body>
 				 	<EmbeddedIcon>false</EmbeddedIcon>				
 					<Id>1482001403913</Id>
 					<Name><![CDATA[eb_mailScanCost]]></Name>
-					<X>-20</X><Y>-115</Y>
+					<X>-45</X><Y>-160</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>false</ShowLabel>
 					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<BasicProperties Width="57" Height="34">
+					<BasicProperties Width="58" Height="34">
                         <EmbeddedIcon>false</EmbeddedIcon>	
 						<FillColor/>
 						<TextColor/>
@@ -5906,13 +5982,13 @@ return v_effectiveProbability;]]></Body>
 				 	<EmbeddedIcon>false</EmbeddedIcon>				
 					<Id>1491280729726</Id>
 					<Name><![CDATA[eb_firewallVar]]></Name>
-					<X>-90</X><Y>-165</Y>
+					<X>-105</X><Y>-210</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>false</ShowLabel>
 					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<BasicProperties Width="57" Height="34">
+					<BasicProperties Width="50" Height="34">
                         <EmbeddedIcon>false</EmbeddedIcon>	
 						<FillColor/>
 						<TextColor/>
@@ -5930,13 +6006,13 @@ return v_effectiveProbability;]]></Body>
 				 	<EmbeddedIcon>false</EmbeddedIcon>				
 					<Id>1491280729736</Id>
 					<Name><![CDATA[eb_IPSVar]]></Name>
-					<X>-90</X><Y>-215</Y>
+					<X>-105</X><Y>-260</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>false</ShowLabel>
 					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<BasicProperties Width="57" Height="34">
+					<BasicProperties Width="50" Height="34">
                         <EmbeddedIcon>false</EmbeddedIcon>	
 						<FillColor/>
 						<TextColor/>
@@ -5952,39 +6028,15 @@ return v_effectiveProbability;]]></Body>
 				</Control>
 				<Control Type="EditBox">
 				 	<EmbeddedIcon>false</EmbeddedIcon>				
-					<Id>1491280729740</Id>
-					<Name><![CDATA[eb_gatewayVar]]></Name>
-					<X>-90</X><Y>-315</Y>
-					<Label><X>0</X><Y>-10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<BasicProperties Width="57" Height="34">
-                        <EmbeddedIcon>false</EmbeddedIcon>	
-						<FillColor/>
-						<TextColor/>
-						<Enabled>true</Enabled>
-					</BasicProperties>
-					<ExtendedProperties>
-						<Font Name="Dialog" Size="11" Style="0"/>
-						<MinValue><![CDATA[0]]></MinValue>
-						<MaxValue><![CDATA[1]]></MaxValue>
-						<LinkTo>true</LinkTo>
-						<Link>v_gatewayVar</Link>
-					</ExtendedProperties>
-				</Control>
-				<Control Type="EditBox">
-				 	<EmbeddedIcon>false</EmbeddedIcon>				
 					<Id>1491280729744</Id>
 					<Name><![CDATA[eb_mailScanVar]]></Name>
-					<X>-90</X><Y>-115</Y>
+					<X>-105</X><Y>-160</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>false</ShowLabel>
 					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<BasicProperties Width="57" Height="34">
+					<BasicProperties Width="50" Height="34">
                         <EmbeddedIcon>false</EmbeddedIcon>	
 						<FillColor/>
 						<TextColor/>
@@ -6002,13 +6054,13 @@ return v_effectiveProbability;]]></Body>
 				 	<EmbeddedIcon>false</EmbeddedIcon>				
 					<Id>1491280729747</Id>
 					<Name><![CDATA[eb_antivirusVar]]></Name>
-					<X>-90</X><Y>-265</Y>
+					<X>-105</X><Y>-310</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>false</ShowLabel>
 					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<BasicProperties Width="57" Height="34">
+					<BasicProperties Width="50" Height="34">
                         <EmbeddedIcon>false</EmbeddedIcon>	
 						<FillColor/>
 						<TextColor/>
@@ -6025,7 +6077,7 @@ return v_effectiveProbability;]]></Body>
 				<Text>
 					<Id>1655914923593</Id>
 					<Name><![CDATA[text8]]></Name>
-					<X>-210</X><Y>-60</Y>
+					<X>-210</X><Y>-105</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -6048,13 +6100,13 @@ Training]]></Text>
 				 	<EmbeddedIcon>false</EmbeddedIcon>				
 					<Id>1655914923617</Id>
 					<Name><![CDATA[eb_secTrainingPr]]></Name>
-					<X>-160</X><Y>-65</Y>
+					<X>-165</X><Y>-110</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>false</ShowLabel>
 					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<BasicProperties Width="57" Height="34">
+					<BasicProperties Width="50" Height="34">
                         <EmbeddedIcon>false</EmbeddedIcon>	
 						<FillColor/>
 						<TextColor/>
@@ -6072,13 +6124,13 @@ Training]]></Text>
 				 	<EmbeddedIcon>false</EmbeddedIcon>				
 					<Id>1655914923633</Id>
 					<Name><![CDATA[eb_secTrainingCost]]></Name>
-					<X>-20</X><Y>-65</Y>
+					<X>-45</X><Y>-110</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>false</ShowLabel>
 					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<BasicProperties Width="57" Height="34">
+					<BasicProperties Width="58" Height="34">
                         <EmbeddedIcon>false</EmbeddedIcon>	
 						<FillColor/>
 						<TextColor/>
@@ -6095,13 +6147,13 @@ Training]]></Text>
 				 	<EmbeddedIcon>false</EmbeddedIcon>				
 					<Id>1655914923644</Id>
 					<Name><![CDATA[eb_secTrainingVar]]></Name>
-					<X>-90</X><Y>-65</Y>
+					<X>-105</X><Y>-110</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>false</ShowLabel>
 					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<BasicProperties Width="57" Height="34">
+					<BasicProperties Width="50" Height="34">
                         <EmbeddedIcon>false</EmbeddedIcon>	
 						<FillColor/>
 						<TextColor/>
@@ -6119,7 +6171,7 @@ Training]]></Text>
 				 	<EmbeddedIcon>false</EmbeddedIcon>				
 					<Id>1655823560436</Id>
 					<Name><![CDATA[eb_nodeCount]]></Name>
-					<X>-15</X><Y>-25</Y>
+					<X>-35</X><Y>-65</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -6142,7 +6194,7 @@ Training]]></Text>
 				<Text>
 					<Id>1655823585530</Id>
 					<Name><![CDATA[text2]]></Name>
-					<X>-55</X><Y>-15</Y>
+					<X>-75</X><Y>-55</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -6160,13 +6212,10 @@ Training]]></Text>
 					</Font>
 					<Alignment>LEFT</Alignment>
 				</Text>
-			</Presentation>
-
-				</Group>
 				<Text>
-					<Id>1482004731656</Id>
-					<Name><![CDATA[Test]]></Name>
-					<X>75</X><Y>55</Y>
+					<Id>1491280759510</Id>
+					<Name><![CDATA[Test1]]></Name>
+					<X>-80</X><Y>-335</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -6176,7 +6225,30 @@ Training]]></Text>
 					<Z>0</Z>
 					<Rotation>0.0</Rotation>
 					<Color>-328966</Color>
-					<Text><![CDATA[Probability]]></Text>
+					<Text><![CDATA[Mitigation
+Variance]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>10</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>CENTER</Alignment>
+				</Text>
+				<Text>
+					<Id>1482004731656</Id>
+					<Name><![CDATA[Test]]></Name>
+					<X>-165</X><Y>-336</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-328966</Color>
+					<Text><![CDATA[Mitigation
+Probability]]></Text>
 					<Font>
 						<Name>SansSerif</Name>
 						<Size>10</Size>
@@ -6187,7 +6259,7 @@ Training]]></Text>
 				<Text>
 					<Id>1482093076428</Id>
 					<Name><![CDATA[text]]></Name>
-					<X>228</X><Y>55</Y>
+					<X>-18</X><Y>-335</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -6197,18 +6269,19 @@ Training]]></Text>
 					<Z>0</Z>
 					<Rotation>0.0</Rotation>
 					<Color>-328966</Color>
-					<Text><![CDATA[Cost]]></Text>
+					<Text><![CDATA[Annual
+Cost]]></Text>
 					<Font>
 						<Name>SansSerif</Name>
 						<Size>10</Size>
 						<Style>0</Style>
 					</Font>
-					<Alignment>LEFT</Alignment>
+					<Alignment>CENTER</Alignment>
 				</Text>
 				<Text>
-					<Id>1482093085545</Id>
+					<Id>1655927590797</Id>
 					<Name><![CDATA[text1]]></Name>
-					<X>20</X><Y>85</Y>
+					<X>15</X><Y>-330</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -6218,7 +6291,7 @@ Training]]></Text>
 					<Z>0</Z>
 					<Rotation>0.0</Rotation>
 					<Color>-328966</Color>
-					<Text><![CDATA[Gateway]]></Text>
+					<Text><![CDATA[Enabled]]></Text>
 					<Font>
 						<Name>SansSerif</Name>
 						<Size>10</Size>
@@ -6226,10 +6299,13 @@ Training]]></Text>
 					</Font>
 					<Alignment>LEFT</Alignment>
 				</Text>
+			</Presentation>
+
+				</Group>
 				<Text>
 					<Id>1482093125036</Id>
 					<Name><![CDATA[text4]]></Name>
-					<X>20</X><Y>185</Y>
+					<X>20</X><Y>140</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -6250,7 +6326,7 @@ Training]]></Text>
 				<Text>
 					<Id>1482093141034</Id>
 					<Name><![CDATA[text6]]></Name>
-					<X>20</X><Y>235</Y>
+					<X>20</X><Y>190</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -6271,7 +6347,7 @@ Training]]></Text>
 				<Text>
 					<Id>1482093143316</Id>
 					<Name><![CDATA[text7]]></Name>
-					<X>20</X><Y>280</Y>
+					<X>20</X><Y>235</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -6293,7 +6369,7 @@ Filter]]></Text>
 				<Text>
 					<Id>1482093179821</Id>
 					<Name><![CDATA[text10]]></Name>
-					<X>20</X><Y>135</Y>
+					<X>20</X><Y>90</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -6304,27 +6380,6 @@ Filter]]></Text>
 					<Rotation>0.0</Rotation>
 					<Color>-328966</Color>
 					<Text><![CDATA[Antivirus]]></Text>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>10</Size>
-						<Style>0</Style>
-					</Font>
-					<Alignment>LEFT</Alignment>
-				</Text>
-				<Text>
-					<Id>1491280759510</Id>
-					<Name><![CDATA[Test1]]></Name>
-					<X>150</X><Y>55</Y>
-					<Label><X>0</X><Y>-10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-328966</Color>
-					<Text><![CDATA[Variance]]></Text>
 					<Font>
 						<Name>SansSerif</Name>
 						<Size>10</Size>
@@ -6349,7 +6404,7 @@ Filter]]></Text>
 					<LineColor>-16777216</LineColor>
 					<LineMaterial>null</LineMaterial>
 					<LineStyle>SOLID</LineStyle>
-					<Width>450</Width>
+					<Width>660</Width>
 					<Height>180</Height>
 					<Rotation>0.0</Rotation>
 					<FillColor>-1</FillColor>
@@ -6424,7 +6479,7 @@ Filter]]></Text>
 				<RoundedRectangle>
 					<Id>1653920066889</Id>
 					<Name><![CDATA[roundRectangle2]]></Name>
-					<X>500</X><Y>-410</Y>
+					<X>740</X><Y>-460</Y>
 					<Label><X>10</X><Y>10</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -6447,7 +6502,7 @@ Filter]]></Text>
 				<Text>
 					<Id>1653920262194</Id>
 					<Name><![CDATA[text28]]></Name>
-					<X>550</X><Y>-400</Y>
+					<X>790</X><Y>-450</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -6553,6 +6608,116 @@ Filter]]></Text>
 					</Font>
 					<Alignment>LEFT</Alignment>
 				</Text>
+				<Control Type="CheckBox">
+				 	<EmbeddedIcon>false</EmbeddedIcon>				
+					<Id>1655927746301</Id>
+					<Name><![CDATA[checkbox1]]></Name>
+					<X>256</X><Y>85</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<BasicProperties Width="20" Height="20">
+                        <EmbeddedIcon>false</EmbeddedIcon>	
+						<TextColor/>
+						<Enabled>true</Enabled>
+					</BasicProperties>
+					<ExtendedProperties>
+						<Font Name="Dialog" Size="11" Style="0"/>
+						<LabelText><![CDATA[]]></LabelText>
+						<LinkTo>true</LinkTo>
+						<Link>v_antivirusEnabled</Link>
+	 				</ExtendedProperties>
+				</Control>
+				<Control Type="CheckBox">
+				 	<EmbeddedIcon>false</EmbeddedIcon>				
+					<Id>1655927785797</Id>
+					<Name><![CDATA[checkbox2]]></Name>
+					<X>256</X><Y>135</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<BasicProperties Width="20" Height="20">
+                        <EmbeddedIcon>false</EmbeddedIcon>	
+						<TextColor/>
+						<Enabled>true</Enabled>
+					</BasicProperties>
+					<ExtendedProperties>
+						<Font Name="Dialog" Size="11" Style="0"/>
+						<LabelText><![CDATA[]]></LabelText>
+						<LinkTo>true</LinkTo>
+						<Link>v_IPSEnabled</Link>
+	 				</ExtendedProperties>
+				</Control>
+				<Control Type="CheckBox">
+				 	<EmbeddedIcon>false</EmbeddedIcon>				
+					<Id>1655927828654</Id>
+					<Name><![CDATA[checkbox3]]></Name>
+					<X>256</X><Y>185</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<BasicProperties Width="20" Height="20">
+                        <EmbeddedIcon>false</EmbeddedIcon>	
+						<TextColor/>
+						<Enabled>true</Enabled>
+					</BasicProperties>
+					<ExtendedProperties>
+						<Font Name="Dialog" Size="11" Style="0"/>
+						<LabelText><![CDATA[]]></LabelText>
+						<LinkTo>true</LinkTo>
+						<Link>v_firewallEnabled</Link>
+	 				</ExtendedProperties>
+				</Control>
+				<Control Type="CheckBox">
+				 	<EmbeddedIcon>false</EmbeddedIcon>				
+					<Id>1655927847434</Id>
+					<Name><![CDATA[checkbox4]]></Name>
+					<X>256</X><Y>235</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<BasicProperties Width="20" Height="20">
+                        <EmbeddedIcon>false</EmbeddedIcon>	
+						<TextColor/>
+						<Enabled>true</Enabled>
+					</BasicProperties>
+					<ExtendedProperties>
+						<Font Name="Dialog" Size="11" Style="0"/>
+						<LabelText><![CDATA[]]></LabelText>
+						<LinkTo>true</LinkTo>
+						<Link>v_mailScanEnabled</Link>
+	 				</ExtendedProperties>
+				</Control>
+				<Control Type="CheckBox">
+				 	<EmbeddedIcon>false</EmbeddedIcon>				
+					<Id>1655927861095</Id>
+					<Name><![CDATA[checkbox5]]></Name>
+					<X>256</X><Y>285</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<BasicProperties Width="20" Height="20">
+                        <EmbeddedIcon>false</EmbeddedIcon>	
+						<TextColor/>
+						<Enabled>true</Enabled>
+					</BasicProperties>
+					<ExtendedProperties>
+						<Font Name="Dialog" Size="11" Style="0"/>
+						<LabelText><![CDATA[]]></LabelText>
+						<LinkTo>true</LinkTo>
+						<Link>v_secTrainingEnabled</Link>
+	 				</ExtendedProperties>
+				</Control>
 			</Presentation>
 
 				</Level>
@@ -7276,6 +7441,641 @@ return v_isAttacker;
 			</Presentation>
 
 		</ActiveObjectClass>
+		<!--   =========   Active Object Class   ========  -->
+		<ActiveObjectClass>
+			<Id>1655948071964</Id>
+			<Name><![CDATA[A_Control]]></Name>
+			<ClientAreaTopLeft><X>0</X><Y>0</Y></ClientAreaTopLeft>
+			<Generic>false</Generic>
+			<GenericParameter>
+				<Id>1655948071962</Id>
+				<Name><![CDATA[1655948071962]]></Name>
+				<GenericParameterValue Class="CodeValue">
+					<Code><![CDATA[T extends Agent]]></Code>
+				</GenericParameterValue>
+				<GenericParameterLabel><![CDATA[Generic parameter:]]></GenericParameterLabel>
+			</GenericParameter>
+			<FlowChartsUsage>ENTITY</FlowChartsUsage>
+			<SamplesToKeep>100</SamplesToKeep>
+			<LimitNumberOfArrayElements>false</LimitNumberOfArrayElements>
+			<ElementsLimitValue>100</ElementsLimitValue>
+			<MakeDefaultViewArea>true</MakeDefaultViewArea>
+			<SceneGridColor/>
+			<SceneBackgroundColor/>
+			<SceneSkybox>null</SceneSkybox>
+			<AgentProperties>
+	 			<SpaceType>CONTINUOUS</SpaceType>			
+				<EnvironmentDefinesInitialLocation>true</EnvironmentDefinesInitialLocation>
+				<RotateAnimationTowardsMovement>true</RotateAnimationTowardsMovement>
+				<RotateAnimationVertically>false</RotateAnimationVertically>
+				<VelocityCode Class="CodeUnitValue">
+					<Code><![CDATA[10]]></Code>
+					<Unit Class="SpeedUnits"><![CDATA[MPS]]></Unit>
+				</VelocityCode>
+				<PhysicalLength Class="CodeUnitValue">
+					<Code><![CDATA[1]]></Code>
+					<Unit Class="LengthUnits"><![CDATA[METER]]></Unit>
+				</PhysicalLength>
+				<PhysicalWidth Class="CodeUnitValue">
+					<Code><![CDATA[1]]></Code>
+					<Unit Class="LengthUnits"><![CDATA[METER]]></Unit>
+				</PhysicalWidth>
+				<PhysicalHeight Class="CodeUnitValue">
+					<Code><![CDATA[1]]></Code>
+					<Unit Class="LengthUnits"><![CDATA[METER]]></Unit>
+				</PhysicalHeight>
+			</AgentProperties>
+			<EnvironmentProperties>
+					<EnableSteps>false</EnableSteps>
+					<StepDurationCode Class="CodeUnitValue">
+						<Code><![CDATA[1.0]]></Code>
+						<Unit Class="TimeUnits"><![CDATA[SECOND]]></Unit>
+					</StepDurationCode>
+					<SpaceType>CONTINUOUS</SpaceType>
+					<WidthCode><![CDATA[500]]></WidthCode>
+					<HeightCode><![CDATA[500]]></HeightCode>
+					<ZHeightCode><![CDATA[0]]></ZHeightCode>
+					<ColumnsCountCode><![CDATA[100]]></ColumnsCountCode>
+					<RowsCountCode><![CDATA[100]]></RowsCountCode>
+					<NeigborhoodType>MOORE</NeigborhoodType>
+					<LayoutType>USER_DEF</LayoutType>
+					<LayoutTypeApplyOnStartup>true</LayoutTypeApplyOnStartup>
+					<NetworkType>USER_DEF</NetworkType>
+					<NetworkTypeApplyOnStartup>true</NetworkTypeApplyOnStartup>
+					<ConnectionsPerAgentCode><![CDATA[2]]></ConnectionsPerAgentCode>
+					<ConnectionsRangeCode><![CDATA[50]]></ConnectionsRangeCode>
+					<NeighborLinkFractionCode><![CDATA[0.95]]></NeighborLinkFractionCode>
+					<MCode><![CDATA[10]]></MCode>
+			</EnvironmentProperties>
+			<DatasetsCreationProperties>
+				<AutoCreate>true</AutoCreate>
+					<OccurrenceAtTime>true</OccurrenceAtTime>
+					<OccurrenceDate>1655971200000</OccurrenceDate>
+					<OccurrenceTime Class="CodeUnitValue">
+						<Code><![CDATA[0]]></Code>
+						<Unit Class="TimeUnits"><![CDATA[MILLISECOND]]></Unit>
+					</OccurrenceTime>
+					<RecurrenceCode Class="CodeUnitValue">
+						<Code><![CDATA[1]]></Code>
+						<Unit Class="TimeUnits"><![CDATA[MILLISECOND]]></Unit>
+					</RecurrenceCode>
+			</DatasetsCreationProperties>
+			<ScaleRuler>
+				<Id>1655948071960</Id>
+				<Name><![CDATA[scale]]></Name>
+				<X>0</X><Y>-150</Y>
+				<PublicFlag>false</PublicFlag>
+				<PresentationFlag>false</PresentationFlag>
+				<ShowLabel>false</ShowLabel>
+				<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+				<Length>100</Length>
+				<Rotation>0</Rotation>
+				<ScaleType>BASED_ON_LENGTH</ScaleType>
+				<ModelLength>10</ModelLength>
+				<LengthUnits>METER</LengthUnits>
+				<Scale>10</Scale>
+				<InheritedFromParentAgentType>true</InheritedFromParentAgentType>
+			</ScaleRuler>
+			<CurrentLevel>1655948071963</CurrentLevel>
+			<ConnectionsId>1655948071959</ConnectionsId>
+			<Variables>
+				<Variable Class="PlainVariable">
+					<Id>1655948453422</Id>
+					<Name><![CDATA[v_annualCost]]></Name>
+					<X>420</X><Y>-170</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[double]]></Type>        
+						<InitialValue Class="CodeValue">
+							<Code><![CDATA[0]]></Code>
+						</InitialValue>
+					</Properties>
+				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1655948539591</Id>
+					<Name><![CDATA[v_mitigationP]]></Name>
+					<X>420</X><Y>-210</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[double]]></Type>        
+						<InitialValue Class="CodeValue">
+							<Code><![CDATA[0]]></Code>
+						</InitialValue>
+					</Properties>
+				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1655948660683</Id>
+					<Name><![CDATA[v_mitigationV]]></Name>
+					<X>420</X><Y>-190</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[double]]></Type>        
+						<InitialValue Class="CodeValue">
+							<Code><![CDATA[0]]></Code>
+						</InitialValue>
+					</Properties>
+				</Variable>
+				<Variable Class="PlainVariable">
+					<Id>1655948679403</Id>
+					<Name><![CDATA[v_enabled]]></Name>
+					<X>420</X><Y>-150</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
+						<Type><![CDATA[boolean]]></Type>        
+						<InitialValue Class="CodeValue">
+							<Code><![CDATA[false;]]></Code>
+						</InitialValue>
+					</Properties>
+				</Variable>
+				<Variable Class="Parameter">
+					<Id>1655948743099</Id>
+					<Name><![CDATA[p_controlName]]></Name>
+					<X>170</X><Y>-210</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
+						<Type><![CDATA[String]]></Type>
+						<UnitType><![CDATA[NONE]]></UnitType>
+						<SdArray>false</SdArray>
+						<ParameterEditor>
+							<Id>1655948743097</Id>
+							<EditorContolType>TEXT_BOX</EditorContolType>
+							<MinSliderValue><![CDATA[0]]></MinSliderValue>
+							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
+							<DelimeterType>NO_DELIMETER</DelimeterType>
+						</ParameterEditor>
+					</Properties>                 
+				</Variable>
+			</Variables>
+			<Functions>
+				<Function AccessType="default" StaticFunction="false">
+					<ReturnModificator>RETURNS_VALUE</ReturnModificator>
+					<ReturnType><![CDATA[double]]></ReturnType>
+					<Id>1655948896691</Id>
+					<Name><![CDATA[f_getEffectivep]]></Name>
+					<X>180</X><Y>-430</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Body><![CDATA[double v_mitigationp;
+
+// If the control is not enabled, then its probability of stopping
+// the attack is 0.
+if (v_enabled == false) {
+	v_mitigationp = 0;
+}
+else {
+	// Generate random variance between the positive and negative value of the variance
+	double v_mitigationv;
+	if (v_mitigationV == 0) {
+		v_mitigationv = 0;
+	}
+	else {
+		double v_minv = -1 * v_mitigationV;
+		double v_maxv = 1 * v_mitigationV;
+		v_mitigationv = uniform(v_minv, v_maxv);
+	}
+	
+	v_mitigationp = (v_mitigationP + v_mitigationv);
+	
+	// Constrain bounds to 0 <= v_effectiveProbability <= 1
+	if (v_mitigationp < 0) {
+	    v_mitigationp = 0;
+	}
+	else if (v_mitigationp > 1) {
+	    v_mitigationp = 1;
+	}
+}
+
+return v_mitigationp;]]></Body>
+				</Function>
+				<Function AccessType="default" StaticFunction="false">
+					<ReturnModificator>VOID</ReturnModificator>
+					<ReturnType><![CDATA[double]]></ReturnType>
+					<Id>1655949975167</Id>
+					<Name><![CDATA[f_initialize]]></Name>
+					<X>180</X><Y>-410</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Body><![CDATA[t_controlName.setText(p_controlName);]]></Body>
+				</Function>
+			</Functions>
+			<AgentLinks>
+				<AgentLink>
+					<Id>1655948071959</Id>
+					<Name><![CDATA[connections]]></Name>
+					<X>50</X><Y>-50</Y>
+					<Label><X>15</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<HandleReceiveInConnections>false</HandleReceiveInConnections>
+					<AgentLinkType>COLLECTION_OF_LINKS</AgentLinkType>
+					<AgentLinkBidirectional>true</AgentLinkBidirectional>
+					<MessageType><![CDATA[Object]]></MessageType>
+					<LineStyle>SOLID</LineStyle>
+					<LineWidth>1</LineWidth>
+					<LineColor>-16777216</LineColor>
+					<LineZOrder>UNDER_AGENTS</LineZOrder>
+					<LineArrow>NONE</LineArrow>
+					<LineArrowPosition>END</LineArrowPosition>
+				</AgentLink>
+			</AgentLinks>
+
+
+			<Presentation>
+				<Level>
+					<Id>1655948071963</Id>
+					<Name><![CDATA[level]]></Name>
+					<X>0</X><Y>0</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<Z>0</Z>
+					<LevelVisibility>DIM_NON_CURRENT</LevelVisibility>
+
+			<Presentation>
+				<Rectangle>
+					<Id>1655948304228</Id>
+					<Name><![CDATA[rectangle]]></Name>
+					<X>0</X><Y>-30</Y>
+					<Label><X>10</X><Y>10</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<Lock>true</Lock>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<ZHeight>10</ZHeight>
+					<LineWidth>1</LineWidth>
+					<LineColor/>
+					<LineMaterial>null</LineMaterial>
+					<LineStyle>SOLID</LineStyle>
+					<Width>440</Width>
+					<Height>170</Height>
+					<Rotation>0.0</Rotation>
+					<FillColor>-12434878</FillColor>
+					<FillMaterial>null</FillMaterial>
+				</Rectangle>
+				<Text>
+					<Id>1655948108946</Id>
+					<Name><![CDATA[t_controlName]]></Name>
+					<X>10</X><Y>14</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-328966</Color>
+					<Text><![CDATA[Control
+Name]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>10</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Control Type="CheckBox">
+				 	<EmbeddedIcon>false</EmbeddedIcon>				
+					<Id>1655948108958</Id>
+					<Name><![CDATA[checkbox1]]></Name>
+					<X>246</X><Y>15</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<BasicProperties Width="20" Height="20">
+                        <EmbeddedIcon>false</EmbeddedIcon>	
+						<TextColor/>
+						<Enabled>true</Enabled>
+					</BasicProperties>
+					<ExtendedProperties>
+						<Font Name="Dialog" Size="11" Style="0"/>
+						<LabelText><![CDATA[]]></LabelText>
+						<LinkTo>true</LinkTo>
+						<Link>v_antivirusEnabled</Link>
+	 				</ExtendedProperties>
+				</Control>
+				<Control Type="EditBox">
+				 	<EmbeddedIcon>false</EmbeddedIcon>				
+					<Id>1655948108965</Id>
+					<Name><![CDATA[eb_antivirusPr]]></Name>
+					<X>55</X><Y>10</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<BasicProperties Width="50" Height="34">
+                        <EmbeddedIcon>false</EmbeddedIcon>	
+						<FillColor/>
+						<TextColor/>
+						<Enabled>true</Enabled>
+					</BasicProperties>
+					<ExtendedProperties>
+						<Font Name="Dialog" Size="11" Style="0"/>
+						<MinValue><![CDATA[0]]></MinValue>
+						<MaxValue><![CDATA[1]]></MaxValue>
+						<LinkTo>true</LinkTo>
+						<Link>v_mitigationP</Link>
+					</ExtendedProperties>
+				</Control>
+				<Control Type="EditBox">
+				 	<EmbeddedIcon>false</EmbeddedIcon>				
+					<Id>1655948108970</Id>
+					<Name><![CDATA[eb_antivirusCost]]></Name>
+					<X>175</X><Y>10</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<BasicProperties Width="57" Height="34">
+                        <EmbeddedIcon>false</EmbeddedIcon>	
+						<FillColor/>
+						<TextColor/>
+						<Enabled>true</Enabled>
+					</BasicProperties>
+					<ExtendedProperties>
+						<Font Name="Dialog" Size="11" Style="0"/>
+						<LinkTo>true</LinkTo>
+						<Link>v_annualCost</Link>
+					</ExtendedProperties>
+				</Control>
+				<Control Type="EditBox">
+				 	<EmbeddedIcon>false</EmbeddedIcon>				
+					<Id>1655948108973</Id>
+					<Name><![CDATA[eb_antivirusVar]]></Name>
+					<X>115</X><Y>10</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<BasicProperties Width="50" Height="34">
+                        <EmbeddedIcon>false</EmbeddedIcon>	
+						<FillColor/>
+						<TextColor/>
+						<Enabled>true</Enabled>
+					</BasicProperties>
+					<ExtendedProperties>
+						<Font Name="Dialog" Size="11" Style="0"/>
+						<MinValue><![CDATA[0]]></MinValue>
+						<MaxValue><![CDATA[1]]></MaxValue>
+						<LinkTo>true</LinkTo>
+						<Link>v_mitigationV</Link>
+					</ExtendedProperties>
+				</Control>
+				<Text>
+					<Id>1655948383413</Id>
+					<Name><![CDATA[text1]]></Name>
+					<X>240</X><Y>-20</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-328966</Color>
+					<Text><![CDATA[Enabled]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>10</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<RoundedRectangle>
+					<Id>1655948453409</Id>
+					<Name><![CDATA[roundRectangle1]]></Name>
+					<X>390</X><Y>-270</Y>
+					<Label><X>10</X><Y>10</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<ZHeight>10</ZHeight>
+					<LineWidth>1</LineWidth>
+					<LineColor>-16777216</LineColor>
+					<LineMaterial>null</LineMaterial>
+					<LineStyle>SOLID</LineStyle>
+					<Width>220</Width>
+					<Height>190</Height>
+					<Rotation>0.0</Rotation>
+					<FillColor>-1</FillColor>
+					<FillMaterial>null</FillMaterial>
+					<ArcRadius>10</ArcRadius>
+				</RoundedRectangle>
+				<Text>
+					<Id>1655948453420</Id>
+					<Name><![CDATA[text27]]></Name>
+					<X>470</X><Y>-250</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[Variables]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>14</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<RoundedRectangle>
+					<Id>1655948792879</Id>
+					<Name><![CDATA[roundRectangle2]]></Name>
+					<X>150</X><Y>-270</Y>
+					<Label><X>10</X><Y>10</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<ZHeight>10</ZHeight>
+					<LineWidth>1</LineWidth>
+					<LineColor>-16777216</LineColor>
+					<LineMaterial>null</LineMaterial>
+					<LineStyle>SOLID</LineStyle>
+					<Width>220</Width>
+					<Height>190</Height>
+					<Rotation>0.0</Rotation>
+					<FillColor>-1</FillColor>
+					<FillMaterial>null</FillMaterial>
+					<ArcRadius>10</ArcRadius>
+				</RoundedRectangle>
+				<Text>
+					<Id>1655948792889</Id>
+					<Name><![CDATA[text28]]></Name>
+					<X>230</X><Y>-250</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[Paremeters]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>14</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<RoundedRectangle>
+					<Id>1655948879178</Id>
+					<Name><![CDATA[roundRectangle3]]></Name>
+					<X>150</X><Y>-480</Y>
+					<Label><X>10</X><Y>10</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<ZHeight>10</ZHeight>
+					<LineWidth>1</LineWidth>
+					<LineColor>-16777216</LineColor>
+					<LineMaterial>null</LineMaterial>
+					<LineStyle>SOLID</LineStyle>
+					<Width>220</Width>
+					<Height>190</Height>
+					<Rotation>0.0</Rotation>
+					<FillColor>-1</FillColor>
+					<FillMaterial>null</FillMaterial>
+					<ArcRadius>10</ArcRadius>
+				</RoundedRectangle>
+				<Text>
+					<Id>1655948879189</Id>
+					<Name><![CDATA[text29]]></Name>
+					<X>230</X><Y>-460</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[Functions]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>14</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<Text>
+					<Id>1655949180754</Id>
+					<Name><![CDATA[Test1]]></Name>
+					<X>140</X><Y>-20</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-328966</Color>
+					<Text><![CDATA[Mitigation
+Variance]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>10</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>CENTER</Alignment>
+				</Text>
+				<Text>
+					<Id>1655949180756</Id>
+					<Name><![CDATA[Test]]></Name>
+					<X>80</X><Y>-20</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-328966</Color>
+					<Text><![CDATA[Mitigation
+Probability]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>10</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>CENTER</Alignment>
+				</Text>
+				<Text>
+					<Id>1655949180758</Id>
+					<Name><![CDATA[text]]></Name>
+					<X>200</X><Y>-20</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-328966</Color>
+					<Text><![CDATA[Annual
+Cost]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>10</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>CENTER</Alignment>
+				</Text>
+			</Presentation>
+
+				</Level>
+			</Presentation>
+
+		</ActiveObjectClass>
 	</ActiveObjectClasses>	
 	<DifferentialEquationsMethod>EULER</DifferentialEquationsMethod>
 	<MixedEquationsMethod>RK45_NEWTON</MixedEquationsMethod>
@@ -7317,10 +8117,10 @@ return v_isAttacker;
 			<TableImportSettings>
 				<TableReference>
 					<PackageName><![CDATA[attack_simulation]]></PackageName>
-					<ClassName><![CDATA[sheet1]]></ClassName>
+					<ClassName><![CDATA[threat_actor_inputs]]></ClassName>
 				</TableReference>
 				<ConnectionIndex>0</ConnectionIndex>
-				<ExternalTableName><![CDATA["Sheet1"]]></ExternalTableName>
+				<ExternalTableName><![CDATA["threat_actor_inputs"]]></ExternalTableName>
 				<AutoImport>true</AutoImport>
 			</TableImportSettings>
 		</ImportSettings>
@@ -7359,7 +8159,7 @@ return v_isAttacker;
 			<Name><![CDATA[Simulation]]></Name>
 			<ClientAreaTopLeft><X>0</X><Y>0</Y></ClientAreaTopLeft>
 			<CommandLineArguments><![CDATA[]]></CommandLineArguments>
-			<MaximumMemory>256</MaximumMemory>
+			<MaximumMemory>8192</MaximumMemory>
 			<RandomNumberGenerationType>fixedSeed</RandomNumberGenerationType>
 			<CustomGeneratorCode>new Random()</CustomGeneratorCode>
 			<SeedValue>1</SeedValue>
