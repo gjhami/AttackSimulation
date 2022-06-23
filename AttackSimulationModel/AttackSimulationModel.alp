@@ -1177,6 +1177,12 @@ t_breachCost.setText(v_breachCost);]]></Body>
 						</GenericParameterSubstituteReference>
 					</GenericParameterSubstitute>
 					<Parameters>
+						<Parameter>
+							<Name><![CDATA[p_nodeName]]></Name>
+						</Parameter>
+						<Parameter>
+							<Name><![CDATA[p_nodePosition]]></Name>
+						</Parameter>
 					</Parameters>
 					<ReplicationFlag>false</ReplicationFlag>
 					<Replication Class="CodeValue">
@@ -1239,6 +1245,12 @@ t_breachCost.setText(v_breachCost);]]></Body>
 						</GenericParameterSubstituteReference>
 					</GenericParameterSubstitute>
 					<Parameters>
+						<Parameter>
+							<Name><![CDATA[p_nodeName]]></Name>
+						</Parameter>
+						<Parameter>
+							<Name><![CDATA[p_nodePosition]]></Name>
+						</Parameter>
 					</Parameters>
 					<ReplicationFlag>false</ReplicationFlag>
 					<Replication Class="CodeValue">
@@ -1301,6 +1313,12 @@ t_breachCost.setText(v_breachCost);]]></Body>
 						</GenericParameterSubstituteReference>
 					</GenericParameterSubstitute>
 					<Parameters>
+						<Parameter>
+							<Name><![CDATA[p_nodeName]]></Name>
+						</Parameter>
+						<Parameter>
+							<Name><![CDATA[p_nodePosition]]></Name>
+						</Parameter>
 					</Parameters>
 					<ReplicationFlag>false</ReplicationFlag>
 					<Replication Class="CodeValue">
@@ -1363,6 +1381,12 @@ t_breachCost.setText(v_breachCost);]]></Body>
 						</GenericParameterSubstituteReference>
 					</GenericParameterSubstitute>
 					<Parameters>
+						<Parameter>
+							<Name><![CDATA[p_nodeName]]></Name>
+						</Parameter>
+						<Parameter>
+							<Name><![CDATA[p_nodePosition]]></Name>
+						</Parameter>
 					</Parameters>
 					<ReplicationFlag>false</ReplicationFlag>
 					<Replication Class="CodeValue">
@@ -1425,6 +1449,12 @@ t_breachCost.setText(v_breachCost);]]></Body>
 						</GenericParameterSubstituteReference>
 					</GenericParameterSubstitute>
 					<Parameters>
+						<Parameter>
+							<Name><![CDATA[p_nodeName]]></Name>
+						</Parameter>
+						<Parameter>
+							<Name><![CDATA[p_nodePosition]]></Name>
+						</Parameter>
 					</Parameters>
 					<ReplicationFlag>false</ReplicationFlag>
 					<Replication Class="CodeValue">
@@ -1487,6 +1517,12 @@ t_breachCost.setText(v_breachCost);]]></Body>
 						</GenericParameterSubstituteReference>
 					</GenericParameterSubstitute>
 					<Parameters>
+						<Parameter>
+							<Name><![CDATA[p_nodeName]]></Name>
+						</Parameter>
+						<Parameter>
+							<Name><![CDATA[p_nodePosition]]></Name>
+						</Parameter>
 					</Parameters>
 					<ReplicationFlag>false</ReplicationFlag>
 					<Replication Class="CodeValue">
@@ -1549,6 +1585,12 @@ t_breachCost.setText(v_breachCost);]]></Body>
 						</GenericParameterSubstituteReference>
 					</GenericParameterSubstitute>
 					<Parameters>
+						<Parameter>
+							<Name><![CDATA[p_nodeName]]></Name>
+						</Parameter>
+						<Parameter>
+							<Name><![CDATA[p_nodePosition]]></Name>
+						</Parameter>
 					</Parameters>
 					<ReplicationFlag>false</ReplicationFlag>
 					<Replication Class="CodeValue">
@@ -1611,6 +1653,12 @@ t_breachCost.setText(v_breachCost);]]></Body>
 						</GenericParameterSubstituteReference>
 					</GenericParameterSubstitute>
 					<Parameters>
+						<Parameter>
+							<Name><![CDATA[p_nodeName]]></Name>
+						</Parameter>
+						<Parameter>
+							<Name><![CDATA[p_nodePosition]]></Name>
+						</Parameter>
 					</Parameters>
 					<ReplicationFlag>false</ReplicationFlag>
 					<Replication Class="CodeValue">
@@ -5371,6 +5419,48 @@ for a small business (USD): ]]></Text>
 						</InitialValue>
 					</Properties>
 				</Variable>
+				<Variable Class="Parameter">
+					<Id>1655991227250</Id>
+					<Name><![CDATA[p_nodeName]]></Name>
+					<X>160</X><Y>-560</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
+						<Type><![CDATA[String]]></Type>
+						<UnitType><![CDATA[NONE]]></UnitType>
+						<SdArray>false</SdArray>
+						<ParameterEditor>
+							<Id>1655991227248</Id>
+							<EditorContolType>TEXT_BOX</EditorContolType>
+							<MinSliderValue><![CDATA[0]]></MinSliderValue>
+							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
+							<DelimeterType>NO_DELIMETER</DelimeterType>
+						</ParameterEditor>
+					</Properties>                 
+				</Variable>
+				<Variable Class="Parameter">
+					<Id>1655991244614</Id>
+					<Name><![CDATA[p_nodePosition]]></Name>
+					<X>160</X><Y>-540</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
+						<Type><![CDATA[int]]></Type>
+						<UnitType><![CDATA[NONE]]></UnitType>
+						<SdArray>false</SdArray>
+						<ParameterEditor>
+							<Id>1655991244612</Id>
+							<EditorContolType>TEXT_BOX</EditorContolType>
+							<MinSliderValue><![CDATA[0]]></MinSliderValue>
+							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
+							<DelimeterType>NO_DELIMETER</DelimeterType>
+						</ParameterEditor>
+					</Properties>                 
+				</Variable>
 			</Variables>
 			<ActionChartElements>
 				<ActionChartElement Class="ActionChart">
@@ -7291,6 +7381,14 @@ return v_isAttacker;
 				<PackageName><![CDATA[attack_simulation]]></PackageName>
 				<ClassName><![CDATA[NetworkNode]]></ClassName>
 			</ExtendsReference>
+			<Parameters>
+				<Parameter>
+					<Name><![CDATA[p_nodeName]]></Name>
+				</Parameter>
+				<Parameter>
+					<Name><![CDATA[p_nodePosition]]></Name>
+				</Parameter>
+			</Parameters>
 			<Generic>false</Generic>
 			<GenericParameter>
 				<Id>1655914483318</Id>
@@ -8094,6 +8192,27 @@ Cost]]></Text>
 		<ShutdownCompact>false</ShutdownCompact>
 		<ImportSettings>
 			<ExternalConnection>
+				<Id>1655992512754</Id>
+				<Name><![CDATA[database]]></Name>
+				<X>0</X><Y>0</Y>
+				<Label><X>10</X><Y>0</Y></Label>
+				<PublicFlag>false</PublicFlag>
+				<PresentationFlag>true</PresentationFlag>
+				<ShowLabel>true</ShowLabel>
+				<DatabaseType>EXCEL_ACCESS</DatabaseType>
+				<ConnectionURL><![CDATA[]]></ConnectionURL>
+				<ConnectOnStartup>true</ConnectOnStartup>
+				<DatabaseName><![CDATA[]]></DatabaseName>
+				<ResourceReference>
+					<PackageName><![CDATA[attack_simulation]]></PackageName>
+					<ClassName><![CDATA[node_inputs.xlsx]]></ClassName>
+				</ResourceReference>
+				<Host><![CDATA[localhost]]></Host>
+				<JdbcDriverClassName><![CDATA[net.sourceforge.jtds.jdbc.Driver]]></JdbcDriverClassName>
+				<Login><![CDATA[]]></Login>
+				<Password><![CDATA[]]></Password>
+			</ExternalConnection>
+			<ExternalConnection>
 				<Id>1654803541523</Id>
 				<Name><![CDATA[database]]></Name>
 				<X>0</X><Y>0</Y>
@@ -8114,13 +8233,52 @@ Cost]]></Text>
 				<Login><![CDATA[]]></Login>
 				<Password><![CDATA[]]></Password>
 			</ExternalConnection>
+			<ExternalConnection>
+				<Id>1655992682776</Id>
+				<Name><![CDATA[database]]></Name>
+				<X>0</X><Y>0</Y>
+				<Label><X>10</X><Y>0</Y></Label>
+				<PublicFlag>false</PublicFlag>
+				<PresentationFlag>true</PresentationFlag>
+				<ShowLabel>true</ShowLabel>
+				<DatabaseType>EXCEL_ACCESS</DatabaseType>
+				<ConnectionURL><![CDATA[]]></ConnectionURL>
+				<ConnectOnStartup>true</ConnectOnStartup>
+				<DatabaseName><![CDATA[]]></DatabaseName>
+				<ResourceReference>
+					<PackageName><![CDATA[attack_simulation]]></PackageName>
+					<ClassName><![CDATA[control_inputs.xlsx]]></ClassName>
+				</ResourceReference>
+				<Host><![CDATA[localhost]]></Host>
+				<JdbcDriverClassName><![CDATA[net.sourceforge.jtds.jdbc.Driver]]></JdbcDriverClassName>
+				<Login><![CDATA[]]></Login>
+				<Password><![CDATA[]]></Password>
+			</ExternalConnection>
+			<TableImportSettings>
+				<TableReference>
+					<PackageName><![CDATA[attack_simulation]]></PackageName>
+					<ClassName><![CDATA[node_inputs]]></ClassName>
+				</TableReference>
+				<ConnectionIndex>0</ConnectionIndex>
+				<ExternalTableName><![CDATA["node_inputs"]]></ExternalTableName>
+				<AutoImport>true</AutoImport>
+			</TableImportSettings>
 			<TableImportSettings>
 				<TableReference>
 					<PackageName><![CDATA[attack_simulation]]></PackageName>
 					<ClassName><![CDATA[threat_actor_inputs]]></ClassName>
 				</TableReference>
-				<ConnectionIndex>0</ConnectionIndex>
+				<ConnectionIndex>1</ConnectionIndex>
 				<ExternalTableName><![CDATA["threat_actor_inputs"]]></ExternalTableName>
+				<AutoImport>true</AutoImport>
+			</TableImportSettings>
+			<TableImportSettings>
+				<TableReference>
+					<PackageName><![CDATA[attack_simulation]]></PackageName>
+					<ClassName><![CDATA[control_inputs]]></ClassName>
+				</TableReference>
+				<ConnectionIndex>2</ConnectionIndex>
+				<ExternalTableName><![CDATA["control_inputs"]]></ExternalTableName>
 				<AutoImport>true</AutoImport>
 			</TableImportSettings>
 		</ImportSettings>
@@ -9307,6 +9465,14 @@ if (bestInfeasibleObjective != Double.POSITIVE_INFINITY) {
 		</Resource>
 		<Resource>
 			<Path><![CDATA[threat_actor_inputs.xlsx]]></Path>
+			<ReferencedFromUserCode>false</ReferencedFromUserCode>
+		</Resource>
+		<Resource>
+			<Path><![CDATA[node_inputs.xlsx]]></Path>
+			<ReferencedFromUserCode>false</ReferencedFromUserCode>
+		</Resource>
+		<Resource>
+			<Path><![CDATA[control_inputs.xlsx]]></Path>
 			<ReferencedFromUserCode>false</ReferencedFromUserCode>
 		</Resource>
 	</ModelResources>
