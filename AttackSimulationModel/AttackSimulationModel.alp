@@ -114,7 +114,7 @@ for (Integer controlID : cp_enabledControls) {
 	.where(control_inputs.control_id.eq(controlID))
 	.firstResult(control_inputs.node_id);
 	
-	NetworkNode node = findFirst(ap_NetworkNodes, n -> n.p_nodeID == nodeID);
+	A_NetworkNode node = findFirst(ap_NetworkNodes, n -> n.p_nodeID == nodeID);
 	A_Control control = findFirst(node.ap_Controls, c -> c.p_controlID == controlID);
 	control.cb_enabled.setSelected(true);
 	control.p_enabled = true;
@@ -220,8 +220,8 @@ for (Integer controlID : cp_enabledControls) {
 			<Variables>
 				<Variable Class="PlainVariable">
 					<Id>1653420433123</Id>
-					<Name><![CDATA[v_totalCost]]></Name>
-					<X>320</X><Y>-120</Y>
+					<Name><![CDATA[v_totalControlCost]]></Name>
+					<X>540</X><Y>-630</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -233,7 +233,7 @@ for (Integer controlID : cp_enabledControls) {
 				<Variable Class="PlainVariable">
 					<Id>1653575152211</Id>
 					<Name><![CDATA[v_graphColors]]></Name>
-					<X>320</X><Y>-320</Y>
+					<X>150</X><Y>-330</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -248,7 +248,7 @@ for (Integer controlID : cp_enabledControls) {
 				<Variable Class="PlainVariable">
 					<Id>1653589792118</Id>
 					<Name><![CDATA[v_remainingRuns]]></Name>
-					<X>320</X><Y>-360</Y>
+					<X>765</X><Y>-655</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -263,7 +263,7 @@ for (Integer controlID : cp_enabledControls) {
 				<Variable Class="PlainVariable">
 					<Id>1653669769941</Id>
 					<Name><![CDATA[v_totalRuns]]></Name>
-					<X>320</X><Y>-420</Y>
+					<X>765</X><Y>-675</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -276,7 +276,7 @@ for (Integer controlID : cp_enabledControls) {
 					<Id>1654451474568</Id>
 					<Name><![CDATA[v_effectiveAttacker]]></Name>
 					<Description><![CDATA[Attacker selected for the current attack]]></Description>
-					<X>320</X><Y>-300</Y>
+					<X>540</X><Y>-670</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -288,7 +288,7 @@ for (Integer controlID : cp_enabledControls) {
 				<Variable Class="PlainVariable">
 					<Id>1654532780996</Id>
 					<Name><![CDATA[v_effectiveAttackerFailRatio]]></Name>
-					<X>320</X><Y>-280</Y>
+					<X>540</X><Y>-650</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -301,33 +301,9 @@ for (Integer controlID : cp_enabledControls) {
 					</Properties>
 				</Variable>
 				<Variable Class="PlainVariable">
-					<Id>1654542173696</Id>
-					<Name><![CDATA[v_runningFailRatioSum]]></Name>
-					<X>1060</X><Y>-140</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
-						<Type><![CDATA[double]]></Type>        
-					</Properties>
-				</Variable>
-				<Variable Class="PlainVariable">
-					<Id>1654542190182</Id>
-					<Name><![CDATA[v_avgFailRatio]]></Name>
-					<X>1060</X><Y>-120</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
-						<Type><![CDATA[double]]></Type>        
-					</Properties>
-				</Variable>
-				<Variable Class="PlainVariable">
 					<Id>1655476894701</Id>
 					<Name><![CDATA[v_customerPIICost]]></Name>
-					<X>540</X><Y>-680</Y>
+					<X>320</X><Y>-210</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -342,7 +318,7 @@ for (Integer controlID : cp_enabledControls) {
 				<Variable Class="PlainVariable">
 					<Id>1655476923598</Id>
 					<Name><![CDATA[v_employeePIICost]]></Name>
-					<X>540</X><Y>-660</Y>
+					<X>320</X><Y>-190</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -357,7 +333,7 @@ for (Integer controlID : cp_enabledControls) {
 				<Variable Class="PlainVariable">
 					<Id>1655476959076</Id>
 					<Name><![CDATA[v_otherSensitiveDataCost]]></Name>
-					<X>540</X><Y>-640</Y>
+					<X>320</X><Y>-170</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -372,7 +348,7 @@ for (Integer controlID : cp_enabledControls) {
 				<Variable Class="PlainVariable">
 					<Id>1655476998619</Id>
 					<Name><![CDATA[v_anonCustomerDataCost]]></Name>
-					<X>540</X><Y>-620</Y>
+					<X>320</X><Y>-150</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -387,7 +363,7 @@ for (Integer controlID : cp_enabledControls) {
 				<Variable Class="PlainVariable">
 					<Id>1655477021057</Id>
 					<Name><![CDATA[v_customRecordCost]]></Name>
-					<X>540</X><Y>-600</Y>
+					<X>320</X><Y>-130</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -402,7 +378,7 @@ for (Integer controlID : cp_enabledControls) {
 				<Variable Class="PlainVariable">
 					<Id>1655477177078</Id>
 					<Name><![CDATA[v_customerPIICount]]></Name>
-					<X>710</X><Y>-680</Y>
+					<X>540</X><Y>-210</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -417,7 +393,7 @@ for (Integer controlID : cp_enabledControls) {
 				<Variable Class="PlainVariable">
 					<Id>1655477177080</Id>
 					<Name><![CDATA[v_employeePIICount]]></Name>
-					<X>710</X><Y>-660</Y>
+					<X>540</X><Y>-190</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -432,7 +408,7 @@ for (Integer controlID : cp_enabledControls) {
 				<Variable Class="PlainVariable">
 					<Id>1655477177082</Id>
 					<Name><![CDATA[v_otherSensitiveDataCount]]></Name>
-					<X>710</X><Y>-640</Y>
+					<X>540</X><Y>-170</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -447,7 +423,7 @@ for (Integer controlID : cp_enabledControls) {
 				<Variable Class="PlainVariable">
 					<Id>1655477177084</Id>
 					<Name><![CDATA[v_anonCustomerDataCount]]></Name>
-					<X>710</X><Y>-620</Y>
+					<X>540</X><Y>-150</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -462,7 +438,7 @@ for (Integer controlID : cp_enabledControls) {
 				<Variable Class="PlainVariable">
 					<Id>1655477177086</Id>
 					<Name><![CDATA[v_customRecordCount]]></Name>
-					<X>710</X><Y>-600</Y>
+					<X>540</X><Y>-130</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -477,7 +453,7 @@ for (Integer controlID : cp_enabledControls) {
 				<Variable Class="PlainVariable">
 					<Id>1655479154371</Id>
 					<Name><![CDATA[v_avgSmallBusinessCost]]></Name>
-					<X>540</X><Y>-550</Y>
+					<X>320</X><Y>-80</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -492,7 +468,7 @@ for (Integer controlID : cp_enabledControls) {
 				<Variable Class="PlainVariable">
 					<Id>1655479339306</Id>
 					<Name><![CDATA[v_manualCost]]></Name>
-					<X>540</X><Y>-530</Y>
+					<X>320</X><Y>-60</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -507,7 +483,7 @@ for (Integer controlID : cp_enabledControls) {
 				<Variable Class="PlainVariable">
 					<Id>1655479890207</Id>
 					<Name><![CDATA[v_estimationTechnique]]></Name>
-					<X>710</X><Y>-550</Y>
+					<X>540</X><Y>-80</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -522,7 +498,7 @@ for (Integer controlID : cp_enabledControls) {
 				<Variable Class="PlainVariable">
 					<Id>1655920714005</Id>
 					<Name><![CDATA[v_remainingYears]]></Name>
-					<X>320</X><Y>-340</Y>
+					<X>765</X><Y>-635</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -537,7 +513,8 @@ for (Integer controlID : cp_enabledControls) {
 				<Variable Class="PlainVariable">
 					<Id>1656007029729</Id>
 					<Name><![CDATA[v_currentPosition]]></Name>
-					<X>550</X><Y>-50</Y>
+					<Description><![CDATA[Helper variable used in f_linkNodes()]]></Description>
+					<X>540</X><Y>-550</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -552,7 +529,7 @@ for (Integer controlID : cp_enabledControls) {
 				<Variable Class="PlainVariable">
 					<Id>1656010583745</Id>
 					<Name><![CDATA[v_percentNodeCompromised]]></Name>
-					<X>1060</X><Y>-100</Y>
+					<X>765</X><Y>-555</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -564,7 +541,7 @@ for (Integer controlID : cp_enabledControls) {
 				<Variable Class="PlainVariable">
 					<Id>1656010587645</Id>
 					<Name><![CDATA[v_compromisedCount]]></Name>
-					<X>1060</X><Y>-80</Y>
+					<X>765</X><Y>-535</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -576,7 +553,7 @@ for (Integer controlID : cp_enabledControls) {
 				<Variable Class="PlainVariable">
 					<Id>1656010591971</Id>
 					<Name><![CDATA[di_compromisedCount]]></Name>
-					<X>1060</X><Y>-60</Y>
+					<X>765</X><Y>-515</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -588,7 +565,7 @@ for (Integer controlID : cp_enabledControls) {
 				<Variable Class="PlainVariable">
 					<Id>1656010595855</Id>
 					<Name><![CDATA[di_compromisedPercent]]></Name>
-					<X>1060</X><Y>-40</Y>
+					<X>765</X><Y>-495</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -600,7 +577,7 @@ for (Integer controlID : cp_enabledControls) {
 				<Variable Class="PlainVariable">
 					<Id>1656041781738</Id>
 					<Name><![CDATA[v_totalReturn]]></Name>
-					<X>320</X><Y>-160</Y>
+					<X>765</X><Y>-595</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -615,7 +592,7 @@ for (Integer controlID : cp_enabledControls) {
 				<Variable Class="PlainVariable">
 					<Id>1656080486889</Id>
 					<Name><![CDATA[cv_controlsPowerSet]]></Name>
-					<X>765</X><Y>-305</Y>
+					<X>990</X><Y>-660</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -627,7 +604,7 @@ for (Integer controlID : cp_enabledControls) {
 				<Variable Class="PlainVariable">
 					<Id>1656087923097</Id>
 					<Name><![CDATA[v_maxReturn]]></Name>
-					<X>765</X><Y>-285</Y>
+					<X>990</X><Y>-640</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -642,7 +619,7 @@ for (Integer controlID : cp_enabledControls) {
 				<Variable Class="PlainVariable">
 					<Id>1656100924086</Id>
 					<Name><![CDATA[v_optimalControlsString]]></Name>
-					<X>1060</X><Y>-220</Y>
+					<X>990</X><Y>-620</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -654,7 +631,7 @@ for (Integer controlID : cp_enabledControls) {
 				<Variable Class="PlainVariable">
 					<Id>1656101985223</Id>
 					<Name><![CDATA[v_maxROI]]></Name>
-					<X>765</X><Y>-265</Y>
+					<X>990</X><Y>-410</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -669,7 +646,7 @@ for (Integer controlID : cp_enabledControls) {
 				<Variable Class="PlainVariable">
 					<Id>1656102077018</Id>
 					<Name><![CDATA[v_totalROI]]></Name>
-					<X>320</X><Y>-140</Y>
+					<X>765</X><Y>-615</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -684,7 +661,7 @@ for (Integer controlID : cp_enabledControls) {
 				<Variable Class="PlainVariable">
 					<Id>1656104606929</Id>
 					<Name><![CDATA[v_optimalROIString]]></Name>
-					<X>910</X><Y>-330</Y>
+					<X>990</X><Y>-390</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -696,7 +673,7 @@ for (Integer controlID : cp_enabledControls) {
 				<Variable Class="Parameter">
 					<Id>1655404070757</Id>
 					<Name><![CDATA[p_annualBudget]]></Name>
-					<X>330</X><Y>-670</Y>
+					<X>320</X><Y>-670</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -720,7 +697,7 @@ for (Integer controlID : cp_enabledControls) {
 				<Variable Class="Parameter">
 					<Id>1655404079732</Id>
 					<Name><![CDATA[p_breachCost]]></Name>
-					<X>330</X><Y>-650</Y>
+					<X>320</X><Y>-650</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -744,7 +721,7 @@ for (Integer controlID : cp_enabledControls) {
 				<Variable Class="Parameter">
 					<Id>1655404109221</Id>
 					<Name><![CDATA[cp_selectedThreatActors]]></Name>
-					<X>330</X><Y>-630</Y>
+					<X>320</X><Y>-630</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -768,7 +745,7 @@ for (Integer controlID : cp_enabledControls) {
 				<Variable Class="Parameter">
 					<Id>1656019416026</Id>
 					<Name><![CDATA[p_attacksPerYear]]></Name>
-					<X>330</X><Y>-610</Y>
+					<X>320</X><Y>-610</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -792,7 +769,7 @@ for (Integer controlID : cp_enabledControls) {
 				<Variable Class="Parameter">
 					<Id>1656019447197</Id>
 					<Name><![CDATA[p_numYears]]></Name>
-					<X>330</X><Y>-590</Y>
+					<X>320</X><Y>-590</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -816,7 +793,7 @@ for (Integer controlID : cp_enabledControls) {
 				<Variable Class="Parameter">
 					<Id>1656028257587</Id>
 					<Name><![CDATA[cp_enabledControls]]></Name>
-					<X>330</X><Y>-570</Y>
+					<X>320</X><Y>-570</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -842,7 +819,7 @@ for (Integer controlID : cp_enabledControls) {
 				<Variable Class="Parameter">
 					<Id>1656042390046</Id>
 					<Name><![CDATA[p_controlSetIndex]]></Name>
-					<X>330</X><Y>-550</Y>
+					<X>320</X><Y>-550</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -861,24 +838,9 @@ for (Integer controlID : cp_enabledControls) {
 					</Properties>                 
 				</Variable>
 				<Variable Class="CollectionVariable">
-					<Id>1654352585361</Id>
-					<Name><![CDATA[cv_allAttackers]]></Name>
-					<X>320</X><Y>-260</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Properties SaveInSnapshot="true" AccessType="public" StaticVariable="false">
-						<CollectionClass><![CDATA[TreeMap]]></CollectionClass>
-						<ElementClass><![CDATA[String]]></ElementClass>
-						<ValueElementClass><![CDATA[A_ThreatActor]]></ValueElementClass>
-					</Properties>
-
-				</Variable>
-				<Variable Class="CollectionVariable">
 					<Id>1656080455580</Id>
 					<Name><![CDATA[cv_allControls]]></Name>
-					<X>765</X><Y>-325</Y>
+					<X>990</X><Y>-680</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -897,15 +859,15 @@ for (Integer controlID : cp_enabledControls) {
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1491426884947</Id>
 					<Name><![CDATA[f_linkNodes]]></Name>
-					<X>540</X><Y>-90</Y>
+					<X>540</X><Y>-350</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
 					<Body><![CDATA[// Set current position to minimum position > 0
 v_currentPosition = (int) Math.round(ap_NetworkNodes.getMinPos());
-NetworkNode previousNode = findFirst(ap_NetworkNodes, n -> n.p_nodePosition == v_currentPosition);
-NetworkNode currentNode;
+A_NetworkNode previousNode = findFirst(ap_NetworkNodes, n -> n.p_nodePosition == v_currentPosition);
+A_NetworkNode currentNode;
 
 // Increment current position until the max position is reached
 while (v_currentPosition < (int) Math.round(ap_NetworkNodes.getMaxPos())) {
@@ -927,21 +889,21 @@ previousNode.v_nextNode = null;]]></Body>
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1492627056190</Id>
 					<Name><![CDATA[f_updateTotalCost]]></Name>
-					<X>540</X><Y>-150</Y>
+					<X>540</X><Y>-410</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
-					<Body><![CDATA[v_totalCost = ap_NetworkNodes.getOverallCost();
-t_totalCost.setText(v_totalCost);
-return v_totalCost;]]></Body>
+					<Body><![CDATA[v_totalControlCost = ap_NetworkNodes.getOverallCost();
+t_totalCost.setText(v_totalControlCost);
+return v_totalControlCost;]]></Body>
 				</Function>
 				<Function AccessType="default" StaticFunction="false">
 					<ReturnModificator>VOID</ReturnModificator>
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1651861966649</Id>
 					<Name><![CDATA[f_updateAttackerFailRatio]]></Name>
-					<X>540</X><Y>-130</Y>
+					<X>540</X><Y>-370</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -988,14 +950,14 @@ for (A_ThreatActor attacker : filter(ap_ThreatActors, a -> a.v_checkedForAttack 
 	attacker.v_checkedForAttack = false;
 }
 
-v_runningFailRatioSum = v_runningFailRatioSum + v_effectiveAttackerFailRatio;]]></Body>
+]]></Body>
 				</Function>
 				<Function AccessType="default" StaticFunction="false">
 					<ReturnModificator>VOID</ReturnModificator>
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1653412572346</Id>
 					<Name><![CDATA[f_runAttacks]]></Name>
-					<X>540</X><Y>-370</Y>
+					<X>765</X><Y>-410</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1021,7 +983,7 @@ f_linkNodes();
 v_remainingRuns = p_runs;
 v_remainingYears = p_years;
 int currentPosition = (int) Math.round(ap_NetworkNodes.getMinPos());
-NetworkNode firstNode = findFirst(ap_NetworkNodes, n -> n.p_nodePosition == (int) Math.round(ap_NetworkNodes.getMinPos()));
+A_NetworkNode firstNode = findFirst(ap_NetworkNodes, n -> n.p_nodePosition == (int) Math.round(ap_NetworkNodes.getMinPos()));
 
 while (v_remainingRuns > 0) {
 	v_remainingRuns = v_remainingRuns - 1;
@@ -1038,8 +1000,6 @@ while (v_remainingRuns > 0) {
 }
 
 t_totalAttacksRun.setText(v_totalRuns);
-f_updateTotalCost();
-f_updateGraph();
 
 ]]></Body>
 				</Function>
@@ -1047,13 +1007,13 @@ f_updateGraph();
 					<ReturnModificator>VOID</ReturnModificator>
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1653490984860</Id>
-					<Name><![CDATA[f_resetNodes]]></Name>
-					<X>540</X><Y>-410</Y>
+					<Name><![CDATA[f_reset]]></Name>
+					<X>765</X><Y>-370</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
-					<Body><![CDATA[NetworkNode firstNode = findFirst(ap_NetworkNodes, n -> n.p_nodePosition == (int) Math.round(ap_NetworkNodes.getMinPos()));
+					<Body><![CDATA[A_NetworkNode firstNode = findFirst(ap_NetworkNodes, n -> n.p_nodePosition == (int) Math.round(ap_NetworkNodes.getMinPos()));
 firstNode.f_reset();
 CompromisedChart.removeAll();
 bc_compromisedCount.removeAll();
@@ -1061,7 +1021,6 @@ bc_compromisedCount.removeAll();
 v_totalRuns = 0;
 t_totalAttacksRun.setText(v_totalRuns);
 
-v_runningFailRatioSum = 0;
 v_totalROI = 0;
 
 t_totalAttacksStopped.setText("0");
@@ -1080,8 +1039,8 @@ t_optimalControls.setText("?");
 					<ReturnModificator>VOID</ReturnModificator>
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1653572803181</Id>
-					<Name><![CDATA[f_updateGraph]]></Name>
-					<X>540</X><Y>-430</Y>
+					<Name><![CDATA[f_updateOutput]]></Name>
+					<X>765</X><Y>-390</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1091,7 +1050,7 @@ CompromisedChart.removeAll();
 bc_compromisedCount.removeAll();
 
 // List of nodes with positions in the attack path
-List<NetworkNode> nodes = filter(ap_NetworkNodes, n -> n.p_nodePosition > 0);
+List<A_NetworkNode> nodes = filter(ap_NetworkNodes, n -> n.p_nodePosition > 0);
 
 nodes.forEach((node) -> {
 	// (int) Math.round() for a whole number
@@ -1116,7 +1075,7 @@ nodes.forEach((node) -> {
 // Update totals for number of breaches, number of attacks stopped, ROI
 // Compromises of the last node in the attack path are treated as data breaches
 
-NetworkNode lastNode = findFirst(ap_NetworkNodes, n -> n.p_nodePosition == (int) Math.round(ap_NetworkNodes.getMaxPos()));
+A_NetworkNode lastNode = findFirst(ap_NetworkNodes, n -> n.p_nodePosition == (int) Math.round(ap_NetworkNodes.getMaxPos()));
 
 double numDataBreaches = (double) (lastNode.v_numCompromises) / (double) p_numYears;
 double totalLoss = numDataBreaches * p_breachCost;
@@ -1129,13 +1088,16 @@ t_totalAttacksStopped.setText(v_totalRuns - numDataBreaches);
 
 t_totalLoss.setText(totalLoss);
 t_totalReturn.setText(v_totalReturn);
-if (v_totalCost == 0) {
+if (v_totalControlCost == 0) {
 	v_totalROI = 0;
 }
 else {
-	v_totalROI = (v_totalReturn/v_totalCost) * 100;
+	v_totalROI = (v_totalReturn/v_totalControlCost) * 100;
 }
 t_ROI.setText(v_totalROI);
+
+f_updateTotalCost();
+f_updateOutput();
 
 //System.out.println("Return: " + v_totalReturn + ";\tCI: " + p_controlSetIndex + ";\tControls: " + cp_enabledControls);
 ]]></Body>
@@ -1143,20 +1105,9 @@ t_ROI.setText(v_totalROI);
 				<Function AccessType="default" StaticFunction="false">
 					<ReturnModificator>VOID</ReturnModificator>
 					<ReturnType><![CDATA[double]]></ReturnType>
-					<Id>1654358174980</Id>
-					<Name><![CDATA[f_populateAllAttackers]]></Name>
-					<X>540</X><Y>-350</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-				</Function>
-				<Function AccessType="default" StaticFunction="false">
-					<ReturnModificator>VOID</ReturnModificator>
-					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1654362845706</Id>
 					<Name><![CDATA[f_updateAttackerSelection]]></Name>
-					<X>540</X><Y>-70</Y>
+					<X>540</X><Y>-390</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1175,24 +1126,9 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 				<Function AccessType="default" StaticFunction="false">
 					<ReturnModificator>VOID</ReturnModificator>
 					<ReturnType><![CDATA[double]]></ReturnType>
-					<Id>1654978560732</Id>
-					<Name><![CDATA[f_setAppearance]]></Name>
-					<X>540</X><Y>-330</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Parameter>
-						<Name><![CDATA[mode]]></Name>
-						<Type><![CDATA[ol_appearenceModes]]></Type>
-					</Parameter>
-				</Function>
-				<Function AccessType="default" StaticFunction="false">
-					<ReturnModificator>VOID</ReturnModificator>
-					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1655480129449</Id>
 					<Name><![CDATA[f_updateBreachCost]]></Name>
-					<X>980</X><Y>-670</Y>
+					<X>770</X><Y>-210</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1222,7 +1158,7 @@ t_breachCost.setText(p_breachCost);]]></Body>
 					<ReturnType><![CDATA[boolean]]></ReturnType>
 					<Id>1656001958285</Id>
 					<Name><![CDATA[f_setNodePosition]]></Name>
-					<X>540</X><Y>-110</Y>
+					<X>540</X><Y>-330</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1238,7 +1174,7 @@ t_breachCost.setText(p_breachCost);]]></Body>
 					<Body><![CDATA[Boolean success = false;
 
 // Set position of this node to 0
-List<NetworkNode> nodes = filter(ap_NetworkNodes, n -> n.p_nodeID == p_targetNodeID);
+List<A_NetworkNode> nodes = filter(ap_NetworkNodes, n -> n.p_nodeID == p_targetNodeID);
 nodes.forEach((node) -> {
 /*
     node.p_nodePosition = 0;
@@ -1254,7 +1190,7 @@ if (p_targetPosition > 0) {
     // If there is not another node with this position
     // Then update the target node's position to the target position
     if (nodes.isEmpty()) {
-        NetworkNode targetNode = findFirst(ap_NetworkNodes, n -> n.p_nodeID == p_targetNodeID);
+        A_NetworkNode targetNode = findFirst(ap_NetworkNodes, n -> n.p_nodeID == p_targetNodeID);
         targetNode.f_updatePosition(p_targetPosition);
         /*
         targetNode.p_nodePosition = p_targetPosition;
@@ -1271,7 +1207,7 @@ return success;]]></Body>
 					<ReturnType><![CDATA[HashSet<A_Control>]]></ReturnType>
 					<Id>1656081652325</Id>
 					<Name><![CDATA[f_getAllControls]]></Name>
-					<X>765</X><Y>-395</Y>
+					<X>990</X><Y>-550</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1279,7 +1215,7 @@ return success;]]></Body>
 					<Body><![CDATA[HashSet<A_Control> allControls = new HashSet<A_Control>();
 
 // List of nodes with positions in the attack path
-List<NetworkNode> nodes = filter(ap_NetworkNodes, n -> n.p_nodePosition > 0);
+List<A_NetworkNode> nodes = filter(ap_NetworkNodes, n -> n.p_nodePosition > 0);
 
 nodes.forEach((node) -> {
 	List<A_Control> controls = filter(node.ap_Controls, c -> c.p_mitigationP > 0);
@@ -1292,7 +1228,7 @@ return allControls;]]></Body>
 					<ReturnType><![CDATA[Set<Set<A_Control>>]]></ReturnType>
 					<Id>1656085247849</Id>
 					<Name><![CDATA[f_getPowerSet]]></Name>
-					<X>765</X><Y>-375</Y>
+					<X>990</X><Y>-570</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1329,7 +1265,7 @@ return sets;]]></Body>
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1656085369880</Id>
 					<Name><![CDATA[f_optimizeReturn]]></Name>
-					<X>765</X><Y>-415</Y>
+					<X>990</X><Y>-590</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1340,7 +1276,7 @@ Set<A_Control> v_bestControlSet = new HashSet<A_Control>();
 v_maxReturn = -1;
 
 // Get nodes in the attack path
-List<NetworkNode> nodes = filter(ap_NetworkNodes, n -> n.p_nodePosition > 0);
+List<A_NetworkNode> nodes = filter(ap_NetworkNodes, n -> n.p_nodePosition > 0);
 
 // For Each possible set of controls
 for (Set<A_Control> controlSet : cv_controlsPowerSet) {
@@ -1356,7 +1292,7 @@ for (Set<A_Control> controlSet : cv_controlsPowerSet) {
 	
 
 	// Reset aggregate variables to test control set from clean state
-	f_resetNodes();
+	f_reset();
 
 	// Enable controls in the set
 	for (A_Control control : controlSet) {
@@ -1381,7 +1317,7 @@ for (Set<A_Control> controlSet : cv_controlsPowerSet) {
 
 // Re-run the attack with the best control set to visualize
 // Data for this control set
-f_resetNodes();
+f_reset();
 
 // Disable any controls already enabled
 nodes.forEach((node) -> {
@@ -1424,7 +1360,7 @@ t_bestControlROI.setText("%" + v_maxROI);
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1656101608183</Id>
 					<Name><![CDATA[f_optimizeROI]]></Name>
-					<X>765</X><Y>-355</Y>
+					<X>990</X><Y>-340</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1435,7 +1371,7 @@ Set<A_Control> v_bestControlSet = new HashSet<A_Control>();
 v_maxROI = -1;
 
 // Get nodes in the attack path
-List<NetworkNode> nodes = filter(ap_NetworkNodes, n -> n.p_nodePosition > 0);
+List<A_NetworkNode> nodes = filter(ap_NetworkNodes, n -> n.p_nodePosition > 0);
 
 // For Each possible set of controls
 for (Set<A_Control> controlSet : cv_controlsPowerSet) {
@@ -1453,7 +1389,7 @@ for (Set<A_Control> controlSet : cv_controlsPowerSet) {
 		
 
 		// Reset aggregate variables to test control set from clean state
-		f_resetNodes();
+		f_reset();
 	
 		// Enable controls in the set
 		for (A_Control control : controlSet) {
@@ -1480,7 +1416,7 @@ for (Set<A_Control> controlSet : cv_controlsPowerSet) {
 
 // Re-run the attack with the best control set to visualize
 // Data for this control set
-f_resetNodes();
+f_reset();
 
 // Disable any controls already enabled
 nodes.forEach((node) -> {
@@ -1539,7 +1475,7 @@ for (A_Control control : v_bestControlSet) {
 				<EmbeddedObject>
 					<Id>1655995237668</Id>
 					<Name><![CDATA[ap_ThreatActors]]></Name>
-					<X>790</X><Y>-140</Y>
+					<X>320</X><Y>-400</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1683,7 +1619,7 @@ for (A_Control control : v_bestControlSet) {
 				<EmbeddedObject>
 					<Id>1655996878582</Id>
 					<Name><![CDATA[ap_NetworkNodes]]></Name>
-					<X>790</X><Y>-120</Y>
+					<X>320</X><Y>-380</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1691,12 +1627,12 @@ for (A_Control control : v_bestControlSet) {
 					<PresentationId>1655996915735</PresentationId>
 					<ActiveObjectClass>
 						<PackageName><![CDATA[attack_simulation]]></PackageName>
-						<ClassName><![CDATA[NetworkNode]]></ClassName>
+						<ClassName><![CDATA[A_NetworkNode]]></ClassName>
 					</ActiveObjectClass>
 					<GenericParameterSubstitute>
 						<GenericParameterSubstituteReference>
 							<PackageName><![CDATA[attack_simulation]]></PackageName>
-							<ClassName><![CDATA[NetworkNode]]></ClassName>
+							<ClassName><![CDATA[A_NetworkNode]]></ClassName>
 							<ItemName><![CDATA[1481748191648]]></ItemName>
 						</GenericParameterSubstituteReference>
 					</GenericParameterSubstitute>
@@ -1783,7 +1719,7 @@ for (A_Control control : v_bestControlSet) {
 						<Item>
 							<Key>
 								<PackageName><![CDATA[attack_simulation]]></PackageName>
-								<ClassName><![CDATA[NetworkNode]]></ClassName>
+								<ClassName><![CDATA[A_NetworkNode]]></ClassName>
 								<ItemName><![CDATA[p_nodeID]]></ItemName>
 							</Key>
 							<Value>
@@ -1795,7 +1731,7 @@ for (A_Control control : v_bestControlSet) {
 						<Item>
 							<Key>
 								<PackageName><![CDATA[attack_simulation]]></PackageName>
-								<ClassName><![CDATA[NetworkNode]]></ClassName>
+								<ClassName><![CDATA[A_NetworkNode]]></ClassName>
 								<ItemName><![CDATA[p_nodeName]]></ItemName>
 							</Key>
 							<Value>
@@ -1807,7 +1743,7 @@ for (A_Control control : v_bestControlSet) {
 						<Item>
 							<Key>
 								<PackageName><![CDATA[attack_simulation]]></PackageName>
-								<ClassName><![CDATA[NetworkNode]]></ClassName>
+								<ClassName><![CDATA[A_NetworkNode]]></ClassName>
 								<ItemName><![CDATA[p_nodePosition]]></ItemName>
 							</Key>
 							<Value>
@@ -1819,7 +1755,7 @@ for (A_Control control : v_bestControlSet) {
 						<Item>
 							<Key>
 								<PackageName><![CDATA[attack_simulation]]></PackageName>
-								<ClassName><![CDATA[NetworkNode]]></ClassName>
+								<ClassName><![CDATA[A_NetworkNode]]></ClassName>
 								<ItemName><![CDATA[p_nodeGoesDown]]></ItemName>
 							</Key>
 							<Value>
@@ -1831,7 +1767,7 @@ for (A_Control control : v_bestControlSet) {
 						<Item>
 							<Key>
 								<PackageName><![CDATA[attack_simulation]]></PackageName>
-								<ClassName><![CDATA[NetworkNode]]></ClassName>
+								<ClassName><![CDATA[A_NetworkNode]]></ClassName>
 								<ItemName><![CDATA[p_nodeCount]]></ItemName>
 							</Key>
 							<Value>
@@ -1845,7 +1781,7 @@ for (A_Control control : v_bestControlSet) {
 				<EmbeddedObject>
 					<Id>1655999944604</Id>
 					<Name><![CDATA[ap_PositionSelectors]]></Name>
-					<X>790</X><Y>-100</Y>
+					<X>320</X><Y>-360</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2111,7 +2047,7 @@ for (A_Control control : v_bestControlSet) {
                         <EmbeddedIcon>false</EmbeddedIcon>	
 						<TextColor/>
 						<Enabled>true</Enabled>
-						<ActionCode><![CDATA[f_resetNodes();]]></ActionCode>
+						<ActionCode><![CDATA[f_reset();]]></ActionCode>
 					</BasicProperties>
 					<ExtendedProperties>
 						<Font Name="Dialog" Size="11" Style="0"/>
@@ -2306,11 +2242,12 @@ for (A_Control control : v_bestControlSet) {
 				<RoundedRectangle>
 					<Id>1653869555188</Id>
 					<Name><![CDATA[pi_SimVariables]]></Name>
-					<X>300</X><Y>-470</Y>
+					<X>740</X><Y>-720</Y>
 					<Label><X>10</X><Y>10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>false</ShowLabel>
+					<Lock>true</Lock>
 					<DrawMode>SHAPE_DRAW_2D</DrawMode>
 					<EmbeddedIcon>false</EmbeddedIcon>
 					<Z>0</Z>
@@ -2319,7 +2256,7 @@ for (A_Control control : v_bestControlSet) {
 					<LineColor>-16777216</LineColor>
 					<LineMaterial>null</LineMaterial>
 					<LineStyle>SOLID</LineStyle>
-					<Width>190</Width>
+					<Width>200</Width>
 					<Height>250</Height>
 					<Rotation>0.0</Rotation>
 					<FillColor>-1</FillColor>
@@ -2329,7 +2266,8 @@ for (A_Control control : v_bestControlSet) {
 				<Text>
 					<Id>1653869650901</Id>
 					<Name><![CDATA[text15]]></Name>
-					<X>320</X><Y>-460</Y>
+					<Description><![CDATA[Variables used to enable the functionality of simulating multiple attacks when the 'simulate year' button is pressed.]]></Description>
+					<X>775</X><Y>-710</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2350,11 +2288,12 @@ for (A_Control control : v_bestControlSet) {
 				<RoundedRectangle>
 					<Id>1653869733588</Id>
 					<Name><![CDATA[pi_SimVariables1]]></Name>
-					<X>300</X><Y>-200</Y>
+					<X>520</X><Y>-720</Y>
 					<Label><X>10</X><Y>10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>false</ShowLabel>
+					<Lock>true</Lock>
 					<DrawMode>SHAPE_DRAW_2D</DrawMode>
 					<EmbeddedIcon>false</EmbeddedIcon>
 					<Z>0</Z>
@@ -2363,8 +2302,8 @@ for (A_Control control : v_bestControlSet) {
 					<LineColor>-16777216</LineColor>
 					<LineMaterial>null</LineMaterial>
 					<LineStyle>SOLID</LineStyle>
-					<Width>170</Width>
-					<Height>170</Height>
+					<Width>200</Width>
+					<Height>250</Height>
 					<Rotation>0.0</Rotation>
 					<FillColor>-1</FillColor>
 					<FillMaterial>null</FillMaterial>
@@ -2373,7 +2312,7 @@ for (A_Control control : v_bestControlSet) {
 				<Text>
 					<Id>1653869733590</Id>
 					<Name><![CDATA[text26]]></Name>
-					<X>330</X><Y>-190</Y>
+					<X>537</X><Y>-710</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2383,7 +2322,7 @@ for (A_Control control : v_bestControlSet) {
 					<Z>0</Z>
 					<Rotation>0.0</Rotation>
 					<Color>-16777216</Color>
-					<Text><![CDATA[Attack Variables]]></Text>
+					<Text><![CDATA[Individual Attack Variables]]></Text>
 					<Font>
 						<Name>SansSerif</Name>
 						<Size>14</Size>
@@ -2394,11 +2333,12 @@ for (A_Control control : v_bestControlSet) {
 				<RoundedRectangle>
 					<Id>1653869835751</Id>
 					<Name><![CDATA[pi_SimVariables2]]></Name>
-					<X>520</X><Y>-470</Y>
+					<X>740</X><Y>-460</Y>
 					<Label><X>10</X><Y>10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>false</ShowLabel>
+					<Lock>true</Lock>
 					<DrawMode>SHAPE_DRAW_2D</DrawMode>
 					<EmbeddedIcon>false</EmbeddedIcon>
 					<Z>0</Z>
@@ -2407,8 +2347,8 @@ for (A_Control control : v_bestControlSet) {
 					<LineColor>-16777216</LineColor>
 					<LineMaterial>null</LineMaterial>
 					<LineStyle>SOLID</LineStyle>
-					<Width>180</Width>
-					<Height>190</Height>
+					<Width>200</Width>
+					<Height>160</Height>
 					<Rotation>0.0</Rotation>
 					<FillColor>-1</FillColor>
 					<FillMaterial>null</FillMaterial>
@@ -2417,7 +2357,7 @@ for (A_Control control : v_bestControlSet) {
 				<Text>
 					<Id>1653869835756</Id>
 					<Name><![CDATA[text30]]></Name>
-					<X>540</X><Y>-460</Y>
+					<X>770</X><Y>-450</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2438,11 +2378,12 @@ for (A_Control control : v_bestControlSet) {
 				<RoundedRectangle>
 					<Id>1653869851122</Id>
 					<Name><![CDATA[pi_SimVariables3]]></Name>
-					<X>520</X><Y>-190</Y>
+					<X>520</X><Y>-460</Y>
 					<Label><X>10</X><Y>10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>false</ShowLabel>
+					<Lock>true</Lock>
 					<DrawMode>SHAPE_DRAW_2D</DrawMode>
 					<EmbeddedIcon>false</EmbeddedIcon>
 					<Z>0</Z>
@@ -2451,8 +2392,8 @@ for (A_Control control : v_bestControlSet) {
 					<LineColor>-16777216</LineColor>
 					<LineMaterial>null</LineMaterial>
 					<LineStyle>SOLID</LineStyle>
-					<Width>210</Width>
-					<Height>150</Height>
+					<Width>200</Width>
+					<Height>160</Height>
 					<Rotation>0.0</Rotation>
 					<FillColor>-1</FillColor>
 					<FillMaterial>null</FillMaterial>
@@ -2461,7 +2402,7 @@ for (A_Control control : v_bestControlSet) {
 				<Text>
 					<Id>1653869851124</Id>
 					<Name><![CDATA[text31]]></Name>
-					<X>560</X><Y>-180</Y>
+					<X>535</X><Y>-450</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2471,7 +2412,7 @@ for (A_Control control : v_bestControlSet) {
 					<Z>0</Z>
 					<Rotation>0.0</Rotation>
 					<Color>-16777216</Color>
-					<Text><![CDATA[Attack Functions]]></Text>
+					<Text><![CDATA[Individual Attack Functions]]></Text>
 					<Font>
 						<Name>SansSerif</Name>
 						<Size>14</Size>
@@ -2618,11 +2559,12 @@ for (A_Control control : v_bestControlSet) {
 				<RoundedRectangle>
 					<Id>1654363476994</Id>
 					<Name><![CDATA[pi_SimVariables5]]></Name>
-					<X>760</X><Y>-200</Y>
+					<X>300</X><Y>-460</Y>
 					<Label><X>10</X><Y>10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>false</ShowLabel>
+					<Lock>true</Lock>
 					<DrawMode>SHAPE_DRAW_2D</DrawMode>
 					<EmbeddedIcon>false</EmbeddedIcon>
 					<Z>0</Z>
@@ -2631,8 +2573,8 @@ for (A_Control control : v_bestControlSet) {
 					<LineColor>-16777216</LineColor>
 					<LineMaterial>null</LineMaterial>
 					<LineStyle>SOLID</LineStyle>
-					<Width>180</Width>
-					<Height>170</Height>
+					<Width>200</Width>
+					<Height>160</Height>
 					<Rotation>0.0</Rotation>
 					<FillColor>-1</FillColor>
 					<FillMaterial>null</FillMaterial>
@@ -2641,7 +2583,7 @@ for (A_Control control : v_bestControlSet) {
 				<Text>
 					<Id>1654363476996</Id>
 					<Name><![CDATA[text33]]></Name>
-					<X>790</X><Y>-190</Y>
+					<X>340</X><Y>-450</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2697,50 +2639,6 @@ for (A_Control control : v_bestControlSet) {
 					<Font>
 						<Name>SansSerif</Name>
 						<Size>12</Size>
-						<Style>0</Style>
-					</Font>
-					<Alignment>LEFT</Alignment>
-				</Text>
-				<RoundedRectangle>
-					<Id>1654542150208</Id>
-					<Name><![CDATA[pi_SimVariables6]]></Name>
-					<X>1032</X><Y>-195</Y>
-					<Label><X>10</X><Y>10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<ZHeight>10</ZHeight>
-					<LineWidth>1</LineWidth>
-					<LineColor>-16777216</LineColor>
-					<LineMaterial>null</LineMaterial>
-					<LineStyle>SOLID</LineStyle>
-					<Width>228</Width>
-					<Height>170</Height>
-					<Rotation>0.0</Rotation>
-					<FillColor>-1</FillColor>
-					<FillMaterial>null</FillMaterial>
-					<ArcRadius>10</ArcRadius>
-				</RoundedRectangle>
-				<Text>
-					<Id>1654542150210</Id>
-					<Name><![CDATA[text34]]></Name>
-					<X>1080</X><Y>-180</Y>
-					<Label><X>0</X><Y>-10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-16777216</Color>
-					<Text><![CDATA[Troubleshooting]]></Text>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>14</Size>
 						<Style>0</Style>
 					</Font>
 					<Alignment>LEFT</Alignment>
@@ -2997,6 +2895,7 @@ for (A_Control control : v_bestControlSet) {
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>false</ShowLabel>
+					<Lock>true</Lock>
 					<DrawMode>SHAPE_DRAW_2D</DrawMode>
 					<EmbeddedIcon>false</EmbeddedIcon>
 					<Z>0</Z>
@@ -3005,8 +2904,8 @@ for (A_Control control : v_bestControlSet) {
 					<LineColor>-16777216</LineColor>
 					<LineMaterial>null</LineMaterial>
 					<LineStyle>SOLID</LineStyle>
-					<Width>190</Width>
-					<Height>230</Height>
+					<Width>200</Width>
+					<Height>250</Height>
 					<Rotation>0.0</Rotation>
 					<FillColor>-1</FillColor>
 					<FillMaterial>null</FillMaterial>
@@ -3126,11 +3025,12 @@ f_updateBreachCost();]]></ActionCode>
 				<RoundedRectangle>
 					<Id>1655476132601</Id>
 					<Name><![CDATA[pi_SimVariables8]]></Name>
-					<X>520</X><Y>-720</Y>
+					<X>300</X><Y>-260</Y>
 					<Label><X>10</X><Y>10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>false</ShowLabel>
+					<Lock>true</Lock>
 					<DrawMode>SHAPE_DRAW_2D</DrawMode>
 					<EmbeddedIcon>false</EmbeddedIcon>
 					<Z>0</Z>
@@ -3139,8 +3039,8 @@ f_updateBreachCost();]]></ActionCode>
 					<LineColor>-16777216</LineColor>
 					<LineMaterial>null</LineMaterial>
 					<LineStyle>SOLID</LineStyle>
-					<Width>380</Width>
-					<Height>230</Height>
+					<Width>640</Width>
+					<Height>220</Height>
 					<Rotation>0.0</Rotation>
 					<FillColor>-1</FillColor>
 					<FillMaterial>null</FillMaterial>
@@ -3149,7 +3049,7 @@ f_updateBreachCost();]]></ActionCode>
 				<Text>
 					<Id>1655476132603</Id>
 					<Name><![CDATA[CostVarHeading]]></Name>
-					<X>550</X><Y>-710</Y>
+					<X>580</X><Y>-250</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -3159,7 +3059,7 @@ f_updateBreachCost();]]></ActionCode>
 					<Z>0</Z>
 					<Rotation>0.0</Rotation>
 					<Color>-16777216</Color>
-					<Text><![CDATA[Breach Cost Variables]]></Text>
+					<Text><![CDATA[Breach Cost]]></Text>
 					<Font>
 						<Name>SansSerif</Name>
 						<Size>14</Size>
@@ -3712,50 +3612,6 @@ for a small business (USD): ]]></Text>
 			</Presentation>
 
 				</Group>
-				<RoundedRectangle>
-					<Id>1655480081531</Id>
-					<Name><![CDATA[pi_SimVariables9]]></Name>
-					<X>960</X><Y>-720</Y>
-					<Label><X>10</X><Y>10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<ZHeight>10</ZHeight>
-					<LineWidth>1</LineWidth>
-					<LineColor>-16777216</LineColor>
-					<LineMaterial>null</LineMaterial>
-					<LineStyle>SOLID</LineStyle>
-					<Width>190</Width>
-					<Height>230</Height>
-					<Rotation>0.0</Rotation>
-					<FillColor>-1</FillColor>
-					<FillMaterial>null</FillMaterial>
-					<ArcRadius>10</ArcRadius>
-				</RoundedRectangle>
-				<Text>
-					<Id>1655480081533</Id>
-					<Name><![CDATA[text44]]></Name>
-					<X>980</X><Y>-710</Y>
-					<Label><X>0</X><Y>-10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-16777216</Color>
-					<Text><![CDATA[Breach Cost Functions]]></Text>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>14</Size>
-						<Style>0</Style>
-					</Font>
-					<Alignment>LEFT</Alignment>
-				</Text>
 				<Text>
 					<Id>1655480791150</Id>
 					<Name><![CDATA[text45]]></Name>
@@ -4128,7 +3984,7 @@ for a small business (USD): ]]></Text>
 				<Control Type="Button">
 				 	<EmbeddedIcon>false</EmbeddedIcon>				
 					<Id>1656080321281</Id>
-					<Name><![CDATA[b_optimizeReturn]]></Name>
+					<Name><![CDATA[b_optimize]]></Name>
 					<X>160</X><Y>830</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
@@ -4144,13 +4000,13 @@ f_optimizeReturn();]]></ActionCode>
 					</BasicProperties>
 					<ExtendedProperties>
 						<Font Name="Dialog" Size="11" Style="0"/>
-						<LabelText><![CDATA[Optimize Return]]></LabelText>
+						<LabelText><![CDATA[Optimize]]></LabelText>
 					</ExtendedProperties>
 				</Control>
 				<RoundedRectangle>
 					<Id>1656080417096</Id>
 					<Name><![CDATA[pi_SimVariables10]]></Name>
-					<X>740</X><Y>-480</Y>
+					<X>960</X><Y>-720</Y>
 					<Label><X>10</X><Y>10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -4164,8 +4020,8 @@ f_optimizeReturn();]]></ActionCode>
 					<LineColor>-16777216</LineColor>
 					<LineMaterial>null</LineMaterial>
 					<LineStyle>SOLID</LineStyle>
-					<Width>190</Width>
-					<Height>230</Height>
+					<Width>200</Width>
+					<Height>250</Height>
 					<Rotation>0.0</Rotation>
 					<FillColor>-1</FillColor>
 					<FillMaterial>null</FillMaterial>
@@ -4174,7 +4030,7 @@ f_optimizeReturn();]]></ActionCode>
 				<Text>
 					<Id>1656080422758</Id>
 					<Name><![CDATA[text53]]></Name>
-					<X>770</X><Y>-460</Y>
+					<X>1000</X><Y>-710</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -4339,6 +4195,51 @@ f_optimizeReturn();]]></ActionCode>
 					</Font>
 					<Alignment>LEFT</Alignment>
 				</Text>
+				<RoundedRectangle>
+					<Id>1656172334314</Id>
+					<Name><![CDATA[pi_SimVariables11]]></Name>
+					<X>960</X><Y>-460</Y>
+					<Label><X>10</X><Y>10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<Lock>true</Lock>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<ZHeight>10</ZHeight>
+					<LineWidth>1</LineWidth>
+					<LineColor>-16777216</LineColor>
+					<LineMaterial>null</LineMaterial>
+					<LineStyle>SOLID</LineStyle>
+					<Width>200</Width>
+					<Height>160</Height>
+					<Rotation>0.0</Rotation>
+					<FillColor>-1</FillColor>
+					<FillMaterial>null</FillMaterial>
+					<ArcRadius>10</ArcRadius>
+				</RoundedRectangle>
+				<Text>
+					<Id>1656172334318</Id>
+					<Name><![CDATA[text54]]></Name>
+					<X>1010</X><Y>-450</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[ROI Optimization]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>14</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
 			</Presentation>
 
 				</Level>
@@ -4455,7 +4356,7 @@ f_optimizeReturn();]]></ActionCode>
 		<!--   =========   Active Object Class   ========  -->
 		<ActiveObjectClass>
 			<Id>1481748191649</Id>
-			<Name><![CDATA[NetworkNode]]></Name>
+			<Name><![CDATA[A_NetworkNode]]></Name>
 			<ClientAreaTopLeft><X>0</X><Y>0</Y></ClientAreaTopLeft>
 			<StartupCode><![CDATA[f_updatePosition(p_nodePosition);]]></StartupCode>
 			<Generic>false</Generic>
@@ -4643,7 +4544,7 @@ f_optimizeReturn();]]></ActionCode>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
 					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
-						<Type><![CDATA[NetworkNode]]></Type>        
+						<Type><![CDATA[A_NetworkNode]]></Type>        
 					</Properties>
 				</Variable>
 				<Variable Class="PlainVariable">
@@ -6952,7 +6853,7 @@ return v_isAttacker;
 				<Variable Class="Parameter">
 					<Id>1655948743099</Id>
 					<Name><![CDATA[p_controlName]]></Name>
-					<X>250</X><Y>-190</Y>
+					<X>250</X><Y>-195</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -6973,7 +6874,7 @@ return v_isAttacker;
 				<Variable Class="Parameter">
 					<Id>1655995535611</Id>
 					<Name><![CDATA[p_mitigationP]]></Name>
-					<X>250</X><Y>-170</Y>
+					<X>250</X><Y>-175</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -6994,7 +6895,7 @@ return v_isAttacker;
 				<Variable Class="Parameter">
 					<Id>1655995538180</Id>
 					<Name><![CDATA[p_mitigationV]]></Name>
-					<X>250</X><Y>-150</Y>
+					<X>250</X><Y>-155</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -7015,7 +6916,7 @@ return v_isAttacker;
 				<Variable Class="Parameter">
 					<Id>1655995540561</Id>
 					<Name><![CDATA[p_annualCost]]></Name>
-					<X>250</X><Y>-130</Y>
+					<X>250</X><Y>-135</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -7036,7 +6937,7 @@ return v_isAttacker;
 				<Variable Class="Parameter">
 					<Id>1655995546481</Id>
 					<Name><![CDATA[p_enabled]]></Name>
-					<X>250</X><Y>-110</Y>
+					<X>250</X><Y>-115</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -7060,7 +6961,7 @@ return v_isAttacker;
 				<Variable Class="Parameter">
 					<Id>1656020640293</Id>
 					<Name><![CDATA[p_controlID]]></Name>
-					<X>250</X><Y>-210</Y>
+					<X>250</X><Y>-215</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -7085,7 +6986,7 @@ return v_isAttacker;
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1655948896691</Id>
 					<Name><![CDATA[f_getEffectivep]]></Name>
-					<X>260</X><Y>-430</Y>
+					<X>420</X><Y>-215</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -7161,7 +7062,7 @@ return v_mitigationp;]]></Body>
 				</ContainerLink>
 				<ContainerLink>
 					<Id>1655995667565</Id>
-					<Name><![CDATA[networkNode]]></Name>
+					<Name><![CDATA[a_NetworkNode]]></Name>
 					<X>120</X><Y>-100</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
@@ -7169,7 +7070,7 @@ return v_mitigationp;]]></Body>
 					<ShowLabel>true</ShowLabel>
 					<ActiveObjectClass>
 						<PackageName><![CDATA[attack_simulation]]></PackageName>
-						<ClassName><![CDATA[NetworkNode]]></ClassName>
+						<ClassName><![CDATA[A_NetworkNode]]></ClassName>
 					</ActiveObjectClass>
 				</ContainerLink>
 			</ContainerLinks>
@@ -7347,50 +7248,6 @@ Name]]></Text>
 					<Alignment>LEFT</Alignment>
 				</Text>
 				<RoundedRectangle>
-					<Id>1655948453409</Id>
-					<Name><![CDATA[roundRectangle1]]></Name>
-					<X>470</X><Y>-270</Y>
-					<Label><X>10</X><Y>10</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<ZHeight>10</ZHeight>
-					<LineWidth>1</LineWidth>
-					<LineColor>-16777216</LineColor>
-					<LineMaterial>null</LineMaterial>
-					<LineStyle>SOLID</LineStyle>
-					<Width>220</Width>
-					<Height>190</Height>
-					<Rotation>0.0</Rotation>
-					<FillColor>-1</FillColor>
-					<FillMaterial>null</FillMaterial>
-					<ArcRadius>10</ArcRadius>
-				</RoundedRectangle>
-				<Text>
-					<Id>1655948453420</Id>
-					<Name><![CDATA[text27]]></Name>
-					<X>550</X><Y>-250</Y>
-					<Label><X>0</X><Y>-10</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-16777216</Color>
-					<Text><![CDATA[Variables]]></Text>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>14</Size>
-						<Style>0</Style>
-					</Font>
-					<Alignment>LEFT</Alignment>
-				</Text>
-				<RoundedRectangle>
 					<Id>1655948792879</Id>
 					<Name><![CDATA[roundRectangle2]]></Name>
 					<X>230</X><Y>-270</Y>
@@ -7407,7 +7264,7 @@ Name]]></Text>
 					<LineColor>-16777216</LineColor>
 					<LineMaterial>null</LineMaterial>
 					<LineStyle>SOLID</LineStyle>
-					<Width>220</Width>
+					<Width>150</Width>
 					<Height>190</Height>
 					<Rotation>0.0</Rotation>
 					<FillColor>-1</FillColor>
@@ -7417,7 +7274,7 @@ Name]]></Text>
 				<Text>
 					<Id>1655948792889</Id>
 					<Name><![CDATA[text28]]></Name>
-					<X>310</X><Y>-250</Y>
+					<X>265</X><Y>-255</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -7438,7 +7295,7 @@ Name]]></Text>
 				<RoundedRectangle>
 					<Id>1655948879178</Id>
 					<Name><![CDATA[roundRectangle3]]></Name>
-					<X>230</X><Y>-480</Y>
+					<X>395</X><Y>-270</Y>
 					<Label><X>10</X><Y>10</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -7451,7 +7308,7 @@ Name]]></Text>
 					<LineColor>-16777216</LineColor>
 					<LineMaterial>null</LineMaterial>
 					<LineStyle>SOLID</LineStyle>
-					<Width>220</Width>
+					<Width>150</Width>
 					<Height>190</Height>
 					<Rotation>0.0</Rotation>
 					<FillColor>-1</FillColor>
@@ -7461,7 +7318,7 @@ Name]]></Text>
 				<Text>
 					<Id>1655948879189</Id>
 					<Name><![CDATA[text29]]></Name>
-					<X>310</X><Y>-460</Y>
+					<X>440</X><Y>-255</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -7653,7 +7510,7 @@ Cost]]></Text>
 				<Variable Class="Parameter">
 					<Id>1655999282355</Id>
 					<Name><![CDATA[p_nodeName]]></Name>
-					<X>190</X><Y>-120</Y>
+					<X>190</X><Y>-115</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -7674,7 +7531,7 @@ Cost]]></Text>
 				<Variable Class="Parameter">
 					<Id>1655999289902</Id>
 					<Name><![CDATA[p_position]]></Name>
-					<X>190</X><Y>-80</Y>
+					<X>190</X><Y>-75</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -7702,7 +7559,7 @@ if (success == false) {
 				<Variable Class="Parameter">
 					<Id>1655999333428</Id>
 					<Name><![CDATA[p_nodeID]]></Name>
-					<X>190</X><Y>-100</Y>
+					<X>190</X><Y>-95</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -7773,6 +7630,50 @@ if (success == false) {
 					<LevelVisibility>DIM_NON_CURRENT</LevelVisibility>
 
 			<Presentation>
+				<RoundedRectangle>
+					<Id>1656174769888</Id>
+					<Name><![CDATA[roundRectangle]]></Name>
+					<X>160</X><Y>-160</Y>
+					<Label><X>10</X><Y>10</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<ZHeight>10</ZHeight>
+					<LineWidth>1</LineWidth>
+					<LineColor>-16777216</LineColor>
+					<LineMaterial>null</LineMaterial>
+					<LineStyle>SOLID</LineStyle>
+					<Width>180</Width>
+					<Height>125</Height>
+					<Rotation>0.0</Rotation>
+					<FillColor>-1</FillColor>
+					<FillMaterial>null</FillMaterial>
+					<ArcRadius>10</ArcRadius>
+				</RoundedRectangle>
+				<Text>
+					<Id>1656174769891</Id>
+					<Name><![CDATA[text]]></Name>
+					<X>210</X><Y>-150</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[Parameters]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>14</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
 				<Rectangle>
 					<Id>1655999161696</Id>
 					<Name><![CDATA[rectangle]]></Name>
@@ -8219,3076 +8120,7 @@ controls.]]></Text>
 				<FinalTime><![CDATA[100.0]]></FinalTime>	
 			</ModelTimeProperties>
 			<BypassInitialScreen>false</BypassInitialScreen>
-		</SimulationExperiment>
-		<!--   =========  Optimization Experiment   ========  -->
-		<OptimizationExperiment ActiveObjectClassId="1481747912647">
-			<Id>1655404321248</Id>
-			<Name><![CDATA[Optimization]]></Name>
-			<ClientAreaTopLeft><X>0</X><Y>0</Y></ClientAreaTopLeft>
-			<CommandLineArguments><![CDATA[]]></CommandLineArguments>
-			<InitialSetupCode><![CDATA[cv_controlsPowerSet = new ArrayList<Set>(f_getPowerSet(cv_allControls));]]></InitialSetupCode>
-			<MaximumMemory>4096</MaximumMemory>
-			<RandomNumberGenerationType>fixedSeed</RandomNumberGenerationType>
-			<CustomGeneratorCode>new Random()</CustomGeneratorCode>
-			<BeforeEachExperimentRunCode><![CDATA[f_updateBreachCost();
-v_controlSubsetIndex = 0;
-
-
-datasetCurrentObjective.reset();
-datasetBestInfeasibleObjective.reset();
-datasetBestFeasibleObjective.reset();
-]]></BeforeEachExperimentRunCode>
-			<BeforeSimulationRunCode><![CDATA[if (v_controlSubsetIndex < cv_controlsPowerSet.size()) {
-	cv_controlsSubset = new ArrayList<Integer>(cv_controlsPowerSet.get(v_controlSubsetIndex));
-}
-
-cv_allIndices.add(p_controlSetIndex);
-v_controlSubsetIndex = v_controlSubsetIndex + 1;]]></BeforeSimulationRunCode>
-			<SeedValue>1</SeedValue>
-			<SelectionModeForSimultaneousEvents>LIFO</SelectionModeForSimultaneousEvents>
-			<VmArgs><![CDATA[]]></VmArgs>
-			<LoadRootFromSnapshot>false</LoadRootFromSnapshot>
-			<Variables>
-				<Variable Class="PlainVariable">
-					<Id>1656043398588</Id>
-					<Name><![CDATA[bestInfeasibleObjective]]></Name>
-					<X>-350</X><Y>120</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
-						<Type><![CDATA[double]]></Type>        
-						<InitialValue Class="CodeValue">
-							<Code><![CDATA[Double.NEGATIVE_INFINITY]]></Code>
-						</InitialValue>
-					</Properties>
-				</Variable>
-				<Variable Class="PlainVariable">
-					<Id>1656043454207</Id>
-					<Name><![CDATA[v_customerPIICost]]></Name>
-					<X>30</X><Y>-210</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
-						<Type><![CDATA[int]]></Type>        
-						<InitialValue Class="CodeValue">
-							<Code><![CDATA[180]]></Code>
-						</InitialValue>
-					</Properties>
-				</Variable>
-				<Variable Class="PlainVariable">
-					<Id>1656043454209</Id>
-					<Name><![CDATA[v_employeePIICost]]></Name>
-					<X>30</X><Y>-190</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
-						<Type><![CDATA[int]]></Type>        
-						<InitialValue Class="CodeValue">
-							<Code><![CDATA[176]]></Code>
-						</InitialValue>
-					</Properties>
-				</Variable>
-				<Variable Class="PlainVariable">
-					<Id>1656043454211</Id>
-					<Name><![CDATA[v_otherSensitiveDataCost]]></Name>
-					<X>30</X><Y>-170</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
-						<Type><![CDATA[int]]></Type>        
-						<InitialValue Class="CodeValue">
-							<Code><![CDATA[165]]></Code>
-						</InitialValue>
-					</Properties>
-				</Variable>
-				<Variable Class="PlainVariable">
-					<Id>1656043454213</Id>
-					<Name><![CDATA[v_anonCustomerDataCost]]></Name>
-					<X>30</X><Y>-150</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
-						<Type><![CDATA[int]]></Type>        
-						<InitialValue Class="CodeValue">
-							<Code><![CDATA[157]]></Code>
-						</InitialValue>
-					</Properties>
-				</Variable>
-				<Variable Class="PlainVariable">
-					<Id>1656043454215</Id>
-					<Name><![CDATA[v_customRecordCost]]></Name>
-					<X>30</X><Y>-130</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
-						<Type><![CDATA[int]]></Type>        
-						<InitialValue Class="CodeValue">
-							<Code><![CDATA[161]]></Code>
-						</InitialValue>
-					</Properties>
-				</Variable>
-				<Variable Class="PlainVariable">
-					<Id>1656043454217</Id>
-					<Name><![CDATA[v_customerPIICount]]></Name>
-					<X>200</X><Y>-210</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
-						<Type><![CDATA[int]]></Type>        
-						<InitialValue Class="CodeValue">
-							<Code><![CDATA[0]]></Code>
-						</InitialValue>
-					</Properties>
-				</Variable>
-				<Variable Class="PlainVariable">
-					<Id>1656043454219</Id>
-					<Name><![CDATA[v_employeePIICount]]></Name>
-					<X>200</X><Y>-190</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
-						<Type><![CDATA[int]]></Type>        
-						<InitialValue Class="CodeValue">
-							<Code><![CDATA[250]]></Code>
-						</InitialValue>
-					</Properties>
-				</Variable>
-				<Variable Class="PlainVariable">
-					<Id>1656043454221</Id>
-					<Name><![CDATA[v_otherSensitiveDataCount]]></Name>
-					<X>200</X><Y>-170</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
-						<Type><![CDATA[int]]></Type>        
-						<InitialValue Class="CodeValue">
-							<Code><![CDATA[0]]></Code>
-						</InitialValue>
-					</Properties>
-				</Variable>
-				<Variable Class="PlainVariable">
-					<Id>1656043454223</Id>
-					<Name><![CDATA[v_anonCustomerDataCount]]></Name>
-					<X>200</X><Y>-150</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
-						<Type><![CDATA[int]]></Type>        
-						<InitialValue Class="CodeValue">
-							<Code><![CDATA[0]]></Code>
-						</InitialValue>
-					</Properties>
-				</Variable>
-				<Variable Class="PlainVariable">
-					<Id>1656043454225</Id>
-					<Name><![CDATA[v_customRecordCount]]></Name>
-					<X>200</X><Y>-130</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
-						<Type><![CDATA[int]]></Type>        
-						<InitialValue Class="CodeValue">
-							<Code><![CDATA[0]]></Code>
-						</InitialValue>
-					</Properties>
-				</Variable>
-				<Variable Class="PlainVariable">
-					<Id>1656043454227</Id>
-					<Name><![CDATA[v_avgSmallBusinessCost]]></Name>
-					<X>30</X><Y>-80</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
-						<Type><![CDATA[int]]></Type>        
-						<InitialValue Class="CodeValue">
-							<Code><![CDATA[2630000]]></Code>
-						</InitialValue>
-					</Properties>
-				</Variable>
-				<Variable Class="PlainVariable">
-					<Id>1656043454229</Id>
-					<Name><![CDATA[v_manualCost]]></Name>
-					<X>30</X><Y>-60</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
-						<Type><![CDATA[int]]></Type>        
-						<InitialValue Class="CodeValue">
-							<Code><![CDATA[2630000]]></Code>
-						</InitialValue>
-					</Properties>
-				</Variable>
-				<Variable Class="PlainVariable">
-					<Id>1656043454231</Id>
-					<Name><![CDATA[v_estimationTechnique]]></Name>
-					<X>200</X><Y>-80</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
-						<Type><![CDATA[ol_estimationTechnique]]></Type>        
-						<InitialValue Class="CodeValue">
-							<Code><![CDATA[records]]></Code>
-						</InitialValue>
-					</Properties>
-				</Variable>
-				<Variable Class="PlainVariable">
-					<Id>1656043454233</Id>
-					<Name><![CDATA[v_breachCost]]></Name>
-					<X>200</X><Y>-60</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
-						<Type><![CDATA[int]]></Type>        
-					</Properties>
-				</Variable>
-				<Variable Class="PlainVariable">
-					<Id>1656043454235</Id>
-					<Name><![CDATA[v_attacksPerYear]]></Name>
-					<X>460</X><Y>-220</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
-						<Type><![CDATA[int]]></Type>        
-						<InitialValue Class="CodeValue">
-							<Code><![CDATA[100]]></Code>
-						</InitialValue>
-					</Properties>
-				</Variable>
-				<Variable Class="PlainVariable">
-					<Id>1656043454237</Id>
-					<Name><![CDATA[v_numYears]]></Name>
-					<X>460</X><Y>-200</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
-						<Type><![CDATA[int]]></Type>        
-						<InitialValue Class="CodeValue">
-							<Code><![CDATA[100]]></Code>
-						</InitialValue>
-					</Properties>
-				</Variable>
-				<Variable Class="PlainVariable">
-					<Id>1656043454239</Id>
-					<Name><![CDATA[v_budget]]></Name>
-					<X>460</X><Y>-110</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
-						<Type><![CDATA[double]]></Type>        
-						<InitialValue Class="CodeValue">
-							<Code><![CDATA[20000]]></Code>
-						</InitialValue>
-					</Properties>
-				</Variable>
-				<Variable Class="PlainVariable">
-					<Id>1656043454241</Id>
-					<Name><![CDATA[cv_controlsPowerSet]]></Name>
-					<X>240</X><Y>-330</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
-						<Type><![CDATA[ArrayList<Set>]]></Type>        
-					</Properties>
-				</Variable>
-				<Variable Class="PlainVariable">
-					<Id>1656043454243</Id>
-					<Name><![CDATA[v_controlSubsetIndex]]></Name>
-					<X>240</X><Y>-290</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
-						<Type><![CDATA[int]]></Type>        
-						<InitialValue Class="CodeValue">
-							<Code><![CDATA[0]]></Code>
-						</InitialValue>
-					</Properties>
-				</Variable>
-				<Variable Class="PlainVariable">
-					<Id>1656081155780</Id>
-					<Name><![CDATA[v_prevIndex]]></Name>
-					<X>450</X><Y>-300</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
-						<Type><![CDATA[int]]></Type>        
-					</Properties>
-				</Variable>
-				<Variable Class="CollectionVariable">
-					<Id>1656043454192</Id>
-					<Name><![CDATA[cv_selectedThreatActors]]></Name>
-					<X>460</X><Y>-150</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Properties SaveInSnapshot="true" AccessType="public" StaticVariable="false">
-						<CollectionClass><![CDATA[ArrayList]]></CollectionClass>
-						<ElementClass><![CDATA[ol_attackerIDs]]></ElementClass>
-						<ValueElementClass><![CDATA[Boolean]]></ValueElementClass>
-					</Properties>
-
-				</Variable>
-				<Variable Class="CollectionVariable">
-					<Id>1656043454197</Id>
-					<Name><![CDATA[cv_allControls]]></Name>
-					<X>240</X><Y>-350</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Properties SaveInSnapshot="true" AccessType="public" StaticVariable="false">
-						<CollectionClass><![CDATA[HashSet]]></CollectionClass>
-						<ElementClass><![CDATA[Integer]]></ElementClass>
-						<ValueElementClass><![CDATA[String]]></ValueElementClass>
-						<CollectionInitializer Class="DatabaseQueryCodeValue">
-							<Type>SELECT_LIST_OF_VALUES</Type>
-							<TableReference>
-								<PackageName><![CDATA[attack_simulation]]></PackageName>
-								<ClassName><![CDATA[control_inputs]]></ClassName>
-							</TableReference>
-							<Condition>
-								<ColumnReference>
-									<PackageName><![CDATA[attack_simulation]]></PackageName>
-									<ClassName><![CDATA[control_inputs]]></ClassName>
-									<ItemName><![CDATA[mitigation_p]]></ItemName>
-								</ColumnReference>
-								<Value Class="CodeValue">
-									<Code><![CDATA[0]]></Code>
-								</Value>
-								<Operator>GREATER</Operator>
-							</Condition>
-							<Condition>
-								<ColumnReference>
-									<PackageName><![CDATA[attack_simulation]]></PackageName>
-									<ClassName><![CDATA[control_inputs]]></ClassName>
-									<ItemName><![CDATA[enabled]]></ItemName>
-								</ColumnReference>
-								<Value Class="CodeValue">
-									<Code><![CDATA[true]]></Code>
-								</Value>
-								<Operator>EQUALS</Operator>
-							</Condition>
-							<ColumnReference>
-								<PackageName><![CDATA[attack_simulation]]></PackageName>
-								<ClassName><![CDATA[control_inputs]]></ClassName>
-								<ItemName><![CDATA[control_id]]></ItemName>
-							</ColumnReference>
-						</CollectionInitializer>
-					</Properties>
-
-				</Variable>
-				<Variable Class="CollectionVariable">
-					<Id>1656043454199</Id>
-					<Name><![CDATA[cv_controlsSubset]]></Name>
-					<X>240</X><Y>-310</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Properties SaveInSnapshot="true" AccessType="public" StaticVariable="false">
-						<CollectionClass><![CDATA[ArrayList]]></CollectionClass>
-						<ElementClass><![CDATA[Integer]]></ElementClass>
-						<ValueElementClass><![CDATA[String]]></ValueElementClass>
-					</Properties>
-
-				</Variable>
-				<Variable Class="CollectionVariable">
-					<Id>1656080606802</Id>
-					<Name><![CDATA[cv_allIndices]]></Name>
-					<X>240</X><Y>-370</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Properties SaveInSnapshot="true" AccessType="public" StaticVariable="false">
-						<CollectionClass><![CDATA[ArrayList]]></CollectionClass>
-						<ElementClass><![CDATA[Integer]]></ElementClass>
-						<ValueElementClass><![CDATA[String]]></ValueElementClass>
-					</Properties>
-
-				</Variable>
-			</Variables>
-			<Functions>
-				<Function AccessType="default" StaticFunction="false">
-					<ReturnModificator>VOID</ReturnModificator>
-					<ReturnType><![CDATA[double]]></ReturnType>
-					<Id>1656043454201</Id>
-					<Name><![CDATA[f_updateBreachCost]]></Name>
-					<X>70</X><Y>-280</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Body><![CDATA[v_breachCost = 0;
-
-switch (v_estimationTechnique) {
-	case records:
-		v_breachCost += v_customerPIICost * v_customerPIICount;
-		v_breachCost += v_employeePIICost * v_employeePIICount;
-		v_breachCost += v_otherSensitiveDataCost * v_otherSensitiveDataCount;
-		v_breachCost += v_anonCustomerDataCost * v_anonCustomerDataCount;
-		v_breachCost += v_customRecordCost * v_customRecordCount;
-		break;
-	case manual:
-		v_breachCost = v_manualCost;
-		break;
-	case businessSize:
-		v_breachCost = v_avgSmallBusinessCost;
-		break;
-}
-
-t_breachCost.setText(v_breachCost);]]></Body>
-				</Function>
-				<Function AccessType="default" StaticFunction="false">
-					<ReturnModificator>VOID</ReturnModificator>
-					<ReturnType><![CDATA[String]]></ReturnType>
-					<Id>1656043454203</Id>
-					<Name><![CDATA[f_updateAttackerSelection]]></Name>
-					<X>460</X><Y>-170</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Parameter>
-						<Name><![CDATA[p_threatActor]]></Name>
-						<Type><![CDATA[ol_attackerIDs]]></Type>
-					</Parameter>
-					<Parameter>
-						<Name><![CDATA[p_isSelected]]></Name>
-						<Type><![CDATA[boolean]]></Type>
-					</Parameter>
-					<Body><![CDATA[if (p_isSelected == true) {
-	cv_selectedThreatActors.add(p_threatActor);
-}
-else {
-	cv_selectedThreatActors.remove(p_threatActor);
-}]]></Body>
-				</Function>
-				<Function AccessType="default" StaticFunction="false">
-					<ReturnModificator>RETURNS_VALUE</ReturnModificator>
-					<ReturnType><![CDATA[Set<Set<Integer>>]]></ReturnType>
-					<Id>1656043454205</Id>
-					<Name><![CDATA[f_getPowerSet]]></Name>
-					<X>70</X><Y>-310</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Parameter>
-						<Name><![CDATA[p_originalSet]]></Name>
-						<Type><![CDATA[Object]]></Type>
-					</Parameter>
-					<Body><![CDATA[/*
-Credit for this code goes to Joao Silva
-https://stackoverflow.com/questions/1670862/obtaining-a-powerset-of-a-set-in-java
-*/
-Set<Integer> originalSet = (Set<Integer>) p_originalSet;
-
-Set<Set<Integer>> sets = new HashSet<Set<Integer>>();
-if (originalSet.isEmpty()) {
-    sets.add(new HashSet<Integer>());
-    return sets;
-}
-List<Integer> list = new ArrayList<Integer>(originalSet);
-Integer head = list.get(0);
-Set<Integer> rest = new HashSet<Integer>(list.subList(1, list.size())); 
-for (Set<Integer> set : f_getPowerSet(rest)) {
-    Set<Integer> newSet = new HashSet<Integer>();
-    newSet.add(head);
-    newSet.addAll(set);
-    sets.add(newSet);
-    sets.add(set);
-}       
-return sets;]]></Body>
-				</Function>
-				<Function AccessType="default" StaticFunction="false">
-					<ReturnModificator>RETURNS_VALUE</ReturnModificator>
-					<ReturnType><![CDATA[String]]></ReturnType>
-					<Id>1656048700243</Id>
-					<Name><![CDATA[f_getControlSetString]]></Name>
-					<X>70</X><Y>-340</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Parameter>
-						<Name><![CDATA[p_index]]></Name>
-						<Type><![CDATA[int]]></Type>
-					</Parameter>
-					<Body><![CDATA[ArrayList<Integer> controlIDs = new ArrayList<Integer>(cv_controlsPowerSet.get(p_index));
-String output = String.valueOf( controlIDs );
-/*
-String output = "[ ";
-for (Integer controlID : controlIDs) {
-    output = output + (String) selectFrom(control_inputs)
-	.where(control_inputs.control_id.eq(5))
-	.firstResult(control_inputs.control_name);
-	output = output + ", ";
-}
-output = output + "]";
-*/
-return output;]]></Body>
-				</Function>
-			</Functions>
-			<AnalysisData>
-    			<DataSet>
-					<Id>1656043398586</Id>
-					<Name><![CDATA[datasetCurrentObjective]]></Name>
-					<X>-350</X><Y>50</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>false</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<AutoUpdate>true</AutoUpdate>
-					<OccurrenceAtTime>true</OccurrenceAtTime>
-					<OccurrenceDate>1656057600000</OccurrenceDate>
-					<OccurrenceTime Class="CodeUnitValue">
-						<Code><![CDATA[0]]></Code>
-						<Unit Class="TimeUnits"><![CDATA[SECOND]]></Unit>
-					</OccurrenceTime>
-					<RecurrenceCode Class="CodeUnitValue">
-						<Code><![CDATA[1]]></Code>
-						<Unit Class="TimeUnits"><![CDATA[SECOND]]></Unit>
-					</RecurrenceCode>
-					<FreezeXAxis>true</FreezeXAxis>
-					<VerticalAxisExpression><![CDATA[getCurrentObjectiveValue()]]></VerticalAxisExpression>
-					<SamplesToKeep>500</SamplesToKeep>
-				</DataSet>
-    			<DataSet>
-					<Id>1656043398587</Id>
-					<Name><![CDATA[datasetBestInfeasibleObjective]]></Name>
-					<X>-350</X><Y>100</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>false</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<AutoUpdate>false</AutoUpdate>
-					<OccurrenceAtTime>true</OccurrenceAtTime>
-					<OccurrenceDate>1656057600000</OccurrenceDate>
-					<OccurrenceTime Class="CodeUnitValue">
-						<Code><![CDATA[0]]></Code>
-						<Unit Class="TimeUnits"><![CDATA[SECOND]]></Unit>
-					</OccurrenceTime>
-					<RecurrenceCode Class="CodeUnitValue">
-						<Code><![CDATA[1]]></Code>
-						<Unit Class="TimeUnits"><![CDATA[SECOND]]></Unit>
-					</RecurrenceCode>
-					<FreezeXAxis>true</FreezeXAxis>
-					<VerticalAxisExpression><![CDATA[bestInfeasibleObjective]]></VerticalAxisExpression>
-					<SamplesToKeep>500</SamplesToKeep>
-				</DataSet>
-    			<DataSet>
-					<Id>1656043398589</Id>
-					<Name><![CDATA[datasetBestFeasibleObjective]]></Name>
-					<X>-350</X><Y>150</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>false</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<AutoUpdate>false</AutoUpdate>
-					<OccurrenceAtTime>true</OccurrenceAtTime>
-					<OccurrenceDate>1656057600000</OccurrenceDate>
-					<OccurrenceTime Class="CodeUnitValue">
-						<Code><![CDATA[0]]></Code>
-						<Unit Class="TimeUnits"><![CDATA[SECOND]]></Unit>
-					</OccurrenceTime>
-					<RecurrenceCode Class="CodeUnitValue">
-						<Code><![CDATA[1]]></Code>
-						<Unit Class="TimeUnits"><![CDATA[SECOND]]></Unit>
-					</RecurrenceCode>
-					<FreezeXAxis>true</FreezeXAxis>
-					<VerticalAxisExpression><![CDATA[getBestObjectiveValue()]]></VerticalAxisExpression>
-					<SamplesToKeep>500</SamplesToKeep>
-				</DataSet>
-			</AnalysisData>
-
-			<Presentation>
-				<Text>
-					<Id>1656043398543</Id>
-					<Name><![CDATA[text]]></Name>
-					<X>40</X><Y>30</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-12490271</Color>
-					<Text><![CDATA[AttackSimulationModel : Optimization]]></Text>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>24</Size>
-						<Style>0</Style>
-					</Font>
-					<Alignment>LEFT</Alignment>
-				</Text>
-				<Text>
-					<Id>1656043398544</Id>
-					<Name><![CDATA[text1]]></Name>
-					<X>601.5</X><Y>80</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-12566464</Color>
-					<Text><![CDATA[Current]]></Text>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>12</Size>
-						<Style>1</Style>
-					</Font>
-					<Alignment>RIGHT</Alignment>
-				</Text>
-				<Text>
-					<Id>1656043398545</Id>
-					<Name><![CDATA[text2]]></Name>
-					<X>1275</X><Y>79</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-12566464</Color>
-					<Text><![CDATA[Best]]></Text>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>12</Size>
-						<Style>1</Style>
-					</Font>
-					<Alignment>RIGHT</Alignment>
-				</Text>
-				<Line>
-					<Id>1656043398546</Id>
-					<Name><![CDATA[line]]></Name>
-					<X>3.093</X><Y>100</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<ZHeight>10</ZHeight>
-					<LineWidth>2</LineWidth>
-					<LineColor>-12566464</LineColor>
-					<LineMaterial>null</LineMaterial>
-					<LineStyle>SOLID</LineStyle>
-					<BeginArrowSize>1</BeginArrowSize>
-					<BeginArrowStyle>0</BeginArrowStyle>
-					<EndArrowSize>1</EndArrowSize>
-					<EndArrowStyle>0</EndArrowStyle>
-					<Dx>1374</Dx>
-					<Dy>0</Dy>
-					<Dz>0</Dz>
-				</Line>
-				<Text>
-					<Id>1656043398547</Id>
-					<Name><![CDATA[text3]]></Name>
-					<X>10</X><Y>110</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-12171190</Color>
-					<Text><![CDATA[Iterations completed:]]></Text>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>12</Size>
-						<Style>0</Style>
-					</Font>
-					<Alignment>LEFT</Alignment>
-				</Text>
-				<Text>
-					<Id>1656043398548</Id>
-					<Name><![CDATA[text4]]></Name>
-					<X>601.5</X><Y>110</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<VisibleCode><![CDATA[getCurrentIteration() > 0]]></VisibleCode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-12042869</Color>
-					<Text><![CDATA[?]]></Text>
-					<TextCode><![CDATA[format( getNumberOfCompletedIterations() )]]></TextCode>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>12</Size>
-						<Style>0</Style>
-					</Font>
-					<Alignment>RIGHT</Alignment>
-				</Text>
-				<Text>
-					<Id>1656043398549</Id>
-					<Name><![CDATA[text5]]></Name>
-					<X>601.5</X><Y>119</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<VisibleCode><![CDATA[getCurrentIteration() > 0 && !isCurrentSolutionFeasible()]]></VisibleCode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-65536</Color>
-					<Text><![CDATA[infeasible]]></Text>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>10</Size>
-						<Style>0</Style>
-					</Font>
-					<Alignment>RIGHT</Alignment>
-				</Text>
-				<Text>
-					<Id>1656043398550</Id>
-					<Name><![CDATA[text6]]></Name>
-					<X>1275</X><Y>109</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<VisibleCode><![CDATA[getBestIteration() > 0]]></VisibleCode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-12490271</Color>
-					<Text><![CDATA[?]]></Text>
-					<TextCode><![CDATA[format(getBestIteration())]]></TextCode>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>12</Size>
-						<Style>1</Style>
-					</Font>
-					<Alignment>RIGHT</Alignment>
-				</Text>
-				<Text>
-					<Id>1656043398551</Id>
-					<Name><![CDATA[text7]]></Name>
-					<X>1275</X><Y>118</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<VisibleCode><![CDATA[getBestIteration() > 0 && !isBestSolutionFeasible()]]></VisibleCode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-65536</Color>
-					<Text><![CDATA[infeasible]]></Text>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>10</Size>
-						<Style>0</Style>
-					</Font>
-					<Alignment>RIGHT</Alignment>
-				</Text>
-				<Rectangle>
-					<Id>1656043398552</Id>
-					<Name><![CDATA[rectangle]]></Name>
-					<X>3.093</X><Y>130</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<ZHeight>10</ZHeight>
-					<LineWidth>1</LineWidth>
-					<LineColor/>
-					<LineMaterial>null</LineMaterial>
-					<LineStyle>SOLID</LineStyle>
-					<Width>1376.5705493821504</Width>
-					<Height>30</Height>
-					<Rotation>0.0</Rotation>
-					<FillColor>-657931</FillColor>
-					<FillMaterial>null</FillMaterial>
-				</Rectangle>
-				<Text>
-					<Id>1656043398553</Id>
-					<Name><![CDATA[text8]]></Name>
-					<X>10</X><Y>140</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-12171190</Color>
-					<Text><![CDATA[Objective:]]></Text>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>12</Size>
-						<Style>0</Style>
-					</Font>
-					<Alignment>LEFT</Alignment>
-				</Text>
-				<Text>
-					<Id>1656043398554</Id>
-					<Name><![CDATA[text9]]></Name>
-					<X>601.5</X><Y>140</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<VisibleCode><![CDATA[getCurrentIteration() > 0]]></VisibleCode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-12042869</Color>
-					<Text><![CDATA[?]]></Text>
-					<TextCode><![CDATA[format(getCurrentObjectiveValue())]]></TextCode>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>12</Size>
-						<Style>0</Style>
-					</Font>
-					<Alignment>RIGHT</Alignment>
-				</Text>
-				<Text>
-					<Id>1656043398555</Id>
-					<Name><![CDATA[text10]]></Name>
-					<X>1275</X><Y>139</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<VisibleCode><![CDATA[getBestIteration() > 0]]></VisibleCode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-12490271</Color>
-					<Text><![CDATA[?]]></Text>
-					<TextCode><![CDATA[format(getBestObjectiveValue())]]></TextCode>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>12</Size>
-						<Style>1</Style>
-					</Font>
-					<Alignment>RIGHT</Alignment>
-				</Text>
-				<Line>
-					<Id>1656043398556</Id>
-					<Name><![CDATA[line1]]></Name>
-					<X>75</X><Y>140</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<ZHeight>10</ZHeight>
-					<LineWidth>2</LineWidth>
-					<LineColor>-12566464</LineColor>
-					<LineMaterial>null</LineMaterial>
-					<LineStyle>SOLID</LineStyle>
-					<BeginArrowSize>1</BeginArrowSize>
-					<BeginArrowStyle>0</BeginArrowStyle>
-					<EndArrowSize>1</EndArrowSize>
-					<EndArrowStyle>0</EndArrowStyle>
-					<Dx>0</Dx>
-					<Dy>15</Dy>
-					<Dz>0</Dz>
-				</Line>
-				<Polyline>
-					<Id>1656043398557</Id>
-					<Name><![CDATA[polyline]]></Name>
-					<X>70</X><Y>145</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<ZHeight>10</ZHeight>
-					<LineWidth>2</LineWidth>
-					<LineColor>-12566464</LineColor>
-					<LineMaterial>null</LineMaterial>
-					<LineStyle>SOLID</LineStyle>
-					<BeginArrowSize>1</BeginArrowSize>
-					<BeginArrowStyle>0</BeginArrowStyle>
-					<EndArrowSize>1</EndArrowSize>
-					<EndArrowStyle>0</EndArrowStyle>
-					<FillColor/>
-					<FillMaterial>null</FillMaterial>
-					<Points>
-					   <Point><X>0</X><Y>0</Y><Z>0</Z></Point>
-					   <Point><X>5</X><Y>-5</Y><Z>0</Z></Point>
-					   <Point><X>10</X><Y>0</Y><Z>0</Z></Point>
-					</Points>
-					<Closed>false</Closed>
-				</Polyline>
-				<Text>
-					<Id>1656043398558</Id>
-					<Name><![CDATA[text11]]></Name>
-					<X>10</X><Y>180</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-12566464</Color>
-					<Text><![CDATA[Parameters]]></Text>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>12</Size>
-						<Style>1</Style>
-					</Font>
-					<Alignment>LEFT</Alignment>
-				</Text>
-				<Line>
-					<Id>1656043398560</Id>
-					<Name><![CDATA[line2]]></Name>
-					<X>3.093</X><Y>200</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<ZHeight>10</ZHeight>
-					<LineWidth>2</LineWidth>
-					<LineColor>-12566464</LineColor>
-					<LineMaterial>null</LineMaterial>
-					<LineStyle>SOLID</LineStyle>
-					<BeginArrowSize>1</BeginArrowSize>
-					<BeginArrowStyle>0</BeginArrowStyle>
-					<EndArrowSize>1</EndArrowSize>
-					<EndArrowStyle>0</EndArrowStyle>
-					<Dx>1374</Dx>
-					<Dy>0</Dy>
-					<Dz>0</Dz>
-				</Line>
-				<Text>
-					<Id>1656043398561</Id>
-					<Name><![CDATA[text12]]></Name>
-					<X>10</X><Y>210</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-12171190</Color>
-					<Text><![CDATA[p_annualBudget]]></Text>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>12</Size>
-						<Style>0</Style>
-					</Font>
-					<Alignment>LEFT</Alignment>
-				</Text>
-				<Text>
-					<Id>1656043398562</Id>
-					<Name><![CDATA[text13]]></Name>
-					<X>601.5</X><Y>210</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<VisibleCode><![CDATA[getCurrentIteration() > 0]]></VisibleCode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-12042869</Color>
-					<Text><![CDATA[?]]></Text>
-					<TextCode><![CDATA[format( p_annualBudget )]]></TextCode>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>12</Size>
-						<Style>0</Style>
-					</Font>
-					<Alignment>RIGHT</Alignment>
-				</Text>
-				<Text>
-					<Id>1656043398563</Id>
-					<Name><![CDATA[text14]]></Name>
-					<X>1275</X><Y>209</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<VisibleCode><![CDATA[getBestIteration() > 0]]></VisibleCode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-12042869</Color>
-					<Text><![CDATA[?]]></Text>
-					<TextCode><![CDATA[format( p_annualBudget )]]></TextCode>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>12</Size>
-						<Style>0</Style>
-					</Font>
-					<Alignment>RIGHT</Alignment>
-				</Text>
-				<Rectangle>
-					<Id>1656043398564</Id>
-					<Name><![CDATA[rectangle1]]></Name>
-					<X>3.093</X><Y>230</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<ZHeight>10</ZHeight>
-					<LineWidth>1</LineWidth>
-					<LineColor/>
-					<LineMaterial>null</LineMaterial>
-					<LineStyle>SOLID</LineStyle>
-					<Width>1376.5705493821504</Width>
-					<Height>30</Height>
-					<Rotation>0.0</Rotation>
-					<FillColor>-657931</FillColor>
-					<FillMaterial>null</FillMaterial>
-				</Rectangle>
-				<Text>
-					<Id>1656043398565</Id>
-					<Name><![CDATA[text15]]></Name>
-					<X>10</X><Y>240</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-12171190</Color>
-					<Text><![CDATA[p_breachCost]]></Text>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>12</Size>
-						<Style>0</Style>
-					</Font>
-					<Alignment>LEFT</Alignment>
-				</Text>
-				<Text>
-					<Id>1656043398566</Id>
-					<Name><![CDATA[text16]]></Name>
-					<X>601.5</X><Y>240</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<VisibleCode><![CDATA[getCurrentIteration() > 0]]></VisibleCode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-12042869</Color>
-					<Text><![CDATA[?]]></Text>
-					<TextCode><![CDATA[format( p_breachCost )]]></TextCode>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>12</Size>
-						<Style>0</Style>
-					</Font>
-					<Alignment>RIGHT</Alignment>
-				</Text>
-				<Text>
-					<Id>1656043398567</Id>
-					<Name><![CDATA[text17]]></Name>
-					<X>1275</X><Y>239</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<VisibleCode><![CDATA[getBestIteration() > 0]]></VisibleCode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-12042869</Color>
-					<Text><![CDATA[?]]></Text>
-					<TextCode><![CDATA[format( p_breachCost )]]></TextCode>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>12</Size>
-						<Style>0</Style>
-					</Font>
-					<Alignment>RIGHT</Alignment>
-				</Text>
-				<Text>
-					<Id>1656043398568</Id>
-					<Name><![CDATA[text18]]></Name>
-					<X>10</X><Y>270</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-12171190</Color>
-					<Text><![CDATA[cp_selectedThreatActors]]></Text>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>12</Size>
-						<Style>0</Style>
-					</Font>
-					<Alignment>LEFT</Alignment>
-				</Text>
-				<Text>
-					<Id>1656043398569</Id>
-					<Name><![CDATA[text19]]></Name>
-					<X>601.5</X><Y>270</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<VisibleCode><![CDATA[getCurrentIteration() > 0]]></VisibleCode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-12042869</Color>
-					<Text><![CDATA[?]]></Text>
-					<TextCode><![CDATA[String.valueOf( cp_selectedThreatActors )]]></TextCode>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>12</Size>
-						<Style>0</Style>
-					</Font>
-					<Alignment>RIGHT</Alignment>
-				</Text>
-				<Text>
-					<Id>1656043398570</Id>
-					<Name><![CDATA[text20]]></Name>
-					<X>1275</X><Y>269</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<VisibleCode><![CDATA[getBestIteration() > 0]]></VisibleCode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-12042869</Color>
-					<Text><![CDATA[?]]></Text>
-					<TextCode><![CDATA[String.valueOf( cp_selectedThreatActors )]]></TextCode>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>12</Size>
-						<Style>0</Style>
-					</Font>
-					<Alignment>RIGHT</Alignment>
-				</Text>
-				<Rectangle>
-					<Id>1656043398571</Id>
-					<Name><![CDATA[rectangle2]]></Name>
-					<X>3.093</X><Y>290</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<ZHeight>10</ZHeight>
-					<LineWidth>1</LineWidth>
-					<LineColor/>
-					<LineMaterial>null</LineMaterial>
-					<LineStyle>SOLID</LineStyle>
-					<Width>1376.5705493821504</Width>
-					<Height>30</Height>
-					<Rotation>0.0</Rotation>
-					<FillColor>-657931</FillColor>
-					<FillMaterial>null</FillMaterial>
-				</Rectangle>
-				<Text>
-					<Id>1656043398572</Id>
-					<Name><![CDATA[text21]]></Name>
-					<X>10</X><Y>300</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-12171190</Color>
-					<Text><![CDATA[p_attacksPerYear]]></Text>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>12</Size>
-						<Style>0</Style>
-					</Font>
-					<Alignment>LEFT</Alignment>
-				</Text>
-				<Text>
-					<Id>1656043398573</Id>
-					<Name><![CDATA[text22]]></Name>
-					<X>601.5</X><Y>300</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<VisibleCode><![CDATA[getCurrentIteration() > 0]]></VisibleCode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-12042869</Color>
-					<Text><![CDATA[?]]></Text>
-					<TextCode><![CDATA[format( p_attacksPerYear )]]></TextCode>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>12</Size>
-						<Style>0</Style>
-					</Font>
-					<Alignment>RIGHT</Alignment>
-				</Text>
-				<Text>
-					<Id>1656043398574</Id>
-					<Name><![CDATA[text23]]></Name>
-					<X>1275</X><Y>299</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<VisibleCode><![CDATA[getBestIteration() > 0]]></VisibleCode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-12042869</Color>
-					<Text><![CDATA[?]]></Text>
-					<TextCode><![CDATA[format( p_attacksPerYear )]]></TextCode>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>12</Size>
-						<Style>0</Style>
-					</Font>
-					<Alignment>RIGHT</Alignment>
-				</Text>
-				<Text>
-					<Id>1656043398575</Id>
-					<Name><![CDATA[text24]]></Name>
-					<X>10</X><Y>330</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-12171190</Color>
-					<Text><![CDATA[p_numYears]]></Text>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>12</Size>
-						<Style>0</Style>
-					</Font>
-					<Alignment>LEFT</Alignment>
-				</Text>
-				<Text>
-					<Id>1656043398576</Id>
-					<Name><![CDATA[text25]]></Name>
-					<X>601.5</X><Y>330</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<VisibleCode><![CDATA[getCurrentIteration() > 0]]></VisibleCode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-12042869</Color>
-					<Text><![CDATA[?]]></Text>
-					<TextCode><![CDATA[format( p_numYears )]]></TextCode>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>12</Size>
-						<Style>0</Style>
-					</Font>
-					<Alignment>RIGHT</Alignment>
-				</Text>
-				<Text>
-					<Id>1656043398577</Id>
-					<Name><![CDATA[text26]]></Name>
-					<X>1275</X><Y>329</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<VisibleCode><![CDATA[getBestIteration() > 0]]></VisibleCode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-12042869</Color>
-					<Text><![CDATA[?]]></Text>
-					<TextCode><![CDATA[format( p_numYears )]]></TextCode>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>12</Size>
-						<Style>0</Style>
-					</Font>
-					<Alignment>RIGHT</Alignment>
-				</Text>
-				<Rectangle>
-					<Id>1656043398578</Id>
-					<Name><![CDATA[rectangle3]]></Name>
-					<X>3.093</X><Y>350</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<ZHeight>10</ZHeight>
-					<LineWidth>1</LineWidth>
-					<LineColor/>
-					<LineMaterial>null</LineMaterial>
-					<LineStyle>SOLID</LineStyle>
-					<Width>1376.5705493821504</Width>
-					<Height>30</Height>
-					<Rotation>0.0</Rotation>
-					<FillColor>-657931</FillColor>
-					<FillMaterial>null</FillMaterial>
-				</Rectangle>
-				<Text>
-					<Id>1656043398579</Id>
-					<Name><![CDATA[text27]]></Name>
-					<X>10</X><Y>360</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-12171190</Color>
-					<Text><![CDATA[cp_enabledControls]]></Text>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>12</Size>
-						<Style>0</Style>
-					</Font>
-					<Alignment>LEFT</Alignment>
-				</Text>
-				<Text>
-					<Id>1656043398580</Id>
-					<Name><![CDATA[text28]]></Name>
-					<X>601.5</X><Y>360</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<VisibleCode><![CDATA[getCurrentIteration() > 0]]></VisibleCode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-12042869</Color>
-					<Text><![CDATA[?]]></Text>
-					<TextCode><![CDATA[String.valueOf( cp_enabledControls )]]></TextCode>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>12</Size>
-						<Style>0</Style>
-					</Font>
-					<Alignment>RIGHT</Alignment>
-				</Text>
-				<Text>
-					<Id>1656043398581</Id>
-					<Name><![CDATA[text29]]></Name>
-					<X>1275</X><Y>359</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<VisibleCode><![CDATA[getBestIteration() > 0]]></VisibleCode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-12042869</Color>
-					<Text><![CDATA[?]]></Text>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>12</Size>
-						<Style>0</Style>
-					</Font>
-					<Alignment>RIGHT</Alignment>
-				</Text>
-				<Text>
-					<Id>1656043398582</Id>
-					<Name><![CDATA[text30]]></Name>
-					<X>10</X><Y>390</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-12490271</Color>
-					<Text><![CDATA[p_controlSetIndex]]></Text>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>12</Size>
-						<Style>1</Style>
-					</Font>
-					<Alignment>LEFT</Alignment>
-				</Text>
-				<Text>
-					<Id>1656043398583</Id>
-					<Name><![CDATA[text31]]></Name>
-					<X>601.5</X><Y>390</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<VisibleCode><![CDATA[getCurrentIteration() > 0]]></VisibleCode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-12042869</Color>
-					<Text><![CDATA[?]]></Text>
-					<TextCode><![CDATA[format( p_controlSetIndex )]]></TextCode>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>12</Size>
-						<Style>1</Style>
-					</Font>
-					<Alignment>RIGHT</Alignment>
-				</Text>
-				<Text>
-					<Id>1656043398584</Id>
-					<Name><![CDATA[text32]]></Name>
-					<X>1275</X><Y>389</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<VisibleCode><![CDATA[getBestIteration() > 0]]></VisibleCode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-12490271</Color>
-					<Text><![CDATA[?]]></Text>
-					<TextCode><![CDATA[format( getBestParamValue( _oqvar_p_controlSetIndex ) )]]></TextCode>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>12</Size>
-						<Style>1</Style>
-					</Font>
-					<Alignment>RIGHT</Alignment>
-				</Text>
-				<Control Type="Button">
-				 	<EmbeddedIcon>false</EmbeddedIcon>				
-					<Id>1656043398559</Id>
-					<Name><![CDATA[button]]></Name>
-					<X>1200</X><Y>174</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<BasicProperties Width="90" Height="20">
-                        <EmbeddedIcon>false</EmbeddedIcon>	
-						<TextColor/>
-						<Enabled>true</Enabled>
-						<EnableExpression><![CDATA[getBestIteration() > 0]]></EnableExpression>
-						<ActionCode><![CDATA[String s = "";
-s += "p_annualBudget\t" + format( p_annualBudget ) + "\n";
-s += "p_breachCost\t" + format( p_breachCost ) + "\n";
-s += "cp_selectedThreatActors\t" + String.valueOf( cp_selectedThreatActors ) + "\n";
-s += "p_attacksPerYear\t" + format( p_attacksPerYear ) + "\n";
-s += "p_numYears\t" + format( p_numYears ) + "\n";
-s += "cp_enabledControls\t" + String.valueOf( cp_enabledControls ) + "\n";
-s += "p_controlSetIndex\t" + format( getBestParamValue( _oqvar_p_controlSetIndex ) ) + "\n";
-
-copyToClipboard( s );]]></ActionCode>
-					</BasicProperties>
-					<ExtendedProperties>
-						<Font Name="Dialog" Size="11" Style="0"/>
-						<LabelText><![CDATA[Copy best]]></LabelText>
-					</ExtendedProperties>
-				</Control>
-				<Line>
-					<Id>1656043398585</Id>
-					<Name><![CDATA[line3]]></Name>
-					<X>700</X><Y>80</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<ZHeight>10</ZHeight>
-					<LineWidth>1</LineWidth>
-					<LineColor>-4144960</LineColor>
-					<LineMaterial>null</LineMaterial>
-					<LineStyle>SOLID</LineStyle>
-					<BeginArrowSize>1</BeginArrowSize>
-					<BeginArrowStyle>0</BeginArrowStyle>
-					<EndArrowSize>1</EndArrowSize>
-					<EndArrowStyle>0</EndArrowStyle>
-					<Dx>0</Dx>
-					<Dy>340</Dy>
-					<Dz>0</Dz>
-				</Line>
-    			<Plot>
-					<Id>1656043398590</Id>
-					<Name><![CDATA[plot]]></Name>
-					<X>1420</X><Y>80</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<AutoUpdate>false</AutoUpdate>
-					<OccurrenceAtTime>true</OccurrenceAtTime>
-					<OccurrenceDate>1656057600000</OccurrenceDate>
-					<OccurrenceTime Class="CodeUnitValue">
-						<Code><![CDATA[0]]></Code>
-						<Unit Class="TimeUnits"><![CDATA[MILLISECOND]]></Unit>
-					</OccurrenceTime>
-					<RecurrenceCode Class="CodeUnitValue">
-						<Code><![CDATA[1]]></Code>
-						<Unit Class="TimeUnits"><![CDATA[MILLISECOND]]></Unit>
-					</RecurrenceCode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Width>500</Width>
-					<Height>300</Height>
-					<BackgroundColor/>
-					<BorderColor/>
-					<ChartArea>
-						<XOffset>80</XOffset>
-						<YOffset>20</YOffset>
-						<Width>400</Width>
-						<Height>200</Height>
-						<BackgroundColor>-1</BackgroundColor>
-						<BorderColor>-9868951</BorderColor>
-						<GridColor>-12566464</GridColor>
-					</ChartArea>
-					<Legend>
-						<Place>SOUTH</Place>
-						<TextColor>-16777216</TextColor>
-						<Size>40</Size>
-					</Legend>
-					<Labels>
-						<HorLabelsPosition>DEFAULT</HorLabelsPosition>
-						<VerLabelsPosition>DEFAULT</VerLabelsPosition>
-						<TextColor>-12566464</TextColor>
-					</Labels>
-					<ShowLegend>true</ShowLegend>
-					<VerScaleFromExpression><![CDATA[0]]></VerScaleFromExpression>
-					<VerScaleToExpression><![CDATA[1]]></VerScaleToExpression>
-					<VerScaleType>AUTO</VerScaleType>
-					<DrawLine>true</DrawLine>
-					<Interpolation>LINEAR</Interpolation>
-					<DatasetExpression>  
-						<Title><![CDATA[Current]]></Title>
-					<Id>1656043398591</Id>
-					<Expression><![CDATA[datasetCurrentObjective]]></Expression>
-					<Color>-4144960</Color>
-					<Expression2Flag>false</Expression2Flag>
-						<PointStyle>CIRCLE</PointStyle>
-						<LineWidth>0.0</LineWidth>
-						<HorizontalAxisExpression><![CDATA[]]></HorizontalAxisExpression>
-					</DatasetExpression>
-					<DatasetExpression>  
-						<Title><![CDATA[Best infeasible]]></Title>
-					<Id>1656043398592</Id>
-					<Expression><![CDATA[datasetBestInfeasibleObjective]]></Expression>
-					<Color>-4194304</Color>
-					<Expression2Flag>false</Expression2Flag>
-						<PointStyle>NONE</PointStyle>
-						<LineWidth>2.0</LineWidth>
-						<HorizontalAxisExpression><![CDATA[]]></HorizontalAxisExpression>
-					</DatasetExpression>
-					<DatasetExpression>  
-						<Title><![CDATA[Best feasible]]></Title>
-					<Id>1656043398593</Id>
-					<Expression><![CDATA[datasetBestFeasibleObjective]]></Expression>
-					<Color>-16777088</Color>
-					<Expression2Flag>false</Expression2Flag>
-						<PointStyle>NONE</PointStyle>
-						<LineWidth>2.0</LineWidth>
-						<HorizontalAxisExpression><![CDATA[]]></HorizontalAxisExpression>
-					</DatasetExpression>
-					<SamplesToKeep>100</SamplesToKeep>
-					<HorScaleFromExpression><![CDATA[0]]></HorScaleFromExpression>
-					<HorScaleToExpression><![CDATA[1]]></HorScaleToExpression>
-					<HorScaleType>AUTO</HorScaleType>
-    			</Plot>
-				<RoundedRectangle>
-					<Id>1656043454183</Id>
-					<Name><![CDATA[pi_SimVariables8]]></Name>
-					<X>10</X><Y>-250</Y>
-					<Label><X>10</X><Y>10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<ZHeight>10</ZHeight>
-					<LineWidth>1</LineWidth>
-					<LineColor>-16777216</LineColor>
-					<LineMaterial>null</LineMaterial>
-					<LineStyle>SOLID</LineStyle>
-					<Width>380</Width>
-					<Height>230</Height>
-					<Rotation>0.0</Rotation>
-					<FillColor>-1</FillColor>
-					<FillMaterial>null</FillMaterial>
-					<ArcRadius>10</ArcRadius>
-				</RoundedRectangle>
-				<Text>
-					<Id>1656043454186</Id>
-					<Name><![CDATA[CostVarHeading]]></Name>
-					<X>120</X><Y>-240</Y>
-					<Label><X>0</X><Y>-10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-16777216</Color>
-					<Text><![CDATA[Breach Cost Variables]]></Text>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>14</Size>
-						<Style>0</Style>
-					</Font>
-					<Alignment>LEFT</Alignment>
-				</Text>
-				<RoundedRectangle>
-					<Id>1656043454188</Id>
-					<Name><![CDATA[pi_SimVariables]]></Name>
-					<X>440</X><Y>-270</Y>
-					<Label><X>10</X><Y>10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<ZHeight>10</ZHeight>
-					<LineWidth>1</LineWidth>
-					<LineColor>-16777216</LineColor>
-					<LineMaterial>null</LineMaterial>
-					<LineStyle>SOLID</LineStyle>
-					<Width>190</Width>
-					<Height>250</Height>
-					<Rotation>0.0</Rotation>
-					<FillColor>-1</FillColor>
-					<FillMaterial>null</FillMaterial>
-					<ArcRadius>10</ArcRadius>
-				</RoundedRectangle>
-				<Text>
-					<Id>1656043454190</Id>
-					<Name><![CDATA[text33]]></Name>
-					<X>460</X><Y>-260</Y>
-					<Label><X>0</X><Y>-10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-16777216</Color>
-					<Text><![CDATA[Simulation Variables]]></Text>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>14</Size>
-						<Style>0</Style>
-					</Font>
-					<Alignment>LEFT</Alignment>
-				</Text>
-				<Rectangle>
-					<Id>1656043471630</Id>
-					<Name><![CDATA[r_backdrop]]></Name>
-					<X>10</X><Y>460</Y>
-					<Label><X>10</X><Y>10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<ZHeight>10</ZHeight>
-					<LineWidth>1</LineWidth>
-					<LineColor/>
-					<LineMaterial>null</LineMaterial>
-					<LineStyle>SOLID</LineStyle>
-					<Width>2880</Width>
-					<Height>1480</Height>
-					<Rotation>0.0</Rotation>
-					<FillColor>-14606047</FillColor>
-					<FillMaterial>null</FillMaterial>
-				</Rectangle>
-				<Text>
-					<Id>1656043471638</Id>
-					<Name><![CDATA[text34]]></Name>
-					<X>80</X><Y>530</Y>
-					<Label><X>0</X><Y>-10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-328966</Color>
-					<Text><![CDATA[Estimation Technique:]]></Text>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>12</Size>
-						<Style>0</Style>
-					</Font>
-					<Alignment>LEFT</Alignment>
-				</Text>
-				<Control Type="ComboBox">
-				 	<EmbeddedIcon>false</EmbeddedIcon>				
-					<Id>1656043471640</Id>
-					<Name><![CDATA[combobox]]></Name>
-					<Description><![CDATA[Combo box allowing users to select the technique they wish to use to estimate the cost of a data breach. This is used to determine which set of additional controls are visible, allowing them to further tailor the estimate for each technique. Additionally, changes to the selection in this box update the total cost of a breach output and set the v_estimationTechnique variable which determines which user inputs to use for calculating the cost of a breach based on teh selected technique.]]></Description>
-					<X>220</X><Y>530</Y>
-					<Label><X>0</X><Y>-10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<BasicProperties Width="150" Height="20">
-                        <EmbeddedIcon>false</EmbeddedIcon>	
-						<FillColor/>
-						<TextColor/>
-						<Enabled>true</Enabled>
-						<ActionCode><![CDATA[// Hide all controls
-g_recordCostControls.setVisible(false);
-g_manualCostControls.setVisible(false);
-g_sizeCostControls.setVisible(false);
-
-// Only show controls for the selected estimation technique
-switch (value) {
-	case "Record Type and Count":
-		v_estimationTechnique = records;
-		g_recordCostControls.setVisible(true);
-		break;
-	case "Enter Manually":
-		v_estimationTechnique = manual;
-		g_manualCostControls.setVisible(true);
-		break;
-	case "Business Size":
-		v_estimationTechnique = businessSize;
-		g_sizeCostControls.setVisible(true);
-		break;
-}
-
-f_updateBreachCost();]]></ActionCode>
-					</BasicProperties>
-					<ExtendedProperties>
-						<Font Name="Dialog" Size="11" Style="0"/>
-						<Editable>false</Editable>
-						<Button><![CDATA[Record Type and Count]]></Button>
-						<Button><![CDATA[Enter Manually]]></Button>
-						<Button><![CDATA[Business Size]]></Button>
-						<LinkTo>false</LinkTo>
-					</ExtendedProperties>
-				</Control>
-				<Text>
-					<Id>1656043471649</Id>
-					<Name><![CDATA[BreachCostHeading]]></Name>
-					<X>60</X><Y>500</Y>
-					<Label><X>0</X><Y>-10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-328966</Color>
-					<Text><![CDATA[Breach Cost]]></Text>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>16</Size>
-						<Style>1</Style>
-					</Font>
-					<Alignment>LEFT</Alignment>
-				</Text>
-				<Group>
-					<Id>1656043471651</Id>
-					<Name><![CDATA[g_sizeCostControls]]></Name>
-					<X>210</X><Y>615</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>false</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-
-			<Presentation>
-				<Text>
-					<Id>1656043471653</Id>
-					<Name><![CDATA[text42]]></Name>
-					<X>-130</X><Y>-20</Y>
-					<Label><X>0</X><Y>-10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-328966</Color>
-					<Text><![CDATA[Average cost of a data breach
-for a small business (USD): ]]></Text>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>12</Size>
-						<Style>0</Style>
-					</Font>
-					<Alignment>LEFT</Alignment>
-				</Text>
-				<Control Type="EditBox">
-				 	<EmbeddedIcon>false</EmbeddedIcon>				
-					<Id>1656043471655</Id>
-					<Name><![CDATA[eb_avgSmallBusinessCost]]></Name>
-					<Description><![CDATA[Edit box containing fixed value for the cost of a data breach for small businesses based on the IBM cost of a breach report. This is later used to update the cost per  breach output as well as in calculations for the total loss, total return, and ROI outputs]]></Description>
-					<X>40</X><Y>-20</Y>
-					<Label><X>0</X><Y>-10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<BasicProperties Width="78" Height="20">
-                        <EmbeddedIcon>false</EmbeddedIcon>	
-						<FillColor/>
-						<TextColor/>
-						<Enabled>false</Enabled>
-						<ActionCode><![CDATA[f_updateBreachCost();]]></ActionCode>
-					</BasicProperties>
-					<ExtendedProperties>
-						<Font Name="Dialog" Size="11" Style="0"/>
-						<MinValue><![CDATA[0]]></MinValue>
-						<LinkTo>true</LinkTo>
-						<Link>v_avgSmallBusinessCost</Link>
-					</ExtendedProperties>
-				</Control>
-			</Presentation>
-
-				</Group>
-				<Group>
-					<Id>1656043471659</Id>
-					<Name><![CDATA[g_manualCostControls]]></Name>
-					<X>210</X><Y>600</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>false</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-
-			<Presentation>
-				<Text>
-					<Id>1656043471661</Id>
-					<Name><![CDATA[text43]]></Name>
-					<X>-130</X><Y>-5</Y>
-					<Label><X>0</X><Y>-10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-328966</Color>
-					<Text><![CDATA[Cost Per Breach (USD):]]></Text>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>12</Size>
-						<Style>0</Style>
-					</Font>
-					<Alignment>LEFT</Alignment>
-				</Text>
-				<Control Type="EditBox">
-				 	<EmbeddedIcon>false</EmbeddedIcon>				
-					<Id>1656043471663</Id>
-					<Name><![CDATA[eb_manualCost]]></Name>
-					<Description><![CDATA[Edit box allowing users to manually enter their own estimate for the cost of a data brach. This is later used to update the cost per  breach output as well as in calculations for the total loss, total return, and ROI outputs]]></Description>
-					<X>40</X><Y>-10</Y>
-					<Label><X>0</X><Y>-10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<BasicProperties Width="78" Height="20">
-                        <EmbeddedIcon>false</EmbeddedIcon>	
-						<FillColor/>
-						<TextColor/>
-						<Enabled>true</Enabled>
-						<ActionCode><![CDATA[f_updateBreachCost();]]></ActionCode>
-					</BasicProperties>
-					<ExtendedProperties>
-						<Font Name="Dialog" Size="11" Style="0"/>
-						<MinValue><![CDATA[0]]></MinValue>
-						<LinkTo>true</LinkTo>
-						<Link>v_manualCost</Link>
-					</ExtendedProperties>
-				</Control>
-			</Presentation>
-
-				</Group>
-				<Text>
-					<Id>1656043471667</Id>
-					<Name><![CDATA[BreachCostHeading1]]></Name>
-					<X>60</X><Y>780</Y>
-					<Label><X>0</X><Y>-10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-328966</Color>
-					<Text><![CDATA[Annual Budget]]></Text>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>16</Size>
-						<Style>1</Style>
-					</Font>
-					<Alignment>LEFT</Alignment>
-				</Text>
-				<Control Type="EditBox">
-				 	<EmbeddedIcon>false</EmbeddedIcon>				
-					<Id>1656043471669</Id>
-					<Name><![CDATA[editbox19]]></Name>
-					<X>220</X><Y>805</Y>
-					<Label><X>0</X><Y>-10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<BasicProperties Width="100" Height="20">
-                        <EmbeddedIcon>false</EmbeddedIcon>	
-						<FillColor>-328966</FillColor>
-						<TextColor>-16777216</TextColor>
-						<Enabled>true</Enabled>
-						<ActionCode><![CDATA[
-
-]]></ActionCode>
-					</BasicProperties>
-					<ExtendedProperties>
-						<Font Name="Dialog" Size="11" Style="0"/>
-						<MinValue><![CDATA[1]]></MinValue>
-						<MaxValue><![CDATA[1000000]]></MaxValue>
-						<LinkTo>true</LinkTo>
-						<Link>v_budget</Link>
-					</ExtendedProperties>
-				</Control>
-				<Text>
-					<Id>1656043471671</Id>
-					<Name><![CDATA[text52]]></Name>
-					<X>80</X><Y>810</Y>
-					<Label><X>0</X><Y>-10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-328966</Color>
-					<Text><![CDATA[Amount: $]]></Text>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>12</Size>
-						<Style>0</Style>
-					</Font>
-					<Alignment>LEFT</Alignment>
-				</Text>
-				<Control Type="EditBox">
-				 	<EmbeddedIcon>false</EmbeddedIcon>				
-					<Id>1656043471673</Id>
-					<Name><![CDATA[editbox17]]></Name>
-					<X>220</X><Y>905</Y>
-					<Label><X>0</X><Y>-10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<BasicProperties Width="100" Height="20">
-                        <EmbeddedIcon>false</EmbeddedIcon>	
-						<FillColor>-328966</FillColor>
-						<TextColor>-16777216</TextColor>
-						<Enabled>true</Enabled>
-						<ActionCode><![CDATA[
-
-]]></ActionCode>
-					</BasicProperties>
-					<ExtendedProperties>
-						<Font Name="Dialog" Size="11" Style="0"/>
-						<MinValue><![CDATA[1]]></MinValue>
-						<MaxValue><![CDATA[1000000]]></MaxValue>
-						<LinkTo>true</LinkTo>
-						<Link>v_attacksPerYear</Link>
-					</ExtendedProperties>
-				</Control>
-				<Control Type="EditBox">
-				 	<EmbeddedIcon>false</EmbeddedIcon>				
-					<Id>1656043471675</Id>
-					<Name><![CDATA[editbox18]]></Name>
-					<X>220</X><Y>935</Y>
-					<Label><X>0</X><Y>-10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<BasicProperties Width="100" Height="20">
-                        <EmbeddedIcon>false</EmbeddedIcon>	
-						<FillColor>-328966</FillColor>
-						<TextColor>-16777216</TextColor>
-						<Enabled>true</Enabled>
-						<ActionCode><![CDATA[
-
-]]></ActionCode>
-					</BasicProperties>
-					<ExtendedProperties>
-						<Font Name="Dialog" Size="11" Style="0"/>
-						<MinValue><![CDATA[1]]></MinValue>
-						<MaxValue><![CDATA[1000000]]></MaxValue>
-						<LinkTo>true</LinkTo>
-						<Link>v_numYears</Link>
-					</ExtendedProperties>
-				</Control>
-				<Text>
-					<Id>1656043471677</Id>
-					<Name><![CDATA[RunHeading]]></Name>
-					<X>60</X><Y>880</Y>
-					<Label><X>0</X><Y>-10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-328966</Color>
-					<Text><![CDATA[Run Parameters]]></Text>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>16</Size>
-						<Style>1</Style>
-					</Font>
-					<Alignment>LEFT</Alignment>
-				</Text>
-				<Text>
-					<Id>1656043471679</Id>
-					<Name><![CDATA[text35]]></Name>
-					<X>80</X><Y>910</Y>
-					<Label><X>0</X><Y>-10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-328966</Color>
-					<Text><![CDATA[Attacks Per Year]]></Text>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>12</Size>
-						<Style>0</Style>
-					</Font>
-					<Alignment>LEFT</Alignment>
-				</Text>
-				<Text>
-					<Id>1656043471681</Id>
-					<Name><![CDATA[text51]]></Name>
-					<X>80</X><Y>940</Y>
-					<Label><X>0</X><Y>-10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-328966</Color>
-					<Text><![CDATA[Average over X years]]></Text>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>12</Size>
-						<Style>0</Style>
-					</Font>
-					<Alignment>LEFT</Alignment>
-				</Text>
-				<Text>
-					<Id>1656043471683</Id>
-					<Name><![CDATA[text36]]></Name>
-					<X>500</X><Y>570</Y>
-					<Label><X>0</X><Y>-10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-328966</Color>
-					<Text><![CDATA[Organized Crime]]></Text>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>12</Size>
-						<Style>0</Style>
-					</Font>
-					<Alignment>LEFT</Alignment>
-				</Text>
-				<Text>
-					<Id>1656043471685</Id>
-					<Name><![CDATA[text37]]></Name>
-					<X>500</X><Y>660</Y>
-					<Label><X>0</X><Y>-10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-328966</Color>
-					<Text><![CDATA[Former Employee]]></Text>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>12</Size>
-						<Style>0</Style>
-					</Font>
-					<Alignment>LEFT</Alignment>
-				</Text>
-				<Text>
-					<Id>1656043471687</Id>
-					<Name><![CDATA[text38]]></Name>
-					<X>500</X><Y>720</Y>
-					<Label><X>0</X><Y>-10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-328966</Color>
-					<Text><![CDATA[Unidentified]]></Text>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>12</Size>
-						<Style>0</Style>
-					</Font>
-					<Alignment>LEFT</Alignment>
-				</Text>
-				<Text>
-					<Id>1656043471689</Id>
-					<Name><![CDATA[text39]]></Name>
-					<X>500</X><Y>630</Y>
-					<Label><X>0</X><Y>-10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-328966</Color>
-					<Text><![CDATA[State-Affiliated]]></Text>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>12</Size>
-						<Style>0</Style>
-					</Font>
-					<Alignment>LEFT</Alignment>
-				</Text>
-				<Text>
-					<Id>1656043471691</Id>
-					<Name><![CDATA[text40]]></Name>
-					<X>480</X><Y>530</Y>
-					<Label><X>0</X><Y>-10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-328966</Color>
-					<Text><![CDATA[Relevant Threat Actors]]></Text>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>16</Size>
-						<Style>1</Style>
-					</Font>
-					<Alignment>LEFT</Alignment>
-				</Text>
-				<Control Type="CheckBox">
-				 	<EmbeddedIcon>false</EmbeddedIcon>				
-					<Id>1656043471693</Id>
-					<Name><![CDATA[cb_organizedCrime]]></Name>
-					<X>640</X><Y>565</Y>
-					<Label><X>0</X><Y>-10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<BasicProperties Width="20" Height="20">
-                        <EmbeddedIcon>false</EmbeddedIcon>	
-						<TextColor>-16777216</TextColor>
-						<Enabled>true</Enabled>
-						<ActionCode><![CDATA[f_updateAttackerSelection(OrganizedCrime, self.isSelected());]]></ActionCode>
-					</BasicProperties>
-					<ExtendedProperties>
-						<Font Name="SansSerif" Size="24" Style="0"/>
-						<LabelText><![CDATA[]]></LabelText>
-						<DefaultValueCode><![CDATA[false]]></DefaultValueCode>
-						<LinkTo>false</LinkTo>
-	 				</ExtendedProperties>
-				</Control>
-				<Control Type="CheckBox">
-				 	<EmbeddedIcon>false</EmbeddedIcon>				
-					<Id>1656043471695</Id>
-					<Name><![CDATA[cb_competitor1]]></Name>
-					<Description><![CDATA[Locked checkbox which indicates when one of the selected attackers' fail rate is not used for the current attack based on their prevalence,  the efficacy of the controls will stay the same. If this checkbox were somehow unchecked, it would mean all attacks would have an attacker score based on a selected attacker, even if the sum of the attacker's prevalence ratio was close to 0.]]></Description>
-					<X>640</X><Y>715</Y>
-					<Label><X>0</X><Y>-10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<BasicProperties Width="20" Height="20">
-                        <EmbeddedIcon>false</EmbeddedIcon>	
-						<TextColor>-16777216</TextColor>
-						<Enabled>false</Enabled>
-					</BasicProperties>
-					<ExtendedProperties>
-						<Font Name="SansSerif" Size="12" Style="0"/>
-						<LabelText><![CDATA[]]></LabelText>
-						<DefaultValueCode><![CDATA[true]]></DefaultValueCode>
-						<LinkTo>false</LinkTo>
-	 				</ExtendedProperties>
-				</Control>
-				<Control Type="CheckBox">
-				 	<EmbeddedIcon>false</EmbeddedIcon>				
-					<Id>1656043471697</Id>
-					<Name><![CDATA[cb_formerEmployee]]></Name>
-					<X>640</X><Y>655</Y>
-					<Label><X>0</X><Y>-10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<BasicProperties Width="20" Height="20">
-                        <EmbeddedIcon>false</EmbeddedIcon>	
-						<TextColor>-16777216</TextColor>
-						<Enabled>true</Enabled>
-						<ActionCode><![CDATA[f_updateAttackerSelection(FormerEmployee, self.isSelected());]]></ActionCode>
-					</BasicProperties>
-					<ExtendedProperties>
-						<Font Name="SansSerif" Size="12" Style="0"/>
-						<LabelText><![CDATA[]]></LabelText>
-						<DefaultValueCode><![CDATA[false]]></DefaultValueCode>
-						<LinkTo>false</LinkTo>
-	 				</ExtendedProperties>
-				</Control>
-				<Text>
-					<Id>1656043471699</Id>
-					<Name><![CDATA[text41]]></Name>
-					<X>500</X><Y>600</Y>
-					<Label><X>0</X><Y>-10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-328966</Color>
-					<Text><![CDATA[Activist]]></Text>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>12</Size>
-						<Style>0</Style>
-					</Font>
-					<Alignment>LEFT</Alignment>
-				</Text>
-				<Control Type="CheckBox">
-				 	<EmbeddedIcon>false</EmbeddedIcon>				
-					<Id>1656043471701</Id>
-					<Name><![CDATA[cb_activist]]></Name>
-					<X>640</X><Y>595</Y>
-					<Label><X>0</X><Y>-10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<BasicProperties Width="20" Height="21">
-                        <EmbeddedIcon>false</EmbeddedIcon>	
-						<TextColor>-16777216</TextColor>
-						<Enabled>true</Enabled>
-						<ActionCode><![CDATA[f_updateAttackerSelection(Activist, self.isSelected());]]></ActionCode>
-					</BasicProperties>
-					<ExtendedProperties>
-						<Font Name="SansSerif" Size="12" Style="0"/>
-						<LabelText><![CDATA[]]></LabelText>
-						<DefaultValueCode><![CDATA[false]]></DefaultValueCode>
-						<LinkTo>false</LinkTo>
-	 				</ExtendedProperties>
-				</Control>
-				<Control Type="CheckBox">
-				 	<EmbeddedIcon>false</EmbeddedIcon>				
-					<Id>1656043471703</Id>
-					<Name><![CDATA[cb_stateAffiliated]]></Name>
-					<X>640</X><Y>625</Y>
-					<Label><X>0</X><Y>-10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<BasicProperties Width="20" Height="20">
-                        <EmbeddedIcon>false</EmbeddedIcon>	
-						<TextColor>-16777216</TextColor>
-						<Enabled>true</Enabled>
-						<ActionCode><![CDATA[f_updateAttackerSelection(StateAffiliated, self.isSelected());]]></ActionCode>
-					</BasicProperties>
-					<ExtendedProperties>
-						<Font Name="SansSerif" Size="12" Style="0"/>
-						<LabelText><![CDATA[]]></LabelText>
-						<DefaultValueCode><![CDATA[false]]></DefaultValueCode>
-						<LinkTo>false</LinkTo>
-	 				</ExtendedProperties>
-				</Control>
-				<Control Type="CheckBox">
-				 	<EmbeddedIcon>false</EmbeddedIcon>				
-					<Id>1656043471705</Id>
-					<Name><![CDATA[cb_competitor]]></Name>
-					<X>640</X><Y>685</Y>
-					<Label><X>0</X><Y>-10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<BasicProperties Width="20" Height="20">
-                        <EmbeddedIcon>false</EmbeddedIcon>	
-						<TextColor>-16777216</TextColor>
-						<Enabled>true</Enabled>
-						<ActionCode><![CDATA[f_updateAttackerSelection(Competitor, self.isSelected());]]></ActionCode>
-					</BasicProperties>
-					<ExtendedProperties>
-						<Font Name="SansSerif" Size="12" Style="0"/>
-						<LabelText><![CDATA[]]></LabelText>
-						<DefaultValueCode><![CDATA[false]]></DefaultValueCode>
-						<LinkTo>false</LinkTo>
-	 				</ExtendedProperties>
-				</Control>
-				<Text>
-					<Id>1656043471707</Id>
-					<Name><![CDATA[text44]]></Name>
-					<X>500</X><Y>690</Y>
-					<Label><X>0</X><Y>-10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-328966</Color>
-					<Text><![CDATA[Competitor]]></Text>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>12</Size>
-						<Style>0</Style>
-					</Font>
-					<Alignment>LEFT</Alignment>
-				</Text>
-				<Text>
-					<Id>1656043471709</Id>
-					<Name><![CDATA[text45]]></Name>
-					<X>510</X><Y>820</Y>
-					<Label><X>0</X><Y>-10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-328966</Color>
-					<Text><![CDATA[Cost Per Breach:  $]]></Text>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>12</Size>
-						<Style>0</Style>
-					</Font>
-					<Alignment>LEFT</Alignment>
-				</Text>
-				<Text>
-					<Id>1656043471711</Id>
-					<Name><![CDATA[t_breachCost]]></Name>
-					<X>650</X><Y>820</Y>
-					<Label><X>0</X><Y>-10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-328966</Color>
-					<Text><![CDATA[0]]></Text>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>12</Size>
-						<Style>0</Style>
-					</Font>
-					<Alignment>LEFT</Alignment>
-				</Text>
-				<Text>
-					<Id>1656043471713</Id>
-					<Name><![CDATA[t_resultsHeading]]></Name>
-					<X>480</X><Y>790</Y>
-					<Label><X>0</X><Y>-10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-328966</Color>
-					<Text><![CDATA[Results]]></Text>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>16</Size>
-						<Style>1</Style>
-					</Font>
-					<Alignment>LEFT</Alignment>
-				</Text>
-				<Group>
-					<Id>1656043471715</Id>
-					<Name><![CDATA[g_recordCostControls]]></Name>
-					<X>250</X><Y>645</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-
-			<Presentation>
-				<Text>
-					<Id>1656043471717</Id>
-					<Name><![CDATA[text50]]></Name>
-					<X>-170</X><Y>10</Y>
-					<Label><X>0</X><Y>-10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-328966</Color>
-					<Text><![CDATA[Other Sensitive Data:]]></Text>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>12</Size>
-						<Style>0</Style>
-					</Font>
-					<Alignment>LEFT</Alignment>
-				</Text>
-				<Text>
-					<Id>1656043471719</Id>
-					<Name><![CDATA[text46]]></Name>
-					<X>-170</X><Y>35</Y>
-					<Label><X>0</X><Y>-10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-328966</Color>
-					<Text><![CDATA[Anonymized Customer Data:]]></Text>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>12</Size>
-						<Style>0</Style>
-					</Font>
-					<Alignment>LEFT</Alignment>
-				</Text>
-				<Text>
-					<Id>1656043471721</Id>
-					<Name><![CDATA[text47]]></Name>
-					<X>-170</X><Y>-50</Y>
-					<Label><X>0</X><Y>-10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-328966</Color>
-					<Text><![CDATA[Customer PII:]]></Text>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>12</Size>
-						<Style>0</Style>
-					</Font>
-					<Alignment>LEFT</Alignment>
-				</Text>
-				<Text>
-					<Id>1656043471723</Id>
-					<Name><![CDATA[text48]]></Name>
-					<X>-170</X><Y>-20</Y>
-					<Label><X>0</X><Y>-10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-328966</Color>
-					<Text><![CDATA[Employee PII:]]></Text>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>12</Size>
-						<Style>0</Style>
-					</Font>
-					<Alignment>LEFT</Alignment>
-				</Text>
-				<Control Type="EditBox">
-				 	<EmbeddedIcon>false</EmbeddedIcon>				
-					<Id>1656043471725</Id>
-					<Name><![CDATA[eb_anonCustomerDataCount]]></Name>
-					<Description><![CDATA[Edit box allowing the user to input the number of anonymized customer data records stored at the final node in the attack path. This is later used to update the cost per  breach output as well as in calculations for the total loss, total return, and ROI outputs]]></Description>
-					<X>0</X><Y>35</Y>
-					<Label><X>0</X><Y>-10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<BasicProperties Width="78" Height="20">
-                        <EmbeddedIcon>false</EmbeddedIcon>	
-						<FillColor/>
-						<TextColor/>
-						<Enabled>true</Enabled>
-						<ActionCode><![CDATA[f_updateBreachCost();]]></ActionCode>
-					</BasicProperties>
-					<ExtendedProperties>
-						<Font Name="Dialog" Size="11" Style="0"/>
-						<DefaultValueCode><![CDATA[123456]]></DefaultValueCode>
-						<MinValue><![CDATA[0]]></MinValue>
-						<LinkTo>true</LinkTo>
-						<Link>v_anonCustomerDataCount</Link>
-					</ExtendedProperties>
-				</Control>
-				<Control Type="EditBox">
-				 	<EmbeddedIcon>false</EmbeddedIcon>				
-					<Id>1656043471727</Id>
-					<Name><![CDATA[eb_otherSensitiveDataCount]]></Name>
-					<Description><![CDATA[Edit box allowing the user to input the number of sensitive data records stored at the final node in the attack path. This is later used to update the cost per  breach output as well as in calculations for the total loss, total return, and ROI outputs]]></Description>
-					<X>0</X><Y>5</Y>
-					<Label><X>0</X><Y>-10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<BasicProperties Width="78" Height="20">
-                        <EmbeddedIcon>false</EmbeddedIcon>	
-						<FillColor/>
-						<TextColor/>
-						<Enabled>true</Enabled>
-						<ActionCode><![CDATA[f_updateBreachCost();]]></ActionCode>
-					</BasicProperties>
-					<ExtendedProperties>
-						<Font Name="Dialog" Size="11" Style="0"/>
-						<MinValue><![CDATA[0]]></MinValue>
-						<LinkTo>true</LinkTo>
-						<Link>v_otherSensitiveDataCount</Link>
-					</ExtendedProperties>
-				</Control>
-				<Control Type="EditBox">
-				 	<EmbeddedIcon>false</EmbeddedIcon>				
-					<Id>1656043471729</Id>
-					<Name><![CDATA[eb_employeePIICount]]></Name>
-					<Description><![CDATA[Edit box allowing the user to input the number of employee PII records stored at the final node in the attack path. This is later used to update the cost per  breach output as well as in calculations for the total loss, total return, and ROI outputs]]></Description>
-					<X>0</X><Y>-25</Y>
-					<Label><X>0</X><Y>-10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<BasicProperties Width="78" Height="20">
-                        <EmbeddedIcon>false</EmbeddedIcon>	
-						<FillColor/>
-						<TextColor/>
-						<Enabled>true</Enabled>
-						<ActionCode><![CDATA[f_updateBreachCost();]]></ActionCode>
-					</BasicProperties>
-					<ExtendedProperties>
-						<Font Name="Dialog" Size="11" Style="0"/>
-						<MinValue><![CDATA[0]]></MinValue>
-						<LinkTo>true</LinkTo>
-						<Link>v_employeePIICount</Link>
-					</ExtendedProperties>
-				</Control>
-				<Control Type="EditBox">
-				 	<EmbeddedIcon>false</EmbeddedIcon>				
-					<Id>1656043471731</Id>
-					<Name><![CDATA[eb_customerPIICount]]></Name>
-					<Description><![CDATA[Edit box allowing the user to input the number of customer PII records stored at the final node in the attack path. This is later used to update the cost per  breach output as well as in calculations for the total loss, total return, and ROI outputs]]></Description>
-					<X>0</X><Y>-55</Y>
-					<Label><X>0</X><Y>-10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<BasicProperties Width="78" Height="20">
-                        <EmbeddedIcon>false</EmbeddedIcon>	
-						<FillColor/>
-						<TextColor/>
-						<Enabled>true</Enabled>
-						<ActionCode><![CDATA[f_updateBreachCost();]]></ActionCode>
-					</BasicProperties>
-					<ExtendedProperties>
-						<Font Name="Dialog" Size="11" Style="0"/>
-						<MinValue><![CDATA[0]]></MinValue>
-						<LinkTo>true</LinkTo>
-						<Link>v_customerPIICount</Link>
-					</ExtendedProperties>
-				</Control>
-				<Text>
-					<Id>1656043471733</Id>
-					<Name><![CDATA[text49]]></Name>
-					<X>-170</X><Y>65</Y>
-					<Label><X>0</X><Y>-10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-328966</Color>
-					<Text><![CDATA[Custom:]]></Text>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>12</Size>
-						<Style>0</Style>
-					</Font>
-					<Alignment>LEFT</Alignment>
-				</Text>
-				<Text>
-					<Id>1656043471735</Id>
-					<Name><![CDATA[text53]]></Name>
-					<X>130</X><Y>-90</Y>
-					<Label><X>0</X><Y>-10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-328966</Color>
-					<Text><![CDATA[Cost Per Record
-(USD)]]></Text>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>12</Size>
-						<Style>0</Style>
-					</Font>
-					<Alignment>CENTER</Alignment>
-				</Text>
-				<Text>
-					<Id>1656043471737</Id>
-					<Name><![CDATA[text54]]></Name>
-					<X>20</X><Y>-80</Y>
-					<Label><X>0</X><Y>-10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-328966</Color>
-					<Text><![CDATA[Count]]></Text>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>12</Size>
-						<Style>0</Style>
-					</Font>
-					<Alignment>LEFT</Alignment>
-				</Text>
-				<Control Type="EditBox">
-				 	<EmbeddedIcon>false</EmbeddedIcon>				
-					<Id>1656043471739</Id>
-					<Name><![CDATA[eb_otherSensitiveDataCost]]></Name>
-					<Description><![CDATA[Edit box containing the fixed value for the cost per record of other sensitive data lost in a data breach. This amount comes from the IBM cost of a breach report. This is later used to update the cost per  breach output as well as in calculations for the total loss, total return, and ROI outputs]]></Description>
-					<X>110</X><Y>5</Y>
-					<Label><X>0</X><Y>-10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<BasicProperties Width="43" Height="20">
-                        <EmbeddedIcon>false</EmbeddedIcon>	
-						<FillColor/>
-						<TextColor/>
-						<Enabled>false</Enabled>
-					</BasicProperties>
-					<ExtendedProperties>
-						<Font Name="Dialog" Size="11" Style="0"/>
-						<DefaultValueCode><![CDATA[165]]></DefaultValueCode>
-						<MinValue><![CDATA[0]]></MinValue>
-						<LinkTo>true</LinkTo>
-						<Link>v_otherSensitiveDataCost</Link>
-					</ExtendedProperties>
-				</Control>
-				<Control Type="EditBox">
-				 	<EmbeddedIcon>false</EmbeddedIcon>				
-					<Id>1656043471741</Id>
-					<Name><![CDATA[eb_employeePIICost]]></Name>
-					<Description><![CDATA[Edit box containing the fixed value for the cost per record of employee PII lost in a data breach. This amount comes from the IBM cost of a breach report. This is later used to update the cost per  breach output as well as in calculations for the total loss, total return, and ROI outputs]]></Description>
-					<X>110</X><Y>-25</Y>
-					<Label><X>0</X><Y>-10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<BasicProperties Width="43" Height="20">
-                        <EmbeddedIcon>false</EmbeddedIcon>	
-						<FillColor/>
-						<TextColor/>
-						<Enabled>false</Enabled>
-					</BasicProperties>
-					<ExtendedProperties>
-						<Font Name="Dialog" Size="11" Style="0"/>
-						<DefaultValueCode><![CDATA[176]]></DefaultValueCode>
-						<MinValue><![CDATA[0]]></MinValue>
-						<LinkTo>true</LinkTo>
-						<Link>v_employeePIICost</Link>
-					</ExtendedProperties>
-				</Control>
-				<Control Type="EditBox">
-				 	<EmbeddedIcon>false</EmbeddedIcon>				
-					<Id>1656043471743</Id>
-					<Name><![CDATA[eb_customerPIICost]]></Name>
-					<Description><![CDATA[Edit box containing the fixed value for the cost per record of customer PII lost in a data breach. This amount comes from the IBM cost of a breach report. This is later used to update the cost per  breach output as well as in calculations for the total loss, total return, and ROI outputs]]></Description>
-					<X>110</X><Y>-55</Y>
-					<Label><X>0</X><Y>-10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<BasicProperties Width="43" Height="20">
-                        <EmbeddedIcon>false</EmbeddedIcon>	
-						<FillColor/>
-						<TextColor/>
-						<Enabled>false</Enabled>
-					</BasicProperties>
-					<ExtendedProperties>
-						<Font Name="Dialog" Size="11" Style="0"/>
-						<DefaultValueCode><![CDATA[180]]></DefaultValueCode>
-						<MinValue><![CDATA[0]]></MinValue>
-						<LinkTo>true</LinkTo>
-						<Link>v_customerPIICost</Link>
-					</ExtendedProperties>
-				</Control>
-				<Control Type="EditBox">
-				 	<EmbeddedIcon>false</EmbeddedIcon>				
-					<Id>1656043471745</Id>
-					<Name><![CDATA[eb_anonCustomerDataCost]]></Name>
-					<Description><![CDATA[Edit box containing the fixed value for the cost per record of anonymized customer data lost in a data breach. This amount comes from the IBM cost of a breach report. This is later used to update the cost per  breach output as well as in calculations for the total loss, total return, and ROI outputs]]></Description>
-					<X>110</X><Y>35</Y>
-					<Label><X>0</X><Y>-10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<BasicProperties Width="43" Height="20">
-                        <EmbeddedIcon>false</EmbeddedIcon>	
-						<FillColor/>
-						<TextColor/>
-						<Enabled>false</Enabled>
-					</BasicProperties>
-					<ExtendedProperties>
-						<Font Name="Dialog" Size="11" Style="0"/>
-						<DefaultValueCode><![CDATA[157]]></DefaultValueCode>
-						<MinValue><![CDATA[0]]></MinValue>
-						<LinkTo>true</LinkTo>
-						<Link>v_anonCustomerDataCost</Link>
-					</ExtendedProperties>
-				</Control>
-				<Control Type="EditBox">
-				 	<EmbeddedIcon>false</EmbeddedIcon>				
-					<Id>1656043471747</Id>
-					<Name><![CDATA[eb_customRecordCost]]></Name>
-					<Description><![CDATA[Users may enter a cost per record lost in a data breach for some customized type of record they may be storing. This is later used to update the cost per  breach output as well as in calculations for the total loss, total return, and ROI outputs. The default cost is the average globabl cost per record across all record types accoring to the IBM cost of a breach report.]]></Description>
-					<X>110</X><Y>65</Y>
-					<Label><X>0</X><Y>-10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<BasicProperties Width="43" Height="20">
-                        <EmbeddedIcon>false</EmbeddedIcon>	
-						<FillColor/>
-						<TextColor/>
-						<Enabled>true</Enabled>
-						<ActionCode><![CDATA[f_updateBreachCost();]]></ActionCode>
-					</BasicProperties>
-					<ExtendedProperties>
-						<Font Name="Dialog" Size="11" Style="0"/>
-						<DefaultValueCode><![CDATA[161]]></DefaultValueCode>
-						<MinValue><![CDATA[0]]></MinValue>
-						<LinkTo>true</LinkTo>
-						<Link>v_customRecordCost</Link>
-					</ExtendedProperties>
-				</Control>
-				<Control Type="EditBox">
-				 	<EmbeddedIcon>false</EmbeddedIcon>				
-					<Id>1656043471749</Id>
-					<Name><![CDATA[eb_customRecordCount]]></Name>
-					<Description><![CDATA[Edit box allowing the user to input the number of custom records stored at the final node in the attack path. Users may edit the cost per record of a data breach for this record type. This is later used to update the cost per  breach output as well as in calculations for the total loss, total return, and ROI outputs]]></Description>
-					<X>0</X><Y>65</Y>
-					<Label><X>0</X><Y>-10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
-					<BasicProperties Width="78" Height="20">
-                        <EmbeddedIcon>false</EmbeddedIcon>	
-						<FillColor/>
-						<TextColor/>
-						<Enabled>true</Enabled>
-						<ActionCode><![CDATA[f_updateBreachCost();]]></ActionCode>
-					</BasicProperties>
-					<ExtendedProperties>
-						<Font Name="Dialog" Size="11" Style="0"/>
-						<DefaultValueCode><![CDATA[0]]></DefaultValueCode>
-						<MinValue><![CDATA[0]]></MinValue>
-						<LinkTo>true</LinkTo>
-						<Link>v_customRecordCount</Link>
-					</ExtendedProperties>
-				</Control>
-			</Presentation>
-
-				</Group>
-			</Presentation>
-
-			<Parameter>	
-				<Id>1655404070757</Id>
-				<Type>FIXED</Type>
-				<Value Class="CodeValue">
-					<Code><![CDATA[v_budget]]></Code>
-				</Value>
-			</Parameter>
-			<Parameter>	
-				<Id>1655404079732</Id>
-				<Type>FIXED</Type>
-				<Value Class="CodeValue">
-					<Code><![CDATA[v_breachCost]]></Code>
-				</Value>
-			</Parameter>
-			<Parameter>	
-				<Id>1655404109221</Id>
-				<Type>FIXED</Type>
-				<Value Class="CodeValue">
-					<Code><![CDATA[cv_selectedThreatActors]]></Code>
-				</Value>
-			</Parameter>
-			<Parameter>	
-				<Id>1656019416026</Id>
-				<Type>FIXED</Type>
-				<Value Class="CodeValue">
-					<Code><![CDATA[v_attacksPerYear]]></Code>
-				</Value>
-			</Parameter>
-			<Parameter>	
-				<Id>1656019447197</Id>
-				<Type>FIXED</Type>
-				<Value Class="CodeValue">
-					<Code><![CDATA[v_numYears]]></Code>
-				</Value>
-			</Parameter>
-			<Parameter>	
-				<Id>1656028257587</Id>
-				<Type>FIXED</Type>
-				<Value Class="CodeValue">
-					<Code><![CDATA[new ArrayList<Integer>(cv_controlsPowerSet.get(p_controlSetIndex))]]></Code>
-				</Value>
-			</Parameter>
-			<Parameter>	
-				<Id>1656042390046</Id>
-				<Type>INTEGER</Type>
-				<Min Class="CodeValue">
-					<Code><![CDATA[0]]></Code>
-				</Min>
-				<Max Class="CodeValue">
-					<Code><![CDATA[127]]></Code>
-				</Max>
-				<Step Class="CodeValue">
-					<Code><![CDATA[1]]></Code>
-				</Step>
-			</Parameter>
-			<ObjectiveFunctionCode><![CDATA[root.v_totalReturn]]></ObjectiveFunctionCode>
-			<Objective>MAXIMIZE</Objective>
-			<AfterIterationCode><![CDATA[if (isBestSolutionFeasible()) {
-	datasetBestFeasibleObjective.update();
-}
-if (!isCurrentSolutionFeasible()) {
-	bestInfeasibleObjective = max( bestInfeasibleObjective, getCurrentObjectiveValue() );
-}
-if (bestInfeasibleObjective != Double.NEGATIVE_INFINITY) {
-	datasetBestInfeasibleObjective.update();
-}
-
-
-
-text29.setText(f_getControlSetString((int) Math.round(getBestParamValue( _oqvar_p_controlSetIndex ))));]]></AfterIterationCode>
-			<AfterExperimentCode><![CDATA[System.out.println(cv_allIndices);]]></AfterExperimentCode>
-			<AllowParallelEvaluations>true</AllowParallelEvaluations>
-			<Requirement>
-				<Enabled>true</Enabled>
-				<Expression><![CDATA[root.v_totalReturn]]></Expression>
-				<Type>MORE_OR_EQUAL</Type>
-				<Bound>0.0</Bound>
-			</Requirement>
-			<ReplicationsProperties>
-				<UseReplication>false</UseReplication>
-				<FixedReplicationsNumber>true</FixedReplicationsNumber>
-				<ReplicationPerIteration>10</ReplicationPerIteration>
-				<MinimumReplication>2</MinimumReplication>
-				<MaximumReplication>10</MaximumReplication>
-				<ConfidenceLevel>LEVEL_80</ConfidenceLevel>
-				<ErrorPercent>0.5</ErrorPercent>
-			</ReplicationsProperties>
-			<PresentationProperties>
-				<EnableZoomAndPanning>true</EnableZoomAndPanning>
-				<Title><![CDATA[AttackSimulationModel : Optimization]]></Title>	
-				<EnableDeveloperPanel>true</EnableDeveloperPanel>
-				<ShowDeveloperPanelOnStart>false</ShowDeveloperPanelOnStart>
-			</PresentationProperties>
-			<ModelTimeProperties>
-				<StopOption><![CDATA[Stop at specified time]]></StopOption>
-				<InitialDate><![CDATA[1481673600000]]></InitialDate>	
-				<InitialTime><![CDATA[0.0]]></InitialTime>	
-				<FinalDate><![CDATA[1484352000000]]></FinalDate>	
-				<FinalTime><![CDATA[100.0]]></FinalTime>	
-				<StopAfterIterationCount>false</StopAfterIterationCount>
-				<IterationCount>128</IterationCount>
-				<AutomaticStop>true</AutomaticStop>
-			</ModelTimeProperties>
-		</OptimizationExperiment>	
+		</SimulationExperiment>	
 	</Experiments>
 	<ModelResources>
 		<Resource>
