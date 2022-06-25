@@ -859,6 +859,7 @@ for (Integer controlID : cp_enabledControls) {
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1491426884947</Id>
 					<Name><![CDATA[f_linkNodes]]></Name>
+					<Description><![CDATA[Sets the necessary references to build each node into a singly linked list representing the attack path. ]]></Description>
 					<X>540</X><Y>-350</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
@@ -889,6 +890,7 @@ previousNode.v_nextNode = null;]]></Body>
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1492627056190</Id>
 					<Name><![CDATA[f_updateTotalCost]]></Name>
+					<Description><![CDATA[Called in f_updateOutput() to update the variable and on screen text containing the total cost of all enabled controls for nodes on the attack path.]]></Description>
 					<X>540</X><Y>-410</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
@@ -902,7 +904,8 @@ return v_totalControlCost;]]></Body>
 					<ReturnModificator>VOID</ReturnModificator>
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1651861966649</Id>
-					<Name><![CDATA[f_updateAttackerFailRatio]]></Name>
+					<Name><![CDATA[f_updateThreatActorFailRatio]]></Name>
+					<Description><![CDATA[Determines which threat actor fail rate to apply to the current attack. Based on whether the threat actor is selected and their prevalence. Called before each attack in f_runAttacks()]]></Description>
 					<X>540</X><Y>-370</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
@@ -957,6 +960,7 @@ for (A_ThreatActor attacker : filter(ap_ThreatActors, a -> a.v_checkedForAttack 
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1653412572346</Id>
 					<Name><![CDATA[f_runAttacks]]></Name>
+					<Description><![CDATA[Runs the multiple attacks that make up a simulation. Called when the user clicks the simulate one year button.]]></Description>
 					<X>765</X><Y>-410</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
@@ -993,7 +997,7 @@ while (v_remainingRuns > 0) {
 	while (v_remainingYears > 0) {
 		v_remainingYears = v_remainingYears - 1;
 		
-		f_updateAttackerFailRatio();
+		f_updateThreatActorFailRatio();
 		firstNode.f_calculateOverall(v_effectiveAttackerFailRatio);
 		firstNode.f_processAttack();
 	}
@@ -1008,6 +1012,7 @@ t_totalAttacksRun.setText(v_totalRuns);
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1653490984860</Id>
 					<Name><![CDATA[f_reset]]></Name>
+					<Description><![CDATA[Called when the user clicks the reset button. Resets all nodes as well as text and graph outputs to a clean state, so that a new, independent simulation may be run afterwards.]]></Description>
 					<X>765</X><Y>-370</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
@@ -1040,6 +1045,7 @@ t_optimalControls.setText("?");
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1653572803181</Id>
 					<Name><![CDATA[f_updateOutput]]></Name>
+					<Description><![CDATA[Called at the end of a simulation from the f_runAttacks() function. Updates graph and text outputs of the simulation.]]></Description>
 					<X>765</X><Y>-390</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
@@ -1106,7 +1112,8 @@ f_updateOutput();
 					<ReturnModificator>VOID</ReturnModificator>
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1654362845706</Id>
-					<Name><![CDATA[f_updateAttackerSelection]]></Name>
+					<Name><![CDATA[f_updateThreatActorSelection]]></Name>
+					<Description><![CDATA[Called when the checkbox next to a threat actor name is selected or deselected. Updates the property of the threat actor agent indicating whether or not it is enabled, which then determines if it's possible it could be the threat actor behind a given attack.]]></Description>
 					<X>540</X><Y>-390</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
@@ -1128,6 +1135,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1655480129449</Id>
 					<Name><![CDATA[f_updateBreachCost]]></Name>
+					<Description><![CDATA[Determines the total cost of a breach based on the user's manual estimate, description of data records posessed, or the average cost of a breach for a small business. All based on data from the IBM cost of a breach report.]]></Description>
 					<X>770</X><Y>-210</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
@@ -1158,6 +1166,7 @@ t_breachCost.setText(p_breachCost);]]></Body>
 					<ReturnType><![CDATA[boolean]]></ReturnType>
 					<Id>1656001958285</Id>
 					<Name><![CDATA[f_setNodePosition]]></Name>
+					<Description><![CDATA[Updates the position value of each A_NetworkNode, making sure the position is a valid number and no two nodes have the same position. Called when a node's position value is changed by the user.]]></Description>
 					<X>540</X><Y>-330</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
@@ -1207,6 +1216,7 @@ return success;]]></Body>
 					<ReturnType><![CDATA[HashSet<A_Control>]]></ReturnType>
 					<Id>1656081652325</Id>
 					<Name><![CDATA[f_getAllControls]]></Name>
+					<Description><![CDATA[Gets all controls with a non-zero probability of stopping an attack so combinations of these controls generated by fJ_getPowerSet() can be tested for their ROI and total return in f_optimizeROI() and f_optimizeReturn().]]></Description>
 					<X>990</X><Y>-550</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
@@ -1228,6 +1238,7 @@ return allControls;]]></Body>
 					<ReturnType><![CDATA[Set<Set<A_Control>>]]></ReturnType>
 					<Id>1656085247849</Id>
 					<Name><![CDATA[f_getPowerSet]]></Name>
+					<Description><![CDATA[Given a set of controls, determines all possible combinations of those controls. These combinations are then tested in the f_optimizeReturn() and f_optimizeROI() functions so that the ideal subset of the set of possible controls for each metric can be determined.]]></Description>
 					<X>990</X><Y>-570</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
@@ -1265,6 +1276,7 @@ return sets;]]></Body>
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1656085369880</Id>
 					<Name><![CDATA[f_optimizeReturn]]></Name>
+					<Description><![CDATA[Called when the user clicks the optimize button. Determines the set of controls with the highest total return that is within the user's budget and updates outputs to reflect the optimized set of controls.]]></Description>
 					<X>990</X><Y>-590</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
@@ -1360,6 +1372,7 @@ t_bestControlROI.setText("%" + v_maxROI);
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1656101608183</Id>
 					<Name><![CDATA[f_optimizeROI]]></Name>
+					<Description><![CDATA[Called when the user clicks the optimize button. Determines the single control with the highest ROI percentage within the user's budget and updates on screen text to display this control and its ROI.]]></Description>
 					<X>990</X><Y>-340</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
@@ -2434,7 +2447,7 @@ for (A_Control control : v_bestControlSet) {
                         <EmbeddedIcon>false</EmbeddedIcon>	
 						<TextColor>-16777216</TextColor>
 						<Enabled>true</Enabled>
-						<ActionCode><![CDATA[f_updateAttackerSelection(OrganizedCrime, self.isSelected());]]></ActionCode>
+						<ActionCode><![CDATA[f_updateThreatActorSelection(OrganizedCrime, self.isSelected());]]></ActionCode>
 					</BasicProperties>
 					<ExtendedProperties>
 						<Font Name="SansSerif" Size="24" Style="0"/>
@@ -2478,7 +2491,7 @@ for (A_Control control : v_bestControlSet) {
                         <EmbeddedIcon>false</EmbeddedIcon>	
 						<TextColor>-16777216</TextColor>
 						<Enabled>true</Enabled>
-						<ActionCode><![CDATA[f_updateAttackerSelection(Activist, self.isSelected());]]></ActionCode>
+						<ActionCode><![CDATA[f_updateThreatActorSelection(Activist, self.isSelected());]]></ActionCode>
 					</BasicProperties>
 					<ExtendedProperties>
 						<Font Name="SansSerif" Size="12" Style="0"/>
@@ -2501,7 +2514,7 @@ for (A_Control control : v_bestControlSet) {
                         <EmbeddedIcon>false</EmbeddedIcon>	
 						<TextColor>-16777216</TextColor>
 						<Enabled>true</Enabled>
-						<ActionCode><![CDATA[f_updateAttackerSelection(StateAffiliated, self.isSelected());]]></ActionCode>
+						<ActionCode><![CDATA[f_updateThreatActorSelection(StateAffiliated, self.isSelected());]]></ActionCode>
 					</BasicProperties>
 					<ExtendedProperties>
 						<Font Name="SansSerif" Size="12" Style="0"/>
@@ -2524,7 +2537,7 @@ for (A_Control control : v_bestControlSet) {
                         <EmbeddedIcon>false</EmbeddedIcon>	
 						<TextColor>-16777216</TextColor>
 						<Enabled>true</Enabled>
-						<ActionCode><![CDATA[f_updateAttackerSelection(FormerEmployee, self.isSelected());]]></ActionCode>
+						<ActionCode><![CDATA[f_updateThreatActorSelection(FormerEmployee, self.isSelected());]]></ActionCode>
 					</BasicProperties>
 					<ExtendedProperties>
 						<Font Name="SansSerif" Size="12" Style="0"/>
@@ -2547,7 +2560,7 @@ for (A_Control control : v_bestControlSet) {
                         <EmbeddedIcon>false</EmbeddedIcon>	
 						<TextColor>-16777216</TextColor>
 						<Enabled>true</Enabled>
-						<ActionCode><![CDATA[f_updateAttackerSelection(Competitor, self.isSelected());]]></ActionCode>
+						<ActionCode><![CDATA[f_updateThreatActorSelection(Competitor, self.isSelected());]]></ActionCode>
 					</BasicProperties>
 					<ExtendedProperties>
 						<Font Name="SansSerif" Size="12" Style="0"/>
@@ -4779,6 +4792,7 @@ UI_nodeOffShading.setVisible(false);]]></Code>
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1481832035044</Id>
 					<Name><![CDATA[f_calculateOverall]]></Name>
+					<Description><![CDATA[Calculates the overall probability of an attack being stopped at the current node and perform the same calculation at the next node in the attack path. This value is then used in the action chart to determine if the node was compromised. ]]></Description>
 					<X>470</X><Y>-170</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
@@ -4828,6 +4842,7 @@ if(v_nextNode != null) {
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1653569988512</Id>
 					<Name><![CDATA[f_reset]]></Name>
+					<Description><![CDATA[Resets the current node to a clean state. Called from main.f_reset() which is called when the user clicks the reset button.]]></Description>
 					<X>470</X><Y>-150</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
@@ -4845,6 +4860,7 @@ if (v_nextNode != null) {
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1653922051174</Id>
 					<Name><![CDATA[f_getEffectiveControlProbability]]></Name>
+					<Description><![CDATA[Gets an effective probability for a given node based on the effective probability of each of the controls applied at the node. Called from the action chart to determine whether or not the node was compromised.]]></Description>
 					<X>470</X><Y>-130</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
@@ -4899,6 +4915,7 @@ return v_effectiveProbability;]]></Body>
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1656040142085</Id>
 					<Name><![CDATA[f_updatePosition]]></Name>
+					<Description><![CDATA[Updates the position value of a node. Called from Main.fJ_setPosition()]]></Description>
 					<X>470</X><Y>-110</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
@@ -6506,6 +6523,8 @@ return v_isAttacker;
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1654362261379</Id>
 					<Name><![CDATA[f_setSelected]]></Name>
+					<Description><![CDATA[Sets a threat actor to selected or unselected. Called when the checkbox of a threat actor is clicked in Main.f_updateThreatActorSelection()
+]]></Description>
 					<X>650</X><Y>-90</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
