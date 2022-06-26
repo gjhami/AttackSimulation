@@ -386,7 +386,7 @@ for (Integer controlID : cp_enabledControls) {
 					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
 						<Type><![CDATA[int]]></Type>        
 						<InitialValue Class="CodeValue">
-							<Code><![CDATA[0]]></Code>
+							<Code><![CDATA[250]]></Code>
 						</InitialValue>
 					</Properties>
 				</Variable>
@@ -401,7 +401,7 @@ for (Integer controlID : cp_enabledControls) {
 					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
 						<Type><![CDATA[int]]></Type>        
 						<InitialValue Class="CodeValue">
-							<Code><![CDATA[250]]></Code>
+							<Code><![CDATA[25]]></Code>
 						</InitialValue>
 					</Properties>
 				</Variable>
@@ -683,7 +683,7 @@ for (Integer controlID : cp_enabledControls) {
 						<UnitType><![CDATA[NONE]]></UnitType>
 						<SdArray>false</SdArray>
 						<DefaultValue Class="CodeValue">
-							<Code><![CDATA[20000]]></Code>
+							<Code><![CDATA[49600]]></Code>
 						</DefaultValue>
 						<ParameterEditor>
 							<Id>1655404070755</Id>
@@ -745,6 +745,7 @@ for (Integer controlID : cp_enabledControls) {
 				<Variable Class="Parameter">
 					<Id>1656019416026</Id>
 					<Name><![CDATA[p_attacksPerYear]]></Name>
+					<Description><![CDATA[270 is the average number of cyberattacks per business per year according to the Accenture State of Cybersecurity report 2021]]></Description>
 					<X>320</X><Y>-610</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
@@ -755,7 +756,7 @@ for (Integer controlID : cp_enabledControls) {
 						<UnitType><![CDATA[NONE]]></UnitType>
 						<SdArray>false</SdArray>
 						<DefaultValue Class="CodeValue">
-							<Code><![CDATA[10]]></Code>
+							<Code><![CDATA[270]]></Code>
 						</DefaultValue>
 						<ParameterEditor>
 							<Id>1656019416024</Id>
@@ -4018,6 +4019,7 @@ for a small business (USD): ]]></Text>
 				 	<EmbeddedIcon>false</EmbeddedIcon>				
 					<Id>1655931910921</Id>
 					<Name><![CDATA[editbox19]]></Name>
+					<Description><![CDATA[According to Delloitte's 2020 Report 'Reshaping the Cybersecurity Landscape', the average spending per employee in the lowest categor among financial services businesses, insurance, was $1984. However, it's worth noting this estimate would likely be considered high relative to all businesses, since spending in financial services is generally higher. 25 employees is the default value used here]]></Description>
 					<X>180</X><Y>695</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
