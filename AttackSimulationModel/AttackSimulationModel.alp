@@ -202,7 +202,7 @@ for (Integer controlID : cp_enabledControls) {
 			<ScaleRuler>
 				<Id>1481747912644</Id>
 				<Name><![CDATA[scale]]></Name>
-				<X>0</X><Y>-150</Y>
+				<X>0</X><Y>-1440</Y>
 				<PublicFlag>false</PublicFlag>
 				<PresentationFlag>false</PresentationFlag>
 				<ShowLabel>false</ShowLabel>
@@ -221,7 +221,7 @@ for (Integer controlID : cp_enabledControls) {
 				<Variable Class="PlainVariable">
 					<Id>1653420433123</Id>
 					<Name><![CDATA[v_totalControlCost]]></Name>
-					<X>540</X><Y>-630</Y>
+					<X>530</X><Y>-2180</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -233,7 +233,7 @@ for (Integer controlID : cp_enabledControls) {
 				<Variable Class="PlainVariable">
 					<Id>1653575152211</Id>
 					<Name><![CDATA[v_graphColors]]></Name>
-					<X>150</X><Y>-330</Y>
+					<X>980</X><Y>-1760</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -248,7 +248,7 @@ for (Integer controlID : cp_enabledControls) {
 				<Variable Class="PlainVariable">
 					<Id>1653589792118</Id>
 					<Name><![CDATA[v_remainingRuns]]></Name>
-					<X>765</X><Y>-655</Y>
+					<X>755</X><Y>-2205</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -263,7 +263,7 @@ for (Integer controlID : cp_enabledControls) {
 				<Variable Class="PlainVariable">
 					<Id>1653669769941</Id>
 					<Name><![CDATA[v_totalRuns]]></Name>
-					<X>765</X><Y>-675</Y>
+					<X>755</X><Y>-2225</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -276,7 +276,7 @@ for (Integer controlID : cp_enabledControls) {
 					<Id>1654451474568</Id>
 					<Name><![CDATA[v_effectiveAttacker]]></Name>
 					<Description><![CDATA[Attacker selected for the current attack]]></Description>
-					<X>540</X><Y>-670</Y>
+					<X>530</X><Y>-2220</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -288,7 +288,7 @@ for (Integer controlID : cp_enabledControls) {
 				<Variable Class="PlainVariable">
 					<Id>1654532780996</Id>
 					<Name><![CDATA[v_effectiveAttackerFailRatio]]></Name>
-					<X>540</X><Y>-650</Y>
+					<X>530</X><Y>-2200</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -303,7 +303,7 @@ for (Integer controlID : cp_enabledControls) {
 				<Variable Class="PlainVariable">
 					<Id>1655476894701</Id>
 					<Name><![CDATA[v_customerPIICost]]></Name>
-					<X>320</X><Y>-210</Y>
+					<X>310</X><Y>-1760</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -318,7 +318,7 @@ for (Integer controlID : cp_enabledControls) {
 				<Variable Class="PlainVariable">
 					<Id>1655476923598</Id>
 					<Name><![CDATA[v_employeePIICost]]></Name>
-					<X>320</X><Y>-190</Y>
+					<X>310</X><Y>-1740</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -333,7 +333,7 @@ for (Integer controlID : cp_enabledControls) {
 				<Variable Class="PlainVariable">
 					<Id>1655476959076</Id>
 					<Name><![CDATA[v_otherSensitiveDataCost]]></Name>
-					<X>320</X><Y>-170</Y>
+					<X>310</X><Y>-1720</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -348,7 +348,7 @@ for (Integer controlID : cp_enabledControls) {
 				<Variable Class="PlainVariable">
 					<Id>1655476998619</Id>
 					<Name><![CDATA[v_anonCustomerDataCost]]></Name>
-					<X>320</X><Y>-150</Y>
+					<X>310</X><Y>-1700</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -363,7 +363,7 @@ for (Integer controlID : cp_enabledControls) {
 				<Variable Class="PlainVariable">
 					<Id>1655477021057</Id>
 					<Name><![CDATA[v_customRecordCost]]></Name>
-					<X>320</X><Y>-130</Y>
+					<X>310</X><Y>-1680</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -378,7 +378,7 @@ for (Integer controlID : cp_enabledControls) {
 				<Variable Class="PlainVariable">
 					<Id>1655477177078</Id>
 					<Name><![CDATA[v_customerPIICount]]></Name>
-					<X>540</X><Y>-210</Y>
+					<X>530</X><Y>-1760</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -393,7 +393,7 @@ for (Integer controlID : cp_enabledControls) {
 				<Variable Class="PlainVariable">
 					<Id>1655477177080</Id>
 					<Name><![CDATA[v_employeePIICount]]></Name>
-					<X>540</X><Y>-190</Y>
+					<X>530</X><Y>-1740</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -408,7 +408,7 @@ for (Integer controlID : cp_enabledControls) {
 				<Variable Class="PlainVariable">
 					<Id>1655477177082</Id>
 					<Name><![CDATA[v_otherSensitiveDataCount]]></Name>
-					<X>540</X><Y>-170</Y>
+					<X>530</X><Y>-1720</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -423,7 +423,7 @@ for (Integer controlID : cp_enabledControls) {
 				<Variable Class="PlainVariable">
 					<Id>1655477177084</Id>
 					<Name><![CDATA[v_anonCustomerDataCount]]></Name>
-					<X>540</X><Y>-150</Y>
+					<X>530</X><Y>-1700</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -438,7 +438,7 @@ for (Integer controlID : cp_enabledControls) {
 				<Variable Class="PlainVariable">
 					<Id>1655477177086</Id>
 					<Name><![CDATA[v_customRecordCount]]></Name>
-					<X>540</X><Y>-130</Y>
+					<X>530</X><Y>-1680</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -453,7 +453,7 @@ for (Integer controlID : cp_enabledControls) {
 				<Variable Class="PlainVariable">
 					<Id>1655479154371</Id>
 					<Name><![CDATA[v_avgSmallBusinessCost]]></Name>
-					<X>320</X><Y>-80</Y>
+					<X>310</X><Y>-1630</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -468,7 +468,7 @@ for (Integer controlID : cp_enabledControls) {
 				<Variable Class="PlainVariable">
 					<Id>1655479339306</Id>
 					<Name><![CDATA[v_manualCost]]></Name>
-					<X>320</X><Y>-60</Y>
+					<X>310</X><Y>-1610</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -476,14 +476,14 @@ for (Integer controlID : cp_enabledControls) {
 					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
 						<Type><![CDATA[int]]></Type>        
 						<InitialValue Class="CodeValue">
-							<Code><![CDATA[2630000]]></Code>
+							<Code><![CDATA[59600]]></Code>
 						</InitialValue>
 					</Properties>
 				</Variable>
 				<Variable Class="PlainVariable">
 					<Id>1655479890207</Id>
 					<Name><![CDATA[v_estimationTechnique]]></Name>
-					<X>540</X><Y>-80</Y>
+					<X>530</X><Y>-1630</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -498,7 +498,7 @@ for (Integer controlID : cp_enabledControls) {
 				<Variable Class="PlainVariable">
 					<Id>1655920714005</Id>
 					<Name><![CDATA[v_remainingYears]]></Name>
-					<X>765</X><Y>-635</Y>
+					<X>755</X><Y>-2185</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -514,7 +514,7 @@ for (Integer controlID : cp_enabledControls) {
 					<Id>1656007029729</Id>
 					<Name><![CDATA[v_currentPosition]]></Name>
 					<Description><![CDATA[Helper variable used in f_linkNodes()]]></Description>
-					<X>540</X><Y>-550</Y>
+					<X>530</X><Y>-2100</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -529,7 +529,7 @@ for (Integer controlID : cp_enabledControls) {
 				<Variable Class="PlainVariable">
 					<Id>1656010583745</Id>
 					<Name><![CDATA[v_percentNodeCompromised]]></Name>
-					<X>765</X><Y>-555</Y>
+					<X>755</X><Y>-2105</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -541,7 +541,7 @@ for (Integer controlID : cp_enabledControls) {
 				<Variable Class="PlainVariable">
 					<Id>1656010587645</Id>
 					<Name><![CDATA[v_compromisedCount]]></Name>
-					<X>765</X><Y>-535</Y>
+					<X>755</X><Y>-2085</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -553,7 +553,7 @@ for (Integer controlID : cp_enabledControls) {
 				<Variable Class="PlainVariable">
 					<Id>1656010591971</Id>
 					<Name><![CDATA[di_compromisedCount]]></Name>
-					<X>765</X><Y>-515</Y>
+					<X>755</X><Y>-2065</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -565,7 +565,7 @@ for (Integer controlID : cp_enabledControls) {
 				<Variable Class="PlainVariable">
 					<Id>1656010595855</Id>
 					<Name><![CDATA[di_compromisedPercent]]></Name>
-					<X>765</X><Y>-495</Y>
+					<X>755</X><Y>-2045</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -577,7 +577,7 @@ for (Integer controlID : cp_enabledControls) {
 				<Variable Class="PlainVariable">
 					<Id>1656041781738</Id>
 					<Name><![CDATA[v_totalReturn]]></Name>
-					<X>765</X><Y>-595</Y>
+					<X>755</X><Y>-2145</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -592,7 +592,7 @@ for (Integer controlID : cp_enabledControls) {
 				<Variable Class="PlainVariable">
 					<Id>1656080486889</Id>
 					<Name><![CDATA[cv_controlsPowerSet]]></Name>
-					<X>990</X><Y>-660</Y>
+					<X>980</X><Y>-2210</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -604,7 +604,7 @@ for (Integer controlID : cp_enabledControls) {
 				<Variable Class="PlainVariable">
 					<Id>1656087923097</Id>
 					<Name><![CDATA[v_maxReturn]]></Name>
-					<X>990</X><Y>-640</Y>
+					<X>980</X><Y>-2190</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -619,7 +619,7 @@ for (Integer controlID : cp_enabledControls) {
 				<Variable Class="PlainVariable">
 					<Id>1656100924086</Id>
 					<Name><![CDATA[v_optimalControlsString]]></Name>
-					<X>990</X><Y>-620</Y>
+					<X>980</X><Y>-2170</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -631,7 +631,7 @@ for (Integer controlID : cp_enabledControls) {
 				<Variable Class="PlainVariable">
 					<Id>1656101985223</Id>
 					<Name><![CDATA[v_maxROI]]></Name>
-					<X>990</X><Y>-410</Y>
+					<X>980</X><Y>-1960</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -646,7 +646,7 @@ for (Integer controlID : cp_enabledControls) {
 				<Variable Class="PlainVariable">
 					<Id>1656102077018</Id>
 					<Name><![CDATA[v_totalROI]]></Name>
-					<X>765</X><Y>-615</Y>
+					<X>755</X><Y>-2165</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -661,7 +661,7 @@ for (Integer controlID : cp_enabledControls) {
 				<Variable Class="PlainVariable">
 					<Id>1656104606929</Id>
 					<Name><![CDATA[v_optimalROIString]]></Name>
-					<X>990</X><Y>-390</Y>
+					<X>980</X><Y>-1940</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -673,7 +673,7 @@ for (Integer controlID : cp_enabledControls) {
 				<Variable Class="Parameter">
 					<Id>1655404070757</Id>
 					<Name><![CDATA[p_annualBudget]]></Name>
-					<X>320</X><Y>-670</Y>
+					<X>310</X><Y>-2220</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -683,7 +683,7 @@ for (Integer controlID : cp_enabledControls) {
 						<UnitType><![CDATA[NONE]]></UnitType>
 						<SdArray>false</SdArray>
 						<DefaultValue Class="CodeValue">
-							<Code><![CDATA[49600]]></Code>
+							<Code><![CDATA[9920]]></Code>
 						</DefaultValue>
 						<ParameterEditor>
 							<Id>1655404070755</Id>
@@ -697,7 +697,7 @@ for (Integer controlID : cp_enabledControls) {
 				<Variable Class="Parameter">
 					<Id>1655404079732</Id>
 					<Name><![CDATA[p_breachCost]]></Name>
-					<X>320</X><Y>-650</Y>
+					<X>310</X><Y>-2200</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -721,7 +721,7 @@ for (Integer controlID : cp_enabledControls) {
 				<Variable Class="Parameter">
 					<Id>1655404109221</Id>
 					<Name><![CDATA[cp_selectedThreatActors]]></Name>
-					<X>320</X><Y>-630</Y>
+					<X>310</X><Y>-2180</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -745,8 +745,8 @@ for (Integer controlID : cp_enabledControls) {
 				<Variable Class="Parameter">
 					<Id>1656019416026</Id>
 					<Name><![CDATA[p_attacksPerYear]]></Name>
-					<Description><![CDATA[270 is the average number of cyberattacks per business per year according to the Accenture State of Cybersecurity report 2021]]></Description>
-					<X>320</X><Y>-610</Y>
+					<Description><![CDATA[270 is the average number of cyberattacks per business per year according to the Accenture State of Cybersecurity report 2021. 29 is the average number of successful attacks and may be used to account for the effectiveness of existing controls.]]></Description>
+					<X>310</X><Y>-2160</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -756,7 +756,7 @@ for (Integer controlID : cp_enabledControls) {
 						<UnitType><![CDATA[NONE]]></UnitType>
 						<SdArray>false</SdArray>
 						<DefaultValue Class="CodeValue">
-							<Code><![CDATA[270]]></Code>
+							<Code><![CDATA[29]]></Code>
 						</DefaultValue>
 						<ParameterEditor>
 							<Id>1656019416024</Id>
@@ -770,7 +770,7 @@ for (Integer controlID : cp_enabledControls) {
 				<Variable Class="Parameter">
 					<Id>1656019447197</Id>
 					<Name><![CDATA[p_numYears]]></Name>
-					<X>320</X><Y>-590</Y>
+					<X>310</X><Y>-2140</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -794,7 +794,7 @@ for (Integer controlID : cp_enabledControls) {
 				<Variable Class="Parameter">
 					<Id>1656028257587</Id>
 					<Name><![CDATA[cp_enabledControls]]></Name>
-					<X>320</X><Y>-570</Y>
+					<X>310</X><Y>-2120</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -820,7 +820,7 @@ for (Integer controlID : cp_enabledControls) {
 				<Variable Class="Parameter">
 					<Id>1656042390046</Id>
 					<Name><![CDATA[p_controlSetIndex]]></Name>
-					<X>320</X><Y>-550</Y>
+					<X>310</X><Y>-2100</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -841,7 +841,7 @@ for (Integer controlID : cp_enabledControls) {
 				<Variable Class="CollectionVariable">
 					<Id>1656080455580</Id>
 					<Name><![CDATA[cv_allControls]]></Name>
-					<X>990</X><Y>-680</Y>
+					<X>980</X><Y>-2230</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -861,7 +861,7 @@ for (Integer controlID : cp_enabledControls) {
 					<Id>1491426884947</Id>
 					<Name><![CDATA[f_linkNodes]]></Name>
 					<Description><![CDATA[Sets the necessary references to build each node into a singly linked list representing the attack path. ]]></Description>
-					<X>540</X><Y>-350</Y>
+					<X>530</X><Y>-1900</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -892,7 +892,7 @@ previousNode.v_nextNode = null;]]></Body>
 					<Id>1492627056190</Id>
 					<Name><![CDATA[f_updateTotalCost]]></Name>
 					<Description><![CDATA[Called in f_updateOutput() to update the variable and on screen text containing the total cost of all enabled controls for nodes on the attack path.]]></Description>
-					<X>540</X><Y>-410</Y>
+					<X>530</X><Y>-1960</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -907,7 +907,7 @@ return v_totalControlCost;]]></Body>
 					<Id>1651861966649</Id>
 					<Name><![CDATA[f_updateThreatActorFailRatio]]></Name>
 					<Description><![CDATA[Determines which threat actor fail rate to apply to the current attack. Based on whether the threat actor is selected and their prevalence. Called before each attack in f_runAttacks()]]></Description>
-					<X>540</X><Y>-370</Y>
+					<X>530</X><Y>-1920</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -962,7 +962,7 @@ for (A_ThreatActor attacker : filter(ap_ThreatActors, a -> a.v_checkedForAttack 
 					<Id>1653412572346</Id>
 					<Name><![CDATA[f_runAttacks]]></Name>
 					<Description><![CDATA[Runs the multiple attacks that make up a simulation. Called when the user clicks the simulate one year button.]]></Description>
-					<X>765</X><Y>-410</Y>
+					<X>755</X><Y>-1960</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1013,14 +1013,14 @@ f_updateOutput();
 					<Id>1653490984860</Id>
 					<Name><![CDATA[f_reset]]></Name>
 					<Description><![CDATA[Called when the user clicks the reset button. Resets all nodes as well as text and graph outputs to a clean state, so that a new, independent simulation may be run afterwards.]]></Description>
-					<X>765</X><Y>-370</Y>
+					<X>755</X><Y>-1920</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
 					<Body><![CDATA[A_NetworkNode firstNode = findFirst(ap_NetworkNodes, n -> n.p_nodePosition == (int) Math.round(ap_NetworkNodes.getMinPos()));
 firstNode.f_reset();
-CompromisedChart.removeAll();
+bc_compromisedPercent.removeAll();
 bc_compromisedCount.removeAll();
 
 v_totalRuns = 0;
@@ -1046,13 +1046,13 @@ t_optimalControls.setText("?");
 					<Id>1653572803181</Id>
 					<Name><![CDATA[f_updateOutput]]></Name>
 					<Description><![CDATA[Called at the end of a simulation from the f_runAttacks() function. Updates graph and text outputs of the simulation.]]></Description>
-					<X>765</X><Y>-390</Y>
+					<X>755</X><Y>-1940</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>true</ShowLabel>
 					<Body><![CDATA[// Clear Existing Chart Data
-CompromisedChart.removeAll();
+bc_compromisedPercent.removeAll();
 bc_compromisedCount.removeAll();
 
 // List of nodes with positions in the attack path
@@ -1071,7 +1071,7 @@ nodes.forEach((node) -> {
 	
 	// Update percentage compromise chart
 	di_compromisedPercent.setValue(v_percentNodeCompromised);
-	CompromisedChart.addDataItem(di_compromisedPercent, node.p_nodeName, new Color(159, 168, 218));
+	bc_compromisedPercent.addDataItem(di_compromisedPercent, node.p_nodeName, new Color(159, 168, 218));
 
 	// Update count compromised chart
 	di_compromisedCount.setValue(v_compromisedCount);
@@ -1101,9 +1101,6 @@ else {
 t_ROI.setText(v_totalROI);
 
 t_totalAttacksRun.setText(v_totalRuns);
-System.out.println("Total Return:\t" + v_totalReturn);
-System.out.println("Total Cost:\t" + v_totalControlCost);
-System.out.println("Total ROI:\t" + v_totalROI);
 
 
 //System.out.println("Return: " + v_totalReturn + ";\tCI: " + p_controlSetIndex + ";\tControls: " + cp_enabledControls);
@@ -1115,7 +1112,7 @@ System.out.println("Total ROI:\t" + v_totalROI);
 					<Id>1654362845706</Id>
 					<Name><![CDATA[f_updateThreatActorSelection]]></Name>
 					<Description><![CDATA[Called when the checkbox next to a threat actor name is selected or deselected. Updates the property of the threat actor agent indicating whether or not it is enabled, which then determines if it's possible it could be the threat actor behind a given attack.]]></Description>
-					<X>540</X><Y>-390</Y>
+					<X>530</X><Y>-1940</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1137,7 +1134,7 @@ attacker.f_setSelected(p_isSelected);]]></Body>
 					<Id>1655480129449</Id>
 					<Name><![CDATA[f_updateBreachCost]]></Name>
 					<Description><![CDATA[Determines the total cost of a breach based on the user's manual estimate, description of data records posessed, or the average cost of a breach for a small business. All based on data from the IBM cost of a breach report.]]></Description>
-					<X>770</X><Y>-210</Y>
+					<X>760</X><Y>-1760</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1168,7 +1165,7 @@ t_breachCost.setText(p_breachCost);]]></Body>
 					<Id>1656001958285</Id>
 					<Name><![CDATA[f_setNodePosition]]></Name>
 					<Description><![CDATA[Updates the position value of each A_NetworkNode, making sure the position is a valid number and no two nodes have the same position. Called when a node's position value is changed by the user.]]></Description>
-					<X>540</X><Y>-330</Y>
+					<X>530</X><Y>-1880</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1218,7 +1215,7 @@ return success;]]></Body>
 					<Id>1656081652325</Id>
 					<Name><![CDATA[f_getAllControls]]></Name>
 					<Description><![CDATA[Gets all controls with a non-zero probability of stopping an attack so combinations of these controls generated by fJ_getPowerSet() can be tested for their ROI and total return in f_optimizeROI() and f_optimizeReturn().]]></Description>
-					<X>990</X><Y>-550</Y>
+					<X>980</X><Y>-2100</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1240,7 +1237,7 @@ return allControls;]]></Body>
 					<Id>1656085247849</Id>
 					<Name><![CDATA[f_getPowerSet]]></Name>
 					<Description><![CDATA[Given a set of controls, determines all possible combinations of those controls. These combinations are then tested in the f_optimizeReturn() and f_optimizeROI() functions so that the ideal subset of the set of possible controls for each metric can be determined.]]></Description>
-					<X>990</X><Y>-570</Y>
+					<X>980</X><Y>-2120</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1278,7 +1275,7 @@ return sets;]]></Body>
 					<Id>1656085369880</Id>
 					<Name><![CDATA[f_optimizeReturn]]></Name>
 					<Description><![CDATA[Called when the user clicks the optimize button. Determines the set of controls with the highest total return that is within the user's budget and updates outputs to reflect the optimized set of controls.]]></Description>
-					<X>990</X><Y>-590</Y>
+					<X>980</X><Y>-2140</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1374,7 +1371,7 @@ t_bestControlROI.setText("%" + v_maxROI);
 					<Id>1656101608183</Id>
 					<Name><![CDATA[f_optimizeROI]]></Name>
 					<Description><![CDATA[Called when the user clicks the optimize button. Determines the single control with the highest ROI percentage within the user's budget and updates on screen text to display this control and its ROI.]]></Description>
-					<X>990</X><Y>-340</Y>
+					<X>980</X><Y>-1890</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1467,7 +1464,7 @@ for (A_Control control : v_bestControlSet) {
 				<AgentLink>
 					<Id>1481747912643</Id>
 					<Name><![CDATA[connections]]></Name>
-					<X>50</X><Y>-50</Y>
+					<X>40</X><Y>-1600</Y>
 					<Label><X>15</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1489,7 +1486,7 @@ for (A_Control control : v_bestControlSet) {
 				<EmbeddedObject>
 					<Id>1655995237668</Id>
 					<Name><![CDATA[ap_ThreatActors]]></Name>
-					<X>320</X><Y>-400</Y>
+					<X>310</X><Y>-1950</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1633,7 +1630,7 @@ for (A_Control control : v_bestControlSet) {
 				<EmbeddedObject>
 					<Id>1655996878582</Id>
 					<Name><![CDATA[ap_NetworkNodes]]></Name>
-					<X>320</X><Y>-380</Y>
+					<X>310</X><Y>-1930</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1795,7 +1792,7 @@ for (A_Control control : v_bestControlSet) {
 				<EmbeddedObject>
 					<Id>1655999944604</Id>
 					<Name><![CDATA[ap_PositionSelectors]]></Name>
-					<X>320</X><Y>-360</Y>
+					<X>310</X><Y>-1910</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1922,7 +1919,7 @@ for (A_Control control : v_bestControlSet) {
 				<Rectangle>
 					<Id>1654959855799</Id>
 					<Name><![CDATA[r_backdrop]]></Name>
-					<X>-400</X><Y>0</Y>
+					<X>-1240</X><Y>-1120</Y>
 					<Label><X>10</X><Y>10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -1936,8 +1933,8 @@ for (A_Control control : v_bestControlSet) {
 					<LineColor/>
 					<LineMaterial>null</LineMaterial>
 					<LineStyle>SOLID</LineStyle>
-					<Width>2880</Width>
-					<Height>1480</Height>
+					<Width>4840</Width>
+					<Height>3840</Height>
 					<Rotation>0.0</Rotation>
 					<FillColor>-14606047</FillColor>
 					<FillMaterial>null</FillMaterial>
@@ -2138,8 +2135,8 @@ for (A_Control control : v_bestControlSet) {
 				</Control>
     			<BarChart>
 					<Id>1653572824939</Id>
-					<Name><![CDATA[CompromisedChart]]></Name>
-					<X>410</X><Y>800</Y>
+					<Name><![CDATA[bc_compromisedPercent]]></Name>
+					<X>430</X><Y>800</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2157,14 +2154,14 @@ for (A_Control control : v_bestControlSet) {
 						<Unit Class="TimeUnits"><![CDATA[MILLISECOND]]></Unit>
 					</RecurrenceCode>
 					<EmbeddedIcon>false</EmbeddedIcon>
-					<Width>800</Width>
+					<Width>850</Width>
 					<Height>410</Height>
 					<BackgroundColor/>
 					<BorderColor/>
 					<ChartArea>
 						<XOffset>50</XOffset>
 						<YOffset>30</YOffset>
-						<Width>720</Width>
+						<Width>770</Width>
 						<Height>320</Height>
 						<BackgroundColor/>
 						<BorderColor>-328966</BorderColor>
@@ -2282,7 +2279,7 @@ for (A_Control control : v_bestControlSet) {
 				<Text>
 					<Id>1653670360550</Id>
 					<Name><![CDATA[text28]]></Name>
-					<X>400</X><Y>1120</Y>
+					<X>420</X><Y>1120</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2303,7 +2300,7 @@ for (A_Control control : v_bestControlSet) {
 				<Text>
 					<Id>1653670413162</Id>
 					<Name><![CDATA[text29]]></Name>
-					<X>760</X><Y>1210</Y>
+					<X>800</X><Y>1200</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2324,12 +2321,11 @@ for (A_Control control : v_bestControlSet) {
 				<RoundedRectangle>
 					<Id>1653869555188</Id>
 					<Name><![CDATA[pi_SimVariables]]></Name>
-					<X>740</X><Y>-720</Y>
+					<X>730</X><Y>-2270</Y>
 					<Label><X>10</X><Y>10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>false</ShowLabel>
-					<Lock>true</Lock>
 					<DrawMode>SHAPE_DRAW_2D</DrawMode>
 					<EmbeddedIcon>false</EmbeddedIcon>
 					<Z>0</Z>
@@ -2349,7 +2345,7 @@ for (A_Control control : v_bestControlSet) {
 					<Id>1653869650901</Id>
 					<Name><![CDATA[text15]]></Name>
 					<Description><![CDATA[Variables used to enable the functionality of simulating multiple attacks when the 'simulate year' button is pressed.]]></Description>
-					<X>775</X><Y>-710</Y>
+					<X>765</X><Y>-2260</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2370,12 +2366,11 @@ for (A_Control control : v_bestControlSet) {
 				<RoundedRectangle>
 					<Id>1653869733588</Id>
 					<Name><![CDATA[pi_SimVariables1]]></Name>
-					<X>520</X><Y>-720</Y>
+					<X>510</X><Y>-2270</Y>
 					<Label><X>10</X><Y>10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>false</ShowLabel>
-					<Lock>true</Lock>
 					<DrawMode>SHAPE_DRAW_2D</DrawMode>
 					<EmbeddedIcon>false</EmbeddedIcon>
 					<Z>0</Z>
@@ -2394,7 +2389,7 @@ for (A_Control control : v_bestControlSet) {
 				<Text>
 					<Id>1653869733590</Id>
 					<Name><![CDATA[text26]]></Name>
-					<X>537</X><Y>-710</Y>
+					<X>527</X><Y>-2260</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2415,12 +2410,11 @@ for (A_Control control : v_bestControlSet) {
 				<RoundedRectangle>
 					<Id>1653869835751</Id>
 					<Name><![CDATA[pi_SimVariables2]]></Name>
-					<X>740</X><Y>-460</Y>
+					<X>730</X><Y>-2010</Y>
 					<Label><X>10</X><Y>10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>false</ShowLabel>
-					<Lock>true</Lock>
 					<DrawMode>SHAPE_DRAW_2D</DrawMode>
 					<EmbeddedIcon>false</EmbeddedIcon>
 					<Z>0</Z>
@@ -2439,7 +2433,7 @@ for (A_Control control : v_bestControlSet) {
 				<Text>
 					<Id>1653869835756</Id>
 					<Name><![CDATA[text30]]></Name>
-					<X>770</X><Y>-450</Y>
+					<X>760</X><Y>-2000</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2460,12 +2454,11 @@ for (A_Control control : v_bestControlSet) {
 				<RoundedRectangle>
 					<Id>1653869851122</Id>
 					<Name><![CDATA[pi_SimVariables3]]></Name>
-					<X>520</X><Y>-460</Y>
+					<X>510</X><Y>-2010</Y>
 					<Label><X>10</X><Y>10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>false</ShowLabel>
-					<Lock>true</Lock>
 					<DrawMode>SHAPE_DRAW_2D</DrawMode>
 					<EmbeddedIcon>false</EmbeddedIcon>
 					<Z>0</Z>
@@ -2484,7 +2477,7 @@ for (A_Control control : v_bestControlSet) {
 				<Text>
 					<Id>1653869851124</Id>
 					<Name><![CDATA[text31]]></Name>
-					<X>535</X><Y>-450</Y>
+					<X>525</X><Y>-2000</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2620,12 +2613,11 @@ for (A_Control control : v_bestControlSet) {
 				<RoundedRectangle>
 					<Id>1654363476994</Id>
 					<Name><![CDATA[pi_SimVariables5]]></Name>
-					<X>300</X><Y>-460</Y>
+					<X>290</X><Y>-2010</Y>
 					<Label><X>10</X><Y>10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>false</ShowLabel>
-					<Lock>true</Lock>
 					<DrawMode>SHAPE_DRAW_2D</DrawMode>
 					<EmbeddedIcon>false</EmbeddedIcon>
 					<Z>0</Z>
@@ -2644,7 +2636,7 @@ for (A_Control control : v_bestControlSet) {
 				<Text>
 					<Id>1654363476996</Id>
 					<Name><![CDATA[text33]]></Name>
-					<X>340</X><Y>-450</Y>
+					<X>330</X><Y>-2000</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2707,7 +2699,7 @@ for (A_Control control : v_bestControlSet) {
 				<Text>
 					<Id>1654618008588</Id>
 					<Name><![CDATA[text37]]></Name>
-					<X>1240</X><Y>1100</Y>
+					<X>1360</X><Y>1080</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2728,7 +2720,7 @@ for (A_Control control : v_bestControlSet) {
     			<BarChart>
 					<Id>1654618008591</Id>
 					<Name><![CDATA[bc_compromisedCount]]></Name>
-					<X>1260</X><Y>800</Y>
+					<X>1380</X><Y>800</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2746,14 +2738,14 @@ for (A_Control control : v_bestControlSet) {
 						<Unit Class="TimeUnits"><![CDATA[MILLISECOND]]></Unit>
 					</RecurrenceCode>
 					<EmbeddedIcon>false</EmbeddedIcon>
-					<Width>800</Width>
+					<Width>850</Width>
 					<Height>410</Height>
 					<BackgroundColor/>
 					<BorderColor/>
 					<ChartArea>
 						<XOffset>50</XOffset>
 						<YOffset>30</YOffset>
-						<Width>720</Width>
+						<Width>770</Width>
 						<Height>320</Height>
 						<BackgroundColor/>
 						<BorderColor>-328966</BorderColor>
@@ -2781,7 +2773,7 @@ for (A_Control control : v_bestControlSet) {
 				<Text>
 					<Id>1654618008593</Id>
 					<Name><![CDATA[text38]]></Name>
-					<X>1620</X><Y>1210</Y>
+					<X>1770</X><Y>1200</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -2951,12 +2943,11 @@ for (A_Control control : v_bestControlSet) {
 				<RoundedRectangle>
 					<Id>1655404042687</Id>
 					<Name><![CDATA[pi_SimVariables7]]></Name>
-					<X>300</X><Y>-720</Y>
+					<X>290</X><Y>-2270</Y>
 					<Label><X>10</X><Y>10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>false</ShowLabel>
-					<Lock>true</Lock>
 					<DrawMode>SHAPE_DRAW_2D</DrawMode>
 					<EmbeddedIcon>false</EmbeddedIcon>
 					<Z>0</Z>
@@ -2975,7 +2966,7 @@ for (A_Control control : v_bestControlSet) {
 				<Text>
 					<Id>1655404042694</Id>
 					<Name><![CDATA[text22]]></Name>
-					<X>330</X><Y>-710</Y>
+					<X>320</X><Y>-2260</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -3086,12 +3077,11 @@ f_updateBreachCost();]]></ActionCode>
 				<RoundedRectangle>
 					<Id>1655476132601</Id>
 					<Name><![CDATA[pi_SimVariables8]]></Name>
-					<X>300</X><Y>-260</Y>
+					<X>290</X><Y>-1810</Y>
 					<Label><X>10</X><Y>10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>false</ShowLabel>
-					<Lock>true</Lock>
 					<DrawMode>SHAPE_DRAW_2D</DrawMode>
 					<EmbeddedIcon>false</EmbeddedIcon>
 					<Z>0</Z>
@@ -3110,7 +3100,7 @@ f_updateBreachCost();]]></ActionCode>
 				<Text>
 					<Id>1655476132603</Id>
 					<Name><![CDATA[CostVarHeading]]></Name>
-					<X>580</X><Y>-250</Y>
+					<X>570</X><Y>-1800</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -4068,12 +4058,11 @@ f_optimizeReturn();]]></ActionCode>
 				<RoundedRectangle>
 					<Id>1656080417096</Id>
 					<Name><![CDATA[pi_SimVariables10]]></Name>
-					<X>960</X><Y>-720</Y>
+					<X>950</X><Y>-2270</Y>
 					<Label><X>10</X><Y>10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>false</ShowLabel>
-					<Lock>true</Lock>
 					<DrawMode>SHAPE_DRAW_2D</DrawMode>
 					<EmbeddedIcon>false</EmbeddedIcon>
 					<Z>0</Z>
@@ -4092,7 +4081,7 @@ f_optimizeReturn();]]></ActionCode>
 				<Text>
 					<Id>1656080422758</Id>
 					<Name><![CDATA[text53]]></Name>
-					<X>1000</X><Y>-710</Y>
+					<X>990</X><Y>-2260</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -4260,12 +4249,11 @@ f_optimizeReturn();]]></ActionCode>
 				<RoundedRectangle>
 					<Id>1656172334314</Id>
 					<Name><![CDATA[pi_SimVariables11]]></Name>
-					<X>960</X><Y>-460</Y>
+					<X>950</X><Y>-2010</Y>
 					<Label><X>10</X><Y>10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>false</ShowLabel>
-					<Lock>true</Lock>
 					<DrawMode>SHAPE_DRAW_2D</DrawMode>
 					<EmbeddedIcon>false</EmbeddedIcon>
 					<Z>0</Z>
@@ -4284,7 +4272,7 @@ f_optimizeReturn();]]></ActionCode>
 				<Text>
 					<Id>1656172334318</Id>
 					<Name><![CDATA[text54]]></Name>
-					<X>1010</X><Y>-450</Y>
+					<X>1000</X><Y>-2000</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -4320,6 +4308,50 @@ f_optimizeReturn();]]></ActionCode>
 						<Name>SansSerif</Name>
 						<Size>22</Size>
 						<Style>1</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
+				<RoundedRectangle>
+					<Id>1658115112451</Id>
+					<Name><![CDATA[pi_SimVariables4]]></Name>
+					<X>950</X><Y>-1810</Y>
+					<Label><X>10</X><Y>10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<ZHeight>10</ZHeight>
+					<LineWidth>1</LineWidth>
+					<LineColor>-16777216</LineColor>
+					<LineMaterial>null</LineMaterial>
+					<LineStyle>SOLID</LineStyle>
+					<Width>200</Width>
+					<Height>160</Height>
+					<Rotation>0.0</Rotation>
+					<FillColor>-1</FillColor>
+					<FillMaterial>null</FillMaterial>
+					<ArcRadius>10</ArcRadius>
+				</RoundedRectangle>
+				<Text>
+					<Id>1658115132690</Id>
+					<Name><![CDATA[text55]]></Name>
+					<X>1000</X><Y>-1800</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[Misc.]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>14</Size>
+						<Style>0</Style>
 					</Font>
 					<Alignment>LEFT</Alignment>
 				</Text>
@@ -4387,8 +4419,8 @@ f_optimizeReturn();]]></ActionCode>
 			<Areas>
 				<Area>
 					<Id>1653854051633</Id>
-					<Name><![CDATA[Variables]]></Name>
-					<X>200</X><Y>-740</Y>
+					<Name><![CDATA[va_variables]]></Name>
+					<X>200</X><Y>-2280</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -4399,7 +4431,7 @@ f_optimizeReturn();]]></ActionCode>
 				</Area>
 				<Area>
 					<Id>1653854123653</Id>
-					<Name><![CDATA[InputOutput]]></Name>
+					<Name><![CDATA[va_inputs]]></Name>
 					<X>0</X><Y>0</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>false</PublicFlag>
@@ -4407,31 +4439,55 @@ f_optimizeReturn();]]></ActionCode>
 					<ShowLabel>false</ShowLabel>
 					<Title><![CDATA[]]></Title>
 					<Width>390</Width>
-					<Height>1230</Height>
+					<Height>920</Height>
 				</Area>
 				<Area>
 					<Id>1653854189145</Id>
-					<Name><![CDATA[OutputGraph]]></Name>
+					<Name><![CDATA[va_visualization]]></Name>
 					<X>400</X><Y>820</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>false</ShowLabel>
 					<Title><![CDATA[]]></Title>
-					<Width>1520</Width>
-					<Height>500</Height>
+					<Width>1840</Width>
+					<Height>460</Height>
 				</Area>
 				<Area>
 					<Id>1653854226830</Id>
-					<Name><![CDATA[Nodes]]></Name>
+					<Name><![CDATA[va_nodes]]></Name>
 					<X>400</X><Y>0</Y>
 					<Label><X>0</X><Y>-10</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
 					<ShowLabel>false</ShowLabel>
 					<Title><![CDATA[]]></Title>
-					<Width>1840</Width>
+					<Width>1200</Width>
 					<Height>820</Height>
+				</Area>
+				<Area>
+					<Id>1658114759107</Id>
+					<Name><![CDATA[va_textOutput]]></Name>
+					<X>1600</X><Y>160</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<Title><![CDATA[]]></Title>
+					<Width>640</Width>
+					<Height>480</Height>
+				</Area>
+				<Area>
+					<Id>1658114859620</Id>
+					<Name><![CDATA[va_wholeModel]]></Name>
+					<X>0</X><Y>0</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<Title><![CDATA[]]></Title>
+					<Width>2240</Width>
+					<Height>1280</Height>
 				</Area>
 			</Areas>
 
@@ -4926,67 +4982,12 @@ if (v_nextNode != null) {
 }]]></Body>
 				</Function>
 				<Function AccessType="default" StaticFunction="false">
-					<ReturnModificator>RETURNS_VALUE</ReturnModificator>
-					<ReturnType><![CDATA[double]]></ReturnType>
-					<Id>1653922051174</Id>
-					<Name><![CDATA[f_getEffectiveControlProbability]]></Name>
-					<Description><![CDATA[Gets an effective probability for a given node based on the effective probability of each of the controls applied at the node. Called from the action chart to determine whether or not the node was compromised.]]></Description>
-					<X>470</X><Y>-130</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Parameter>
-						<Name><![CDATA[p_defaultProbability]]></Name>
-						<Type><![CDATA[double]]></Type>
-					</Parameter>
-					<Parameter>
-						<Name><![CDATA[p_defaultVariance]]></Name>
-						<Type><![CDATA[double]]></Type>
-					</Parameter>
-					<Parameter>
-						<Name><![CDATA[p_enabled]]></Name>
-						<Type><![CDATA[boolean]]></Type>
-					</Parameter>
-					<Body><![CDATA[double v_effectiveProbability;
-
-// If the control is not enabled, then its probability of stopping
-// the attack is 0.
-if (!p_enabled) {
-	v_effectiveProbability = 0;
-}
-else {
-	// Generate random variance between the positive and negative value of the variance
-	double v_usedVariance;
-	if (p_defaultVariance == 0) {
-		v_usedVariance = 0;
-	}
-	else {
-		double v_minVariance = -1 * p_defaultVariance;
-		double v_maxVariance = 1 * p_defaultVariance;
-		v_usedVariance = uniform(v_minVariance, v_maxVariance);
-	}
-	
-	v_effectiveProbability = (p_defaultProbability + v_usedVariance);
-	
-	// Constrain bounds to 0 <= v_effectiveProbability <= 1
-	if (v_effectiveProbability < 0) {
-	    v_effectiveProbability = 0;
-	}
-	else if (v_effectiveProbability > 1) {
-	    v_effectiveProbability = 1;
-	}
-}
-
-return v_effectiveProbability;]]></Body>
-				</Function>
-				<Function AccessType="default" StaticFunction="false">
 					<ReturnModificator>VOID</ReturnModificator>
 					<ReturnType><![CDATA[double]]></ReturnType>
 					<Id>1656040142085</Id>
 					<Name><![CDATA[f_updatePosition]]></Name>
 					<Description><![CDATA[Updates the position value of a node. Called from Main.fJ_setPosition()]]></Description>
-					<X>470</X><Y>-110</Y>
+					<X>470</X><Y>-130</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
