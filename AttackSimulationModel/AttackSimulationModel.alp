@@ -461,7 +461,7 @@ for (Integer controlID : cp_enabledControls) {
 					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
 						<Type><![CDATA[int]]></Type>        
 						<InitialValue Class="CodeValue">
-							<Code><![CDATA[2630000]]></Code>
+							<Code><![CDATA[2980000]]></Code>
 						</InitialValue>
 					</Properties>
 				</Variable>
