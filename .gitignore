@@ -1,4 +1,4 @@
 .idea/
 venv/
-model/database/db.log
-model/database/db.lck
+AttackSimulationModel/database/db.log
+AttackSimulationModel/database/db.lck
