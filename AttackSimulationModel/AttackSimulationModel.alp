@@ -8197,7 +8197,7 @@ controls.]]></Text>
 			<PresentationProperties>
 				<EnableZoomAndPanning>true</EnableZoomAndPanning>
 				<ExecutionMode><![CDATA[virtualTime]]></ExecutionMode>
-				<Title><![CDATA[Mango Model : Simulation]]></Title>	
+				<Title><![CDATA[AttackSimulation]]></Title>	
 				<EnableDeveloperPanel>true</EnableDeveloperPanel>
 				<ShowDeveloperPanelOnStart>false</ShowDeveloperPanelOnStart>
 				<RealTimeScale>1.0</RealTimeScale>
