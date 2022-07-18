@@ -28,7 +28,7 @@ The model makes several assumptions and compromises in the name of data availabi
 ## Default Values and Useful Data Points
 Note: All cost values are calculated based on the annual average of the 3-year total cost of ownership. All costs are in USD.
 
-Control Pricing, Effectiveness, and Variance
+Control pricing, effectiveness, and variance
 | Control Name                | Per Person /  Per Machine | Annual Cost (USD) | Effectiveness | Variance |
 |-----------------------------|---------------------------|-------------------|---------------|----------|
 | Intrusion Prevention System | N/A                       | Varies            | 0.9904        | 0.0144   |
@@ -38,7 +38,7 @@ Control Pricing, Effectiveness, and Variance
 | Email Filter                | Yes                       | $21.30-$313.20    | 0.9991        | 0        |
 | Security Awareness Training | Yes                       | $17.00-30.50      | 0.5263        | 0        |
 
-Estimates for Budget, Breach Cost, and Costs of Variable Cost Controls Based on Business Size
+Estimates for budget, breach cost, and costs of variable cost controls based on business size
 | Employee Count | Budget Amount | Breach Cost | IPS Cost  | Email Filter Cost | Security Training Cost (Per Person) |
 |----------------|---------------|-------------|-----------|-------------------|-------------------------------------|
 | 5              | $9,920.00     | $59,600.00  | $5,185.71 | $313.20           | $30.50                              |
