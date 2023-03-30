@@ -2,9 +2,6 @@
 # AttackSimulation
 An AnyLogic simulation model allowing users to quantitatively estimate the risk of cyber attacks to their organization, as well as the efficacy and total cost of security controls. Stand-alone, cross-platform releases may be downloaded under [Releases](https://github.com/gjhami/AttackSimulation/releases).
 
-## Disclaimer
-This project is currently under heavy development and is subject to major changes. The authors accept no responsibility for the accuracy of the model or decisions based on its outputs.
-
 ## Usage and Audience
 This model is intended for small businesses/organizations without dedicated cybersecurity teams, or anyone trying to make more informed risk decisions while allocating a limited cybersecurity budget. The model will not represent every organization with pinpoint accuracy; it is meant to provide a useful tool accurate enough to improve decision making.
 
@@ -17,6 +14,9 @@ Data related to monetary costs of breaches are based on the [IBM Cost of a Data 
 
 ## Simulations
  Simulation modeling allows us to represent the data in a meaningful way, and to make reasonable estimations of outcomes based on observed samples. The model can quickly run hundreds or thousands of iterations using minimal resources, and visually displays attack success likelihoods. User selection of threat actors they anticipate facing, as well as security controls to implement, accordingly impact attack success predictions.
+ 
+## Published Work
+The initial model was published in the proceedings of proceedings of the 2022 IEEE International Symposium on Technologies for Homeland Security (HST). The paper is available at \[[IEEE Xplore](https://doi.org/10.1109/HST56032.2022.10024984)\] or \[[unpaywalled](https://docs.lib.purdue.edu/cit_articles/52)\]. The model was expanded and enhanced to include control pricing, budget allocation, and ROI in the thesis available \[[here](https://hammer.purdue.edu/articles/thesis/Making_the_Most_of_Limited_Cybersecurity_Budgets_with_AnyLogic_Modeling/20369418)\].
 
 ## Limitations
 The model makes several assumptions and compromises in the name of data availability and ease of use. Some of these are as follows:
@@ -44,3 +44,6 @@ Estimates for budget, breach cost, and costs of variable cost controls based on 
 | 5              | $9,920.00     | $59,600.00  | $5,185.71 | $313.20           | $30.50                              |
 | 25             | $49,600.00    | $298,000.00 | $5,288.55 | $1,127.52         | $30.50                              |
 | 50             | $99,200.00    | $596,000.00 | $5,417.10 | $1,503.36         | $30.50                              |
+
+## Disclaimer
+The authors accept no responsibility for the accuracy of the model or real-world decisions based on its outputs.
